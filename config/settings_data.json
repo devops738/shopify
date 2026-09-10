@@ -1,0 +1,28 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "main-page-promotions": {
+        "type": "main-page-promotions",
+        "settings": {
+          "eyebrow": "Current deals & rebates",
+          "heading": "Deals on Tires, Wheels, & Auto Service",
+          "intro": "Save on tires, wheels, and auto service at American Tire Stores. Browse manufacturer rebates, brand-specific wheel discounts, service coupons, and flexible financing — available at all seven Southern California locations.",
+          "hero_image": "shopify://shop_images/download_1.jpg",
+          "featured_image": "shopify://shop_images/download_2.jpg",
+          "primary_label": "See tire deals",
+          "secondary_label": "Wheel deals"
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}
