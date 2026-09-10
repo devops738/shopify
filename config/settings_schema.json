@@ -1,13 +1,1 @@
-﻿[
-  {
-    "name": "American Tire Stores",
-    "settings": [
-      {
-        "type": "text",
-        "id": "tireconnect_api_key",
-        "label": "TireConnect API key",
-        "default": "c097aed9ad8c441bfff05ae020ca53f0"
-      }
-    ]
-  }
-]
+[]
