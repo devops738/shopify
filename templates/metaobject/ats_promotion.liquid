@@ -1,1 +1,25 @@
-{% section 'promo-detail' %}
+{% liquid
+  assign title = metaobject.title.value | default: 'Promotion'
+  assign label = metaobject.label.value | default: 'Current offer'
+  assign description = metaobject.description.value
+  assign image = metaobject.image.value
+  assign offer = metaobject.offer_value.value
+  assign code = metaobject.code.value
+  assign expiry = metaobject.expiry.value
+  assign locations = metaobject.locations.value | default: 'All American Tire Stores locations'
+  assign body = metaobject.body.value
+  assign terms = metaobject.terms.value
+  assign shop_link = metaobject.primary_link.value | default: metaobject.link.value | default: '/pages/tire-search'
+  assign shop_cta = metaobject.primary_cta.value | default: metaobject.cta.value | default: 'Shop this offer'
+%}
+<style>
+.apd{--n:#102e5c;--r:#d21f2b;--i:#102b56;--m:#687897;--l:#dbe2ec;font-family:Montserrat,Arial,sans-serif;color:var(--i);background:#fff}.apd *{box-sizing:border-box}.apd a{text-decoration:none}.apd .w{width:min(1100px,100%);padding:0 24px;margin:auto}.apd .crumb{padding:16px 0;border-bottom:1px solid var(--l);font-size:13px;color:var(--m)}.apd .crumb a{color:var(--i);font-weight:800}.apd .hero{padding:56px 0;background:linear-gradient(145deg,#0c2245,#173c75);color:#fff}.apd .k{font-size:11px;letter-spacing:.12em;font-weight:900;text-transform:uppercase;color:#ff827b}.apd h1,.apd h2,.apd h3{font-family:'Akira Expanded',Montserrat,Arial,sans-serif;font-weight:800;text-transform:uppercase}.apd h1{font-size:clamp(30px,4vw,48px);line-height:1.1;margin:12px 0}.apd .lead{max-width:760px;line-height:1.65;color:#d7e1f1}.apd .image{margin-top:28px;border-radius:12px;overflow:hidden;background:#173866}.apd .image img{display:block;width:100%;height:auto}.apd .actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:23px}.apd .button{display:inline-flex;align-items:center;justify-content:center;min-height:45px;padding:11px 18px;border-radius:7px;background:var(--r);box-shadow:0 4px 0 #a4141d;color:#fff;font-size:12px;font-weight:900;text-transform:uppercase}.apd .code{padding:9px 14px;border:2px dashed #8da4c7;border-radius:8px;font:800 18px ui-monospace,Consolas,monospace}.apd .facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:-25px;border:1px solid var(--l);border-radius:12px;overflow:hidden;background:#fff;position:relative}.apd .fact{padding:20px;border-right:1px solid var(--l)}.apd .fact:last-child{border:0}.apd .fact small{display:block;color:var(--m);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}.apd .block{padding:56px 0}.apd .alt{background:#f4f6fa}.apd h2{font-size:26px;margin:8px 0 12px}.apd .copy{line-height:1.7;color:var(--m)}.apd .split{display:grid;grid-template-columns:1.35fr .65fr;gap:32px}.apd .terms{background:#fff;border:1px solid var(--l);border-radius:12px;padding:23px;color:var(--m);line-height:1.6}.apd .final{text-align:center;padding:55px 20px;background:var(--n);color:#fff}.apd .final p{color:#d7e1f1;max-width:640px;margin:0 auto 24px}@media(max-width:760px){.apd .facts,.apd .split{grid-template-columns:1fr}.apd .fact{border-right:0;border-bottom:1px solid var(--l)}.apd .fact:last-child{border-bottom:0}.apd .w{padding:0 18px}}
+</style>
+<main class="apd">
+  {% render 'ats-offer-header' %}
+  <div class="crumb"><div class="w"><a href="/">Home</a> › <a href="/pages/promotions">Promotions</a> › {{ title }}</div></div>
+  <section class="hero"><div class="w"><div class="k">{{ label }}</div><h1>{{ title }}</h1>{% if description != blank %}<p class="lead">{{ description }}</p>{% endif %}{% if image != blank %}<div class="image"><img src="{{ image | image_url: width: 1800 }}" alt="{{ title | escape }}"></div>{% endif %}<div class="actions">{% if code != blank %}<div class="code">{{ code }}</div>{% endif %}<a class="button" href="{{ shop_link }}">{{ shop_cta }} →</a></div></div></section>
+  <div class="w"><div class="facts"><div class="fact"><small>Offer ends</small><b>{{ expiry | default: 'See offer terms' }}</b></div><div class="fact"><small>Valid at</small><b>{{ locations }}</b></div><div class="fact"><small>Your savings</small><b>{{ offer | default: 'Current offer' }}</b></div><div class="fact"><small>How to redeem</small><b>Online or in store</b></div></div></div>
+  <section class="block"><div class="w"><div class="k">Offer details</div><div class="split"><div class="copy">{{ body }}</div><aside class="terms"><h3>Terms &amp; conditions</h3>{{ terms | newline_to_br }}</aside></div></div></section>
+  <section class="final"><h2>Ready to save?</h2>{% if description != blank %}<p>{{ description }}</p>{% endif %}<a class="button" href="{{ shop_link }}">{{ shop_cta }} →</a></section>
+</main>
