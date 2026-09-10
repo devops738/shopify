@@ -1,0 +1,1207 @@
+<style>
+
+:root{
+  --navy:#0c1e3a;--brand:#13315f;--blue:#1b47a3;--blue-2:#2358c4;
+  --red:#c51f28;--red-deep:#a5171f;--red-press:#86121a;
+  --ink:#122240;--slate:#54617a;--line:#dde2ea;--bg:#fff;--bg-alt:#f4f6fa;
+  --radius:8px;--maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{margin:0!important;padding:0!important}
+body{font-family:'Montserrat',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:3px solid var(--blue-2);outline-offset:2px}
+h1,h2,h3,.arch{font-family:'Akira Expanded','Archivo',sans-serif;letter-spacing:0}
+.arch{font-weight:800}
+
+/* buttons */
+.btn{border-radius:var(--radius);font-weight:800;letter-spacing:0.02em;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:'Montserrat';text-transform:uppercase;transition:transform .07s,background .15s,box-shadow .15s;font-size:14px}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 4px 0 var(--red-press);padding:0 22px;height:50px}
+.btn-red:hover{background:var(--red-deep)}
+.btn-red:active{transform:translateY(3px);box-shadow:0 1px 0 var(--red-press)}
+.btn-red:disabled{background:#e6b8ba;box-shadow:0 4px 0 #d69ea1;cursor:not-allowed}
+.btn-ghost{border:2px solid var(--brand);color:var(--brand);padding:0 22px;height:50px}
+.btn-ghost:hover{background:var(--brand);color:#fff}
+.btn-white{background:#fff;color:var(--brand);padding:0 22px;height:50px}
+.btn-white:hover{background:#eef1f7}
+
+/* promo */
+.promo{background:var(--red);color:#fff;font-size:13px;font-weight:500}
+.promo .wrap{display:flex;align-items:center;justify-content:center;gap:14px;height:38px;text-align:center;flex-wrap:wrap}
+.promo b{font-weight:800}.promo .sep{opacity:.5}.promo a{text-decoration:underline;font-weight:700}
+
+/* header — three bars */
+header{position:sticky;top:0;z-index:40;background:#fff}
+.hbar-brand{background:#fff;border-bottom:1px solid var(--line)}
+.hbar-brand .wrap{display:flex;align-items:center;gap:20px;height:76px}
+.logo{display:inline-flex;align-items:center;line-height:0}.logo img{height:42px;width:auto;display:block}
+.logo .a{color:var(--red)}
+.brand-right{margin-left:auto;display:flex;align-items:center;gap:12px;position:relative}
+.appt-btn{height:auto!important;min-height:46px;padding:7px 18px!important;line-height:1.15;text-align:center;font-size:12.5px}
+.hbar-nav{background:#fff;border-bottom:1px solid var(--line)}
+.mainnav{display:flex;gap:26px;height:50px;align-items:center;justify-content:center;overflow-x:auto}
+.mainnav a{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;position:relative;height:100%;display:flex;align-items:center}
+.mainnav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:3px;background:var(--red);transition:right .18s}
+.mainnav a:hover::after{right:0}
+/* header inline garage: Selected Store + My Vehicle (screenshot-style) */
+.hgarage{display:flex;align-items:stretch;border:1.5px solid var(--line);border-radius:10px;background:#fff;position:relative}
+.hg-field{display:flex;align-items:center;gap:9px;padding:7px 14px;background:none;text-align:left;cursor:pointer;min-width:158px}
+.hg-field .hg-ic{line-height:0;display:inline-flex}.hg-field .hg-ic img{width:47px;height:47px;object-fit:contain;display:block}
+.hg-txt{display:flex;flex-direction:column;line-height:1.2}
+.hg-txt small{font-size:9px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:var(--brand);display:flex;align-items:center;gap:5px}
+.hg-pen{color:var(--red);font-size:10px}
+.hg-txt b{font-size:12.5px;font-weight:600;color:#9aa3b2}
+.hg-field.set .hg-txt b{color:var(--ink);font-weight:700}
+.hg-sep{width:1px;background:var(--line);margin:9px 0}
+.hg-store select{border:none;background:none;font-family:'Montserrat';font-size:12.5px;font-weight:700;color:#9aa3b2;padding:0;margin-top:1px;cursor:pointer;max-width:150px;-webkit-appearance:none;appearance:none}
+.hg-store.set select{color:var(--ink)}
+.hg-store select:focus{outline:none}
+.veh-pop{position:absolute;top:calc(100% + 12px);right:0;width:min(300px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 26px 64px -20px rgba(0,0,0,.4);padding:16px;z-index:60;display:none}
+.veh-pop.show{display:block}
+.veh-pop .gp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.veh-pop select{width:100%;height:42px;border:1.5px solid var(--line);border-radius:6px;padding:0 10px;font-size:14px;font-family:'Montserrat';color:var(--ink);background:#fff}
+.veh-pop select:disabled{background:var(--bg-alt);color:#a7adba}
+.nav-phone-ic{width:42px;height:42px;border:1.5px solid var(--line);border-radius:8px;display:grid;place-items:center;color:var(--brand);font-size:21px;flex:0 0 auto}
+.nav-phone-ic:hover{border-color:var(--brand);background:var(--bg-alt)}
+.garage-btn{display:flex;align-items:center;gap:9px;height:42px;padding:0 14px;border-radius:8px;font-weight:700;font-size:13px;font-family:'Montserrat';transition:all .15s;white-space:nowrap}
+.garage-btn.empty{border:1.5px dashed var(--line);color:var(--slate);background:#fff}
+.garage-btn.empty:hover{border-color:var(--brand);color:var(--brand)}
+.garage-btn.set{background:var(--brand);color:#fff}
+.garage-btn.set:hover{background:#0f2749}
+.gc-ic{font-size:21px;line-height:1}
+.gc-lines{display:flex;flex-direction:column;line-height:1.15;text-align:left}
+.gc-lines b{font-size:13px;font-weight:700}
+.gc-lines small{font-size:10px;opacity:.85;font-weight:500}
+.gc-car{font-size:10px;opacity:.7}
+.garage-pop{position:absolute;top:calc(100% + 12px);right:0;width:min(340px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 26px 64px -20px rgba(0,0,0,.4);padding:18px;z-index:60;display:none}
+.garage-pop.show{display:block}
+.garage-pop h4{font-family:'Archivo';font-weight:800;font-size:13px;text-transform:uppercase;color:var(--brand);margin-bottom:13px}
+.gp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.garage-pop select,.garage-pop input{width:100%;height:42px;border:1.5px solid var(--line);border-radius:6px;padding:0 10px;font-size:14px;font-family:'Montserrat';color:var(--ink);background:#fff}
+.garage-pop select:disabled{background:var(--bg-alt);color:#a7adba}
+.gp-store{font-size:12px;color:var(--slate);margin:2px 0 11px;min-height:15px}.gp-store b{color:var(--brand)}
+.garage-pop .btn-red{width:100%;height:46px}
+.gp-book{display:block;text-align:center;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--blue);cursor:pointer}.gp-book:hover{text-decoration:underline}
+
+/* hero */
+.hero{background:radial-gradient(1000px 460px at 90% 10%,#163461 0%,transparent 56%),linear-gradient(158deg,#0c1e3a,#0a1830);color:#fff;position:relative}
+.hero::after{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.hero .wrap{display:grid;grid-template-columns:1fr 0.82fr;gap:48px;align-items:center;padding:52px 24px 76px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8fb0e6;margin-bottom:16px}
+.eyebrow::before{content:"";width:24px;height:3px;background:var(--red)}
+.hero h1{font-weight:800;font-size:clamp(24px,3vw,36px);line-height:1.12;text-transform:uppercase}
+.hero h1 em{font-style:normal;color:#ff5259}
+.hero-sub{font-size:16.5px;color:#c3ccdb;max-width:44ch;margin:16px 0 22px}
+.trust-row{display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:14px}
+.trust-row .ti{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:#dbe3f2}
+.trust-row .ti b{color:var(--red);font-family:'Archivo'}
+.cities{font-size:12.5px;color:#7f92b3}.cities b{color:#a9bbd8;font-weight:600}
+
+/* entry card */
+.entry{background:#fff;border-radius:12px;padding:6px;color:var(--ink);box-shadow:0 30px 66px -22px rgba(0,0,0,.62)}
+.entry-inner{padding:20px}
+.entry-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.entry-top .badge{background:var(--red);color:#fff;font-size:10px;font-weight:800;letter-spacing:0.06em;padding:5px 9px;border-radius:4px;text-transform:uppercase}
+.entry-top .t{font-family:'Archivo';font-weight:800;font-size:16px;color:var(--brand);text-transform:uppercase}
+.tabs{display:flex;gap:6px;margin-bottom:15px;background:var(--bg-alt);padding:4px;border-radius:7px}
+.tab{flex:1;padding:9px;font-size:13px;font-weight:700;color:var(--slate);border-radius:5px;text-align:center;transition:all .14s}
+.tab.active{background:#fff;color:var(--brand);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.pl-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.pl-row.three{grid-template-columns:1fr 1fr 1fr}
+.field label{display:block;font-size:10px;letter-spacing:0.05em;text-transform:uppercase;color:var(--slate);font-weight:700;margin-bottom:5px}
+.field select,.field input{width:100%;height:46px;border:1.5px solid var(--line);border-radius:var(--radius);padding:0 12px;font-size:14.5px;color:var(--ink);background:#fff;transition:border-color .15s}
+.field select:focus,.field input:focus{border-color:var(--blue);outline:none}
+.field select:disabled{background:var(--bg-alt);color:#a7adba;cursor:not-allowed}
+.pane{display:none}.pane.active{display:block}
+.entry .btn-red{width:100%;height:52px;margin-top:2px}
+.entry-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:13px;padding-top:13px;border-top:1px solid var(--line)}
+.hint{font-size:12px;color:var(--slate);display:flex;align-items:center;gap:7px}.hint .dot{width:6px;height:6px;border-radius:50%;background:var(--red)}
+.book-link{font-size:13px;font-weight:700;color:var(--blue);border-bottom:2px solid transparent}.book-link:hover{border-bottom-color:var(--blue)}
+.store-stamp{margin-top:11px;background:var(--bg-alt);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:5px;max-height:0;overflow:hidden;opacity:0;padding:0 14px;transition:max-height .35s,opacity .3s,padding .35s}
+.store-stamp.show{max-height:90px;opacity:1;padding:11px 14px}
+.ss-in{display:flex;align-items:center;gap:12px}
+.ss-badge{font-size:9px;letter-spacing:0.08em;color:#fff;background:var(--brand);padding:4px 8px;border-radius:3px;font-weight:800;white-space:nowrap}
+.ss-txt{font-size:13px;color:var(--ink)}.ss-txt b{color:var(--brand)}.ss-txt small{display:block;color:var(--slate);font-size:11px}
+.ss-change{margin-left:auto;font-size:11.5px;color:var(--blue);font-weight:700;cursor:pointer;border-bottom:1px dotted var(--blue)}
+
+/* exits */
+.exits .wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:-48px;position:relative;z-index:5;padding-bottom:56px}
+.exit{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;display:flex;align-items:center;gap:17px;transition:transform .16s,box-shadow .16s;cursor:pointer;box-shadow:0 14px 32px -18px rgba(0,0,0,.28)}
+.exit:hover{transform:translateY(-3px);box-shadow:0 22px 42px -20px rgba(0,0,0,.36)}
+.exit .ic{width:52px;height:52px;flex:0 0 auto;border-radius:9px;display:grid;place-items:center;font-size:24px}
+.exit.shop .ic{background:var(--brand);color:#fff}.exit.book .ic{background:var(--red);color:#fff}
+.exit .lbl{font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--slate)}
+.exit .h{font-family:'Archivo';font-weight:800;font-size:19px;text-transform:uppercase;color:var(--brand);margin-top:2px}
+.exit p{font-size:12.5px;color:var(--slate);margin-top:2px}
+.exit .go{margin-left:auto;font-size:23px;color:var(--red)}
+
+/* section shell */
+section.block{padding:66px 0}
+.block.alt{background:var(--bg-alt)}
+.block.dark{background:var(--brand);color:#fff;position:relative;overflow:hidden}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 36px}
+.sec-eye{font-size:11.5px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.block.dark .sec-eye{color:#ff5259}
+.sec-head h2{font-weight:800;font-size:clamp(16px,2vw,24px);text-transform:uppercase;color:var(--brand);line-height:1.12;letter-spacing:-0.01em}
+.block.dark .sec-head h2{color:#fff}
+.sec-head p{font-size:15px;color:var(--slate);margin-top:12px}
+.block.dark .sec-head p{color:#b7c4dc}
+
+/* category cards */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cat{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;transition:transform .16s,box-shadow .16s;cursor:pointer;display:flex;flex-direction:column}
+.cat:hover{transform:translateY(-4px);box-shadow:0 22px 44px -22px rgba(0,0,0,.32)}
+.cat__top{height:210px;display:grid;place-items:center;font-size:52px;position:relative;background:linear-gradient(150deg,#16305a,#0c1e3a);color:#fff}
+.cat:nth-child(2) .cat__top{background:linear-gradient(150deg,#1b47a3,#13315f)}
+.cat:nth-child(3) .cat__top{background:linear-gradient(150deg,#8f1015,#c51f28)}
+.cat__body{padding:20px}
+.cat__body h3{font-weight:800;font-size:20px;text-transform:uppercase;color:var(--brand)}
+.cat__body p{font-size:13.5px;color:var(--slate);margin:6px 0 12px}
+.cat__link{font-size:13px;font-weight:800;color:var(--red);font-family:'Archivo';text-transform:uppercase;letter-spacing:0.03em}
+
+/* brands */
+.brand-note{text-align:center;font-size:13px;color:var(--slate);margin:-18px auto 24px}.brand-note b{color:var(--brand)}
+.chips{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;max-width:900px;margin:0 auto}
+.chip{background:#fff;border:1.5px solid var(--line);border-radius:40px;padding:11px 20px;font-weight:700;font-size:14px;color:var(--brand);transition:all .14s;display:flex;align-items:center;gap:9px}
+.chip:hover{border-color:var(--brand);background:var(--brand);color:#fff}
+.chip .plus{color:var(--red);font-weight:800}.chip:hover .plus{color:#fff}
+.brand-all{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+.pill{padding:13px 26px;border-radius:40px;font-family:'Archivo';font-weight:800;font-size:14px;text-transform:uppercase}
+.pill.red{background:var(--red);color:#fff}.pill.red:hover{background:var(--red-deep)}
+.pill.outline{border:2px solid var(--brand);color:var(--brand)}.pill.outline:hover{background:var(--brand);color:#fff}
+
+/* services */
+.symptoms{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px}
+.symptom{background:#fff;border:1px solid var(--line);border-radius:9px;padding:20px;text-align:left;display:flex;flex-direction:column;gap:7px;transition:all .15s;border-top:3px solid var(--brand)}
+.symptom:hover{transform:translateY(-3px);box-shadow:0 16px 32px -20px rgba(0,0,0,.3);border-top-color:var(--red)}
+.symptom .sy-q{font-family:'Archivo';font-weight:700;font-size:15.5px;color:var(--brand)}
+.symptom .sy-s{font-size:12.5px;color:var(--slate)}
+.symptom .sy-go{margin-top:auto;font-size:13px;font-weight:700;color:var(--red);padding-top:6px}
+.center{text-align:center}
+
+/* trust / why */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-bottom:44px}
+.stat{text-align:center;position:relative}
+.stat:not(:last-child)::after{content:"";position:absolute;right:-14px;top:12%;height:76%;width:1px;background:rgba(255,255,255,.15)}
+.stat .n{font-family:'Archivo';font-weight:900;font-size:38px;color:#fff}.stat .n em{font-style:normal;color:#ff5259}
+.stat .l{font-size:12.5px;color:#b7c4dc;margin-top:5px}
+.guarantees{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.guar{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:20px;text-align:center}
+.guar .gi{font-size:26px;margin-bottom:8px}
+.guar h4{font-weight:800;font-size:14.5px;text-transform:uppercase;color:#fff}
+.guar p{font-size:12px;color:#b7c4dc;margin-top:5px}
+.review{max-width:680px;margin:0 auto 40px;text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:26px}
+.review .stars{color:#ffc233;font-size:20px;letter-spacing:2px}
+.review .rq{font-size:17px;color:#eef2f9;margin:10px 0;font-style:italic}
+.review .rw{font-size:12.5px;color:#9fb0cd;text-transform:uppercase;letter-spacing:0.06em}
+
+/* offers */
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.offer{border:1px solid var(--line);border-radius:11px;padding:24px;background:#fff;position:relative;overflow:hidden;transition:transform .16s,box-shadow .16s}
+.offer:hover{transform:translateY(-3px);box-shadow:0 18px 38px -22px rgba(0,0,0,.3)}
+.offer.feat{background:linear-gradient(155deg,#c51f28,#8f1015);color:#fff;border-color:transparent}
+.offer .tag{font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--red)}
+.offer.feat .tag{color:#ffd7d9}
+.offer h3{font-weight:900;font-size:26px;text-transform:uppercase;margin:6px 0;color:var(--brand)}
+.offer.feat h3{color:#fff}
+.offer p{font-size:13px;color:var(--slate)}.offer.feat p{color:#ffe1e2}
+.offer .ol{display:inline-block;margin-top:14px;font-family:'Archivo';font-weight:800;font-size:13px;text-transform:uppercase;color:var(--red)}
+.offer.feat .ol{color:#fff}
+
+/* locations */
+.locs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.loc{border:1px solid var(--line);border-radius:10px;padding:18px;background:#fff;transition:all .15s;cursor:pointer}
+.loc:hover{border-color:var(--brand);box-shadow:0 14px 30px -20px rgba(0,0,0,.3);transform:translateY(-2px)}
+.loc .city{font-family:'Archivo';font-weight:800;font-size:16px;color:var(--brand)}
+.loc .addr{font-size:12.5px;color:var(--slate);margin-top:5px;line-height:1.5}
+.loc .hrs{font-size:11.5px;color:var(--slate);margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.loc .go{margin-top:8px;font-size:12px;font-weight:800;color:var(--red);font-family:'Archivo';text-transform:uppercase}
+
+/* financing band */
+.fin{background:linear-gradient(150deg,#13315f,#0c1e3a);border-radius:14px;color:#fff;padding:36px;display:flex;align-items:center;gap:30px;flex-wrap:wrap;position:relative;overflow:hidden}
+.fin__l{flex:1;min-width:280px}
+.fin__l .fe{font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#ff5259;margin-bottom:8px}
+.fin__l h3{font-weight:800;font-size:26px;text-transform:uppercase}
+.fin__l p{font-size:14px;color:#c3ccdb;margin-top:6px;max-width:52ch}
+
+/* faq */
+.faq{max-width:760px;margin:0 auto}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;text-align:left;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Archivo';font-weight:700;font-size:16px;color:var(--brand)}
+.qa .ic{color:var(--red);font-size:22px;flex:0 0 auto;transition:transform .2s}
+.qa.open .ic{transform:rotate(45deg)}
+.qa .a{max-height:0;overflow:hidden;transition:max-height .28s ease;font-size:14.5px;color:var(--slate)}
+.qa.open .a{max-height:300px}
+.qa .a p{padding-bottom:20px}
+
+/* final cta */
+.final{background:linear-gradient(rgba(10,22,44,.80),rgba(12,30,58,.90)),url({{ 'ats-inline-45.jpg' | asset_url }}) center/cover,var(--brand);color:#fff;text-align:center;padding:76px 24px;position:relative;overflow:hidden}
+.final h2{font-weight:900;font-size:clamp(22px,2.8vw,32px);text-transform:uppercase}
+.final p{font-size:16px;color:#c3ccdb;margin:12px auto 24px;max-width:52ch}
+.final .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* footer */
+footer{background:var(--blue);color:#fff;position:relative}
+footer::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+footer .wrap{padding:48px 24px 28px}
+.fcols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1.2fr;gap:28px;margin-bottom:30px}
+.flogo{margin-bottom:14px;line-height:0}.flogo img{height:34px;width:auto;display:block}
+footer p.fp{font-size:13px;color:#c3d0e8;max-width:30ch}
+footer h4{font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
+footer a.fl{display:block;padding:4px 0;color:#c3d0e8;font-size:13.5px}footer a.fl:hover{color:#fff}
+.fnap{font-size:12.5px;color:#c3d0e8;line-height:1.7}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:#a9b8d6}
+
+/* toast + demo */
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(150%);z-index:80;background:var(--brand);color:#fff;padding:15px 20px;border-radius:8px;display:flex;align-items:center;gap:13px;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);transition:transform .35s cubic-bezier(.2,.9,.3,1);max-width:calc(100vw - 40px);border-left:4px solid var(--red)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast .badge{font-size:9.5px;letter-spacing:0.06em;background:var(--red);color:#fff;padding:4px 8px;border-radius:3px;font-weight:800;white-space:nowrap}
+.toast .msg{font-size:13.5px}.toast .msg small{display:block;color:#aab6cc;font-size:11.5px}
+.demo-bar{position:fixed;right:16px;bottom:16px;z-index:70;background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px 13px;box-shadow:0 12px 34px -14px rgba(0,0,0,.4);font-size:11px;color:var(--slate);max-width:220px}
+.demo-bar b{color:var(--brand);display:block;margin-bottom:4px;font-family:'Archivo';font-size:10.5px}
+.demo-bar .close{position:absolute;top:6px;right:9px;color:var(--slate);font-size:15px}
+
+/* ===== bespoke services page ===== */
+.crumbs{background:var(--bg-alt);border-bottom:1px solid var(--line)}
+.crumbs .wrap{padding:10px 24px;font-size:12.5px;color:var(--slate)}
+.crumbs a:hover{color:var(--brand)}.crumbs b{color:var(--brand)}.crumbs span{margin:0 8px;color:#b3bed3}
+.svc-intro{background:#fff;padding:46px 0 40px}
+.svc-intro__grid{display:grid;grid-template-columns:1.12fr .88fr;gap:44px;align-items:center}
+.svc-intro .eyebrow{color:#6b7891}
+.svc-intro h1{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(22px,2.8vw,34px);color:var(--brand);text-transform:uppercase;line-height:1.03;letter-spacing:-0.01em}
+.lead{font-size:16px;color:var(--slate);margin:16px 0 20px;max-width:58ch;line-height:1.6}
+.microbar{display:flex;flex-wrap:wrap;gap:10px 22px}
+.microbar span{font-size:13.5px;font-weight:600;color:var(--ink);display:flex;gap:7px;align-items:center}.microbar b{color:var(--red)}
+.svc-intro__media{min-height:320px;border-radius:16px}
+
+.work-sec{padding:52px 0}
+.work{display:grid;grid-template-columns:1.7fr 1fr;gap:40px;align-items:start}
+.sec-head--left{text-align:left;margin:0 0 22px;max-width:none}
+.svc-list{display:flex;flex-direction:column;gap:12px;margin-bottom:46px}
+.svc-item{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;transition:box-shadow .15s,border-color .15s}
+.svc-item.open{box-shadow:0 16px 34px -22px rgba(0,0,0,.26);border-color:#c8d2e4}
+.svc-head{display:flex;align-items:center;gap:14px;padding:17px 20px;cursor:pointer;width:100%;text-align:left}
+.svc-head .ic{width:46px;height:46px;border-radius:10px;background:var(--bg-alt);display:grid;place-items:center;font-size:23px;flex:0 0 auto}
+.svc-head .htxt{display:flex;flex-direction:column;gap:2px}
+.svc-head .nm{font-family:'Archivo';font-weight:800;font-size:17px;color:var(--brand);text-transform:uppercase}
+.svc-head .tm{font-size:12px;color:var(--slate)}
+.svc-head .exp{margin-left:auto;color:var(--red);font-size:24px;transition:transform .2s;line-height:1}
+.svc-item.open .svc-head .exp{transform:rotate(45deg)}
+.svc-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.svc-item.open .svc-body{max-height:640px}
+.svc-body__in{padding:2px 20px 20px 80px}
+.svc-body__in p{font-size:14px;color:var(--slate);margin-bottom:14px;line-height:1.55}
+.svc-incl{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:7px 18px;margin-bottom:16px}
+.svc-incl li{font-size:13px;color:var(--ink);display:flex;gap:8px;align-items:flex-start}
+.svc-incl li::before{content:"\2713";color:var(--red);font-weight:800;flex:0 0 auto}
+.svc-select{font-family:'Archivo';font-weight:800;font-size:12.5px;text-transform:uppercase;color:#fff;background:var(--red);padding:10px 18px;border-radius:7px;transition:background .15s}
+.svc-select:hover{background:var(--red-deep)}
+.svc-select.added{background:var(--ok,#2f7d52)}
+
+.symptom-map{display:flex;flex-wrap:wrap;gap:10px}
+.symptom{background:#fff;border:1.5px solid var(--line);border-radius:40px;padding:10px 18px;font-size:13.5px;font-weight:600;color:var(--ink);transition:all .14s}
+.symptom:hover{border-color:var(--brand)}
+.symptom.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.symptom-out{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;padding:16px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.symptom-out .so-txt{font-size:14px;color:var(--ink)}.symptom-out .so-txt b{color:var(--brand)}
+.symptom-out .btn-red{height:42px;padding:0 18px}
+
+/* rail */
+.rail-wrap{position:relative}
+.rail{position:sticky;top:142px;background:linear-gradient(162deg,#173a6e,#0c1e3a);color:#fff;border-radius:16px;padding:22px;box-shadow:0 26px 62px -24px rgba(0,0,0,.55)}
+.rail__head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.rail__badge{background:var(--red);color:#fff;font-size:10px;font-weight:800;letter-spacing:.06em;padding:5px 9px;border-radius:4px;text-transform:uppercase}
+.rail h3{font-family:'Archivo';font-weight:800;font-size:19px;text-transform:uppercase}
+.rail__rows{display:flex;flex-direction:column;gap:8px;margin-bottom:13px}
+.rail__row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:9px;padding:11px 14px;width:100%;text-align:left}
+.rail__btnrow{cursor:pointer;transition:border-color .15s}.rail__btnrow:hover{border-color:var(--red)}
+.rail__k{font-size:12px;font-weight:700;color:#b7c4dc;white-space:nowrap}
+.rail__v{font-size:13.5px;font-weight:700;color:#fff;text-align:right}
+.rail__store{background:#fff;border:none;border-radius:6px;padding:8px 10px;font-family:'Montserrat';font-size:13px;font-weight:700;color:var(--ink);max-width:150px}
+.rail__note{font-size:11.5px;color:#9fb0cd;margin-bottom:13px;line-height:1.45}
+.rail__go{width:100%;height:50px;margin-bottom:13px}
+.rail__widget{min-height:92px;border-radius:10px;margin-bottom:12px;background:rgba(255,255,255,.05);border:1.5px dashed rgba(255,255,255,.26);display:grid;place-items:center;text-align:center;color:#9fb0cd;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:10px}
+.rail__trust{font-size:11.5px;color:#9fb0cd;text-align:center}
+
+/* timeline */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;position:relative}
+.timeline::before{content:"";position:absolute;top:26px;left:12%;right:12%;height:3px;background:var(--line);z-index:0}
+.tl-step{text-align:center;padding:0 12px;position:relative;z-index:1}
+.tl-node{width:52px;height:52px;border-radius:50%;background:var(--brand);color:#fff;font-family:'Archivo';font-weight:800;font-size:20px;display:grid;place-items:center;margin:0 auto 14px;box-shadow:0 0 0 6px var(--bg-alt)}
+.tl-step h4{font-family:'Archivo';font-weight:800;font-size:15px;text-transform:uppercase;color:var(--brand)}
+.tl-step p{font-size:13px;color:var(--slate);margin-top:6px}
+
+/* pricing */
+.pricing{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.pricing h2{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(18px,2.2vw,26px);text-transform:uppercase;color:var(--brand);line-height:1.05;margin-top:8px}
+.pricing p{font-size:14.5px;color:var(--slate);margin-top:12px;line-height:1.6}
+.pricing__pts{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+.pricing__pts span{font-size:14px;font-weight:600;color:var(--ink)}
+.pricing__r{min-height:260px;border-radius:14px}
+
+/* features */
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.feat{text-align:center}
+.imgph-ic{font-size:30px;margin-bottom:8px}
+.feat h4{font-family:'Archivo';font-weight:800;font-size:15px;text-transform:uppercase;color:var(--brand)}
+.feat p{font-size:13px;color:var(--slate);margin-top:6px}
+
+/* reviews */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rev{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px}
+.rev .stars{color:#ffc233;font-size:16px;letter-spacing:2px}
+.rev p{font-size:14px;color:var(--ink);font-style:italic;margin:10px 0}
+.rev .who{font-size:12px;color:var(--slate);text-transform:uppercase;letter-spacing:.05em}
+
+/* stores */
+.svc-locs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.svc-loc{border:1px solid var(--line);border-radius:10px;padding:18px;background:#fff;transition:all .15s}
+.svc-loc:hover{border-color:var(--brand);box-shadow:0 14px 30px -20px rgba(0,0,0,.3);transform:translateY(-2px)}
+.svc-loc .city{font-family:'Archivo';font-weight:800;font-size:16px;color:var(--brand)}
+.svc-loc .addr{font-size:12.5px;color:var(--slate);margin-top:5px;line-height:1.5}
+.svc-loc .bk{margin-top:10px;font-size:12px;font-weight:800;color:var(--red);font-family:'Archivo';text-transform:uppercase}
+.svc-locs{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:20px!important}
+.svc-loc-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;cursor:pointer;box-shadow:0 10px 28px -26px rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s,border-color .15s}
+.svc-loc-card:hover{transform:translateY(-3px);border-color:#cbd3e1;box-shadow:0 18px 38px -28px rgba(0,0,0,.45)}
+.svc-loc-card__img{height:170px;background:#eef1f7;overflow:hidden}
+.svc-loc-card__img img{width:100%;height:100%;display:block;object-fit:cover}
+.svc-loc-card__body{padding:20px 20px 18px;text-align:left}
+.svc-loc-card h3{font-family:'Montserrat',system-ui,sans-serif!important;text-transform:none!important;font-size:18px!important;font-weight:900!important;line-height:1.15;color:var(--brand);margin:0 0 10px!important}
+.svc-loc-card .addr{font-size:14px;line-height:1.45;color:var(--slate);margin:0}
+.svc-loc-card .phone{font-size:14px;line-height:1.35;color:var(--red);font-weight:900;margin-top:7px}
+.svc-loc-card .hours{font-size:13px;line-height:1.45;color:#9aa3b2;margin-top:8px}
+.svc-loc-card .book{display:inline-block;margin-top:15px;color:var(--red);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.03em}
+.symptom-out[hidden]{display:none!important}
+/* booking bar (hero) */
+.bookbar{display:grid;grid-template-columns:1.2fr 1.2fr 1fr auto;gap:12px;align-items:end;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:28px;box-shadow:0 18px 44px -26px rgba(0,0,0,.32)}
+.bookbar__f{display:flex;flex-direction:column;gap:6px;text-align:left;min-width:0}
+.bookbar__f label{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--slate)}
+.bookbar__f select{height:48px;border:1.5px solid var(--line);border-radius:8px;padding:0 12px;font-size:14.5px;font-family:'Montserrat';color:var(--ink);background:#fff;width:100%}
+.bookbar__veh{background:none;cursor:pointer}
+.bookbar__veh .vv{height:48px;display:flex;align-items:center;border:1.5px solid var(--line);border-radius:8px;padding:0 12px;font-size:14px;font-weight:600;color:#9aa3b2}
+.bookbar__veh.set .vv{color:var(--ink);font-weight:700}
+.bookbar__veh:hover .vv{border-color:var(--brand)}
+.bookbar__go{height:48px;padding:0 22px;white-space:nowrap}
+/* dedicated book-now section */
+.booknow__grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:24px;align-items:stretch}
+.booknow__summary{background:linear-gradient(162deg,#173a6e,#0c1e3a);color:#fff;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.bs-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.bs-k{font-size:12.5px;font-weight:700;color:#b7c4dc;white-space:nowrap}
+.bs-v{font-size:14px;font-weight:700;color:#fff;text-align:right}
+.bs-note{font-size:11.5px;color:#9fb0cd;margin-top:auto}
+.booknow__widget{min-height:440px;border-radius:14px}
+#tireconnect{min-height:640px;width:100%;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+#tireconnect iframe,#tireconnect>iframe{width:100%!important;min-height:640px!important}
+.bookbar__note{font-size:12px;color:var(--slate);margin-top:11px;max-width:70ch}
+.booknow__summary .bs-v{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+.bs-tag{font-size:8.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:3px 7px;border-radius:4px;margin-left:8px;white-space:nowrap}
+.bs-tag.ok{background:rgba(47,125,82,.28);color:#8ff0b5}
+.bs-tag.warn{background:rgba(255,194,51,.22);color:#ffd77a}
+/* service cards (full content, image, no accordion) */
+.svc-list{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:0}
+.svc-card2{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+.svc-card2:hover{transform:translateY(-3px);box-shadow:0 20px 40px -24px rgba(0,0,0,.26)}
+.svc-card2__img{aspect-ratio:16/9;width:100%}
+.svc-card2__body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.svc-card2__head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.svc-card2__head .nm{font-family:'Archivo';font-weight:800;font-size:19px;text-transform:uppercase;color:var(--brand)}
+.svc-card2__head .tm{font-size:12px;font-weight:700;color:var(--red);white-space:nowrap}
+.svc-card2__desc{font-size:14px;color:var(--slate);line-height:1.55;margin-bottom:14px}
+.svc-card2__foot{display:flex;align-items:center;gap:16px;margin-top:auto;padding-top:6px}
+/* quiz panel */
+.quiz{position:relative;overflow:hidden;background:linear-gradient(150deg,rgba(9,20,40,.90),rgba(12,30,58,.82)),url({{ 'ats-inline-46.jpg' | asset_url }}) center/cover;border:1.5px solid #20365e;border-radius:18px;padding:34px;box-shadow:0 22px 50px -26px rgba(0,0,0,.5)}
+.quiz__badge{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:7px 15px;border-radius:30px;margin-bottom:16px}
+.quiz__h{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(17px,2.1vw,24px);text-transform:uppercase;color:#fff;line-height:1.08}
+.quiz__sub{font-size:14.5px;color:#c3ccdb;margin:10px 0 20px}
+/* timeline with images */
+.timeline::before{display:none}
+.tl-img{position:relative;aspect-ratio:3/2;border-radius:12px;margin-bottom:14px}
+.tl-n{position:absolute;top:10px;left:10px;width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;font-family:'Archivo';font-weight:800;font-size:17px;display:grid;place-items:center;box-shadow:0 4px 10px rgba(0,0,0,.28);border:2px solid #fff}
+.tl-step{text-align:left}
+/* booknow editable fields */
+.bn-title{font-family:'Archivo';font-weight:800;font-size:16px;text-transform:uppercase;margin-bottom:2px}
+.bn-field{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:9px;padding:11px 14px;width:100%;text-align:left}
+.bn-field>span{font-size:12.5px;font-weight:700;color:#b7c4dc;white-space:nowrap}
+.bn-sel{background:#fff;border:none;border-radius:6px;padding:8px 10px;font-family:'Montserrat';font-size:13px;font-weight:700;color:var(--ink);max-width:165px}
+.bn-vehbtn{cursor:pointer;transition:border-color .15s}.bn-vehbtn b{color:#fff;font-size:13.5px}.bn-vehbtn:hover{border-color:var(--red)}
+.booknow__summary{gap:10px}
+@media(max-width:900px){.svc-list{grid-template-columns:1fr}}
+/* hero CTA bar (replaces the duplicate select bookbar) */
+.svc-herobar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:26px}
+.svc-herobar__note{font-size:12.5px;color:var(--slate);max-width:44ch;line-height:1.45}
+/* context strip above the widget — read-only reflection of header state */
+.bn-context{margin-bottom:18px}
+.bn-context__row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--bg-alt);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.bn-chip{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 13px}
+.bn-chip__ic{font-size:17px;line-height:1}
+.bn-chip__t{display:flex;flex-direction:column;line-height:1.2}
+.bn-chip__t small{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--brand)}
+.bn-chip__t b{font-size:13px;font-weight:700;color:var(--ink)}
+.bn-context__hint{font-size:12px;color:var(--slate);margin-left:auto;max-width:40ch}
+/* widget mount */
+.dev-note{background:#fff8e6;border:1px dashed #e0b93a;border-radius:8px;padding:10px 14px;font-size:11.5px;line-height:1.5;color:#7a5c10;margin-bottom:16px}
+.dev-note code{background:rgba(122,92,16,.1);padding:1px 5px;border-radius:4px;font-size:11px}
+#booknow,#svcList,#booknow.block{scroll-margin-top:150px}
+.bn-widget{position:relative}
+.tc-mount{min-height:460px;border-radius:14px;background:linear-gradient(135deg,#f4f6fa,#e7ecf4);border:1.5px dashed #b3bed3;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px}
+.tc-mount__ph{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:440px}
+.tc-mount__label{font-family:'Archivo';font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.03em;color:var(--brand)}
+.tc-mount__sub{font-size:13px;color:var(--slate);line-height:1.5}
+@media(max-width:900px){.booknow__grid{grid-template-columns:1fr}.bn-context__hint{margin-left:0;width:100%}}
+
+@media (max-width:980px){
+  .svc-intro__grid,.pricing{grid-template-columns:1fr;gap:28px}
+  .work{grid-template-columns:1fr}
+  .rail{position:static;top:auto}
+  .rail-wrap{order:-1;margin-bottom:8px}
+  .timeline{grid-template-columns:1fr 1fr;gap:24px}.timeline::before{display:none}
+  .features{grid-template-columns:1fr 1fr}
+  .reviews{grid-template-columns:1fr}
+  .svc-locs{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  .svc-incl{grid-template-columns:1fr}
+  .svc-body__in{padding-left:20px}
+  .timeline,.features,.svc-locs{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* image + icon placeholders (designer fills) */
+.imgph{background:linear-gradient(135deg,#e8ecf3,#d7deea);border:1.5px dashed #b3bed3;display:flex;align-items:center;justify-content:center;text-align:center;color:#66748f;font-size:11px;font-weight:700;letter-spacing:0.03em;text-transform:uppercase}
+.imgph span{padding:8px 12px;background:rgba(255,255,255,.75);border-radius:6px;line-height:1.3}
+.imgph.dark{background:linear-gradient(135deg,#16305a,#0c1e3a);border-color:rgba(255,255,255,.22);color:#93a8ca}
+.imgph.dark span{background:rgba(255,255,255,.08)}
+.ico-slot{display:inline-grid;place-items:center}
+/* background/image size callouts for designer */
+.bg-tag{position:absolute;top:10px;left:10px;z-index:6;background:rgba(8,18,36,.62);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:0.04em;padding:5px 9px;border-radius:5px;border:1px dashed rgba(255,255,255,.4);text-transform:uppercase;pointer-events:none}
+.bg-tag.light{background:rgba(255,255,255,.82);color:#5b6880;border-color:#b3bed3}
+/* brands by logo */
+.brand-logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;max-width:960px;margin:0 auto}
+.blogo{aspect-ratio:170/70;background:#fff;border:1.5px solid var(--line);border-radius:8px;display:grid;place-items:center;text-align:center;cursor:pointer;transition:all .15s;padding:6px}
+.blogo:hover{border-color:var(--brand);box-shadow:0 12px 26px -18px rgba(0,0,0,.3);transform:translateY(-2px)}
+.blogo .bn{font-family:'Archivo';font-weight:800;font-size:13px;color:var(--brand);text-transform:uppercase;line-height:1}
+.blogo .bt{display:block;font-size:8px;color:#aeb6c4;letter-spacing:0.08em;text-transform:uppercase;margin-top:4px}
+.brand-alt-note{text-align:center;font-size:12px;color:var(--slate);margin:-14px auto 22px;max-width:640px}
+
+/* hamburger + mobile menu */
+.nav-toggle{display:none;width:44px;height:44px;border:1.5px solid var(--line);border-radius:8px;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+.nav-toggle span{width:20px;height:2px;background:var(--brand);border-radius:2px}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:55;background:rgba(12,30,58,.5)}
+.mobile-menu.show{display:block}
+.mm-panel{position:absolute;top:0;right:0;width:min(320px,86vw);height:100%;background:#fff;padding:26px 24px;box-shadow:-20px 0 60px -20px rgba(0,0,0,.4);overflow-y:auto}
+.mm-panel a{display:block;padding:15px 0;font-family:'Archivo';font-weight:700;font-size:17px;color:var(--brand);border-bottom:1px solid var(--line);text-transform:uppercase}
+.mm-close{position:absolute;top:14px;right:16px;font-size:28px;color:var(--slate)}
+.mm-phone{margin-top:20px;font-family:'Archivo';font-weight:800;font-size:18px;color:var(--red)}
+
+/* mobile sticky cta */
+.mcta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;background:#fff;border-top:1px solid var(--line);padding:10px 12px;gap:10px;box-shadow:0 -6px 20px -8px rgba(0,0,0,.2)}
+.mcta .btn{flex:1;height:48px}
+
+/* long-form SEO content */
+.seo-content{max-width:900px;margin:0 auto}
+.seo-content h3{font-weight:800;font-size:19px;color:var(--brand);text-transform:uppercase;margin:20px 0 8px}
+.seo-content p{font-size:14.5px;color:var(--slate);margin-bottom:12px}
+.seo-content a{color:var(--blue);font-weight:600}
+.seo-note{background:#fff8e6;border:1px dashed #e6c65a;border-radius:8px;padding:10px 14px;font-size:12px;color:#7a5c10;margin-bottom:18px}
+@media (max-width:980px){
+  .hero .wrap{grid-template-columns:1fr;gap:28px;padding-bottom:64px}
+  .hero-visual{order:2}
+  .cats,.offers{grid-template-columns:1fr}
+  .stats,.guarantees{grid-template-columns:1fr 1fr;gap:24px}
+  .stat:nth-child(2)::after{display:none}
+  .locs{grid-template-columns:1fr 1fr}
+  .symptoms{grid-template-columns:1fr 1fr}
+  .fcols{grid-template-columns:1fr 1fr}
+  .hbar-nav{display:none}
+  .hgarage{display:none}
+  .nav-toggle{display:flex}
+}
+@media (max-width:768px){
+  .mcta{display:flex}
+  body{padding-bottom:72px}
+}
+@media (max-width:600px){
+  .appt-btn{display:none}
+  .garage-btn.empty span:nth-child(2){display:none}
+  .exits .wrap{grid-template-columns:1fr;margin-top:-32px}
+  .symptoms,.locs{grid-template-columns:1fr}
+  .pl-row,.pl-row.three{grid-template-columns:1fr 1fr}
+  .stat::after{display:none!important}
+}
+.svc-hd-l{display:flex;align-items:center;gap:11px;min-width:0}
+.svc-ic{width:55px;height:55px;flex:0 0 auto;border-radius:12px;background:var(--brand);border:1px solid var(--brand);display:grid;place-items:center}
+.quiz-ic{font-size:17px;line-height:1;display:inline-flex}
+.feat .fi{margin-bottom:10px;text-align:center}
+.feat .fi img{width:73px;height:73px;object-fit:contain;display:inline-block}
+.bg-guide{position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:6;display:inline-flex;align-items:center;gap:6px;background:#fff8e6;border:1.5px dashed #e0b93a;color:#7a5c10;font:800 10.5px/1.3 'Archivo',sans-serif;letter-spacing:.03em;text-transform:uppercase;padding:7px 14px;border-radius:20px;max-width:92%;text-align:center;pointer-events:none}
+
+/* Compact spacing pass: reduce excess white space on services page */
+html,body{width:100%;max-width:100%;overflow-x:hidden;margin-top:0!important;padding-top:0!important}
+body:has(#shopify-section-main-page-services){margin:0!important;padding-top:0!important}
+body:has(#shopify-section-main-page-services) main,
+body:has(#shopify-section-main-page-services) #MainContent,
+body:has(#shopify-section-main-page-services) .content-for-layout,
+#shopify-section-main-page-services{margin-top:0!important;padding-top:0!important}
+#shopify-section-main-page-services>.promo:first-of-type,
+#shopify-section-main-page-services>style:first-child+.promo{margin-top:0!important;top:0!important}
+body>.shopify-section:first-child,
+body>#shopify-section-main-page-services:first-child,
+body>main:first-child,
+.shopify-section:has(> .promo):first-child{margin-top:0!important;padding-top:0!important}
+.promo{display:block!important;margin-top:0!important;padding-top:0!important;position:relative;top:0}
+body>.shopify-section:first-child .promo:first-child{margin-top:0!important}
+header,.promo,.svc-intro,section,footer{max-width:100vw}
+.promo,.hbar-brand,.hbar-nav,.svc-intro{width:100%;margin-left:0;margin-right:0}
+.promo .wrap,.hbar-brand .wrap,.hbar-nav .wrap{width:100%;max-width:none!important;padding-left:clamp(24px,6vw,96px)!important;padding-right:clamp(24px,6vw,96px)!important}
+.svc-intro{padding:34px 0 30px}
+.svc-intro__grid{gap:30px}
+.svc-intro__media{min-height:260px}
+.svc-intro__media img{min-height:260px!important}
+.lead{margin:12px 0 16px;line-height:1.55}
+.microbar{gap:8px}
+.svc-herobar{margin-top:18px}
+section.block{padding:44px 0}
+.sec-head{margin-bottom:22px}
+.sec-head p{margin-top:8px}
+.svc-list{gap:16px}
+.svc-card2__body{padding:18px 20px}
+.svc-card2__desc{margin-bottom:10px}
+.quiz{padding:26px}
+.bn-context{margin-bottom:12px}
+.tc-mount{min-height:400px;padding:22px}
+#tireconnect{min-height:560px}
+#tireconnect iframe,#tireconnect>iframe{min-height:560px!important}
+.timeline{gap:14px}
+.tl-img{margin-bottom:10px}
+.pricing{gap:28px}
+.pricing__pts{margin-top:12px}
+.features,.reviews{gap:14px}
+.final{padding:48px 24px}
+footer .wrap{padding-top:34px}
+@media(max-width:900px){.svc-intro__grid,.pricing{gap:22px}}
+@media(max-width:600px){.svc-intro{padding:28px 0 24px}section.block{padding:34px 0}.sec-head{margin-bottom:18px}.quiz{padding:22px}.tc-mount{min-height:360px;padding:18px}#tireconnect{min-height:520px}#tireconnect iframe,#tireconnect>iframe{min-height:520px!important}.final{padding:38px 18px}}
+
+/* Mockup typography pass: Montserrat UI + Akira display headings */
+body,.promo,.mainnav a,.hg-field,.hg-store select,.veh-pop select,.garage-btn,.garage-pop select,.garage-pop input,.btn,.tc-tab,.tc-panel__lead,.loc-cta .btn,.store-card,.nap,.open-badge,.hours,.loc-svc,.feat,.other-loc,.brand-chip,.qa button,.footer,.tc-mount__sub{font-family:'Montserrat',system-ui,sans-serif!important}
+h1,h2,h3,.arch,.hero h1,.loc-hero h1,.sec-head h2,.svc-intro h1,.pricing h2,.quiz__h{font-family:'Akira Expanded','Archivo',sans-serif!important;letter-spacing:.005em!important}
+.tc-tab,.btn,.loc-book,.store-card__dir,.other-loc .go,.brand-chip,.qa button{font-family:'Montserrat',system-ui,sans-serif!important;font-weight:800!important}
+section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',sans-serif!important;letter-spacing:.005em!important}
+
+</style>
+<script>
+(function(){
+  function removeAtsTopGap(){
+    var section=document.getElementById('shopify-section-main-page-services');
+    if(!section)return;
+    [document.documentElement,document.body,section,section.parentElement,section.closest('main'),document.getElementById('MainContent')].forEach(function(el){
+      if(!el)return;
+      el.style.marginTop='0px';
+      el.style.paddingTop='0px';
+    });
+    var promo=section.querySelector('.promo');
+    if(promo){
+      promo.style.marginTop='0px';
+      promo.style.paddingTop='0px';
+      promo.style.top='0px';
+    }
+    var top=section.getBoundingClientRect().top;
+    if(top>1 && top<180){
+      section.style.transform='translateY(-'+Math.ceil(top)+'px)';
+      section.style.marginBottom='-'+Math.ceil(top)+'px';
+    }
+  }
+  removeAtsTopGap();
+  window.addEventListener('load',removeAtsTopGap,{once:true});
+  requestAnimationFrame(removeAtsTopGap);
+  setTimeout(removeAtsTopGap,300);
+})();
+</script>
+<div class="promo"><div class="wrap">
+  <span><b>Buy 3, Get 1 FREE</b> on most tires</span><span class="sep">·</span>
+  <span>Financing from <b>$0 down</b></span><span class="sep">·</span><a href="#offers">See offers →</a>
+</div></div>
+
+<header>
+  <!-- BAR 2: logo + garage (store/vehicle) + Book a Quick Appointment -->
+  <div class="hbar-brand"><div class="wrap">
+    <a href="/" class="logo" aria-label="American Tire Stores"><img src="{{ 'ats-locations-inline-01.png' | asset_url }}" alt="American Tire Stores"></a>
+    <div class="brand-right">
+      <div class="hgarage">
+        <label class="hg-field hg-store" id="storeField">
+          <span class="hg-ic"><img src="{{ 'ats-inline-48.png' | asset_url }}" alt=""></span>
+          <span class="hg-txt"><small>Selected Store <span class="hg-pen">✎</span></small>
+            <select id="hstore" class="js-store" onchange="onStoreChange(this)"><option value="">Choose…</option></select></span>
+        </label>
+        <div class="hg-sep"></div>
+        <button class="hg-field hg-veh" id="vehField" onclick="toggleVeh()">
+          <span class="hg-ic"><img src="{{ 'ats-inline-49.png' | asset_url }}" alt=""></span>
+          <span class="hg-txt"><small>My Vehicle <span class="hg-pen">✎</span></small>
+            <b id="vehVal">Not selected…</b></span>
+        </button>
+        <div class="veh-pop" id="vehPop">
+          <div class="gp-row">
+            <select id="hyear" onchange="hOnYear()"><option value="">Year</option></select>
+            <select id="hmake" onchange="hOnMake()" disabled><option value="">Make</option></select>
+          </div>
+          <div class="gp-row" style="grid-template-columns:1fr">
+            <select id="hmodel" onchange="hOnModel()" disabled><option value="">Model</option></select>
+          </div>
+        </div>
+      </div>
+      <a class="btn btn-red appt-btn" href="#booknow" onclick="scrollToBook();return false;">Book a Quick<br>Appointment</a>
+      <button class="nav-toggle" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div></div>
+  <!-- BAR 3: full page navigation -->
+  <div class="hbar-nav"><div class="wrap"><nav class="mainnav" aria-label="Main">
+    <a href="/pages/tire-search">Tire Search</a>
+    <a href="/pages/wheel-brands">Wheel Search</a>
+    <a href="/pages/catalog">Packages</a>
+    <a href="/pages/services">Services</a>
+    <a href="/pages/locations">Locations</a>
+    <a href="/pages/promotions">Promotions</a>
+    <a href="/pages/coupons">Coupons</a>
+    <a href="/pages/financing">Financing</a>
+  </nav></div></div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" onclick="if(event.target===this)toggleMenu(false)">
+  <div class="mm-panel">
+    <button class="mm-close" aria-label="Close" onclick="toggleMenu(false)">&times;</button>
+    <a href="/pages/tire-search" onclick="toggleMenu(false)">Tire Search</a>
+    <a href="/pages/wheel-brands" onclick="toggleMenu(false)">Wheel Search</a>
+    <a href="/pages/catalog" onclick="toggleMenu(false)">Packages</a>
+    <a href="/pages/services" onclick="toggleMenu(false)">Services</a>
+    <a href="/pages/locations" onclick="toggleMenu(false)">Locations</a>
+    <a href="/pages/promotions" onclick="toggleMenu(false)">Promotions</a>
+    <a href="/pages/coupons" onclick="toggleMenu(false)">Coupons</a>
+    <a href="/pages/financing" onclick="toggleMenu(false)">Financing</a>
+    <a class="mm-phone" href="tel:+18056443330">☎ (805) 644-3330</a>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="crumbs"><div class="wrap"><a href="/">Home</a> <span>&rsaquo;</span> <b>Services</b></div></div>
+
+<!-- INTRO + BOOKING BAR -->
+<section class="svc-intro"><div class="wrap">
+  <div class="svc-intro__grid">
+    <div>
+      <span class="eyebrow">Auto Repair Services &middot; 7 Southern California locations</span>
+      <h1>Auto Repair Services<br>Book Online in Minutes</h1>
+      <p class="lead">Whether it's a routine oil change or full auto repair, American Tire Stores' certified technicians keep Southern California drivers safe on the road. Choose your service &mdash; oil change, brake repair, wheel alignment, tire installation, battery replacement, or TPMS &mdash; pick your nearest location, and get an upfront quote before any work begins. Request your appointment online in minutes, with same-day appointments available for most repairs.</p>
+      <div class="microbar">
+        <span><b>&#10003;</b> Same-day appointments</span>
+        <span><b>&#10003;</b> Certified technicians</span>
+        <span><b>&#10003;</b> Nationwide warranty</span>
+        <span><b>&#10003;</b> Upfront, no-surprise pricing</span>
+      </div>
+    </div>
+    <div class="svc-intro__media"><img src="{{ 'ats-inline-50.jpg' | asset_url }}" alt="Certified technician performing auto repair service at American Tire Stores" style="width:100%;height:100%;min-height:320px;object-fit:cover;border-radius:16px;display:block"></div>
+  </div>
+  <div class="svc-herobar">
+    <button class="btn btn-red" onclick="scrollToBook()">Request an appointment &#8594;</button>
+    <button class="btn btn-ghost" onclick="document.getElementById('svcList').scrollIntoView({behavior:'smooth'})">Browse services</button>
+    <span class="svc-herobar__note">Choose your service, vehicle &amp; a preferred time in the booking step &mdash; the shop confirms, often same-day.</span>
+  </div>
+</div></section>
+
+<!-- CHOOSE SERVICE -->
+<section class="block"><div class="wrap">
+  <div class="sec-head sec-head--left"><div class="sec-eye">Choose your service</div><h2>What does your car need?</h2>
+    <p>See what's included and how long each service takes &mdash; then head to the booking form to pick your service, add your vehicle, and request a time.</p></div>
+  <div class="svc-list" id="svcList"></div>
+</div></section>
+
+<!-- SYMPTOM QUIZ -->
+<section class="block alt"><div class="wrap">
+  <div class="quiz">
+    <!-- DESIGNER RELAY: replace .quiz-ic magnifier with a custom quick-check icon -->
+    <div class="quiz__badge"><span class="quiz-ic">&#128269;</span>5-second check</div>
+    <h2 class="quiz__h">Not sure what you need? Tell us what you're noticing.</h2>
+    <p class="quiz__sub">Pick the symptom that fits and we'll point you to the right service &mdash; then head to the booking form to request a time.</p>
+    <div class="symptom-map" id="symptomMap"></div>
+    <div class="symptom-out" id="symptomOut" hidden></div>
+  </div>
+</div></section>
+
+<!-- REQUEST APPOINTMENT — single transaction surface (inline widget mount) -->
+<section class="block booknow" id="booknow"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Book online &middot; often same-day</div><h2>Request your appointment</h2>
+    <p>Choose your service, add your vehicle, and pick a preferred time. The shop confirms your appointment &mdash; often same-day &mdash; with an upfront quote before any work begins.</p></div>
+
+  <!-- Context strip: reflects the store/vehicle set in the header (read-only). Populated from saved state, NOT read from the widget. -->
+  <div class="bn-context" id="bnContext" hidden>
+    <div class="bn-context__row">
+      <span class="bn-chip" id="bnCtxStore" hidden><span class="bn-chip__ic">&#127970;</span><span class="bn-chip__t"><small>Store</small><b id="bnCtxStoreV">&mdash;</b></span></span>
+      <span class="bn-chip" id="bnCtxVeh" hidden><span class="bn-chip__ic">&#128663;</span><span class="bn-chip__t"><small>Vehicle</small><b id="bnCtxVehV">&mdash;</b></span></span>
+      <span class="bn-context__hint">Change these anytime in the header. Not set? You can pick them right in the form.</span>
+    </div>
+  </div>
+
+  <!-- WIDGET MOUNT (full width) -->
+  <div class="bn-widget">
+    <div id="tireconnect" class="tc-mount">
+      <div class="tc-mount__ph">
+        <img src="{{ 'ats-inline-51.png' | asset_url }}" alt="" style="width:132px;height:auto;margin-bottom:6px;opacity:.95" loading="lazy">
+        <span class="tc-mount__label">Appointment request form</span>
+        <span class="tc-mount__sub">Select vehicle &middot; select service &middot; preferred date &amp; time &middot; ready-by time &rarr; shop confirms</span>
+        <button class="btn btn-red" onclick="scrollToBook(true)">Load the booking form</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- HOW IT WORKS -->
+<section class="block alt"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">How it works</div><h2>From booking to back on the road</h2></div>
+  <div class="timeline">
+    <div class="tl-step"><div class="tl-img"><img src="{{ 'ats-inline-52.jpg' | asset_url }}" alt="Booking an auto repair service online at American Tire Stores" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:12px;display:block"><span class="tl-n">1</span></div><h4>Request online</h4><p>Pick your service, store, and a preferred time in minutes.</p></div>
+    <div class="tl-step"><div class="tl-img"><img src="{{ 'ats-inline-53.jpg' | asset_url }}" alt="Checking in at the American Tire Stores service counter" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:12px;display:block"><span class="tl-n">2</span></div><h4>Check in</h4><p>Drop off or wait &mdash; we confirm what you're here for.</p></div>
+    <div class="tl-step"><div class="tl-img"><img src="{{ 'ats-inline-54.jpg' | asset_url }}" alt="Technician performing inspection and sharing an upfront quote" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:12px;display:block"><span class="tl-n">3</span></div><h4>Inspect &amp; quote</h4><p>We inspect and share an upfront quote before any work.</p></div>
+    <div class="tl-step"><div class="tl-img"><img src="{{ 'ats-inline-55.jpg' | asset_url }}" alt="Customer receiving keys, vehicle ready at American Tire Stores" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:12px;display:block"><span class="tl-n">4</span></div><h4>Back on the road</h4><p>Certified techs finish the job &mdash; often the same day.</p></div>
+  </div>
+</div></section>
+
+<!-- PRICING & FINANCING -->
+<section class="block"><div class="wrap"><div class="pricing">
+  <div class="pricing__l">
+    <div class="sec-eye">Pricing you can trust</div>
+    <h2>No surprises at the counter</h2>
+    <p>You'll see an upfront quote before any work begins, and we'll always explain what your car needs now versus what can wait. Prefer to spread the cost? Flexible financing with <b>$0 down</b> and quick approval means safety never has to wait for payday.</p>
+    <div class="pricing__pts">
+      <span>&#10003; Upfront quote before any work</span>
+      <span>&#10003; Honest "needs now vs. can wait" advice</span>
+      <span>&#10003; $0-down financing, quick approval</span>
+      <span>&#10003; Nationwide warranty on qualifying work</span>
+    </div>
+  </div>
+  <div class="pricing__r"><img src="{{ 'ats-inline-56.jpg' | asset_url }}" alt="American Tire Stores advisor reviewing an upfront repair quote with a customer" loading="lazy" style="width:100%;height:100%;min-height:260px;object-fit:cover;border-radius:14px;display:block"></div>
+</div></div></section>
+
+<!-- WHY US -->
+<section class="block alt"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Why American Tire Stores</div><h2>Service you can trust</h2>
+    <p>For over two decades, Southern California drivers have trusted our certified technicians to keep their cars safe and running right.</p></div>
+  <div class="features">
+    <div class="feat"><div class="fi"><img src="{{ 'ats-inline-57.png' | asset_url }}" alt=""></div><h4>Nationwide warranty</h4><p>Coverage that travels with you, wherever the road goes.</p></div>
+    <div class="feat"><div class="fi"><img src="{{ 'ats-inline-58.png' | asset_url }}" alt=""></div><h4>Certified technicians</h4><p>Trained pros handling every inspection and repair.</p></div>
+    <div class="feat"><div class="fi"><img src="{{ 'ats-inline-59.png' | asset_url }}" alt=""></div><h4>Road hazard protection</h4><p>Optional coverage against the pothole you didn’t see.</p></div>
+    <div class="feat"><div class="fi"><img src="{{ 'ats-inline-60.png' | asset_url }}" alt=""></div><h4>Upfront pricing</h4><p>Know the cost before you commit. No surprises.</p></div>
+  </div>
+</div></section>
+
+<!-- REVIEWS -->
+<section class="block"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">What drivers say</div><h2>Rated 4.8 across Southern California</h2></div>
+  <div class="reviews">
+    <div class="rev"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Booked a brake service online, got an honest quote, and had my car back the same afternoon. No upsell, fair price."</p><div class="who">&mdash; Verified customer &middot; Glendale</div></div>
+    <div class="rev"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"They installed tires I bought online and reset my TPMS in under an hour. Easiest appointment I've booked."</p><div class="who">&mdash; Verified customer &middot; Ventura</div></div>
+    <div class="rev"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Alignment fixed a pull I'd lived with for months. The tech explained exactly what was off. Highly recommend."</p><div class="who">&mdash; Verified customer &middot; Bellflower</div></div>
+  </div>
+</div></section>
+
+<!-- STORES -->
+<section class="block alt"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Locations</div><h2>Book at a store near you</h2>
+    <p>Seven stores across Southern California &mdash; Ventura, Thousand Oaks, Glendale, Los Angeles, Bellflower, and Cathedral City &mdash; each with certified technicians and same-day appointments.</p></div>
+  <img src="{{ 'ats-locations-inline-12.jpg' | asset_url }}" alt="American Tire Stores locations across Southern California" loading="lazy" style="width:100%;height:286px;object-fit:cover;border-radius:14px;margin-bottom:28px;display:block">
+  <div class="svc-locs" id="svcLocs"></div>
+</div></section>
+
+<!-- FAQ -->
+<section class="block"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Good to know</div><h2>Service questions, answered</h2></div>
+  <div class="faq" id="faq"></div>
+</div></section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <h2>Ready when you are</h2>
+  <p>Pick your service and store and book in minutes &mdash; most services available same-day.</p>
+  <div class="cta-row"><button class="btn btn-red" onclick="railScroll()">Book a service &#8594;</button></div>
+</section>
+
+<!-- FOOTER -->
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><div class="flogo"><img src="{{ 'ats-inline-62.png' | asset_url }}" alt="American Tire Stores"></div>
+      <p class="fp">Tires, wheels, packages, and auto service across seven Southern California stores. Shop by vehicle, book by store.</p></div>
+    <div><h4>Shop</h4><a class="fl" href="/pages/tire-search">Tire Search</a><a class="fl" href="/pages/wheel-brands">Wheel Search</a><a class="fl" href="/pages/catalog">Packages</a><a class="fl" href="/pages/promotions">Offers</a></div>
+    <div><h4>Service</h4><a class="fl" href="/pages/services">Book Appointment</a><a class="fl" href="/pages/service-wheel-alignment">Alignment</a><a class="fl" href="/pages/service-brake-repair">Brakes</a><a class="fl" href="/pages/service-oil-change">Oil Change</a></div>
+    <div><h4>Stores</h4><a class="fl" href="#">Ventura</a><a class="fl" href="#">Thousand Oaks</a><a class="fl" href="#">Glendale</a><a class="fl" href="#">Los Angeles</a><a class="fl" href="#">Bellflower</a></div>
+    <div><h4>Contact</h4><p class="fnap"><b>Call:</b> (805) 644-3330<br>Mon–Fri 8:00–6:00<br>Sat 8:00–5:00<br><br>Financing · Coupons · Help Center</p></div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 American Tire Stores. All rights reserved.</span><span>Prototype · Redesign concept</span></div>
+</div></footer>
+
+<div class="mcta" id="mcta">
+  <button class="btn btn-ghost" onclick="document.getElementById('svcList').scrollIntoView({behavior:'smooth'})">Services</button>
+  <button class="btn btn-red" onclick="railScroll()">Book a service →</button>
+</div>
+
+<div class="toast" id="toast"><span class="badge" id="toastBadge">SHOP</span><span class="msg" id="toastMsg"></span></div>
+<div class="demo-bar" id="demoBar"><button class="close" onclick="document.getElementById('demoBar').style.display='none'">×</button><b>PROTOTYPE</b>Service cards &amp; symptoms lead to the single booking form. Actions show the request-flow call the mount will make.</div>
+
+<script>
+const STORES=[
+ {name:"American Tire Stores — Ventura",city:"Ventura",addr:"5100 Telegraph Rd",zip:93003,id:52820,ph:"(805) 644-3330",img:"{{ 'ats-locations-inline-05.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Thousand Oaks",city:"Thousand Oaks",addr:"621 E Thousand Oaks Blvd",zip:91360,id:52819,ph:"(805) 495-7103",img:"{{ 'ats-locations-inline-06.jpg' | asset_url }}"},
+ {name:"American Tire & Service — Los Angeles",city:"Los Angeles",addr:"1174 N. Western Ave.",zip:90029,id:61758,ph:"(323) 372-9372",img:"{{ 'ats-locations-inline-07.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Glendale",city:"Glendale",addr:"737 S Glendale Ave",zip:91205,id:52816,ph:"(818) 243-3191",img:"{{ 'ats-locations-inline-08.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Glendale II",city:"Glendale",addr:"601 S Brand Blvd",zip:91204,id:52818,ph:"(818) 244-7600",img:"{{ 'ats-locations-inline-09.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Bellflower",city:"Bellflower",addr:"9509 Alondra Blvd",zip:90706,id:52814,ph:"(562) 804-4737",img:"{{ 'ats-locations-inline-10.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Cathedral City",city:"Cathedral City",addr:"68406 E Palm Canyon Dr",zip:92234,id:52815,ph:"(760) 469-9510",img:"{{ 'ats-locations-inline-11.jpg' | asset_url }}"},
+];
+let VEH={};
+const TC_API_KEY='c097aed9ad8c441bfff05ae020ca53f0';
+const FALLBACK_VEH={
+ "2024":{"Toyota":["Camry","RAV4","Corolla","Tacoma"],"Honda":["Civic","CR-V","Accord"],"Ford":["F-150","Explorer","Escape"],"Chevrolet":["Silverado","Equinox","Tahoe"]},
+ "2022":{"Toyota":["Camry","RAV4","Highlander"],"Honda":["Civic","CR-V","Pilot"],"Ford":["F-150","Bronco","Mustang"],"Tesla":["Model 3","Model Y"]},
+ "2020":{"Toyota":["Corolla","RAV4","4Runner"],"Honda":["Accord","CR-V"],"Jeep":["Wrangler","Grand Cherokee"],"Subaru":["Outback","Forester"]},
+ "2018":{"Toyota":["Camry","Tacoma"],"Honda":["Civic","Accord"],"Nissan":["Altima","Rogue"],"Ford":["F-150","Focus"]}
+};
+function valuesFromPayload(payload){
+  if(Array.isArray(payload))return payload;
+  if(payload&&Array.isArray(payload.values))return payload.values;
+  if(payload&&payload.data&&Array.isArray(payload.data.values))return payload.data.values;
+  if(payload&&Array.isArray(payload.data))return payload.data;
+  if(payload&&Array.isArray(payload.years))return payload.years;
+  if(payload&&Array.isArray(payload.makes))return payload.makes;
+  if(payload&&Array.isArray(payload.models))return payload.models;
+  return [];
+}
+function normalizeVehicleValues(values){
+  return values.map(v=>{
+    if(typeof v==='string'||typeof v==='number')return String(v);
+    return String(v.name||v.value||v.label||v.year||v.make||v.model||v.trim||'');
+  }).filter(Boolean);
+}
+function vehicleApi(endpoint,params={}){
+  const url=new URL(`https://wl.tireconnect.ca/api/v2/vehicle/${endpoint}`);
+  url.searchParams.set('key',TC_API_KEY);
+  Object.entries(params).forEach(([k,v])=>{if(v)url.searchParams.set(k,v);});
+  return fetch(url.toString()).then(r=>r.ok?r.json():Promise.reject(new Error('Vehicle API failed'))).then(valuesFromPayload).then(normalizeVehicleValues);
+}
+function setLoading(sel,label){if(!sel)return;sel.disabled=true;sel.innerHTML=`<option value="" disabled selected hidden>${label}</option>`;}
+async function initVehicleDropdowns(){
+  setLoading($('hyear'),'Select');
+  try{
+    const years=await vehicleApi('years');
+    if(years.length){VEH={};years.forEach(y=>VEH[y]={});fillOpts($('hyear'),years,'Select');return;}
+  }catch(e){}
+  VEH=JSON.parse(JSON.stringify(FALLBACK_VEH));
+  fillOpts($('hyear'),Object.keys(VEH),'Select');
+}
+async function loadMakesForYear(year){
+  if(!year)return [];
+  if(VEH[year]&&Object.keys(VEH[year]).length)return Object.keys(VEH[year]);
+  setLoading($('hmake'),'Select');
+  try{
+    const makes=await vehicleApi('makes',{year});
+    VEH[year]=VEH[year]||{};
+    makes.forEach(m=>{VEH[year][m]=VEH[year][m]||[];});
+    return makes;
+  }catch(e){
+    VEH[year]=VEH[year]||{};
+    return Object.keys(VEH[year]);
+  }
+}
+async function loadModelsForMake(year,make){
+  if(!year||!make)return [];
+  if(VEH[year]&&Array.isArray(VEH[year][make])&&VEH[year][make].length)return VEH[year][make];
+  setLoading($('hmodel'),'Select');
+  try{
+    const models=await vehicleApi('models',{year,make});
+    VEH[year]=VEH[year]||{};VEH[year][make]=models;
+    return models;
+  }catch(e){
+    VEH[year]=VEH[year]||{};VEH[year][make]=VEH[year][make]||[];
+    return VEH[year][make];
+  }
+}
+const $=id=>document.getElementById(id);
+let st={mode:"vehicle",year:"",make:"",model:"",w:"",r:"",d:"",store:null};
+function fillOpts(sel,arr,ph){if(!sel)return;sel.innerHTML='<option value="" disabled selected hidden>'+ph+'</option>';arr.forEach(v=>sel.add(new Option(v,v)));sel.disabled=!arr.length;}
+function storeLabel(s){return (s.name.split('— ')[1]||s.name);}
+function fillStores(sel){if(!sel)return;const ph=sel.id==='hstore'?'Choose…':'Select a store';sel.innerHTML='<option value="">'+ph+'</option>';STORES.forEach((s,i)=>sel.add(new Option(storeLabel(s),i)));}
+fillStores($('store'));fillStores($('hstore'));
+restoreTireConnectState();
+initVehicleDropdowns().then(async()=>{if(st.year)await loadMakesForYear(st.year);if(st.year&&st.make)await loadModelsForMake(st.year,st.make);reflectState();});
+
+/* one source of truth: st -> reflected into hero form AND header fields */
+function syncSel(yId,mkId,mdId){const y=$(yId),mk=$(mkId),md=$(mdId);if(!y)return;
+ y.value=st.year||'';
+ const makes=(st.year&&VEH[st.year])?Object.keys(VEH[st.year]):[];
+ fillOpts(mk,makes,'Select');mk.disabled=!st.year||!makes.length;mk.value=st.make||'';
+ const models=(st.year&&st.make&&VEH[st.year]&&VEH[st.year][st.make])?VEH[st.year][st.make]:[];
+ fillOpts(md,models,'Select');md.disabled=!(st.year&&st.make)||!models.length;md.value=st.model||'';}
+function reflectState(){
+ persistTireConnectState();
+ const si=st.store?String(STORES.indexOf(st.store)):'';
+ if($('store'))$('store').value=si; if($('hstore'))$('hstore').value=si;
+ if($('storeStamp')){if(st.store){$('stName').textContent=st.store.name;$('stAddr').textContent=st.store.addr+' · '+st.store.city+', CA';$('storeStamp').classList.add('show');}else $('storeStamp').classList.remove('show');}
+ const sf=$('storeField');if(sf)sf.classList.toggle('set',!!st.store);
+ syncSel('year','make','model');syncSel('hyear','hmake','hmodel');
+ const vv=$('vehVal');if(vv)vv.textContent=(st.make&&st.model)?((st.year?st.year+' ':'')+st.make+' '+st.model):'Not selected…';
+ const vf=$('vehField');if(vf)vf.classList.toggle('set',!!(st.make&&st.model));
+ checkReadyOnly();if(typeof updateBook==='function')updateBook();}
+function checkReadyOnly(){const okV=st.year&&st.make&&st.model&&st.store;const okS=st.w&&st.r&&st.d&&st.store;const b=$('findBtn');if(b)b.disabled=!(st.mode==='vehicle'?okV:okS);}
+
+function switchTab(m){st.mode=m;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===m));$('pane-vehicle').classList.toggle('active',m==='vehicle');$('pane-size').classList.toggle('active',m==='size');checkReadyOnly();}
+/* hero vehicle */
+async function onYear(){st.year=$('year').value;st.make='';st.model='';reflectState();await loadMakesForYear(st.year);reflectState();serviceContextChanged();if(st.year&&$('make'))$('make').focus();}
+async function onMake(){st.make=$('make').value;st.model='';reflectState();await loadModelsForMake(st.year,st.make);reflectState();serviceContextChanged();if(st.make&&$('model'))$('model').focus();}
+function onModel(){st.model=$('model').value;reflectState();serviceContextChanged();}
+function onSize(){st.w=$('w').value;st.r=$('r').value;st.d=$('d').value;checkReadyOnly();}
+/* store (hero + header selects share st) */
+function onStore(){st.store=$('store').value!==''?STORES[$('store').value]:null;reflectState();serviceContextChanged();}
+function onHStore(){st.store=$('hstore').value!==''?STORES[$('hstore').value]:null;reflectState();serviceContextChanged();}
+function focusStore(){$('store').focus();}
+/* header vehicle picker */
+async function hOnYear(){st.year=$('hyear').value;st.make='';st.model='';reflectState();await loadMakesForYear(st.year);reflectState();serviceContextChanged();if(st.year&&$('hmake'))$('hmake').focus();}
+async function hOnMake(){st.make=$('hmake').value;st.model='';reflectState();await loadModelsForMake(st.year,st.make);reflectState();serviceContextChanged();if(st.make&&$('hmodel'))$('hmodel').focus();}
+function hOnModel(){st.model=$('hmodel').value;reflectState();serviceContextChanged();if(st.model)setVehPop(false);}
+function toggleVeh(){setVehPop();}
+function setVehPop(open){const p=$('vehPop');if(!p)return;p.classList.toggle('show',open===undefined?!p.classList.contains('show'):open);}
+function serviceContextChanged(){
+ persistTireConnectState();
+ renderContext();
+ if(typeof tcServicesReady!=='undefined'&&tcServicesReady)syncTireConnectServicesContext();
+}
+function normTxt(v){return String(v||'').trim().toLowerCase();}
+function selectWidgetValue(select,value){
+ if(!select||!value)return false;
+ const want=normTxt(value);
+ const opt=[...select.options].find(o=>normTxt(o.value)===want||normTxt(o.textContent)===want||normTxt(o.textContent).includes(want));
+ if(!opt)return false;
+ select.value=opt.value;
+ select.dispatchEvent(new Event('input',{bubbles:true}));
+ select.dispatchEvent(new Event('change',{bubbles:true}));
+ return true;
+}
+function serviceWidgetSelects(){
+ const root=$('tireconnect');
+ if(!root)return [];
+ let selects=[...root.querySelectorAll('select')];
+ if(!selects.length){
+  try{
+   const frame=root.querySelector('iframe');
+   if(frame&&frame.contentDocument)selects=[...frame.contentDocument.querySelectorAll('select')];
+  }catch(e){}
+ }
+ return selects;
+}
+function syncTireConnectServicesContext(){
+ let tries=0;
+ const tick=()=>{
+  tries++;
+  const selects=serviceWidgetSelects();
+  if(st.store){
+   const storeVals=[String(st.store.id),st.store.city,storeLabel(st.store),st.store.name,st.store.addr].filter(Boolean);
+   const storeSel=selects.find(s=>storeVals.some(v=>[...s.options].some(o=>normTxt(o.value)===normTxt(v)||normTxt(o.textContent).includes(normTxt(v)))));
+   if(storeSel)storeVals.some(v=>selectWidgetValue(storeSel,v));
+  }
+  if(st.year&&st.make&&st.model){
+   const yearSel=selects.find(s=>[...s.options].some(o=>normTxt(o.textContent)===normTxt(st.year)||normTxt(o.value)===normTxt(st.year)));
+   if(yearSel)selectWidgetValue(yearSel,st.year);
+   setTimeout(()=>{
+    const makeSel=serviceWidgetSelects().find(s=>[...s.options].some(o=>normTxt(o.textContent)===normTxt(st.make)||normTxt(o.value)===normTxt(st.make)));
+    if(makeSel)selectWidgetValue(makeSel,st.make);
+   },220);
+   setTimeout(()=>{
+    const modelSel=serviceWidgetSelects().find(s=>[...s.options].some(o=>normTxt(o.textContent)===normTxt(st.model)||normTxt(o.value)===normTxt(st.model)));
+    if(modelSel)selectWidgetValue(modelSel,st.model);
+   },520);
+  }
+  if(tries<30)setTimeout(tick,420);
+ };
+ setTimeout(tick,300);
+}
+
+function storageJson(keys){
+ try{
+  for(const k of keys){
+   const raw=localStorage.getItem(k)||sessionStorage.getItem(k);
+   if(raw){try{return JSON.parse(raw);}catch(e){return raw;}}
+  }
+ }catch(e){}
+ return null;
+}
+function persistTireConnectState(){
+ try{
+  if(st.store){
+   const storePayload={name:st.store.name,city:st.store.city,address:st.store.addr,addr:st.store.addr,zip:st.store.zip,phone:st.store.ph,id:st.store.id,location_id:st.store.id,locationId:st.store.id};
+   localStorage.setItem('atsTireConnectStore',JSON.stringify(storePayload));
+   sessionStorage.setItem('atsTireConnectStore',JSON.stringify(storePayload));
+   ['atsTireConnectLocationId','tcLocationId','tc_location_id','location_id','locationId'].forEach(k=>{localStorage.setItem(k,String(st.store.id));sessionStorage.setItem(k,String(st.store.id));});
+  }
+  if(st.year&&st.make&&st.model){
+   const vehiclePayload={year:st.year,make:st.make,model:st.model};
+   ['atsTireConnectVehicle','tcVehicle','tc_vehicle','tcwlwVehicle','tcwlw_vehicle','TCWidgetVehicle'].forEach(k=>{localStorage.setItem(k,JSON.stringify(vehiclePayload));sessionStorage.setItem(k,JSON.stringify(vehiclePayload));});
+  }
+  window.dispatchEvent(new CustomEvent('ats:tireconnect-updated'));
+ }catch(e){}
+}
+function restoreTireConnectState(){
+ try{
+  const params=new URLSearchParams(window.location.search);
+  const savedStore=storageJson(['atsTireConnectStore']);
+  const locationId=params.get('location_id')||params.get('locationId')||localStorage.getItem('atsTireConnectLocationId')||sessionStorage.getItem('atsTireConnectLocationId')||(savedStore&&(savedStore.location_id||savedStore.locationId||savedStore.id))||'';
+  if(locationId){const match=STORES.find(s=>String(s.id)===String(locationId));if(match)st.store=match;}
+  const savedVehicle=storageJson(['atsTireConnectVehicle','tcVehicle','tc_vehicle','tcwlwVehicle','tcwlw_vehicle','TCWidgetVehicle'])||{};
+  st.year=params.get('year')||savedVehicle.year||savedVehicle.vehicleYear||savedVehicle.vehicle_year||'';
+  st.make=params.get('make')||savedVehicle.make||savedVehicle.vehicleMake||savedVehicle.vehicle_make||'';
+  st.model=params.get('model')||savedVehicle.model||savedVehicle.vehicleModel||savedVehicle.vehicle_model||'';
+ }catch(e){}
+}
+
+function toast(b,m,s){$('toastBadge').textContent=b;$('toastMsg').innerHTML=m+(s?`<small>${s}</small>`:"");const t=$('toast');t.classList.add('show');clearTimeout(window._t);window._t=setTimeout(()=>t.classList.remove('show'),3600);}
+
+const SERVICES=[
+ {n:"Oil Change",ic:"\ud83d\udee2\ufe0f",u:"/pages/service-oil-change",t:"~30 min",b:"Fresh oil and a new filter protect your engine, improve efficiency, and extend its life. We use the grade your manufacturer recommends and check your other fluids and filters while we're in there.",incl:["Engine oil replacement","New oil filter","Fluid level top-off","Multi-point inspection"]},
+ {n:"Wheel Alignment",ic:"\ud83c\udfaf",u:"/pages/service-wheel-alignment",t:"~1 hr",b:"Proper alignment keeps your tires wearing evenly, your steering straight, and your car handling the way it should \u2014 saving you money on tires down the road.",incl:["Alignment angle check","Camber / caster / toe adjustment","Steering & suspension check","Road-test verification"]},
+ {n:"Brake Service",ic:"\ud83d\uded1",u:"/pages/service-brake-service",t:"~1\u20132 hr",b:"Confident stopping starts with healthy brakes. We inspect pads, rotors, and hardware, explain exactly what needs attention, and only recommend what your car actually needs.",incl:["Full brake inspection","Pad & rotor service","Hardware check","Brake fluid check"]},
+ {n:"Tire Installation",ic:"\ud83d\udede",u:"/pages/service-tire-installation",t:"~45 min",b:"Bought tires here or elsewhere? We mount, balance, and install them right \u2014 with a TPMS reset and a torque-to-spec finish so you roll out safely.",incl:["Mounting & balancing","TPMS reset","Torque to spec","Old tire disposal"]},
+ {n:"Battery Service",ic:"\ud83d\udd0b",u:"/pages/service-battery-service",t:"~30 min",b:"Slow starts and dashboard warnings usually mean a tired battery. We test your battery and charging system and replace it on the spot if it's time.",incl:["Battery & charging test","Battery replacement","Terminal cleaning","Old battery recycling"]},
+ {n:"TPMS Service",ic:"\ud83d\udce1",u:"/pages/service-tpms",t:"~30 min",b:"That low-pressure light won't clear on its own if a sensor is failing. We diagnose and service your tire-pressure monitoring system so the warning goes away for good.",incl:["TPMS diagnosis","Sensor service / replacement","System reset","Pressure check"]}
+];
+const SVC_IMG={"Oil Change":"{{ 'ats-inline-63.jpg' | asset_url }}","Wheel Alignment":"{{ 'ats-inline-64.jpg' | asset_url }}","Brake Service":"{{ 'ats-inline-65.jpg' | asset_url }}","Tire Installation":"{{ 'ats-inline-66.jpg' | asset_url }}","Battery Service":"{{ 'ats-inline-67.jpg' | asset_url }}","TPMS Service":"{{ 'ats-inline-68.jpg' | asset_url }}"};
+const SVC_ICON={"Oil Change":"{{ 'ats-inline-69.png' | asset_url }}","Wheel Alignment":"{{ 'ats-inline-70.png' | asset_url }}","Brake Service":"{{ 'ats-inline-71.png' | asset_url }}","Tire Installation":"{{ 'ats-inline-72.png' | asset_url }}","Battery Service":"{{ 'ats-inline-73.png' | asset_url }}","TPMS Service":"{{ 'ats-inline-74.png' | asset_url }}"};
+function svcIndexByName(n){return SERVICES.findIndex(s=>s.n===n);}
+document.querySelectorAll('.js-svc').forEach(sel=>SERVICES.forEach(s=>sel.add(new Option(s.n,s.n))));
+document.querySelectorAll('.js-store').forEach(fillStores);
+/* service cards: full content visible, image, no accordion */
+/* DESIGNER RELAY: .svc-ic shows a temporary emoji — replace with a custom per-service icon (oil change, alignment, brakes, tire install, TPMS, battery) */
+$('svcList').innerHTML=SERVICES.map((s,i)=>`<div class="svc-card2">
+  <div class="svc-card2__img"><img src="${SVC_IMG[s.n]}" alt="${s.n} service at American Tire Stores" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+  <div class="svc-card2__body">
+    <div class="svc-card2__head"><span class="svc-hd-l"><span class="svc-ic"><img src="${SVC_ICON[s.n]}" alt="" style="width:34px;height:34px;object-fit:contain;display:block"></span><span class="nm">${s.n}</span></span><span class="tm">${s.t}</span></div>
+    <p class="svc-card2__desc">${s.b}</p>
+    <ul class="svc-incl">${s.incl.map(x=>`<li>${x}</li>`).join('')}</ul>
+    <div class="svc-card2__foot"><button class="svc-select" id="sel${i}" onclick="selectService('${s.n}')">Book this service</button><a class="svc-learn" href="${s.u}">Full details &#8594;</a></div>
+  </div></div>`).join('');
+
+const SYMPTOMS=[["Pulling to one side","Wheel Alignment"],["Squealing or grinding brakes","Brake Service"],["Oil light is on","Oil Change"],["Low tire-pressure light","TPMS Service"],["Slow or hard to start","Battery Service"],["Steering shakes when braking","Brake Service"],["Uneven tire wear","Wheel Alignment"],["New tires to mount","Tire Installation"],["Vibration at highway speed","Tire Installation"],["Dashboard battery warning","Battery Service"]];
+$('symptomMap').innerHTML=SYMPTOMS.map((s,i)=>`<button class="symptom" data-i="${i}" onclick="pickSymptom(${i})">${s[0]}</button>`).join('');
+function pickSymptom(i){document.querySelectorAll('.symptom').forEach(c=>c.classList.toggle('active',c.dataset.i==i));const svc=SYMPTOMS[i][1];const o=$('symptomOut');o.hidden=false;o.innerHTML=`<span class="so-txt">Sounds like you may need <b>${svc}</b>. Pick it in the booking form and request a time.</span><button class="btn btn-red" onclick="selectService('${svc}')">Request an appointment &#8594;</button>`;}
+
+const FAQ=[["Do I need an appointment?","Walk-ins are welcome, but booking online guarantees your spot and the shortest wait. Most services qualify for same-day appointments once you pick a store."],["How long will my service take?","Most routine services take 30 minutes to two hours \u2014 oil changes and battery swaps are quick, brakes and alignments take a little longer. Each service card shows a typical time."],["Can you install tires I bought somewhere else?","Yes. Book a tire installation, bring your tires, and we'll mount, balance, torque to spec, and reset your TPMS \u2014 usually the same day."],["How much will my service cost?","You'll get an upfront quote before any work begins. Final pricing depends on your vehicle and what it needs, and we'll always explain what's necessary now versus what can wait."],["Do you offer financing?","Yes \u2014 flexible financing with $0 down and quick approval, so brakes, batteries, and other service never have to wait for payday. Apply online in minutes and use it at any location."],["What should I bring to my appointment?","Just your keys and your wheel-lock key if you have one. If you're bringing your own tires or parts, have them ready. Your confirmation covers the rest."],["Do you offer same-day service?","Most fitments and services qualify for same-day appointments. You'll request a preferred time and the shop confirms your appointment — often the same day."],["Is there a warranty on the work?","Qualifying work is backed by a nationwide warranty that travels with you, plus optional road-hazard protection on tires. Ask your advisor what applies to your service."],["Which vehicles do you service?","We service most cars, trucks, SUVs, and vans. Add your vehicle so we can confirm the right parts and fitment before your appointment."],["How do I choose a store?","Pick your nearest American Tire Stores in the booking panel \u2014 Ventura, Thousand Oaks, Glendale, Los Angeles, Bellflower, or Cathedral City. Pricing and appointment requests are handled for that location."],["How do I know if I need brake repair?","Common signs include squealing or grinding, a soft or vibrating brake pedal, and the car pulling to one side when braking. Use the symptom checker above or book a brake inspection \u2014 our technicians diagnose the issue and quote the repair before starting any work."],["Are your technicians certified?","Yes. Every technician at American Tire Stores is certified to diagnose and repair your vehicle, from routine maintenance like oil changes to more involved work like brakes and wheel alignment."]];
+$('faq').innerHTML=FAQ.map(([q,a],i)=>`<div class="qa" id="qa${i}"><button onclick="toggleFaq(${i})"><span>${q}</span><span class="ic">+</span></button><div class="a"><p>${a}</p></div></div>`).join('');
+
+$('svcLocs').innerHTML=STORES.map((s,i)=>`<div class="svc-loc-card" onclick="pickStoreByIndex(${i})"><div class="svc-loc-card__img"><img src="${s.img}" alt="${s.name} storefront" loading="lazy"></div><div class="svc-loc-card__body"><h3>${s.city}</h3><p class="addr">${s.addr}, CA ${s.zip}</p><div class="phone">${s.ph}</div><div class="hours">Mon–Fri 8–6 · Sat 8–5</div><span class="book">Book Here →</span></div></div>`).join('');
+function pickStoreByIndex(i){st.store=STORES[i];reflectState();scrollToBook();}
+
+/* ---- booking: the embedded widget is the single transaction surface.
+   These handlers only GUIDE the user to it and mirror header state — they never pre-fill or scrape the widget. ---- */
+st.svc="";
+function onStoreChange(el){st.store=el.value!==''?STORES[el.value]:null;reflectState();serviceContextChanged();}
+function vehLabel(){return (st.make&&st.model)?((st.year?st.year+' ':'')+st.make+' '+st.model):null;}
+/* read-only context strip above the widget — mirrors header-garage state; NOT read from the widget DOM */
+function renderContext(){
+ const wrap=$('bnContext');if(!wrap)return;
+ const store=st.store, veh=vehLabel(), cs=$('bnCtxStore'), cv=$('bnCtxVeh');
+ if(store){$('bnCtxStoreV').textContent=storeLabel(store);cs.hidden=false;}else cs.hidden=true;
+ if(veh){$('bnCtxVehV').textContent=veh;cv.hidden=false;}else cv.hidden=true;
+ wrap.hidden=!(store||veh);
+}
+function updateBook(){renderContext();} /* alias: reflectState() calls updateBook() to keep context in sync */
+/* card / symptom actions: highlight + navigate to the widget. No service pre-select (widget owns service choice). */
+function selectService(name){
+ document.querySelectorAll('.svc-select').forEach(b=>{b.classList.remove('added');b.textContent="Book this service";});
+ const idx=svcIndexByName(name);if(idx>-1){const b=$('sel'+idx);if(b){b.classList.add('added');b.textContent="\u2713 Selected";}}
+ scrollToBook();
+}
+let tcServicesReady=false;
+let tcServicesLoading=false;
+function initTireConnectServices(){
+ const mount=$('tireconnect');
+ if(!mount||tcServicesReady||tcServicesLoading)return;
+ persistTireConnectState();
+ tcServicesLoading=true;
+ mount.innerHTML='<div class="tc-mount__ph"><span class="tc-mount__label">Loading appointment request form...</span><span class="tc-mount__sub">Select vehicle &middot; select service &middot; preferred date &amp; time &middot; ready-by time &rarr; shop confirms</span></div>';
+ const fail=function(){
+  tcServicesLoading=false;
+  if(tcServicesReady)return;
+  mount.innerHTML='<div class="tc-mount__ph"><span class="tc-mount__label">Appointment request form</span><span class="tc-mount__sub">The booking form could not load. Please refresh the page or try again.</span><button class="btn btn-red" onclick="initTireConnectServices()">Retry loading form</button></div>';
+ };
+ const start=function(){
+  if(!window.TCWidget||typeof window.TCWidget.initServices!=='function'){fail();return;}
+  const ph=mount.querySelector('.tc-mount__ph');
+  if(ph)ph.remove();
+  const locId=st.store&&st.store.id?String(st.store.id):'';
+  const cfg={
+    apikey:TC_API_KEY,
+    apiKey:TC_API_KEY,
+    api_key:TC_API_KEY,
+    key:TC_API_KEY,
+    container:'tireconnect',
+    locationId:locId,
+    location_id:locId,
+    location:locId,
+    locationID:locId,
+    location_lock:!!locId,
+    locationLock:!!locId,
+    locationSelector:locId?'lock':'show',
+    locale:'en_US',
+    searchParams:{location_id:locId,locationId:locId}
+  };
+  if(st.year&&st.make&&st.model){
+    cfg.year=st.year;cfg.make=st.make;cfg.model=st.model;
+    cfg.vehicleYear=st.year;cfg.vehicleMake=st.make;cfg.vehicleModel=st.model;
+    cfg.vehicle_year=st.year;cfg.vehicle_make=st.make;cfg.vehicle_model=st.model;
+    cfg.selectedYear=st.year;cfg.selectedMake=st.make;cfg.selectedModel=st.model;
+    cfg.vehicle={year:st.year,make:st.make,model:st.model};
+    cfg.vehicleParams={year:st.year,make:st.make,model:st.model};
+    cfg.searchParams.year=st.year;cfg.searchParams.make=st.make;cfg.searchParams.model=st.model;
+    cfg.searchParams.vehicle={year:st.year,make:st.make,model:st.model};
+  }
+  window.TCWidget.initServices(cfg);
+  syncTireConnectServicesContext();
+  tcServicesReady=true;
+  tcServicesLoading=false;
+ };
+ if(window.TCWidget&&typeof window.TCWidget.initServices==='function'){start();return;}
+ const src='https://app.tireconnect.ca/js/widget.js';
+ let script=document.querySelector('script[src="'+src+'"]');
+ if(!script){
+  script=document.createElement('script');
+  script.src=src;
+  script.async=true;
+  script.onerror=fail;
+  document.head.appendChild(script);
+ }
+ script.addEventListener('load',start,{once:true});
+ if(script.dataset.loaded==='true')start();
+}
+function scrollToBook(){
+ renderContext();
+ document.getElementById('booknow').scrollIntoView({behavior:'smooth',block:'start'});
+ initTireConnectServices();
+}
+function railScroll(){scrollToBook();}
+renderContext();
+function toggleFaq(i){document.getElementById('qa'+i).classList.toggle('open');}
+function toggleMenu(o){const m=document.getElementById('mobileMenu');m.classList.toggle('show',o===undefined?!m.classList.contains('show'):o);}
+
+/* ---- close the vehicle picker on outside click / escape; init ---- */
+document.addEventListener('click',e=>{const p=$('vehPop');if(p&&p.classList.contains('show')&&!e.target.closest('#vehPop')&&!e.target.closest('#vehField'))setVehPop(false);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')setVehPop(false);});
+reflectState();
+initTireConnectServices();
+</script>
+
+{% schema %}
+{
+  "name": "Services Page",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Services Page"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,87 @@
+<style>
+.ats-store-page{font-family:'Montserrat',system-ui,sans-serif;color:#122240;background:#fff}
+.ats-store-page .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.ats-store-hero{padding:72px 0;background:linear-gradient(140deg,#0c1e3a,#13315f);color:#fff}
+.ats-store-hero h1{font-family:'Akira Expanded','Archivo',sans-serif;font-weight:900;font-size:clamp(28px,4vw,52px);line-height:1.05;text-transform:uppercase;margin:0 0 14px}
+.ats-store-hero p{color:#c3d0e8;font-size:16px;line-height:1.7;max-width:720px}
+.ats-store-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:28px}
+.ats-store-card{background:#fff;border:1px solid #dde2ea;border-radius:14px;padding:22px;color:#122240}
+.ats-store-card b{display:block;color:#13315f;font-family:'Akira Expanded','Archivo',sans-serif;font-size:12px;text-transform:uppercase;margin-bottom:8px}
+.ats-store-card p{color:#54617a;margin:0;font-size:14px;line-height:1.6}
+.ats-store-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.ats-btn{display:inline-flex;align-items:center;justify-content:center;font-family:'Akira Expanded','Archivo',sans-serif;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.03em;padding:14px 24px;border-radius:8px;text-decoration:none}
+.ats-btn.red{background:#c51f28;color:#fff}.ats-btn.ghost{background:#fff;color:#13315f}
+.ats-store-body{padding:56px 0}
+.ats-store-body h2{font-family:'Akira Expanded','Archivo',sans-serif;font-weight:900;font-size:26px;text-transform:uppercase;color:#13315f;margin:0 0 12px}
+.ats-store-services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.ats-store-service{border:1px solid #dde2ea;border-radius:12px;padding:18px;background:#f4f6fa;font-weight:700;color:#122240}
+@media(max-width:800px){.ats-store-grid,.ats-store-services{grid-template-columns:1fr}.ats-store-hero{padding:48px 0}}
+
+/* Mockup typography pass: Montserrat UI + Akira display headings */
+body,.promo,.mainnav a,.hg-field,.hg-store select,.veh-pop select,.garage-btn,.garage-pop select,.garage-pop input,.btn,.tc-tab,.tc-panel__lead,.loc-cta .btn,.store-card,.nap,.open-badge,.hours,.loc-svc,.feat,.other-loc,.brand-chip,.qa button,.footer,.tc-mount__sub{font-family:'Montserrat',system-ui,sans-serif!important}
+h1,h2,h3,.arch,.hero h1,.loc-hero h1,.sec-head h2,.svc-intro h1,.pricing h2,.quiz__h{font-family:'Akira Expanded','Archivo',sans-serif!important;letter-spacing:.005em!important}
+.tc-tab,.btn,.loc-book,.store-card__dir,.other-loc .go,.brand-chip,.qa button{font-family:'Montserrat',system-ui,sans-serif!important;font-weight:800!important}
+section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',sans-serif!important;letter-spacing:.005em!important}
+
+</style>
+<div class="ats-store-page">
+  <section class="ats-store-hero"><div class="wrap">
+    <p style="font-weight:800;color:#ffccd0;text-transform:uppercase;letter-spacing:.08em;font-size:12px;margin:0 0 10px">American Tire Stores Location</p>
+    <h1 id="atsStoreTitle">{{ page.title | default: 'American Tire Stores Location' }}</h1>
+    <p id="atsStoreIntro">Shop tires, wheels, packages, and auto services at your selected American Tire Stores location.</p>
+    <div class="ats-store-actions">
+      <a class="ats-btn red" id="atsStoreBook" href="/pages/services">Book service</a>
+      <a class="ats-btn ghost" id="atsStoreTires" href="/pages/tire-search">Find my tires</a>
+      <a class="ats-btn ghost" href="/pages/locations">All locations</a>
+    </div>
+    <div class="ats-store-grid">
+      <div class="ats-store-card"><b>Address</b><p id="atsStoreAddr">Select a store from the Locations page.</p></div>
+      <div class="ats-store-card"><b>Phone</b><p id="atsStorePhone">(805) 644-3330</p></div>
+      <div class="ats-store-card"><b>Hours</b><p>Mon–Fri 8am–6pm<br>Sat 8am–5pm<br>Closed Sunday</p></div>
+    </div>
+  </div></section>
+  <section class="ats-store-body"><div class="wrap">
+    <h2>Services available here</h2>
+    <p style="color:#54617a;line-height:1.7;max-width:760px">Shop tires, wheels, packages, and auto service at this American Tire Stores location. The selected store is saved for TireConnect and service booking.</p>
+    <div class="ats-store-services">
+      <div class="ats-store-service">Tires & installation</div>
+      <div class="ats-store-service">Wheels & packages</div>
+      <div class="ats-store-service">Oil change</div>
+      <div class="ats-store-service">Brake service</div>
+      <div class="ats-store-service">Wheel alignment</div>
+      <div class="ats-store-service">Battery & TPMS service</div>
+    </div>
+  </div></section>
+</div>
+<script>
+const ATS_STORES=[
+ {name:"American Tire Stores — Ventura",city:"Ventura",slug:"location-ventura-ca",addr:"5100 Telegraph Rd, Ventura, CA 93003",zip:93003,id:52820,ph:"(805) 644-3330"},
+ {name:"American Tire Stores — Thousand Oaks",city:"Thousand Oaks",slug:"location-thousand-oaks-ca",addr:"621 E Thousand Oaks Blvd, Thousand Oaks, CA 91360",zip:91360,id:52819,ph:"(805) 495-7103"},
+ {name:"American Tire & Service — Los Angeles",city:"Los Angeles",slug:"location-los-angeles-ca",addr:"1174 N Western Ave, Los Angeles, CA 90029",zip:90029,id:61758,ph:"(323) 372-9372"},
+ {name:"American Tire Stores — Glendale",city:"Glendale",slug:"location-glendale-ca",addr:"737 S Glendale Ave, Glendale, CA 91205",zip:91205,id:52816,ph:"(818) 243-3191"},
+ {name:"American Tire Stores — Glendale II",city:"Glendale II",slug:"location-glendale-ii-ca",addr:"601 S Brand Blvd, Glendale, CA 91203",zip:91203,id:52818,ph:"(818) 244-7600"},
+ {name:"American Tire Stores — Bellflower",city:"Bellflower",slug:"location-bellflower-ca",addr:"9509 Alondra Blvd, Bellflower, CA 90706",zip:90706,id:52814,ph:"(562) 804-4737"},
+ {name:"American Tire Stores — Cathedral City",city:"Cathedral City",slug:"location-cathedral-city-ca",addr:"68406 E Palm Canyon Dr, Cathedral City, CA 92234",zip:92234,id:52815,ph:"(760) 469-9510"}
+];
+(function(){
+ const handle='{{ page.handle }}';
+ const store=ATS_STORES.find(s=>s.slug===handle)||ATS_STORES.find(s=>location.pathname.includes(s.slug));
+ if(!store)return;
+ document.getElementById('atsStoreTitle').textContent=store.name;
+ document.getElementById('atsStoreIntro').textContent='Shop tires, wheels, packages, and auto service at our '+store.city+' location.';
+ document.getElementById('atsStoreAddr').textContent=store.addr;
+ document.getElementById('atsStorePhone').textContent=store.ph;
+ const params='?location_id='+encodeURIComponent(store.id)+'&locationId='+encodeURIComponent(store.id);
+ document.getElementById('atsStoreBook').href='/pages/services'+params;
+ document.getElementById('atsStoreTires').href='/pages/tire-search'+params;
+ try{
+  const payload={name:store.name,city:store.city,address:store.addr,addr:store.addr,zip:store.zip,phone:store.ph,id:store.id,location_id:store.id,locationId:store.id};
+  localStorage.setItem('atsTireConnectStore',JSON.stringify(payload));
+  sessionStorage.setItem('atsTireConnectStore',JSON.stringify(payload));
+  ['atsTireConnectLocationId','tcLocationId','tc_location_id','location_id','locationId'].forEach(k=>{localStorage.setItem(k,String(store.id));sessionStorage.setItem(k,String(store.id));});
+ }catch(e){}
+})();
+</script>
+{% schema %}
+{"name":"Store Landing Page","settings":[],"presets":[{"name":"Store Landing Page"}]}
+{% endschema %}

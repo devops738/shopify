@@ -1,0 +1,675 @@
+<style>
+html,body{margin-top:0!important;padding-top:0!important}
+body:has(#shopify-section-main-index),body.template-index{margin:0!important;padding-top:0!important}
+body:has(#shopify-section-main-index) main,
+body:has(#shopify-section-main-index) #MainContent,
+body:has(#shopify-section-main-index) .content-for-layout,
+#shopify-section-main-index{margin-top:0!important;padding-top:0!important}
+#shopify-section-main-index>.promo:first-of-type,
+#shopify-section-main-index>style:first-child+.promo{margin-top:0!important;top:0!important}
+
+/* Mockup typography pass: Montserrat UI + Akira display headings */
+body,.promo,.mainnav a,.hg-field,.hg-store select,.veh-pop select,.garage-btn,.garage-pop select,.garage-pop input,.btn,.tc-tab,.tc-panel__lead,.loc-cta .btn,.store-card,.nap,.open-badge,.hours,.loc-svc,.feat,.other-loc,.brand-chip,.qa button,.footer,.tc-mount__sub{font-family:'Montserrat',system-ui,sans-serif!important}
+h1,h2,h3,.arch,.hero h1,.loc-hero h1,.sec-head h2,.svc-intro h1,.pricing h2,.quiz__h{font-family:'Akira Expanded','Archivo',sans-serif!important;letter-spacing:.005em!important}
+.tc-tab,.btn,.loc-book,.store-card__dir,.other-loc .go,.brand-chip,.qa button{font-family:'Montserrat',system-ui,sans-serif!important;font-weight:800!important}
+section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',sans-serif!important;letter-spacing:.005em!important}
+.locs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:20px!important}
+.loc-card-home{display:flex;flex-direction:column;background:#fff;border:1px solid #dde2ea;border-radius:12px;overflow:hidden;text-decoration:none;box-shadow:0 10px 28px -26px rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s,border-color .15s}
+.loc-card-home:hover{transform:translateY(-3px);border-color:#cbd3e1;box-shadow:0 18px 38px -28px rgba(0,0,0,.45)}
+.loc-card-home__img{height:170px;background:#eef1f7;overflow:hidden}
+.loc-card-home__img img{width:100%;height:100%;display:block;object-fit:cover}
+.loc-card-home__body{padding:20px 20px 18px;text-align:left}
+.loc-card-home h3{font-family:'Montserrat',system-ui,sans-serif!important;text-transform:none!important;font-size:18px!important;font-weight:900!important;line-height:1.15;color:#122240;margin:0 0 10px!important}
+.loc-card-home .addr{font-size:14px;line-height:1.45;color:#7a879d;margin:0}
+.loc-card-home .phone{font-size:14px;line-height:1.35;color:#c51f28;font-weight:900;margin-top:7px}
+.loc-card-home .hours{font-size:13px;line-height:1.45;color:#9aa3b2;margin-top:8px}
+.loc-card-home .view{display:inline-block;margin-top:15px;color:#c51f28;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.03em}
+@media(max-width:1100px){.locs{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:760px){.locs{grid-template-columns:1fr!important}.loc-card-home__img{height:210px}}
+
+</style>
+<script>
+(function(){
+  function removeAtsTopGap(){
+    var section=document.getElementById('shopify-section-main-index');
+    if(!section)return;
+    [document.documentElement,document.body,section,section.parentElement,section.closest('main'),document.getElementById('MainContent')].forEach(function(el){
+      if(!el)return;
+      el.style.marginTop='0px';
+      el.style.paddingTop='0px';
+    });
+    var promo=section.querySelector('.promo');
+    if(promo){
+      promo.style.marginTop='0px';
+      promo.style.paddingTop='0px';
+      promo.style.top='0px';
+    }
+    var top=section.getBoundingClientRect().top;
+    if(top>1 && top<180){
+      section.style.transform='translateY(-'+Math.ceil(top)+'px)';
+      section.style.marginBottom='-'+Math.ceil(top)+'px';
+    }
+  }
+  removeAtsTopGap();
+  window.addEventListener('load',removeAtsTopGap,{once:true});
+  requestAnimationFrame(removeAtsTopGap);
+  setTimeout(removeAtsTopGap,300);
+})();
+</script>
+<div class="promo"><div class="wrap">
+  <span><b>Buy 3, Get 1 FREE</b> on most tires</span><span class="sep">·</span>
+  <span>Financing from <b>$0 down</b></span><span class="sep">·</span><a href="/pages/promotions">See offers →</a>
+</div></div>
+
+<header>
+  <!-- BAR 2: logo + garage (store/vehicle) + Book a Quick Appointment -->
+  <div class="hbar-brand"><div class="wrap">
+    <a href="/" class="logo" aria-label="American Tire Stores"><img src="{{ 'ats-locations-inline-01.png' | asset_url }}" alt="American Tire Stores"></a>
+    <div class="brand-right">
+      <div class="hgarage">
+        <label class="hg-field hg-store" id="storeField">
+          <span class="hg-ic"><img src="{{ 'ats-inline-01.png' | asset_url }}" alt=""></span>
+          <span class="hg-txt"><small>Selected Store <span class="hg-pen">✎</span></small>
+            <select id="hstore" onchange="onHStore()"><option value="">Choose…</option></select></span>
+        </label>
+        <div class="hg-sep"></div>
+        <button class="hg-field hg-veh" id="vehField" onclick="toggleVeh()">
+          <span class="hg-ic"><img src="{{ 'ats-inline-02.png' | asset_url }}" alt=""></span>
+          <span class="hg-txt"><small>My Vehicle <span class="hg-pen">✎</span></small>
+            <b id="vehVal">Not selected…</b></span>
+        </button>
+        <div class="veh-pop" id="vehPop">
+          <div class="gp-row">
+            <select id="hyear" onchange="hOnYear()"><option value="" disabled selected hidden>Select</option></select>
+            <select id="hmake" onchange="hOnMake()" disabled><option value="" disabled selected hidden>Select</option></select>
+          </div>
+          <div class="gp-row" style="grid-template-columns:1fr">
+            <select id="hmodel" onchange="hOnModel()" disabled><option value="" disabled selected hidden>Select</option></select>
+          </div>
+        </div>
+      </div>
+      <a class="btn btn-red appt-btn" href="#" onclick="bookService();return false;">Book a Quick<br>Appointment</a>
+      <button class="nav-toggle" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div></div>
+  <!-- BAR 3: full page navigation -->
+  <div class="hbar-nav"><div class="wrap"><nav class="mainnav" aria-label="Main">
+    <a href="/pages/tire-search">Tire Search</a>
+    <a href="/pages/wheel-brands">Wheel Search</a>
+    <a href="/pages/catalog">Packages</a>
+    <a href="/pages/services">Services</a>
+    <a href="/pages/locations">Locations</a>
+    <a href="/pages/promotions">Promotions</a>
+    <a href="/pages/coupons">Coupons</a>
+    <a href="/pages/financing">Financing</a>
+  </nav></div></div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" onclick="if(event.target===this)toggleMenu(false)">
+  <div class="mm-panel">
+    <button class="mm-close" aria-label="Close" onclick="toggleMenu(false)">&times;</button>
+    <a href="/pages/tire-search" onclick="toggleMenu(false)">Tire Search</a>
+    <a href="/pages/wheel-brands" onclick="toggleMenu(false)">Wheel Search</a>
+    <a href="/pages/catalog" onclick="toggleMenu(false)">Packages</a>
+    <a href="/pages/services" onclick="toggleMenu(false)">Services</a>
+    <a href="/pages/locations" onclick="toggleMenu(false)">Locations</a>
+    <a href="/pages/promotions" onclick="toggleMenu(false)">Promotions</a>
+    <a href="/pages/coupons" onclick="toggleMenu(false)">Coupons</a>
+    <a href="/pages/financing" onclick="toggleMenu(false)">Financing</a>
+    <a class="mm-phone" href="tel:+18056443330">☎ (805) 644-3330</a>
+  </div>
+</div>
+
+<!-- HERO: text left, form right -->
+<section class="hero" style="background:linear-gradient(100deg,rgba(10,24,58,.94) 0%,rgba(10,24,58,.74) 46%,rgba(10,24,58,.42) 100%),url({{ 'ats-inline-03.jpg' | asset_url }}) center/cover"><div class="wrap">
+  <div class="hero-copy">
+    <span class="eyebrow">Southern California’s tire shop near you · 7 local stores</span>
+    <h1>Find the right tires and wheels for your <em>car</em>.</h1>
+    <p class="hero-sub">Choose your vehicle or tire size and your nearest store — we'll show live pricing and in-stock availability, and you can request a service appointment at your local American Tire Stores. No guesswork. No phone calls.</p>
+    <div class="trust-row">
+      <span class="ti"><b>✓</b> Same-day installation</span>
+      <span class="ti"><b>✓</b> $0-down financing</span>
+      <span class="ti"><b>✓</b> Nationwide warranty</span>
+      <span class="ti"><b>✓</b> 40+ tire &amp; wheel brands</span>
+    </div>
+    <p class="cities">Serving <b>Ventura</b>, <b>Thousand Oaks</b>, <b>Glendale</b>, <b>Los Angeles</b>, <b>Bellflower</b> &amp; <b>Cathedral City</b>.</p>
+  </div>
+
+  <div class="hero-visual">
+    <div class="entry">
+      <div class="entry-inner">
+        <div class="entry-top"><span class="badge">Start here</span><span class="t">Shop by your fit</span></div>
+        <div class="tabs">
+          <div class="tab active" data-tab="vehicle" onclick="switchTab('vehicle')">By vehicle</div>
+          <div class="tab" data-tab="size" onclick="switchTab('size')">By tire size</div>
+        </div>
+        <div class="pane active" id="pane-vehicle">
+          <div class="pl-row">
+            <div class="field"><label>Year</label><select id="year" onchange="onYear()"><option value="" disabled selected hidden>Select</option></select></div>
+            <div class="field"><label>Make</label><select id="make" onchange="onMake()" disabled><option value="" disabled selected hidden>Select</option></select></div>
+          </div>
+          <div class="pl-row" style="grid-template-columns:1fr">
+            <div class="field"><label>Model</label><select id="model" onchange="onModel()" disabled><option value="" disabled selected hidden>Select</option></select></div>
+          </div>
+        </div>
+        <div class="pane" id="pane-size">
+          <div class="pl-row three">
+            <div class="field"><label>Width</label><input id="w" maxlength="3" inputmode="numeric" placeholder="215" oninput="onSize()"></div>
+            <div class="field"><label>Ratio</label><input id="r" maxlength="2" inputmode="numeric" placeholder="45" oninput="onSize()"></div>
+            <div class="field"><label>Rim</label><input id="d" maxlength="2" inputmode="numeric" placeholder="17" oninput="onSize()"></div>
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:11px"><label>Choose your store</label><select id="store" onchange="onStore()"><option value="">Select a store</option></select></div>
+        <button class="btn btn-red" id="findBtn" disabled onclick="findTires()">Find my tires →</button>
+        <div class="store-stamp" id="storeStamp"><div class="ss-in">
+          <span class="ss-badge">STORE SET</span>
+          <span class="ss-txt"><b id="stName">—</b><small id="stAddr"></small></span>
+          <span class="ss-change" onclick="focusStore()">change</span>
+        </div></div>
+        <div class="entry-foot">
+          <span class="hint"><span class="dot"></span>Pricing shown for your selected store</span>
+          <button class="book-link" onclick="bookService()">Need service? Book →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- EXITS -->
+<section class="exits"><div class="wrap">
+  <div class="exit shop" onclick="goPath('/pages/tire-search')"><span class="ic"><img src="{{ 'ats-inline-04.png' | asset_url }}" alt=""></span>
+    <div><div class="lbl">Shop</div><div class="h">Tires &amp; wheels</div><p>Live local pricing for your exact fitment.</p></div><span class="go">→</span></div>
+  <div class="exit book" onclick="bookService()"><span class="ic"><img src="{{ 'ats-inline-05.png' | asset_url }}" alt=""></span>
+    <div><div class="lbl">Book</div><div class="h">Auto service</div><p>Install, alignment, brakes, oil, batteries, TPMS.</p></div><span class="go">→</span></div>
+</div></section>
+
+<!-- SHOP BY CATEGORY -->
+<section class="block" id="categories"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Shop</div><h2>What Tires, Wheels, or Packages<br>Are You Looking For?</h2>
+    <p>From all-season and performance tires to truck, SUV, and off-road fitments — plus alloy and aftermarket wheels and mounted tire & wheel packages — American Tire Stores stocks 40+ trusted brands and confirms fitment for your exact vehicle before you buy. Enter your vehicle or store above to see what’s in stock near you.</p></div>
+  <div class="cats">
+    <div class="cat" onclick="goPath('/pages/tire-search')"><div class="cat__top"><img src="{{ 'ats-inline-06.jpg' | asset_url }}" alt="All-season and performance tires that fit your vehicle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><div class="cat__body"><h3>Tires</h3><p>New tires for every size, season, and budget — all-season, performance, truck, SUV, off-road, and winter tires — matched to your exact fitment and in stock at your local store.</p><span class="cat__link">Shop tires →</span></div></div>
+    <div class="cat" onclick="goPath('/pages/wheel-brands')"><div class="cat__top"><img src="{{ 'ats-inline-07.jpg' | asset_url }}" alt="Alloy and off-road wheels for cars and trucks" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><div class="cat__body"><h3>Wheels</h3><p>Custom alloy and aftermarket wheels that fit your vehicle and your style, from 40+ brands, with fitment checked before you buy.</p><span class="cat__link">Shop wheels →</span></div></div>
+    <div class="cat" onclick="goPath('/pages/catalog')"><div class="cat__top"><img src="{{ 'ats-inline-08.jpg' | asset_url }}" alt="Mounted tire and wheel packages" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><div class="cat__body"><h3>Packages</h3><p>Tire + wheel packages — mounted, balanced, torqued, and road-ready in a single appointment at your store.</p><span class="cat__link">Shop packages →</span></div></div>
+  </div>
+</div></section>
+
+<!-- BRANDS -->
+<section class="block alt" id="brands"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Brands</div><h2>Shop Tires and Wheels by Brand</h2>
+    <p>Compare premium, all-season, performance, and budget-friendly tires side by side — Michelin, Goodyear, Bridgestone, Continental, Cooper, Falken, Pirelli, Toyo, Yokohama, Hankook, Nitto, Dunlop, and BFGoodrich among them. Every brand links to a search filtered to your vehicle and store, so you only ever see tires that actually fit.</p></div>
+  <!-- Dev: each brand ships as an <img> with alt = brand + type (e.g. "Michelin tires", "Fuel wheels") for image-search & entity SEO -->
+  <div class="brand-logos" id="chips"></div>
+  <div class="brand-all">
+    <button class="pill red" onclick="goPath('/pages/tire-brands')">View all tire brands</button>
+    <button class="pill outline" onclick="goPath('/pages/wheel-brands')">View all wheel brands</button>
+  </div>
+</div></section>
+
+<!-- SERVICES -->
+<section class="block" id="services"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Auto Service</div><h2>Auto Repair Services<br>Near You, Done Right</h2>
+    <p>Our certified technicians handle wheel alignment, brake repair, oil changes, battery replacement, and TPMS service — plus tire installation, including tires you bought elsewhere. Not sure what’s wrong? Tell us the symptom and we’ll match you to the right service and your store’s next opening.</p></div>
+  <img src="{{ 'ats-inline-09.jpg' | asset_url }}" alt="ASE-certified technician performing auto service in the bay" loading="lazy" style="width:100%;height:240px;object-fit:cover;border-radius:12px;margin-bottom:26px;display:block">
+  <div class="symptoms" id="symptoms"></div>
+  <div class="center"><button class="btn btn-ghost" onclick="bookService()">Book a service appointment</button></div>
+</div></section>
+
+<!-- WHY / TRUST -->
+<section class="block dark" style="background:linear-gradient(rgba(19,49,95,.90),rgba(12,30,58,.94)),url({{ 'ats-inline-10.jpg' | asset_url }}) center/cover"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Why American Tire Stores</div><h2>Southern California Trusts Us with Their Cars</h2>
+    <p>For over 25 years, American Tire Stores has helped local drivers find the right tires and keep their cars running — with 7 neighborhood stores and certified technicians who know Southern California roads. Here’s why drivers keep coming back.</p></div>
+  <div class="stats">
+    <div class="stat"><div class="n">7</div><div class="l">Local stores</div></div>
+    <div class="stat"><div class="n">25<em>+</em></div><div class="l">Years in business</div></div>
+    <div class="stat"><div class="n">4.8<em>★</em></div><div class="l">Average review score</div></div>
+    <div class="stat"><div class="n">40<em>+</em></div><div class="l">Tire &amp; wheel brands</div></div>
+  </div>
+  <div class="review">
+    <div class="stars">★★★★★</div>
+    <p class="rq">"Booked online in two minutes, tires were in stock at my store, and they had me back on the road the same afternoon. Fair price, no upsell."</p>
+    <p class="rw">— Verified customer · Glendale</p>
+  </div>
+  <div class="guarantees">
+    <div class="guar"><div class="gi"><img src="{{ 'ats-inline-11.png' | asset_url }}" alt="" width="46" height="46"></div><h4>Nationwide warranty</h4><p>Coverage that travels with you, wherever you drive.</p></div>
+    <div class="guar"><div class="gi"><img src="{{ 'ats-inline-12.png' | asset_url }}" alt="" width="46" height="46"></div><h4>Certified technicians</h4><p>Trained pros handling every install and service.</p></div>
+    <div class="guar"><div class="gi"><img src="{{ 'ats-inline-13.png' | asset_url }}" alt="" width="46" height="46"></div><h4>Road hazard protection</h4><p>Optional coverage against the pothole you didn't see.</p></div>
+    <div class="guar"><div class="gi"><img src="{{ 'ats-inline-14.png' | asset_url }}" alt="" width="46" height="46"></div><h4>Fair, upfront pricing</h4><p>Out-the-door pricing before you commit. No surprises.</p></div>
+  </div>
+</div></section>
+
+<!-- OFFERS + FINANCING -->
+<section class="block alt" id="offers"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Offers</div><h2>Current deals &amp; savings</h2></div>
+  <div class="offers">
+    <div class="offer feat oimg" style="background-image:url({{ 'ats-inline-15.jpg' | asset_url }})"><span class="tag">Limited time</span><h3>Buy 3,<br>Get 1 Free</h3><p>On most tires, most brands. Installation &amp; tire protection plan required.</p><a class="ol" href="/pages/promotions">Shop eligible tires →</a></div>
+    <div class="offer oimg" style="background-image:url({{ 'ats-inline-16.jpg' | asset_url }})"><span class="tag">Seasonal</span><h3>Service specials</h3><p>Rotating savings on oil changes, alignments, and brake service.</p><a class="ol" href="#" onclick="bookService();return false;">Book &amp; save →</a></div>
+    <div class="offer oimg" style="background-image:url({{ 'ats-inline-17.jpg' | asset_url }})"><span class="tag">Every day</span><h3>Live rebates</h3><p>Manufacturer rebates and mail-in offers, updated in real time.</p><a class="ol" href="/pages/promotions">See rebates →</a></div>
+  </div>
+  <div class="fin" style="margin-top:22px;background:linear-gradient(rgba(19,49,95,.88),rgba(12,30,58,.92)),url({{ 'ats-inline-18.jpg' | asset_url }}) center/cover">
+    <div class="fin__l"><div class="fe"><img class="fin-ic" src="{{ 'ats-inline-19.png' | asset_url }}" alt="">Financing</div><h3>Get rolling for $0 down</h3><p>Flexible, quick-approval financing means new tires, brakes, or service never have to wait for payday. Apply online in minutes and use it at any of our seven Southern California stores.</p></div>
+    <button class="btn btn-white" onclick="goPath('/pages/financing')">Apply in minutes →</button>
+  </div>
+</div></section>
+
+<!-- LOCATIONS -->
+<section class="block" id="locations"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Locations</div><h2>7 Tire Shops Across<br>Southern California</h2>
+    <p>Find your nearest American Tire Stores for local pricing, availability, and same-day service. We serve Ventura County, the San Fernando Valley, Greater Los Angeles, and the Coachella Valley — with certified technicians at every location.</p></div>
+  <img src="{{ 'ats-locations-inline-12.jpg' | asset_url }}" alt="American Tire Stores locations across Southern California" loading="lazy" style="width:100%;height:286px;object-fit:cover;border-radius:14px;margin-bottom:28px;display:block">
+  <div class="locs" id="locs"></div>
+  <div class="center" style="margin-top:26px"><a class="btn btn-ghost" href="/pages/locations">View all locations →</a></div>
+</div></section>
+
+<!-- FAQ -->
+<section class="block alt"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Good to know</div><h2>Frequently Asked Questions</h2></div>
+  <div class="faq" id="faq"></div>
+</div></section>
+
+<!-- FINAL CTA -->
+<section class="final" style="background:linear-gradient(rgba(12,30,58,.80),rgba(12,30,58,.88)),url({{ 'ats-inline-21.jpg' | asset_url }}) center/cover">
+  <h2>Ready to find your fit?</h2>
+  <p>Choose your vehicle and store and we'll show real pricing right there — or book service in under two minutes.</p>
+  <div class="cta-row">
+    <button class="btn btn-red" onclick="scrollTo({top:0,behavior:'smooth'})">Find my tires →</button>
+    <button class="btn btn-white" onclick="bookService()">Book a service</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><div class="flogo"><span class="a">American</span> Tire Stores</div>
+      <p class="fp">Tires, wheels, packages, and auto service across seven Southern California stores. Shop by vehicle, book by store.</p></div>
+    <div><h4>Shop</h4><a class="fl" href="/pages/tire-search">Tire Search</a><a class="fl" href="/pages/wheel-brands">Wheel Search</a><a class="fl" href="/pages/catalog">Packages</a><a class="fl" href="/pages/promotions">Offers</a></div>
+    <div><h4>Service</h4><a class="fl" href="/pages/services">Book Appointment</a><a class="fl" href="/pages/service-wheel-alignment">Alignment</a><a class="fl" href="/pages/service-brake-repair">Brakes</a><a class="fl" href="/pages/service-oil-change">Oil Change</a></div>
+    <div><h4>Stores</h4><a class="fl" href="/pages/location-ventura-ca">Ventura</a><a class="fl" href="/pages/location-thousand-oaks-ca">Thousand Oaks</a><a class="fl" href="/pages/location-glendale-ca">Glendale</a><a class="fl" href="/pages/location-los-angeles-ca">Los Angeles</a><a class="fl" href="/pages/location-bellflower-ca">Bellflower</a></div>
+    <div><h4>Contact</h4><p class="fnap"><img class="fnap-ic" src="{{ 'ats-inline-22.png' | asset_url }}" alt=""><b>Call:</b> (805) 644-3330<br>Mon–Fri 8:00–6:00<br>Sat 8:00–5:00<br><br>Financing · Coupons · Help Center</p></div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 American Tire Stores. All rights reserved.</span><span>Prototype · Redesign concept</span></div>
+</div></footer>
+
+<div class="mcta" id="mcta">
+  <button class="btn btn-ghost" onclick="bookService()">Book</button>
+  <button class="btn btn-red" onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})">Find tires →</button>
+</div>
+
+<div class="toast" id="toast"><span class="badge" id="toastBadge">SHOP</span><span class="msg" id="toastMsg"></span></div><div class="tc-overlay" id="tcOverlay" role="dialog" aria-modal="true" aria-label="TireConnect shopping panel"><div class="tc-panel" id="tcPanel"><div class="tc-panel__head"><div><strong>TireConnect</strong><span>Shop tires, wheels, packages, or book service without leaving the homepage.</span></div><button class="tc-panel__close" onclick="closeTireConnect()" aria-label="Close TireConnect">X</button></div><div class="tc-panel__body"><div id="tcInlineWidget"></div></div></div></div>
+<div class="demo-bar" id="demoBar"><button class="close" onclick="document.getElementById('demoBar').style.display='none'">×</button><b>PROTOTYPE</b>Pick a vehicle or size and a store above. Actions show the TireConnect call they map to.</div>
+
+<script>
+const STORES=[
+ {name:"American Tire Stores — Ventura",city:"Ventura",addr:"5100 Telegraph Rd",zip:93003,id:52820,ph:"(805) 644-3330",img:"{{ 'ats-locations-inline-05.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Thousand Oaks",city:"Thousand Oaks",addr:"621 E Thousand Oaks Blvd",zip:91360,id:52819,ph:"(805) 495-7103",img:"{{ 'ats-locations-inline-06.jpg' | asset_url }}"},
+ {name:"American Tire & Service — Los Angeles",city:"Los Angeles",addr:"1174 N. Western Ave.",zip:90029,id:61758,ph:"(323) 372-9372",img:"{{ 'ats-locations-inline-07.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Glendale",city:"Glendale",addr:"737 S Glendale Ave",zip:91205,id:52816,ph:"(818) 243-3191",img:"{{ 'ats-locations-inline-08.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Glendale II",city:"Glendale",addr:"601 S Brand Blvd",zip:91204,id:52818,ph:"(818) 244-7600",img:"{{ 'ats-locations-inline-09.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Bellflower",city:"Bellflower",addr:"9509 Alondra Blvd",zip:90706,id:52814,ph:"(562) 804-4737",img:"{{ 'ats-locations-inline-10.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Cathedral City",city:"Cathedral City",addr:"68406 E Palm Canyon Dr",zip:92234,id:52815,ph:"(760) 469-9510",img:"{{ 'ats-locations-inline-11.jpg' | asset_url }}"},
+];
+let VEH={};
+const TC_API_KEY='c097aed9ad8c441bfff05ae020ca53f0';
+const FALLBACK_VEH={
+ "2024":{"Toyota":["Camry","RAV4","Corolla","Tacoma"],"Honda":["Civic","CR-V","Accord"],"Ford":["F-150","Explorer","Escape"],"Chevrolet":["Silverado","Equinox","Tahoe"]},
+ "2022":{"Toyota":["Camry","RAV4","Highlander"],"Honda":["Civic","CR-V","Pilot"],"Ford":["F-150","Bronco","Mustang"],"Tesla":["Model 3","Model Y"]},
+ "2020":{"Toyota":["Corolla","RAV4","4Runner"],"Honda":["Accord","CR-V"],"Jeep":["Wrangler","Grand Cherokee"],"Subaru":["Outback","Forester"]},
+ "2018":{"Toyota":["Camry","Tacoma"],"Honda":["Civic","Accord"],"Nissan":["Altima","Rogue"],"Ford":["F-150","Focus"]}
+};
+function valuesFromPayload(payload){
+  if(Array.isArray(payload))return payload;
+  if(payload&&Array.isArray(payload.values))return payload.values;
+  if(payload&&payload.data&&Array.isArray(payload.data.values))return payload.data.values;
+  if(payload&&Array.isArray(payload.data))return payload.data;
+  if(payload&&Array.isArray(payload.years))return payload.years;
+  if(payload&&Array.isArray(payload.makes))return payload.makes;
+  if(payload&&Array.isArray(payload.models))return payload.models;
+  return [];
+}
+function normalizeVehicleValues(values){
+  return values.map(v=>{
+    if(typeof v==='string'||typeof v==='number')return String(v);
+    return String(v.name||v.value||v.label||v.year||v.make||v.model||v.trim||'');
+  }).filter(Boolean);
+}
+function vehicleApi(endpoint,params={}){
+  const url=new URL(`https://wl.tireconnect.ca/api/v2/vehicle/${endpoint}`);
+  url.searchParams.set('key',TC_API_KEY);
+  Object.entries(params).forEach(([k,v])=>{if(v)url.searchParams.set(k,v);});
+  return fetch(url.toString()).then(r=>r.ok?r.json():Promise.reject(new Error('Vehicle API failed'))).then(valuesFromPayload).then(normalizeVehicleValues);
+}
+function setLoading(sel,label){if(!sel)return;sel.disabled=true;sel.innerHTML=`<option value="" disabled selected hidden>${label}</option>`;}
+async function initVehicleDropdowns(){
+  setLoading($('year'),'Select');setLoading($('hyear'),'Select');
+  try{
+    const years=await vehicleApi('years');
+    if(years.length){VEH={};years.forEach(y=>VEH[y]={});fillOpts($('year'),years,'Select');fillOpts($('hyear'),years,'Select');reflectState();return;}
+  }catch(e){}
+  VEH=JSON.parse(JSON.stringify(FALLBACK_VEH));
+  fillOpts($('year'),Object.keys(VEH),'Select');fillOpts($('hyear'),Object.keys(VEH),'Select');reflectState();
+}
+async function loadMakesForYear(year){
+  if(!year)return [];
+  if(VEH[year]&&Object.keys(VEH[year]).length)return Object.keys(VEH[year]);
+  setLoading($('make'),'Select');setLoading($('hmake'),'Select');
+  try{
+    const makes=await vehicleApi('makes',{year});
+    VEH[year]=VEH[year]||{};
+    makes.forEach(m=>{VEH[year][m]=VEH[year][m]||[];});
+    return makes;
+  }catch(e){
+    VEH[year]=VEH[year]||{};
+    return Object.keys(VEH[year]);
+  }
+}
+async function loadModelsForMake(year,make){
+  if(!year||!make)return [];
+  if(VEH[year]&&Array.isArray(VEH[year][make])&&VEH[year][make].length)return VEH[year][make];
+  setLoading($('model'),'Select');setLoading($('hmodel'),'Select');
+  try{
+    const models=await vehicleApi('models',{year,make});
+    VEH[year]=VEH[year]||{};VEH[year][make]=models;
+    return models;
+  }catch(e){
+    VEH[year]=VEH[year]||{};VEH[year][make]=VEH[year][make]||[];
+    return VEH[year][make];
+  }
+}
+const $=id=>document.getElementById(id);
+let st={mode:"vehicle",year:"",make:"",model:"",w:"",r:"",d:"",store:null};
+function fillOpts(sel,arr,ph){if(!sel)return;sel.innerHTML='<option value="" disabled selected hidden>'+ph+'</option>';arr.forEach(v=>sel.add(new Option(v,v)));sel.disabled=!arr.length;}
+function storeLabel(s){return (s.name.split('— ')[1]||s.name);}
+function fillStores(sel){if(!sel)return;const ph=sel.id==='hstore'?'Choose…':'Select a store';sel.innerHTML='<option value="">'+ph+'</option>';STORES.forEach((s,i)=>sel.add(new Option(storeLabel(s),i)));}
+fillStores($('store'));fillStores($('hstore'));
+restoreTireConnectState();
+initVehicleDropdowns().then(()=>{reflectState();preloadTireConnect();});
+
+/* one source of truth: st -> reflected into hero form AND header fields */
+function syncSel(yId,mkId,mdId){const y=$(yId),mk=$(mkId),md=$(mdId);if(!y)return;
+ y.value=st.year||'';
+ const makes=(st.year&&VEH[st.year])?Object.keys(VEH[st.year]):[];
+ fillOpts(mk,makes,'Select');mk.disabled=!st.year||!makes.length;mk.value=st.make||'';
+ const models=(st.year&&st.make&&VEH[st.year]&&VEH[st.year][st.make])?VEH[st.year][st.make]:[];
+ fillOpts(md,models,'Select');md.disabled=!(st.year&&st.make)||!models.length;md.value=st.model||'';}
+function reflectState(){
+ persistTireConnectState();
+ const si=st.store?String(STORES.indexOf(st.store)):'';
+ if($('store'))$('store').value=si; if($('hstore'))$('hstore').value=si;
+ if($('storeStamp')){if(st.store){$('stName').textContent=st.store.name;$('stAddr').textContent=st.store.addr+' · '+st.store.city+', CA';$('storeStamp').classList.add('show');}else $('storeStamp').classList.remove('show');}
+ const sf=$('storeField');if(sf)sf.classList.toggle('set',!!st.store);
+ syncSel('year','make','model');syncSel('hyear','hmake','hmodel');
+ const vv=$('vehVal');if(vv)vv.textContent=(st.make&&st.model)?((st.year?st.year+' ':'')+st.make+' '+st.model):'Not selected…';
+ const vf=$('vehField');if(vf)vf.classList.toggle('set',!!(st.make&&st.model));
+ checkReadyOnly();}
+function checkReadyOnly(){const okV=st.year&&st.make&&st.model&&st.store;const okS=st.w&&st.r&&st.d&&st.store;const b=$('findBtn');if(b)b.disabled=!(st.mode==='vehicle'?okV:okS);}
+
+function switchTab(m){st.mode=m;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===m));$('pane-vehicle').classList.toggle('active',m==='vehicle');$('pane-size').classList.toggle('active',m==='size');checkReadyOnly();}
+/* hero vehicle */
+async function onYear(){st.year=$('year').value;st.make='';st.model='';reflectState();await loadMakesForYear(st.year);reflectState();if(st.year&&$('make'))$('make').focus();}
+async function onMake(){st.make=$('make').value;st.model='';reflectState();await loadModelsForMake(st.year,st.make);reflectState();if(st.make&&$('model'))$('model').focus();}
+function onModel(){st.model=$('model').value;reflectState();}
+function onSize(){st.w=$('w').value;st.r=$('r').value;st.d=$('d').value;checkReadyOnly();}
+/* store (hero + header selects share st) */
+function onStore(){st.store=$('store').value!==''?STORES[$('store').value]:null;reflectState();}
+function onHStore(){st.store=$('hstore').value!==''?STORES[$('hstore').value]:null;reflectState();}
+function focusStore(){$('store').focus();}
+/* header vehicle picker */
+async function hOnYear(){st.year=$('hyear').value;st.make='';st.model='';reflectState();await loadMakesForYear(st.year);reflectState();if(st.year&&$('hmake'))$('hmake').focus();}
+async function hOnMake(){st.make=$('hmake').value;st.model='';reflectState();await loadModelsForMake(st.year,st.make);reflectState();if(st.make&&$('hmodel'))$('hmodel').focus();}
+function hOnModel(){st.model=$('hmodel').value;reflectState();if(st.model)setVehPop(false);}
+function toggleVeh(){setVehPop();}
+function setVehPop(open){const p=$('vehPop');if(!p)return;p.classList.toggle('show',open===undefined?!p.classList.contains('show'):open);}
+
+function tireConnectUrl(path){
+  const url=new URL(path,window.location.origin);
+  if(st.store&&st.store.id){
+    url.searchParams.set('location_id',st.store.id);
+    url.searchParams.set('locationId',st.store.id);
+    url.searchParams.set('store',st.store.slug||st.store.name);
+  }
+  if(st.mode==='vehicle'){
+    if(st.year)url.searchParams.set('year',st.year);
+    if(st.make)url.searchParams.set('make',st.make);
+    if(st.model)url.searchParams.set('model',st.model);
+  }else{
+    if(st.w)url.searchParams.set('width',st.w);
+    if(st.r)url.searchParams.set('ratio',st.r);
+    if(st.d)url.searchParams.set('rim',st.d);
+  }
+  return url.toString();
+}
+function persistTireConnectState(){
+  try{
+    if(st.store){
+      const storePayload={name:st.store.name,city:st.store.city,address:st.store.addr,addr:st.store.addr,zip:st.store.zip,phone:st.store.ph,id:st.store.id,location_id:st.store.id,locationId:st.store.id};
+      localStorage.setItem('atsTireConnectStore',JSON.stringify(storePayload));
+      sessionStorage.setItem('atsTireConnectStore',JSON.stringify(storePayload));
+      ['atsTireConnectLocationId','tcLocationId','tc_location_id','location_id','locationId'].forEach(k=>{localStorage.setItem(k,String(st.store.id));sessionStorage.setItem(k,String(st.store.id));});
+    }
+    if(st.mode==='vehicle'&&st.year&&st.make&&st.model){
+      const vehiclePayload={year:st.year,make:st.make,model:st.model};
+      ['atsTireConnectVehicle','tcVehicle','tc_vehicle','tcwlwVehicle','tcwlw_vehicle','TCWidgetVehicle'].forEach(k=>{localStorage.setItem(k,JSON.stringify(vehiclePayload));sessionStorage.setItem(k,JSON.stringify(vehiclePayload));});
+    }else{
+      ['atsTireConnectVehicle','tcVehicle','tc_vehicle','tcwlwVehicle','tcwlw_vehicle','TCWidgetVehicle'].forEach(k=>{localStorage.removeItem(k);sessionStorage.removeItem(k);});
+    }
+    window.dispatchEvent(new CustomEvent('ats:tireconnect-updated'));
+  }catch(e){}
+}
+function writeTireConnectQueryState(){
+  try{
+    const params=new URLSearchParams(window.location.search);
+    if(st.store&&st.store.id){params.set('location_id',st.store.id);params.set('locationId',st.store.id);}
+    if(st.year)params.set('year',st.year);
+    if(st.make)params.set('make',st.make);
+    if(st.model)params.set('model',st.model);
+    const next=`${window.location.pathname}?${params.toString()}${window.location.hash||''}`;
+    if(!isShopifyThemePreview()&&params.toString())window.history.replaceState({},'',next);
+  }catch(e){}
+}
+function restoreTireConnectState(){
+  try{
+    const params=new URLSearchParams(window.location.search);
+    const locationId=params.get('location_id')||params.get('locationId')||localStorage.getItem('atsTireConnectLocationId')||sessionStorage.getItem('atsTireConnectLocationId')||'';
+    if(locationId){const match=STORES.find(s=>String(s.id)===String(locationId));if(match)st.store=match;}
+    st.year=params.get('year')||'';
+    st.make=params.get('make')||'';
+    st.model=params.get('model')||'';
+  }catch(e){}
+}
+function isShopifyThemePreview(){
+  return !!(window.Shopify&&Shopify.designMode)||/[?&](preview_theme_id|_fd|pb)=/.test(window.location.search);
+}
+function loadTireConnectScript(){
+  return new Promise((resolve,reject)=>{
+    if(window.TCWidget){resolve();return;}
+    const existing=document.querySelector('script[src="https://app.tireconnect.ca/js/widget.js"]');
+    if(existing){existing.addEventListener('load',resolve,{once:true});existing.addEventListener('error',reject,{once:true});return;}
+    const script=document.createElement('script');
+    script.src='https://app.tireconnect.ca/js/widget.js';
+    script.async=true;
+    script.addEventListener('load',resolve,{once:true});
+    script.addEventListener('error',reject,{once:true});
+    document.head.appendChild(script);
+  });
+}
+function preloadTireConnect(){
+  if(isShopifyThemePreview()||window._tcPreloaded)return;
+  window._tcPreloaded=true;
+  persistTireConnectState();
+  loadTireConnectScript().catch(()=>{window._tcPreloaded=false;});
+}
+function normTxt(v){return String(v||'').trim().toLowerCase();}
+function selectWidgetValue(select,value){
+  if(!select||!value)return false;
+  const want=normTxt(value);
+  const opt=[...select.options].find(o=>normTxt(o.value)===want||normTxt(o.textContent)===want||normTxt(o.textContent).includes(want));
+  if(!opt)return false;
+  select.value=opt.value;
+  select.dispatchEvent(new Event('input',{bubbles:true}));
+  select.dispatchEvent(new Event('change',{bubbles:true}));
+  return true;
+}
+function syncTireConnectRenderedVehicle(){
+  if(!(st.year&&st.make&&st.model))return;
+  const root=$('tcInlineWidget');
+  if(!root)return;
+  let tries=0;
+  const tick=()=>{
+    tries++;
+    let selects=[...root.querySelectorAll('select')];
+    if(!selects.length){
+      try{
+        const frame=root.querySelector('iframe');
+        if(frame&&frame.contentDocument)selects=[...frame.contentDocument.querySelectorAll('select')];
+      }catch(e){}
+    }
+    const yearSel=selects.find(s=>[...s.options].some(o=>normTxt(o.textContent)===normTxt(st.year)||normTxt(o.value)===normTxt(st.year)));
+    const makeSel=selects.find(s=>[...s.options].some(o=>normTxt(o.textContent)===normTxt(st.make)||normTxt(o.value)===normTxt(st.make)));
+    const modelSel=selects.find(s=>[...s.options].some(o=>normTxt(o.textContent)===normTxt(st.model)||normTxt(o.value)===normTxt(st.model)));
+    if(yearSel)selectWidgetValue(yearSel,st.year);
+    setTimeout(()=>{if(makeSel)selectWidgetValue(makeSel,st.make);},180);
+    setTimeout(()=>{if(modelSel)selectWidgetValue(modelSel,st.model);},380);
+    if(tries<24&&(!yearSel||!makeSel||!modelSel))setTimeout(tick,350);
+  };
+  setTimeout(tick,250);
+}
+function syncTireConnectRenderedSearchMode(){
+  const root=$('tcInlineWidget');
+  if(!root)return;
+  const mode=st.mode==='size'?'size':'vehicle';
+  let tries=0;
+  const tick=()=>{
+    tries++;
+    let selects=[...root.querySelectorAll('select')];
+    if(!selects.length){
+      try{
+        const frame=root.querySelector('iframe');
+        if(frame&&frame.contentDocument)selects=[...frame.contentDocument.querySelectorAll('select')];
+      }catch(e){}
+    }
+    const searchBy=selects.find(s=>s.getAttribute('data-tcwlw')==='search_by'||[...s.options].some(o=>['size','vehicle','license_plate'].includes(normTxt(o.value))));
+    const changed=searchBy?selectWidgetValue(searchBy,mode):false;
+    if(tries<24&&!changed)setTimeout(tick,350);
+  };
+  setTimeout(tick,180);
+}
+function widgetSelects(){
+  const root=$('tcInlineWidget');
+  if(!root)return [];
+  let selects=[...root.querySelectorAll('select')];
+  if(!selects.length){
+    try{
+      const frame=root.querySelector('iframe');
+      if(frame&&frame.contentDocument)selects=[...frame.contentDocument.querySelectorAll('select')];
+    }catch(e){}
+  }
+  return selects;
+}
+function syncTireConnectRenderedTireSize(){
+  if(!(st.mode==='size'&&st.w&&st.r&&st.d))return;
+  let tries=0;
+  const pickByName=(names)=>{
+    const list=widgetSelects();
+    return list.find(s=>names.some(n=>String(s.name||'').toLowerCase()===n||String(s.getAttribute('data-tcwlw')||'').toLowerCase()===n));
+  };
+  const tick=()=>{
+    tries++;
+    const widthSel=pickByName(['width_0','width','tire_width']);
+    const widthOk=widthSel?selectWidgetValue(widthSel,st.w):false;
+    setTimeout(()=>{
+      const profileSel=pickByName(['height_0','height','profile','ratio']);
+      if(profileSel)selectWidgetValue(profileSel,st.r);
+    },260);
+    setTimeout(()=>{
+      const rimSel=pickByName(['rim_0','rim','wheel_size','wheel']);
+      if(rimSel)selectWidgetValue(rimSel,st.d);
+    },620);
+    const allNow=()=>{
+      const width=pickByName(['width_0','width','tire_width']);
+      const profile=pickByName(['height_0','height','profile','ratio']);
+      const rim=pickByName(['rim_0','rim','wheel_size','wheel']);
+      return width&&normTxt(width.value)===normTxt(st.w)&&profile&&normTxt(profile.value)===normTxt(st.r)&&rim&&normTxt(rim.value)===normTxt(st.d);
+    };
+    setTimeout(()=>{if(tries<30&&!allNow())setTimeout(tick,350);},780);
+  };
+  setTimeout(tick,360);
+}
+function openTireConnect(type){
+  persistTireConnectState();
+  writeTireConnectQueryState();
+  if(isShopifyThemePreview()){
+    toast(type==="appointment"?"BOOK":"SHOP","Editor preview only.","Live storefront opens TireConnect here on the homepage.");
+    return;
+  }
+  const overlay=$('tcOverlay'),panel=$('tcPanel'),target=$('tcInlineWidget');
+  if(!overlay||!panel||!target){toast("TIRECONNECT","Widget panel unavailable.");return;}
+  overlay.classList.add('show');
+  target.innerHTML='<div class="tc-loading">Loading TireConnect...</div>';
+  const apiKey='c097aed9ad8c441bfff05ae020ca53f0';
+  loadTireConnectScript().then(()=>new Promise(resolve=>requestAnimationFrame(()=>setTimeout(resolve,60)))).then(()=>{
+    target.innerHTML='';
+    const locId=st.store&&st.store.id?String(st.store.id):'';
+    const base={apikey:apiKey,apiKey:apiKey,api_key:apiKey,key:apiKey,container:'tcInlineWidget',locationId:locId,location_id:locId,location:locId,locationID:locId,location_lock:!!locId,locationLock:!!locId,locationSelector:'lock',locationList:true,locator:true,locale:'en_US',allowed_products:['tire','wheel','package'],product_type:'tire,wheel,package',productType:'tire,wheel,package',layout:'full',view:'full',display:'full',redirect_url:'/pages/tire-search',redirectUrl:'/pages/tire-search',catalog_url:'/pages/tire-search',catalogUrl:'/pages/tire-search',services_widget_url:'/pages/services',servicesUrl:'/pages/services',searchParams:{location_id:locId,locationId:locId}};
+    if(st.mode==='vehicle'&&st.year&&st.make&&st.model){base.fitment='vehicle';base.searchBy='vehicle';base.search_by='vehicle';base.searchType='vehicle';base.type='vehicle';base.year=st.year;base.make=st.make;base.model=st.model;base.vehicleYear=st.year;base.vehicleMake=st.make;base.vehicleModel=st.model;base.vehicle_year=st.year;base.vehicle_make=st.make;base.vehicle_model=st.model;base.selectedYear=st.year;base.selectedMake=st.make;base.selectedModel=st.model;base.vehicle={year:st.year,make:st.make,model:st.model};base.vehicleParams={year:st.year,make:st.make,model:st.model};base.searchParams.search_by='vehicle';base.searchParams.searchBy='vehicle';base.searchParams.year=st.year;base.searchParams.make=st.make;base.searchParams.model=st.model;base.searchParams.vehicle={year:st.year,make:st.make,model:st.model};}
+    if(st.mode==='size'&&st.w&&st.r&&st.d){base.fitment='size';base.searchBy='size';base.search_by='size';base.searchType='size';base.type='size';base.tire_size=`${st.w}/${st.r}R${st.d}`;base.tireSize=`${st.w}/${st.r}R${st.d}`;base.width=st.w;base.width_0=st.w;base.profile=st.r;base.height=st.r;base.height_0=st.r;base.ratio=st.r;base.wheel_size=st.d;base.wheelSize=st.d;base.rim=st.d;base.rim_0=st.d;base.diameter=st.d;base.searchParams.search_by='size';base.searchParams.searchBy='size';base.searchParams.width=st.w;base.searchParams.width_0=st.w;base.searchParams.profile=st.r;base.searchParams.height=st.r;base.searchParams.height_0=st.r;base.searchParams.ratio=st.r;base.searchParams.wheel_size=st.d;base.searchParams.rim=st.d;base.searchParams.rim_0=st.d;}
+    if(typeof window.TCWidget.init==="function"){window.TCWidget.init(base);syncTireConnectRenderedSearchMode();syncTireConnectRenderedTireSize();syncTireConnectRenderedVehicle();return;}
+    target.innerHTML='<div class="tc-loading">TireConnect loaded, but the Tire & Wheel widget initializer was not found.</div>';
+  }).catch(()=>{target.innerHTML='<div class="tc-loading">TireConnect failed to load. Check API key or network settings.</div>';});
+}
+function closeTireConnect(){const overlay=$('tcOverlay');if(overlay)overlay.classList.remove('show');}
+function pathWithState(path){return tireConnectUrl(path);}
+function goPath(path){persistTireConnectState();window.location.href=pathWithState(path);}
+function brandSlug(name){return String(name||'').toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+function goBrand(name,type='tires'){goPath(`/pages/brand-${brandSlug(name)}-${type}`);}
+function findTires(){
+  checkReadyOnly();
+  if($('findBtn').disabled){
+    document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
+    toast("SHOP","Pick a vehicle or size and a store above.","Then we'll send you to TireConnect.");
+    return;
+  }
+  openTireConnect('catalog');
+}
+function bookService(){
+  if(!st.store){
+    document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
+    toast("BOOK","Pick a store above to continue.","Then we'll send you to TireConnect.");
+    return;
+  }
+  persistTireConnectState();
+  window.location.href=tireConnectUrl('/pages/services');
+}
+function toast(b,m,s){$('toastBadge').textContent=b;$('toastMsg').innerHTML=m+(s?`<small>${s}</small>`:"");const t=$('toast');t.classList.add('show');clearTimeout(window._t);window._t=setTimeout(()=>t.classList.remove('show'),3600);}
+
+const BRANDS=["Michelin", "Goodyear", "Continental", "Pirelli", "Falken", "Hankook", "Yokohama", "Nitto", "Kumho", "General", "Nexen", "Sumitomo", "Kelly", "Atturo", "Arroyo", "Lionhart", "Lexani", "Hercules", "Ironman", "Gladiator", "AMP", "Zestino"];
+const TIRE_LOGOS={"Michelin": "{{ 'ats-inline-23.png' | asset_url }}", "Goodyear": "{{ 'ats-inline-24.png' | asset_url }}", "Continental": "{{ 'ats-inline-25.png' | asset_url }}", "Pirelli": "{{ 'ats-inline-26.png' | asset_url }}", "Falken": "{{ 'ats-inline-27.png' | asset_url }}", "Hankook": "{{ 'ats-inline-28.png' | asset_url }}", "Yokohama": "{{ 'ats-inline-29.png' | asset_url }}", "Nitto": "{{ 'ats-inline-30.png' | asset_url }}", "Kumho": "{{ 'ats-inline-31.png' | asset_url }}", "General": "{{ 'ats-inline-32.png' | asset_url }}", "Nexen": "{{ 'ats-inline-33.png' | asset_url }}", "Sumitomo": "{{ 'ats-inline-34.png' | asset_url }}", "Kelly": "{{ 'ats-inline-35.png' | asset_url }}", "Atturo": "{{ 'ats-inline-36.png' | asset_url }}", "Arroyo": "{{ 'ats-inline-37.png' | asset_url }}", "Lionhart": "{{ 'ats-inline-38.png' | asset_url }}", "Lexani": "{{ 'ats-inline-39.png' | asset_url }}", "Hercules": "{{ 'ats-inline-40.png' | asset_url }}", "Ironman": "{{ 'ats-inline-41.png' | asset_url }}", "Gladiator": "{{ 'ats-inline-42.png' | asset_url }}", "AMP": "{{ 'ats-inline-43.png' | asset_url }}", "Zestino": "{{ 'ats-inline-44.png' | asset_url }}"};
+$('chips').innerHTML=BRANDS.map(b=>`<button class="blogo" onclick="goBrand('${b}','tires')" aria-label="Shop ${b} tires"><img class="blogo-img" src="${TIRE_LOGOS[b]}" alt="${b} tires" loading="lazy"></button>`).join('');
+const SYM=[["Oil light on?","or 5,000+ miles since last change","Oil change"],["Pulling to one side?","or uneven tire wear","Wheel alignment"],["Squealing brakes?","or a soft pedal","Brake repair"],["Low-pressure warning?","sensor light won't clear","TPMS service"],["Slow to start?","or 3+ years on the battery","Battery service"],["Tires bought elsewhere?","need mounting & balancing","Tire installation"]];
+$('symptoms').innerHTML=SYM.map(s=>`<button class="symptom" onclick="bookService()"><span class="sy-q">${s[0]}</span><span class="sy-s">${s[1]}</span><span class="sy-go">→ ${s[2]}</span></button>`).join('');
+$('locs').innerHTML=STORES.map(s=>`<a class="loc-card-home" href="${storePageUrl(s)}" onclick="st.store=s;persistTireConnectState()"><div class="loc-card-home__img"><img src="${s.img}" alt="${s.name} storefront" loading="lazy"></div><div class="loc-card-home__body"><h3>${s.city}</h3><p class="addr">${s.addr}, CA ${s.zip}</p><div class="phone">${s.ph}</div><div class="hours">Mon–Fri 8–6 · Sat 8–5</div><span class="view">Store Details →</span></div></a>`).join('');
+const FAQ=[["Where can I find a tire shop near me in Southern California?","American Tire Stores has 7 locations across Southern California — Ventura, Thousand Oaks, Glendale (two locations), Los Angeles, Bellflower, and Cathedral City. Choose your store above to see local pricing and same-day availability."],["Do you install tires I bought somewhere else?","Yes. Book a tire installation appointment and bring your tires — we'll mount, balance, and reset your TPMS at your local store, usually the same day."],["Do I need an appointment for tire installation or service?","Walk-ins are welcome, but booking online guarantees your spot and the shortest wait. Most fitments qualify for same-day service."],["What tire and wheel brands do you carry?","40+ tire and wheel brands, including Michelin, Goodyear, Bridgestone, Continental, Cooper, Falken, Pirelli, and more — with live local availability once you enter your vehicle and store."],["Do you offer tire financing?","Yes — $0-down financing with quick approval, so tires and service never have to wait. Apply online in minutes and use it at any location."],["How do I find the right tire size for my car?","Enter your year, make, and model and we'll show only tires and wheels that fit. Prefer to shop by size? Switch to the tire-size tab and enter your width, ratio, and rim."],["How much does a wheel alignment or brake repair cost near me?","Pricing depends on your vehicle and store. Choose your vehicle and nearest American Tire Stores location above for real, out-the-door local pricing — no calls required."]];
+$('faq').innerHTML=FAQ.map(([q,a],i)=>`<div class="qa" id="qa${i}"><button onclick="toggleFaq(${i})"><span>${q}</span><span class="ic">+</span></button><div class="a"><p>${a}</p></div></div>`).join('');
+function toggleFaq(i){document.getElementById('qa'+i).classList.toggle('open');}
+function storePageUrl(s){const byId={52820:'/pages/location-ventura-ca',52819:'/pages/location-thousand-oaks-ca',61758:'/pages/location-los-angeles-ca',52816:'/pages/location-glendale-ca',52818:'/pages/location-glendale-ii-ca',52814:'/pages/location-bellflower-ca',52815:'/pages/location-cathedral-city-ca'};return byId[s.id]||'/pages/locations';}
+function goStore(s){st.store=s;persistTireConnectState();window.location.href=storePageUrl(s);}
+function toggleMenu(o){const m=document.getElementById('mobileMenu');m.classList.toggle('show',o===undefined?!m.classList.contains('show'):o);}
+
+/* ---- close the vehicle picker on outside click / escape; init ---- */
+document.addEventListener('click',e=>{const p=$('vehPop');if(p&&p.classList.contains('show')&&!e.target.closest('#vehPop')&&!e.target.closest('#vehField'))setVehPop(false);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')setVehPop(false);});
+restoreTireConnectState();
+reflectState();
+preloadTireConnect();
+</script>
+
+{% schema %}
+{
+  "name": "Homepage",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Homepage"
+    }
+  ]
+}
+{% endschema %}
