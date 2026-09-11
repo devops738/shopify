@@ -6,7 +6,7 @@
   <section class="hero"><div class="wrap"><span class="eyebrow">{{ section.settings.eyebrow }}</span><h1>{{ section.settings.heading }}</h1><p>{{ section.settings.intro }}</p></div></section>
   <main class="wrap"><div class="grid">
     {% assign cms_coupons = shop.metaobjects.ats_coupon.values %}
-    {% if section.settings.source == 'metaobjects' and cms_coupons.size > 0 %}
+    {% if cms_coupons.size > 0 %}
       {% for coupon in cms_coupons %}
         {% assign coupon_title = coupon.title.value | default: coupon.title %}
         {% assign coupon_label = coupon.label.value | default: 'Coupon' %}
