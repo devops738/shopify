@@ -8,7 +8,7 @@
   assign expiry = metaobject.expiry.value
   assign locations = metaobject.locations.value | default: 'All 7 Southern California stores'
   assign terms = metaobject.terms.value
-  assign faqs = metaobject.faqs.value
+  assign faqs = metaobject.faq_items.value | default: metaobject.faqs.value
   assign shop_link = metaobject.primary_link.value | default: metaobject.link.value | default: '/pages/tire-search'
   assign shop_cta = metaobject.primary_cta.value | default: metaobject.cta.value | default: 'Shop this offer'
 %}
