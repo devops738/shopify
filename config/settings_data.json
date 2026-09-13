@@ -12,30 +12,6 @@
     "sections": {
       "main-page-promotions": {
         "type": "main-page-promotions",
-        "blocks": {
-          "promotion_Gmcnrj": {
-            "type": "promotion",
-            "settings": {
-              "title": "Promotion title",
-              "description": "Promotion description.",
-              "link": "shopify://metaobjects/ats_promotion/method-race-wheels-45-off-a-set-of-4",
-              "cta": "View offer"
-            }
-          },
-          "promotion_bfNw6g": {
-            "type": "promotion",
-            "settings": {
-              "title": "Promotion title",
-              "description": "Promotion description.",
-              "link": "",
-              "cta": "View offer"
-            }
-          }
-        },
-        "block_order": [
-          "promotion_Gmcnrj",
-          "promotion_bfNw6g"
-        ],
         "settings": {
           "eyebrow": "Current deals & rebates",
           "heading": "Deals on Tires, Wheels, & Auto Service",
@@ -57,6 +33,18 @@
       "main-page-promotions-footer": {
         "type": "main-page-promotions-footer",
         "settings": {}
+      },
+      "main-index": {
+        "type": "main-index",
+        "settings": {}
+      },
+      "main-page-coupons": {
+        "type": "main-page-coupons",
+        "settings": {
+          "heading": "Auto Service Coupons",
+          "intro": "Printable coupons for oil changes, brake service, alignments, battery and more, accepted at American Tire Stores locations across Southern California.",
+          "hero_image": "shopify://shop_images/download_2.png"
+        }
       }
     },
     "content_for_index": []
