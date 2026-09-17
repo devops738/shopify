@@ -24,6 +24,7 @@ h1,h2,h3,.arch,.hero h1,.loc-hero h1,.sec-head h2,.svc-intro h1,.pricing h2,.qui
 section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',sans-serif!important;letter-spacing:.005em!important}
 
 </style>
+{% render 'ats-offer-header' %}
 <div class="ats-store-page">
   <section class="ats-store-hero"><div class="wrap">
     <p style="font-weight:800;color:#ffccd0;text-transform:uppercase;letter-spacing:.08em;font-size:12px;margin:0 0 10px">American Tire Stores Location</p>
@@ -53,14 +54,18 @@ section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',s
     </div>
   </div></section>
 </div>
+{% render 'ats-site-footer' %}
 <script>
 const ATS_STORES=[
  {name:"American Tire Stores — Ventura",city:"Ventura",slug:"location-ventura-ca",addr:"5100 Telegraph Rd, Ventura, CA 93003",zip:93003,id:52820,ph:"(805) 644-3330"},
  {name:"American Tire Stores — Thousand Oaks",city:"Thousand Oaks",slug:"location-thousand-oaks-ca",addr:"621 E Thousand Oaks Blvd, Thousand Oaks, CA 91360",zip:91360,id:52819,ph:"(805) 495-7103"},
+ {name:"American Tire Stores — Valencia",city:"Valencia",slug:"location-valencia-ca",addr:"23510 Valencia Blvd, Unit A, Valencia, CA 91355",zip:91355,id:null,ph:"(661) 596-1444"},
+ {name:"American Tire Stores — Hollywood",city:"Hollywood",slug:"location-hollywood-ca",addr:"1174 N Western Ave, Los Angeles, CA 90029",zip:90029,id:61758,ph:"(323) 372-9372"},
  {name:"American Tire & Service — Los Angeles",city:"Los Angeles",slug:"location-los-angeles-ca",addr:"1174 N Western Ave, Los Angeles, CA 90029",zip:90029,id:61758,ph:"(323) 372-9372"},
  {name:"American Tire Stores — Glendale",city:"Glendale",slug:"location-glendale-ca",addr:"737 S Glendale Ave, Glendale, CA 91205",zip:91205,id:52816,ph:"(818) 243-3191"},
  {name:"American Tire Stores — Glendale II",city:"Glendale II",slug:"location-glendale-ii-ca",addr:"601 S Brand Blvd, Glendale, CA 91203",zip:91203,id:52818,ph:"(818) 244-7600"},
  {name:"American Tire Stores — Bellflower",city:"Bellflower",slug:"location-bellflower-ca",addr:"9509 Alondra Blvd, Bellflower, CA 90706",zip:90706,id:52814,ph:"(562) 804-4737"},
+ {name:"American Tire Stores — Costa Mesa",city:"Costa Mesa",slug:"location-costa-mesa-ca",addr:"2049 Harbor Blvd, Costa Mesa, CA 92627",zip:92627,id:null,ph:"(949) 802-6419"},
  {name:"American Tire Stores — Cathedral City",city:"Cathedral City",slug:"location-cathedral-city-ca",addr:"68406 E Palm Canyon Dr, Cathedral City, CA 92234",zip:92234,id:52815,ph:"(760) 469-9510"}
 ];
 (function(){

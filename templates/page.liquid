@@ -1,5 +1,11 @@
 {% if page.handle == 'services' %}
   {% section 'main-page-services' %}
+{% elsif page.handle == 'tire-search' %}
+  {% section 'main-page-tire-search' %}
+{% elsif page.handle == 'wheel-brands' or page.handle == 'wheel-search' %}
+  {% section 'main-page-wheel-search' %}
+{% elsif page.handle == 'catalog' or page.handle == 'package-brands' or page.handle == 'packages' %}
+  {% section 'main-page-packages' %}
 {% elsif page.handle == 'promotions' %}
   {% section 'main-page-promotions' %}
 {% elsif page.handle == 'coupons' %}
@@ -24,6 +30,8 @@
   {% section 'main-page-location-bellflower-ca' %}
 {% elsif page.handle == 'location-cathedral-city-ca' %}
   {% section 'main-page-location-cathedral-city-ca' %}
+{% elsif page.handle == 'location-valencia-ca' or page.handle == 'location-hollywood-ca' or page.handle == 'location-costa-mesa-ca' %}
+  {% section 'main-page-location-store' %}
 {% else %}
   {{ page.content }}
 {% endif %}
