@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page-wheel-search",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
