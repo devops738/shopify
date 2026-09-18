@@ -45,6 +45,7 @@ h1,h2,h3,.arch{font-family:'Akira Expanded','Archivo',sans-serif;letter-spacing:
 
 /* header — three bars */
 header{position:sticky;top:0;z-index:40;background:#fff}
+#ats-page-content .promo,#ats-page-content header,#ats-page-content footer{display:none!important}
 .hbar-brand{background:#fff;border-bottom:1px solid var(--line)}
 .hbar-brand .wrap{display:flex;align-items:center;gap:20px;height:76px}
 .logo{display:inline-flex;align-items:center;line-height:0}
@@ -402,7 +403,13 @@ footer .wrap{padding-top:34px}
   {{ content_for_header }}
 </head>
 <body>
-  {{ content_for_layout }}
+  {% if template.name == 'index' %}
+    {{ content_for_layout }}
+  {% else %}
+    {% render 'ats-offer-header' %}
+    <div id="ats-page-content">{{ content_for_layout }}</div>
+    {% render 'ats-site-footer' %}
+  {% endif %}
   <style>
   .ats-call-btn{height:50px;padding:0 18px;border-radius:8px;background:#13315f;color:#fff;box-shadow:0 4px 0 #081a33;font-family:'Montserrat',system-ui,sans-serif;font-weight:900;font-size:12px;line-height:1.05;text-align:center;text-transform:uppercase;letter-spacing:.02em;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;border:0;cursor:pointer}
   .ats-call-btn:hover{background:#0f2749}
