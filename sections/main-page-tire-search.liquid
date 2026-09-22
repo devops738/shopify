@@ -1347,7 +1347,7 @@ function loadTireWidget(){
 function updateWhHint(){
   var h=document.getElementById('whHint');
   if(st.store)h.innerHTML='Your selected store: <b>'+storeLabel(st.store)+'</b>. Tire search shows pricing for this location.';
-  else h.innerHTML='No store selected yet \u2014 pick your store in the tire search (or the garage up top) to see local pricing.';
+  else h.innerHTML='';
   document.getElementById('whDev').innerHTML='<b>DEV \u00b7 tire widget mount</b> \u2014 <code>TCWidget.init({ apikey, container:\'wh-mount\''+(st.store?', location_id:'+st.store.id:'')+' })</code>. The widget owns vehicle/size entry, tire browsing, comparison, and cart.';
 }
 updateWhHint();
