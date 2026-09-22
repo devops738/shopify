@@ -1,5 +1,9 @@
 {% if page.handle == 'services' %}
   {% section 'main-page-services' %}
+{% elsif page.handle == 'financing' %}
+  {% section 'main-page-financing' %}
+{% elsif page.handle == 'contact' %}
+  {% section 'main-page-contact' %}
 {% elsif page.handle == 'tire-search' %}
   {% section 'main-page-tire-search' %}
 {% elsif page.handle == 'wheel-brands' or page.handle == 'wheel-search' %}
