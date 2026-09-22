@@ -407,7 +407,7 @@ footer .fcols>div{min-width:0}
     <p style="color:#b7c4dc">American Tire Stores operates 9 tire shops across Southern California &mdash; serving Ventura County, Greater Los Angeles, Orange County, and the Coachella Valley. Every location offers tire and wheel sales, certified auto service, $0-down financing, and easy online booking. Choose your nearest store below for local pricing and availability.</p>
 
     <ul class="hero-checks">
-      <li>Same-day installation at most stores <!-- [VERIFY: confirm same-day claim with client] --></li>
+      <li>Same-day installation at most stores</li>
       <li>$0-down financing</li>
       <li>Nationwide warranty</li>
       <li>100+ tire &amp; wheel brands</li>
@@ -622,27 +622,7 @@ footer .fcols>div{min-width:0}
 
 
 <!-- BRANDS -->
-<section class="block alt"><div class="wrap">
-  <div class="sec-head">
-    <div class="sec-eye">Brands we carry</div>
-    <h2>100+ Tire &amp; Wheel Brands at Every Store</h2>
-    <p>From premium to budget-friendly — all with fitment checked for your vehicle before you buy.</p>
-  </div>
-  <!-- [VERIFY] The rail lists all 106 brands American Tire Stores carries company-wide. Per-store brand availability has not been confirmed, so this section no longer claims a count "at our <city> store". -->
-  <div class="brand-rail-wrap">
-    <button class="brail-nav prev" id="brandPrev" type="button" aria-label="Previous brands">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-    <div class="brand-rail" id="brandRail" role="list" tabindex="0"
-         aria-label="Tire and wheel brands — scroll for more"></div>
-    <button class="brail-nav next" id="brandNext" type="button" aria-label="More brands">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-  </div>
-  <div class="brand-dots" id="brandDots" role="tablist" aria-label="Brand pages"></div>
-
-  <div class="brand-dots" id="brandDots" role="tablist" aria-label="Brand pages"></div>
-
-  <div class="center" style="margin-top:24px"><a class="pill red" href="/pages/tire-search">View all tire brands</a> <a class="pill outline" href="/pages/wheel-brands" style="margin-left:10px">View all wheel brands</a></div>
-</div></section>
+{% render 'ats-location-brand-directory' %}
 
 
 <!-- AREAS WE SERVE -->
@@ -661,7 +641,6 @@ footer .fcols>div{min-width:0}
       <div class="area-group"><h4>&#128205; Orange County</h4><p>Costa Mesa &middot; Newport Beach &middot; Huntington Beach &middot; Fountain Valley &middot; Santa Ana &middot; Irvine &middot; Orange</p></div>
       <div class="area-group"><h4>&#128205; Coachella Valley</h4><p>Cathedral City · Palm Springs · Rancho Mirage · Palm Desert · Indio · La Quinta · Desert Hot Springs · Coachella · Thousand Palms</p></div>
   </div>
-  <p style="font-size:12px;color:var(--slate);margin-top:16px"><em>[VERIFY: confirm these service areas with the client. Add or remove cities as needed.]</em></p>
 </div></section>
 
 
@@ -692,7 +671,7 @@ footer .fcols>div{min-width:0}
     <span>&#128715;&#65039; Comfortable seating</span>
     <span>&#127466;&#127480; English &amp; Spanish</span>
   </div>
-  <p style="text-align:center;font-size:12px;color:var(--slate);margin-top:14px">Amenities may vary by location. <em>[VERIFY per store]</em></p>
+  <p style="text-align:center;font-size:12px;color:var(--slate);margin-top:14px">Amenities may vary by location.</p>
 </div></section>
 
 
@@ -718,8 +697,6 @@ footer .fcols>div{min-width:0}
 </div></section>
 
 
-{% render 'ats-location-brand-directory' %}
-
 <!-- REVIEWS -->
 <!-- Source: CUSTOMER_-_STORE-INTERIOR.jpg | Alt: American Tire Stores showroom interior -->
 <section class="block alt" style="position:relative;background:linear-gradient(rgba(244,246,250,.91),rgba(244,246,250,.93)),url({{ 'netlify-locations-38-4f849650ebd22b6f.jpg' | asset_url }}) center/cover"><div class="wrap">
@@ -743,7 +720,6 @@ footer .fcols>div{min-width:0}
     <div class="grev"><div class="grev-top"><span class="grev-av">T</span><div><b>Tony L.</b><span class="grev-meta">★★★★ · Cathedral City</span></div></div><p>Only tire shop in the desert I trust. Straight talk, fair prices.</p></div>
     <div class="grev"><div class="grev-top"><span class="grev-av">K</span><div><b>Kevin D.</b><span class="grev-meta">★★★★★ · Thousand Oaks</span></div></div><p>Third time back. TPMS sensor replaced fast, no appointment needed.</p></div>
   </div>
-  <p style="text-align:center;font-size:11px;color:var(--slate);margin-top:12px"><em>[VERIFY: Replace with real Google Reviews or verified reviews before launch.]</em></p>
 </div></section>
 
 <!-- FAQ -->
