@@ -13,15 +13,16 @@ body,.promo,.mainnav a,.hg-field,.hg-store select,.veh-pop select,.garage-btn,.g
 h1,h2,h3,.arch,.hero h1,.loc-hero h1,.sec-head h2,.svc-intro h1,.pricing h2,.quiz__h{font-family:'Akira Expanded','Archivo',sans-serif!important;letter-spacing:.005em!important}
 .tc-tab,.btn,.loc-book,.store-card__dir,.other-loc .go,.brand-chip,.qa button{font-family:'Montserrat',system-ui,sans-serif!important;font-weight:800!important}
 section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',sans-serif!important;letter-spacing:.005em!important}
-.locs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:20px!important}
-.loc-card{display:flex;flex-direction:column;background:#fff;border:1px solid #dde2ea;border-radius:12px;overflow:hidden;text-decoration:none;box-shadow:0 10px 28px -26px rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s,border-color .15s}
-.loc-card:hover{transform:translateY(-3px);border-color:#cbd3e1;box-shadow:0 18px 38px -28px rgba(0,0,0,.45)}
-.lc-shot{height:170px;background:#eef1f7;overflow:hidden;display:block}
+.locs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:16px!important}
+.loc-card{display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;transition:transform .15s,box-shadow .15s,border-color .15s}
+.loc-card:hover{transform:translateY(-2px);border-color:var(--brand);box-shadow:0 14px 30px -22px rgba(12,30,58,.55)}
+.lc-shot{aspect-ratio:16/9;background:#e8edf5;overflow:hidden;display:block}
 .lc-shot img{width:100%;height:100%;display:block;object-fit:cover}
-.lc-body{padding:20px 20px 18px;text-align:left}.lc-city{font-family:'Montserrat',system-ui,sans-serif!important;font-size:18px;font-weight:900;line-height:1.15;color:#122240;margin:0 0 10px}
-.lc-addr{font-size:14px;line-height:1.45;color:#7a879d}.lc-ph,.lc-ph a{font-size:14px;line-height:1.35;color:#c51f28;font-weight:900;margin-top:7px;text-decoration:none}.lc-hrs{font-size:13px;line-height:1.45;color:#9aa3b2;margin-top:8px}.lc-link{display:inline-block;margin-top:15px;color:#c51f28;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;text-decoration:none}
-@media(max-width:1100px){.locs{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
-@media(max-width:760px){.locs{grid-template-columns:1fr!important}.lc-shot{height:210px}}
+.lc-body{display:flex;flex:1 1 auto;flex-direction:column;gap:3px;padding:14px 16px 16px;text-align:left}.lc-city{font-family:'Montserrat',system-ui,sans-serif!important;font-size:15px;font-weight:800;line-height:1.2;color:var(--brand);margin:0}
+.lc-addr{font-size:12.5px;line-height:1.45;color:var(--slate)}.lc-ph,.lc-ph a{font-size:13px;line-height:1.35;color:var(--red);font-weight:700;margin-top:3px;text-decoration:none}.lc-hrs{font-size:11.5px;line-height:1.45;color:#8a96ad;margin-bottom:9px}.lc-link{display:inline-block;margin-top:auto;color:var(--brand);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;text-decoration:none}
+.lc-link:hover{color:var(--red)}
+@media(max-width:1100px){.locs{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:640px){.locs{grid-template-columns:1fr!important}}
 #services .sec-head{max-width:980px;margin:0 auto 34px;text-align:center}
 #services .svc-banner{width:100%;height:216px;display:block;object-fit:cover;border-radius:12px;margin:0 0 24px}
 #services .symptoms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 24px}
@@ -313,15 +314,15 @@ section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',s
 
 <script>
 const STORES=[
- {name:"American Tire Stores — Ventura",city:"Ventura",addr:"3059 E Main St",zip:93003,id:52820,ph:"(805) 826-1788",img:"{{ 'ats-locations-inline-05.jpg' | asset_url }}"},
- {name:"American Tire Stores — Thousand Oaks",city:"Thousand Oaks",addr:"621 E Thousand Oaks Blvd",zip:91360,id:52819,ph:"(805) 379-1910",img:"{{ 'ats-locations-inline-06.jpg' | asset_url }}"},
- {name:"American Tire Stores — Valencia",city:"Valencia",addr:"23510 Valencia Blvd, Unit A",zip:91355,id:null,ph:"(661) 596-1444",img:"{{ 'ats-locations-inline-06.jpg' | asset_url }}"},
- {name:"American Tire Stores — Hollywood",city:"Hollywood",addr:"1174 N. Western Ave.",zip:90029,id:61758,ph:"(323) 372-9372",img:"{{ 'ats-locations-inline-07.jpg' | asset_url }}"},
- {name:"American Tire Stores — Glendale",city:"Glendale",addr:"737 S Glendale Ave",zip:91205,id:52816,ph:"(818) 243-3191",img:"{{ 'ats-locations-inline-08.jpg' | asset_url }}"},
- {name:"American Tire Stores — Glendale II",city:"Glendale II",addr:"1130 S Central Ave",zip:91204,id:52818,ph:"(818) 547-2010",img:"{{ 'ats-locations-inline-09.jpg' | asset_url }}"},
- {name:"American Tire Stores — Bellflower",city:"Bellflower",addr:"9509 Alondra Blvd",zip:90706,id:52814,ph:"(562) 804-4737",img:"{{ 'ats-locations-inline-10.jpg' | asset_url }}"},
- {name:"American Tire Stores — Costa Mesa",city:"Costa Mesa",addr:"2049 Harbor Blvd",zip:92627,id:null,ph:"(949) 802-6419",img:"{{ 'ats-locations-inline-10.jpg' | asset_url }}"},
- {name:"American Tire Stores — Cathedral City",city:"Cathedral City",addr:"68406 E Palm Canyon Dr",zip:92234,id:52815,ph:"(760) 469-9510",img:"{{ 'ats-locations-inline-11.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Ventura",city:"Ventura",addr:"3059 E Main St",zip:93003,id:52820,ph:"(805) 826-1788",img:"{{ 'netlify-index-141-cdcc940270ee642e.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Thousand Oaks",city:"Thousand Oaks",addr:"621 E Thousand Oaks Blvd",zip:91360,id:52819,ph:"(805) 379-1910",img:"{{ 'netlify-index-142-6e4031c59d65386a.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Valencia",city:"Valencia",addr:"23510 Valencia Blvd, Unit A",zip:91355,id:null,ph:"(661) 596-1444",img:"{{ 'netlify-index-143-5746055301668a88.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Hollywood",city:"Hollywood",addr:"1174 N. Western Ave.",zip:90029,id:61758,ph:"(323) 372-9372",img:"{{ 'netlify-index-144-30e3a4397545b2c0.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Glendale",city:"Glendale",addr:"737 S Glendale Ave",zip:91205,id:52816,ph:"(818) 243-3191",img:"{{ 'netlify-index-145-196b5cddf165f34f.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Glendale II",city:"Glendale II",addr:"1130 S Central Ave",zip:91204,id:52818,ph:"(818) 547-2010",img:"{{ 'netlify-index-146-7379575e55b35679.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Bellflower",city:"Bellflower",addr:"9509 Alondra Blvd",zip:90706,id:52814,ph:"(562) 804-4737",img:"{{ 'netlify-index-147-60c7e57b01287bb2.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Costa Mesa",city:"Costa Mesa",addr:"2049 Harbor Blvd",zip:92627,id:null,ph:"(949) 802-6419",img:"{{ 'netlify-index-148-eafa51160dc4abe4.jpg' | asset_url }}"},
+ {name:"American Tire Stores — Cathedral City",city:"Cathedral City",addr:"68406 E Palm Canyon Dr",zip:92234,id:52815,ph:"(760) 469-9510",img:"{{ 'netlify-index-149-cb2ff932283299c3.jpg' | asset_url }}"},
 ];
 let VEH={};
 const TC_API_KEY='c097aed9ad8c441bfff05ae020ca53f0';

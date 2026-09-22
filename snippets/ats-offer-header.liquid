@@ -7,9 +7,10 @@
     <a href="/" class="logo" aria-label="American Tire Stores"><img src="{{ 'ats-locations-inline-01.png' | asset_url }}" alt="American Tire Stores"></a>
     <div class="brand-right">
       <div class="hgarage">
-        <label class="hg-field hg-store"><span class="hg-txt"><small>Selected Store</small><select id="hstore"><option value="">Choose…</option><option value="52820">Ventura</option><option value="52819">Thousand Oaks</option><option value="">Valencia</option><option value="61758">Hollywood</option><option value="52816">Glendale</option><option value="52818">Glendale II</option><option value="52814">Bellflower</option><option value="">Costa Mesa</option><option value="52815">Cathedral City</option></select></span></label>
+        <label class="hg-field hg-store" id="storeField"><span class="hg-ic"><img src="{{ 'ats-inline-01.png' | asset_url }}" alt=""></span><span class="hg-txt"><small>Selected Store <span class="hg-pen">✎</span></small><select id="hstore" onchange="if(window.onHStore)onHStore()"><option value="">Choose…</option><option value="0">Ventura</option><option value="1">Thousand Oaks</option><option value="2">Valencia</option><option value="3">Hollywood</option><option value="4">Glendale</option><option value="5">Glendale II</option><option value="6">Bellflower</option><option value="7">Costa Mesa</option><option value="8">Cathedral City</option></select></span></label>
         <div class="hg-sep"></div>
-        <button class="hg-field hg-veh" type="button"><span class="hg-txt"><small>My Vehicle</small><b>Not selected…</b></span></button>
+        <button class="hg-field hg-veh" id="vehField" type="button" onclick="if(window.toggleVeh)toggleVeh()"><span class="hg-ic"><img src="{{ 'ats-inline-02.png' | asset_url }}" alt=""></span><span class="hg-txt"><small>My Vehicle <span class="hg-pen">✎</span></small><b id="vehVal">Not selected…</b></span></button>
+        <div class="veh-pop" id="vehPop"><div class="gp-row"><select id="hyear" onchange="if(window.hOnYear)hOnYear()"><option value="" disabled selected hidden>Select</option><option value="2024">2024</option><option value="2022">2022</option><option value="2020">2020</option><option value="2018">2018</option></select><select id="hmake" onchange="if(window.hOnMake)hOnMake()" disabled><option value="" disabled selected hidden>Select</option></select></div><div class="gp-row" style="grid-template-columns:1fr"><select id="hmodel" onchange="if(window.hOnModel)hOnModel()" disabled><option value="" disabled selected hidden>Select</option></select></div></div>
       </div>
       <a class="btn btn-red appt-btn" href="/pages/services">Book a Quick<br>Appointment</a>
     </div>
@@ -18,3 +19,31 @@
     <a href="/pages/tire-search">Tire Search</a><a href="/pages/wheel-brands">Wheel Search</a><a href="/pages/catalog">Packages</a><a href="/pages/services">Services</a><a href="/pages/locations">Locations</a><a href="/pages/promotions">Promotions</a><a href="/pages/coupons">Coupons</a><a href="/pages/financing">Financing</a>
   </nav></div></div>
 </header>
+<script>
+(() => {
+  const stores=[
+    {id:52820,city:'Ventura',addr:'3059 E Main St',phone:'(805) 826-1788'},
+    {id:52819,city:'Thousand Oaks',addr:'621 E Thousand Oaks Blvd',phone:'(805) 379-1910'},
+    {id:null,city:'Valencia',addr:'23510 Valencia Blvd, Unit A',phone:'(661) 596-1444'},
+    {id:61758,city:'Hollywood',addr:'1174 N. Western Ave.',phone:'(323) 372-9372'},
+    {id:52816,city:'Glendale',addr:'737 S Glendale Ave',phone:'(818) 243-3191'},
+    {id:52818,city:'Glendale II',addr:'1130 S Central Ave',phone:'(818) 547-2010'},
+    {id:52814,city:'Bellflower',addr:'9509 Alondra Blvd',phone:'(562) 804-4737'},
+    {id:null,city:'Costa Mesa',addr:'2049 Harbor Blvd',phone:'(949) 802-6419'},
+    {id:52815,city:'Cathedral City',addr:'68406 E Palm Canyon Dr',phone:'(760) 469-9510'}
+  ];
+  const makes={2024:{Toyota:['Camry','RAV4','Corolla','Tacoma'],Honda:['Civic','CR-V','Accord'],Ford:['F-150','Explorer','Escape']},2022:{Toyota:['Camry','RAV4','Highlander'],Honda:['Civic','CR-V','Pilot'],Ford:['F-150','Bronco','Mustang']},2020:{Toyota:['Corolla','RAV4','4Runner'],Honda:['Accord','CR-V'],Jeep:['Wrangler','Grand Cherokee']},2018:{Toyota:['Camry','Tacoma'],Honda:['Civic','Accord'],Nissan:['Altima','Rogue']}};
+  const byId=id=>document.getElementById(id), option=(el,values)=>{el.innerHTML='<option value="" disabled selected hidden>Select</option>'+values.map(v=>'<option value="'+v+'">'+v+'</option>').join('');el.disabled=!values.length;};
+  const persist=store=>{try{const data={name:'American Tire Stores — '+store.city,city:store.city,address:store.addr,addr:store.addr,phone:store.phone,id:store.id,location_id:store.id,locationId:store.id};localStorage.setItem('atsTireConnectStore',JSON.stringify(data));sessionStorage.setItem('atsTireConnectStore',JSON.stringify(data));if(store.id)['atsTireConnectLocationId','tcLocationId','tc_location_id','location_id','locationId'].forEach(k=>{localStorage.setItem(k,String(store.id));sessionStorage.setItem(k,String(store.id));});}catch(e){}};
+  const init=()=>{const store=byId('hstore'),field=byId('storeField'),vehicle=byId('vehField'),pop=byId('vehPop'),year=byId('hyear'),make=byId('hmake'),model=byId('hmodel'),value=byId('vehVal');if(!store||!vehicle)return;
+    try{const saved=JSON.parse(localStorage.getItem('atsTireConnectStore')||sessionStorage.getItem('atsTireConnectStore')||'null');const index=stores.findIndex(s=>saved&&(s.id&&String(s.id)===String(saved.id)||s.city===saved.city));if(index>=0){store.value=String(index);field.classList.add('set');}}catch(e){}
+    store.addEventListener('change',()=>{const picked=stores[Number(store.value)];field.classList.toggle('set',!!picked);if(picked)persist(picked);});
+    vehicle.addEventListener('click',()=>pop.classList.toggle('show'));
+    year.addEventListener('change',()=>option(make,Object.keys(makes[year.value]||{})));
+    make.addEventListener('change',()=>option(model,(makes[year.value]||{})[make.value]||[]));
+    model.addEventListener('change',()=>{value.textContent=[year.value,make.value,model.value].filter(Boolean).join(' ')||'Not selected…';vehicle.classList.toggle('set',!!model.value);pop.classList.remove('show');});
+    document.addEventListener('click',e=>{if(pop.classList.contains('show')&&!e.target.closest('#vehPop')&&!e.target.closest('#vehField'))pop.classList.remove('show');});
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
