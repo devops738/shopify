@@ -27,6 +27,11 @@ section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',s
 @media(max-width:1100px){.locs{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:640px){.locs{grid-template-columns:1fr!important}}
 #services .sec-head{max-width:980px;margin:0 auto 34px;text-align:center}
+#shopify-section-main-index .sec-head{max-width:960px}
+#shopify-section-main-index .sec-head h2{font-size:clamp(20px,2.1vw,28px);text-wrap:balance}
+#shopify-section-main-index .trust-row{display:grid;grid-template-columns:repeat(2,max-content);column-gap:30px;row-gap:9px}
+#shopify-section-main-index .toast{display:none!important}
+@media(max-width:640px){#shopify-section-main-index .trust-row{grid-template-columns:1fr}}
 #services .svc-banner{width:100%;height:216px;display:block;object-fit:cover;border-radius:12px;margin:0 0 24px}
 #services .symptoms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 24px}
 #services .symptom{overflow:hidden;display:flex;flex-direction:column;gap:0;padding:0;border:1px solid #d8dfeb;border-top:1px solid #d8dfeb;border-radius:10px;background:#fff;text-align:left;transition:transform .15s,box-shadow .15s,border-color .15s}
@@ -197,7 +202,7 @@ section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',s
 
 <!-- SHOP BY CATEGORY -->
 <section class="block" id="categories"><div class="wrap">
-  <div class="sec-head"><div class="sec-eye">Shop</div><h2>What Tires, Wheels, or Packages<br>Are You Looking For?</h2>
+  <div class="sec-head"><div class="sec-eye">Shop</div><h2>What Tires, Wheels, or Packages Are You Looking For?</h2>
     <p>From all-season and performance tires to truck, SUV, and off-road fitments — plus alloy and aftermarket wheels and mounted tire & wheel packages — American Tire Stores stocks 40+ trusted brands and confirms fitment for your exact vehicle before you buy. Enter your vehicle or store above to see what’s in stock near you.</p></div>
   <div class="cats">
     <div class="cat" onclick="goPath('/pages/tire-search')"><div class="cat__top"><img src="{{ 'ats-inline-06.jpg' | asset_url }}" alt="All-season and performance tires that fit your vehicle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><div class="cat__body"><h3>Tires</h3><p>New tires for every size, season, and budget — all-season, performance, truck, SUV, off-road, and winter tires — matched to your exact fitment and in stock at your local store.</p><span class="cat__link">Shop tires →</span></div></div>
@@ -225,7 +230,7 @@ section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',s
 
 <!-- SERVICES -->
 <section class="block" id="services"><div class="wrap">
-  <div class="sec-head"><div class="sec-eye">Auto Service</div><h2>Auto Repair Services<br>Near You, Done Right</h2>
+  <div class="sec-head"><div class="sec-eye">Auto Service</div><h2>Auto Repair Services Near You, Done Right</h2>
     <p>Our certified technicians handle wheel alignment, brake repair, oil changes, battery replacement, and TPMS service — plus tire installation, including tires you bought elsewhere. Not sure what’s wrong? Tell us the symptom and we’ll match you to the right service and your store’s next opening.</p></div>
   <img class="svc-banner" src="{{ 'ats-inline-09.jpg' | asset_url }}" alt="ASE-certified technician performing auto service in the bay" loading="lazy">
   <div class="symptoms" id="symptoms"></div>
@@ -271,7 +276,7 @@ section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',s
 
 <!-- LOCATIONS -->
 <section class="block" id="locations"><div class="wrap">
-  <div class="sec-head"><div class="sec-eye">Locations</div><h2>9 Tire Shops Across<br>Southern California</h2>
+  <div class="sec-head"><div class="sec-eye">Locations</div><h2>9 Tire Shops Across Southern California</h2>
     <p>Find your nearest American Tire Stores for local pricing, availability, and same-day service. We serve Ventura County, the Santa Clarita and San Fernando valleys, Greater Los Angeles, Orange County and the Coachella Valley — with certified technicians at every location.</p></div>
   <img src="{{ 'ats-locations-inline-12.jpg' | asset_url }}" alt="American Tire Stores locations across Southern California" loading="lazy" style="width:100%;height:220px;object-fit:cover;border-radius:12px;margin-bottom:22px;display:block">
   <div class="locs" id="locs"></div>
