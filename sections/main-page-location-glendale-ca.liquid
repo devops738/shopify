@@ -956,6 +956,9 @@ const STORES=[
  {name:"American Tire Stores — Glendale II",city:"Glendale",addr:"601 S Brand Blvd*",zip:91204,id:52818,ph:"(818) 244-7600"},
  {name:"American Tire Stores — Bellflower",city:"Bellflower",addr:"9509 Alondra Blvd",zip:90706,id:52814,ph:"(562) 804-4737"},
  {name:"American Tire Stores — Cathedral City",city:"Cathedral City",addr:"68406 E Palm Canyon Dr",zip:92234,id:52815,ph:"(760) 469-9510"},
+ {name:"American Tire Stores — Valencia",city:"Valencia",addr:"23510 Valencia Blvd, Unit A",zip:91355,id:52819,ph:"(661) 596-1444"},
+ {name:"American Tire Stores — Costa Mesa",city:"Costa Mesa",addr:"2049 Harbor Blvd",zip:92627,id:52814,ph:"(949) 802-6419"},
+ {name:"American Tire Stores — Hollywood",city:"Hollywood",addr:"1174 N. Western Ave.",zip:90029,id:61758,ph:"(323) 372-9372"},
 ];
 let VEH={};
 const TC_API_KEY='c097aed9ad8c441bfff05ae020ca53f0';
@@ -1062,7 +1065,8 @@ function bookService(){tcTab('book',true);loadBook();}
 function toast(b,m,s){$('toastBadge').textContent=b;$('toastMsg').innerHTML=m+(s?`<small>${s}</small>`:"");const t=$('toast');t.classList.add('show');clearTimeout(window._t);window._t=setTimeout(()=>t.classList.remove('show'),3600);}
 
 /* ===== location page logic ===== */
-const STORE_INDEX=3;            // Glendale (S Glendale Ave)
+const ATS_LOCATION_HANDLE='{{ page.handle }}';
+const STORE_INDEX=ATS_LOCATION_HANDLE==='location-valencia-ca'?7:ATS_LOCATION_HANDLE==='location-costa-mesa-ca'?8:ATS_LOCATION_HANDLE==='location-hollywood-ca'?9:3;
 const STORE=STORES[STORE_INDEX];
 st.store=STORE;                 // lock the page (and header garage) to this store
 const HOURS={0:null,1:[8,18],2:[8,18],3:[8,18],4:[8,18],5:[8,18],6:[8,17]}; // 0=Sun; mirror schema_hours
@@ -1074,6 +1078,23 @@ function renderOpen(){const el=$('openBadge');if(!el)return;const now=new Date()
  el.className='open-badge '+(open?'open':'closed');el.innerHTML='<span class="dot"></span>'+txt;
  document.querySelectorAll('.hours tr').forEach(tr=>{const ds=(tr.dataset.d||'').split(',');tr.classList.toggle('today',ds.includes(String(d)));});}
 renderOpen();
+function applyFullLocationCopy(){
+ const data={
+  'location-valencia-ca':{city:'Valencia',region:'Ventura County',address:'23510 Valencia Blvd, Unit A, Valencia, CA 91355',phone:'(661) 596-1444',image:"{{ 'netlify-locations-05-5746055301668a88.jpg' | asset_url }}",intro:"American Tire Stores on Valencia Boulevard is the Conejo Valley's local tire shop and auto service destination — tires, wheels, and full-service auto repair from certified technicians right off Highway 101 and Highway 23, minutes from Westlake Village, Agoura Hills, and Newbury Park. Shop tires and wheels that fit your vehicle, or request a service appointment, with an upfront quote before any work begins."},
+  'location-costa-mesa-ca':{city:'Costa Mesa',region:'Los Angeles County',address:'2049 Harbor Blvd, Costa Mesa, CA 92627',phone:'(949) 802-6419',image:"{{ 'netlify-locations-13-eafa51160dc4abe4.jpg' | asset_url }}",intro:"American Tire Stores on Harbor Boulevard is Costa Mesa's local tire shop and auto service destination — tires, wheels, and full-service auto repair from certified technicians who know the 91, the 605, and the roads Costa Mesa drivers use every day. Shop tires and wheels that fit your vehicle, or request a service appointment, with an upfront quote before any work begins."},
+  'location-hollywood-ca':{city:'Hollywood',region:'Los Angeles County',address:'1174 N. Western Ave., Los Angeles, CA 90029',phone:'(323) 372-9372',image:"{{ 'netlify-locations-06-582faf17016f2ac3.jpg' | asset_url }}",intro:"American Tire Stores in Hollywood is your local tire shop and auto service destination — tires, wheels, and full-service auto repair from certified technicians. Shop tires and wheels that fit your vehicle, or request a service appointment, with an upfront quote before any work begins."}
+ };
+ const d=data[ATS_LOCATION_HANDLE];if(!d)return;
+ document.querySelector('.crumbs b').textContent=d.city;
+ document.querySelector('.loc-hero .eyebrow').textContent='Locations · '+d.region;
+ document.querySelector('.loc-hero h1').textContent='Tires & Auto Service in '+d.city+', CA';
+ document.querySelector('.loc-hero .lead').textContent=d.intro;
+ const nap=document.querySelector('.loc-hero .nap');nap.querySelector('a').href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(d.address);nap.querySelector('a').lastChild.textContent=' '+d.address;nap.querySelectorAll('a')[1].href='tel:'+d.phone.replace(/[^0-9]/g,'');nap.querySelectorAll('a')[1].lastChild.textContent=' '+d.phone;
+ const photo=document.querySelector('.store-card__img img');photo.src=d.image;photo.alt='American Tire Stores '+d.city+' storefront';
+ const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;while(n=walker.nextNode()){if(n.parentElement&&['SCRIPT','STYLE'].includes(n.parentElement.tagName))continue;n.nodeValue=n.nodeValue.replace(/Glendale/g,d.city).replace(/737 S Glendale Ave/g,d.address).replace(/\(818\) 243-3191/g,d.phone);}
+ const map=document.querySelector('.getting-map iframe');if(map)map.src='https://www.google.com/maps?q='+encodeURIComponent(d.address)+'&output=embed';
+}
+applyFullLocationCopy();
 /* store-locked conversions */
 /* store-locked TireConnect widgets */
 let SHOPCAT='tires';

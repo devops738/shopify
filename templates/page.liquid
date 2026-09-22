@@ -34,8 +34,10 @@
   {% section 'main-page-location-bellflower-ca' %}
 {% elsif page.handle == 'location-cathedral-city-ca' %}
   {% section 'main-page-location-cathedral-city-ca' %}
-{% elsif page.handle == 'location-valencia-ca' or page.handle == 'location-hollywood-ca' or page.handle == 'location-costa-mesa-ca' %}
-  {% section 'main-page-location-store' %}
+{% elsif page.handle == 'location-valencia-ca' or page.handle == 'location-costa-mesa-ca' %}
+  {% section 'main-page-location-glendale-ca' %}
+{% elsif page.handle == 'location-hollywood-ca' %}
+  {% section 'main-page-location-glendale-ca' %}
 {% else %}
   {{ page.content }}
 {% endif %}
