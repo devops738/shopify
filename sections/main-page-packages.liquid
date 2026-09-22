@@ -1,2 +1,1698 @@
-{% render 'ats-catalog-page', kind: 'packages' %}
-{% schema %}{"name":"ATS packages","settings":[]}{% endschema %}
+{% comment %} Generated from the supplied Netlify export. Keep source assets in /assets. {% endcomment %}
+<style>
+
+:root{
+  --navy:#0c1e3a;--brand:#13315f;--blue:#1b47a3;--blue-2:#2358c4;
+  --red:#c51f28;--red-deep:#a5171f;--red-press:#86121a;
+  --ink:#122240;--slate:#54617a;--line:#dde2ea;--bg:#fff;--bg-alt:#f4f6fa;
+  --radius:8px;--maxw:1200px;
+}
+.ats-netlify-port *{box-sizing:border-box;margin:0;padding:0}
+.ats-netlify-port html{scroll-behavior:smooth}
+.ats-netlify-port body{font-family:'Montserrat',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:3px solid var(--blue-2);outline-offset:2px}
+h1,h2,h3,.arch{font-family:'Akira Expanded','Archivo',sans-serif;letter-spacing:-0.01em}
+.arch{font-weight:800}
+
+/* buttons */
+.btn{border-radius:var(--radius);font-weight:800;letter-spacing:0.02em;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:'Akira Expanded','Archivo';text-transform:uppercase;transition:transform .07s,background .15s,box-shadow .15s;font-size:14px}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 4px 0 var(--red-press);padding:0 22px;height:50px}
+.btn-red:hover{background:var(--red-deep)}
+.btn-red:active{transform:translateY(3px);box-shadow:0 1px 0 var(--red-press)}
+.btn-red:disabled{background:#e6b8ba;box-shadow:0 4px 0 #d69ea1;cursor:not-allowed}
+.btn-ghost{border:2px solid var(--brand);color:var(--brand);padding:0 22px;height:50px}
+.btn-ghost:hover{background:var(--brand);color:#fff}
+.btn-white{background:#fff;color:var(--brand);padding:0 22px;height:50px}
+.btn-white:hover{background:#eef1f7}
+
+/* promo */
+.promo{background:var(--red);color:#fff;font-size:13px;font-weight:500}
+.promo .wrap{display:flex;align-items:center;justify-content:center;gap:14px;height:38px;text-align:center;flex-wrap:wrap}
+.promo b{font-weight:800}.promo .sep{opacity:.5}.promo a{text-decoration:underline;font-weight:700}
+
+/* header — three bars */
+header{position:sticky;top:0;z-index:40;background:#fff}
+.hbar-brand{background:#fff;border-bottom:1px solid var(--line)}
+.hbar-brand .wrap{display:flex;align-items:center;gap:20px;height:76px}
+.logo{display:inline-flex;align-items:center}
+.logo img{height:38px;width:auto;display:block}
+.logo .a{color:var(--red)}
+.brand-right{margin-left:auto;display:flex;align-items:center;gap:12px;position:relative}
+.appt-btn{height:auto!important;min-height:46px;padding:7px 18px!important;line-height:1.15;text-align:center;font-size:12.5px}
+.hbar-nav{background:#fff;border-bottom:1px solid var(--line)}
+.mainnav{display:flex;gap:26px;height:50px;align-items:center;justify-content:center;overflow-x:auto}
+.mainnav a{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;position:relative;height:100%;display:flex;align-items:center}
+.mainnav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:3px;background:var(--red);transition:right .18s}
+.mainnav a:hover::after{right:0}
+/* header inline garage: Selected Store + My Vehicle (screenshot-style) */
+.hgarage{display:flex;align-items:stretch;border:1.5px solid var(--line);border-radius:10px;background:#fff;position:relative}
+.hg-field{display:flex;align-items:center;gap:9px;padding:7px 14px;background:none;text-align:left;cursor:pointer;min-width:158px}
+.hg-field .hg-ic{font-size:18px;line-height:1}
+.hg-txt{display:flex;flex-direction:column;line-height:1.2}
+.hg-txt small{font-size:9px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:var(--brand);display:flex;align-items:center;gap:5px}
+.hg-pen{color:var(--red);font-size:10px}
+.hg-txt b{font-size:12.5px;font-weight:600;color:#9aa3b2}
+.hg-field.set .hg-txt b{color:var(--ink);font-weight:700}
+.hg-sep{width:1px;background:var(--line);margin:9px 0}
+.hg-store select{border:none;background:none;font-family:'Montserrat';font-size:12.5px;font-weight:700;color:#9aa3b2;padding:0;margin-top:1px;cursor:pointer;max-width:150px;-webkit-appearance:none;appearance:none}
+.hg-store.set select{color:var(--ink)}
+.hg-store select:focus{outline:none}
+.veh-pop{position:absolute;top:calc(100% + 12px);right:0;width:min(300px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 26px 64px -20px rgba(0,0,0,.4);padding:16px;z-index:60;display:none}
+.veh-pop.show{display:block}
+.veh-pop .gp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.veh-pop select{width:100%;height:42px;border:1.5px solid var(--line);border-radius:6px;padding:0 10px;font-size:14px;font-family:'Montserrat';color:var(--ink);background:#fff}
+.veh-pop select:disabled{background:var(--bg-alt);color:#a7adba}
+.nav-phone-ic{width:42px;height:42px;border:1.5px solid var(--line);border-radius:8px;display:grid;place-items:center;color:var(--brand);font-size:16px;flex:0 0 auto}
+.nav-phone-ic:hover{border-color:var(--brand);background:var(--bg-alt)}
+.garage-btn{display:flex;align-items:center;gap:9px;height:42px;padding:0 14px;border-radius:8px;font-weight:700;font-size:13px;font-family:'Montserrat';transition:all .15s;white-space:nowrap}
+.garage-btn.empty{border:1.5px dashed var(--line);color:var(--slate);background:#fff}
+.garage-btn.empty:hover{border-color:var(--brand);color:var(--brand)}
+.garage-btn.set{background:var(--brand);color:#fff}
+.garage-btn.set:hover{background:#0f2749}
+.gc-ic{font-size:16px;line-height:1}
+.gc-lines{display:flex;flex-direction:column;line-height:1.15;text-align:left}
+.gc-lines b{font-size:13px;font-weight:700}
+.gc-lines small{font-size:10px;opacity:.85;font-weight:500}
+.gc-car{font-size:10px;opacity:.7}
+.garage-pop{position:absolute;top:calc(100% + 12px);right:0;width:min(340px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 26px 64px -20px rgba(0,0,0,.4);padding:18px;z-index:60;display:none}
+.garage-pop.show{display:block}
+.garage-pop h4{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:13px;text-transform:uppercase;color:var(--brand);margin-bottom:13px}
+.gp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.garage-pop select,.garage-pop input{width:100%;height:42px;border:1.5px solid var(--line);border-radius:6px;padding:0 10px;font-size:14px;font-family:'Montserrat';color:var(--ink);background:#fff}
+.garage-pop select:disabled{background:var(--bg-alt);color:#a7adba}
+.gp-store{font-size:12px;color:var(--slate);margin:2px 0 11px;min-height:15px}.gp-store b{color:var(--brand)}
+.garage-pop .btn-red{width:100%;height:46px}
+.gp-book{display:block;text-align:center;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--blue);cursor:pointer}.gp-book:hover{text-decoration:underline}
+
+/* hero */
+.hero{background:radial-gradient(1000px 460px at 90% 10%,#163461 0%,transparent 56%),linear-gradient(158deg,#0c1e3a,#0a1830);color:#fff;position:relative}
+.hero::after{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.hero .wrap{display:grid;grid-template-columns:1fr 0.82fr;gap:48px;align-items:center;padding:52px 24px 76px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8fb0e6;margin-bottom:16px}
+.eyebrow::before{content:"";width:24px;height:3px;background:var(--red)}
+.hero h1{font-weight:800;font-size:clamp(34px,4.7vw,56px);line-height:1.02;text-transform:uppercase}
+.hero h1 em{font-style:normal;color:#ff5259}
+.hero-sub{font-size:16.5px;color:#c3ccdb;max-width:44ch;margin:16px 0 22px}
+.trust-row{display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:14px}
+.trust-row .ti{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:#dbe3f2}
+.trust-row .ti b{color:var(--red);font-family:'Akira Expanded','Archivo'}
+.cities{font-size:12.5px;color:#7f92b3}.cities b{color:#a9bbd8;font-weight:600}
+
+/* entry card */
+.entry{background:#fff;border-radius:12px;padding:6px;color:var(--ink);box-shadow:0 30px 66px -22px rgba(0,0,0,.62)}
+.entry-inner{padding:20px}
+.entry-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.entry-top .badge{background:var(--red);color:#fff;font-size:10px;font-weight:800;letter-spacing:0.06em;padding:5px 9px;border-radius:4px;text-transform:uppercase}
+.entry-top .t{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:16px;color:var(--brand);text-transform:uppercase}
+.tabs{display:flex;gap:6px;margin-bottom:15px;background:var(--bg-alt);padding:4px;border-radius:7px}
+.tab{flex:1;padding:9px;font-size:13px;font-weight:700;color:var(--slate);border-radius:5px;text-align:center;transition:all .14s}
+.tab.active{background:#fff;color:var(--brand);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.pl-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.pl-row.three{grid-template-columns:1fr 1fr 1fr}
+.field label{display:block;font-size:10px;letter-spacing:0.05em;text-transform:uppercase;color:var(--slate);font-weight:700;margin-bottom:5px}
+.field select,.field input{width:100%;height:46px;border:1.5px solid var(--line);border-radius:var(--radius);padding:0 12px;font-size:14.5px;color:var(--ink);background:#fff;transition:border-color .15s}
+.field select:focus,.field input:focus{border-color:var(--blue);outline:none}
+.field select:disabled{background:var(--bg-alt);color:#a7adba;cursor:not-allowed}
+.pane{display:none}.pane.active{display:block}
+.entry .btn-red{width:100%;height:52px;margin-top:2px}
+.entry-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:13px;padding-top:13px;border-top:1px solid var(--line)}
+.hint{font-size:12px;color:var(--slate);display:flex;align-items:center;gap:7px}.hint .dot{width:6px;height:6px;border-radius:50%;background:var(--red)}
+.book-link{font-size:13px;font-weight:700;color:var(--blue);border-bottom:2px solid transparent}.book-link:hover{border-bottom-color:var(--blue)}
+.store-stamp{margin-top:11px;background:var(--bg-alt);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:5px;max-height:0;overflow:hidden;opacity:0;padding:0 14px;transition:max-height .35s,opacity .3s,padding .35s}
+.store-stamp.show{max-height:90px;opacity:1;padding:11px 14px}
+.ss-in{display:flex;align-items:center;gap:12px}
+.ss-badge{font-size:9px;letter-spacing:0.08em;color:#fff;background:var(--brand);padding:4px 8px;border-radius:3px;font-weight:800;white-space:nowrap}
+.ss-txt{font-size:13px;color:var(--ink)}.ss-txt b{color:var(--brand)}.ss-txt small{display:block;color:var(--slate);font-size:11px}
+.ss-change{margin-left:auto;font-size:11.5px;color:var(--blue);font-weight:700;cursor:pointer;border-bottom:1px dotted var(--blue)}
+
+/* exits */
+.exits .wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:-48px;position:relative;z-index:5;padding-bottom:56px}
+.exit{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;display:flex;align-items:center;gap:17px;transition:transform .16s,box-shadow .16s;cursor:pointer;box-shadow:0 14px 32px -18px rgba(0,0,0,.28)}
+.exit:hover{transform:translateY(-3px);box-shadow:0 22px 42px -20px rgba(0,0,0,.36)}
+.exit .ic{width:52px;height:52px;flex:0 0 auto;border-radius:9px;display:grid;place-items:center;font-size:24px}
+.exit.shop .ic{background:var(--brand);color:#fff}.exit.book .ic{background:var(--red);color:#fff}
+.exit .lbl{font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--slate)}
+.exit .h{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:19px;text-transform:uppercase;color:var(--brand);margin-top:2px}
+.exit p{font-size:12.5px;color:var(--slate);margin-top:2px}
+.exit .go{margin-left:auto;font-size:23px;color:var(--red)}
+
+/* section shell */
+section.block{padding:66px 0}
+.block.alt{background:var(--bg-alt)}
+.block.dark{background:var(--brand);color:#fff;position:relative;overflow:hidden}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 36px}
+.sec-eye{font-size:11.5px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.block.dark .sec-eye{color:#ff5259}
+.sec-head h2{font-family:'Akira Expanded','Archivo',sans-serif;font-weight:800;font-size:clamp(20px,2.5vw,30px);text-transform:uppercase;color:var(--brand);line-height:1.12;letter-spacing:-0.01em}
+.block.dark .sec-head h2{color:#fff}
+.sec-head p{font-size:15px;color:var(--slate);margin-top:12px}
+.block[style*="0e2444"] .sec-head p{color:#b7c4dc}
+.block.dark .sec-head p{color:#b7c4dc}
+
+/* category cards */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cat{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;transition:transform .16s,box-shadow .16s;cursor:pointer;display:flex;flex-direction:column}
+.cat:hover{transform:translateY(-4px);box-shadow:0 22px 44px -22px rgba(0,0,0,.32)}
+.cat__top{height:210px;display:grid;place-items:center;font-size:52px;position:relative;background:linear-gradient(150deg,#16305a,#0c1e3a);color:#fff}
+.cat:nth-child(2) .cat__top{background:linear-gradient(150deg,#1b47a3,#13315f)}
+.cat:nth-child(3) .cat__top{background:linear-gradient(150deg,#8f1015,#c51f28)}
+.cat__body{padding:20px}
+.cat__body h3{font-weight:800;font-size:20px;text-transform:uppercase;color:var(--brand)}
+.cat__body p{font-size:13.5px;color:var(--slate);margin:6px 0 12px}
+.cat__link{font-size:13px;font-weight:800;color:var(--red);font-family:'Akira Expanded','Archivo';text-transform:uppercase;letter-spacing:0.03em}
+
+/* brands */
+.brand-note{text-align:center;font-size:13px;color:var(--slate);margin:-18px auto 24px}.brand-note b{color:var(--brand)}
+.chips{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;max-width:900px;margin:0 auto}
+.chip{background:#fff;border:1.5px solid var(--line);border-radius:40px;padding:11px 20px;font-weight:700;font-size:14px;color:var(--brand);transition:all .14s;display:flex;align-items:center;gap:9px}
+.chip:hover{border-color:var(--brand);background:var(--brand);color:#fff}
+.chip .plus{color:var(--red);font-weight:800}.chip:hover .plus{color:#fff}
+.brand-all{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+.pill{padding:13px 26px;border-radius:40px;font-family:'Akira Expanded','Archivo';font-weight:800;font-size:14px;text-transform:uppercase}
+.pill.red{background:var(--red);color:#fff}.pill.red:hover{background:var(--red-deep)}
+.pill.outline{border:2px solid var(--brand);color:var(--brand)}.pill.outline:hover{background:var(--brand);color:#fff}
+
+/* services */
+.symptoms{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px}
+.symptom{background:#fff;border:1px solid var(--line);border-radius:9px;padding:20px;text-align:left;display:flex;flex-direction:column;gap:7px;transition:all .15s;border-top:3px solid var(--brand)}
+.symptom:hover{transform:translateY(-3px);box-shadow:0 16px 32px -20px rgba(0,0,0,.3);border-top-color:var(--red)}
+.symptom .sy-q{font-family:'Akira Expanded','Archivo';font-weight:700;font-size:15.5px;color:var(--brand)}
+.symptom .sy-s{font-size:12.5px;color:var(--slate)}
+.symptom .sy-go{margin-top:auto;font-size:13px;font-weight:700;color:var(--red);padding-top:6px}
+.center{text-align:center}
+
+/* trust / why */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-bottom:44px}
+.stat{text-align:center;position:relative}
+.stat:not(:last-child)::after{content:"";position:absolute;right:-14px;top:12%;height:76%;width:1px;background:rgba(255,255,255,.15)}
+.stat .n{font-family:'Akira Expanded','Archivo';font-weight:900;font-size:38px;color:#fff}.stat .n em{font-style:normal;color:#ff5259}
+.stat .l{font-size:12.5px;color:#b7c4dc;margin-top:5px}
+.guarantees{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.guar{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:20px;text-align:center}
+.guar .gi{font-size:26px;margin-bottom:8px}
+.guar h4{font-weight:800;font-size:14.5px;text-transform:uppercase;color:#fff}
+.guar p{font-size:12px;color:#b7c4dc;margin-top:5px}
+.review{max-width:680px;margin:0 auto 40px;text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:26px}
+.review .stars{color:#ffc233;font-size:20px;letter-spacing:2px}
+.review .rq{font-size:17px;color:#eef2f9;margin:10px 0;font-style:italic}
+.review .rw{font-size:12.5px;color:#9fb0cd;text-transform:uppercase;letter-spacing:0.06em}
+
+/* offers */
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.offer{border:1px solid var(--line);border-radius:11px;padding:24px;background:#fff;position:relative;overflow:hidden;transition:transform .16s,box-shadow .16s}
+.offer:hover{transform:translateY(-3px);box-shadow:0 18px 38px -22px rgba(0,0,0,.3)}
+.offer.feat{background:linear-gradient(155deg,#c51f28,#8f1015);color:#fff;border-color:transparent}
+.offer .tag{font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--red)}
+.offer.feat .tag{color:#ffd7d9}
+.offer h3{font-weight:900;font-size:26px;text-transform:uppercase;margin:6px 0;color:var(--brand)}
+.offer.feat h3{color:#fff}
+.offer p{font-size:13px;color:var(--slate)}.offer.feat p{color:#ffe1e2}
+.offer .ol{display:inline-block;margin-top:14px;font-family:'Akira Expanded','Archivo';font-weight:800;font-size:13px;text-transform:uppercase;color:var(--red)}
+.offer.feat .ol{color:#fff}
+
+/* locations */
+.locs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.loc{border:1px solid var(--line);border-radius:10px;padding:18px;background:#fff;transition:all .15s;cursor:pointer}
+.loc:hover{border-color:var(--brand);box-shadow:0 14px 30px -20px rgba(0,0,0,.3);transform:translateY(-2px)}
+.loc .city{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:16px;color:var(--brand)}
+.loc .addr{font-size:12.5px;color:var(--slate);margin-top:5px;line-height:1.5}
+.loc .hrs{font-size:11.5px;color:var(--slate);margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.loc .go{margin-top:8px;font-size:12px;font-weight:800;color:var(--red);font-family:'Akira Expanded','Archivo';text-transform:uppercase}
+
+/* financing band */
+.fin{background:linear-gradient(150deg,#13315f,#0c1e3a);border-radius:14px;color:#fff;padding:36px;display:flex;align-items:center;gap:30px;flex-wrap:wrap;position:relative;overflow:hidden}
+.fin__l{flex:1;min-width:280px}
+.fin__l .fe{font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#ff5259;margin-bottom:8px}
+.fin__l h3{font-weight:800;font-size:26px;text-transform:uppercase}
+.fin__l p{font-size:14px;color:#c3ccdb;margin-top:6px;max-width:52ch}
+
+/* faq */
+.faq{max-width:760px;margin:0 auto}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;text-align:left;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Akira Expanded','Archivo';font-weight:700;font-size:16px;color:var(--brand)}
+.qa .ic{color:var(--red);font-size:22px;flex:0 0 auto;transition:transform .2s}
+.qa.open .ic{transform:rotate(45deg)}
+.qa .a{max-height:0;overflow:hidden;transition:max-height .28s ease;font-size:14.5px;color:var(--slate)}
+.qa.open .a{max-height:300px}
+.qa .a p{padding-bottom:20px}
+
+/* final cta */
+.final{background:radial-gradient(800px 300px at 50% 0%,#163461,transparent 60%),var(--brand);color:#fff;text-align:center;padding:64px 24px;position:relative;overflow:hidden}
+.final h2{font-weight:900;font-size:clamp(28px,3.6vw,42px);text-transform:uppercase}
+.final p{font-size:16px;color:#c3ccdb;margin:12px auto 24px;max-width:52ch}
+.final .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* footer */
+footer{background:var(--blue);color:#fff;position:relative}
+footer::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+footer .wrap{padding:48px 24px 28px}
+.fcols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1.2fr;gap:28px;margin-bottom:30px}
+.flogo{font-family:'Akira Expanded','Archivo';font-weight:900;font-size:18px;text-transform:uppercase;margin-bottom:12px}.flogo .a{color:#ff5259}
+footer p.fp{font-size:13px;color:#c3d0e8;max-width:30ch}
+footer h4{font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
+footer a.fl{display:block;padding:4px 0;color:#c3d0e8;font-size:13.5px}footer a.fl:hover{color:#fff}
+.fnap{font-size:12.5px;color:#c3d0e8;line-height:1.7}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:#a9b8d6}
+
+/* toast + demo */
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(150%);z-index:80;background:var(--brand);color:#fff;padding:15px 20px;border-radius:8px;display:flex;align-items:center;gap:13px;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);transition:transform .35s cubic-bezier(.2,.9,.3,1);max-width:calc(100vw - 40px);border-left:4px solid var(--red)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast .badge{font-size:9.5px;letter-spacing:0.06em;background:var(--red);color:#fff;padding:4px 8px;border-radius:3px;font-weight:800;white-space:nowrap}
+.toast .msg{font-size:13.5px}.toast .msg small{display:block;color:#aab6cc;font-size:11.5px}
+.demo-bar{position:fixed;right:16px;bottom:16px;z-index:70;background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px 13px;box-shadow:0 12px 34px -14px rgba(0,0,0,.4);font-size:11px;color:var(--slate);max-width:220px}
+.demo-bar b{color:var(--brand);display:block;margin-bottom:4px;font-family:'Akira Expanded','Archivo';font-size:10.5px}
+.demo-bar .close{position:absolute;top:6px;right:9px;color:var(--slate);font-size:15px}
+
+/* ===== location page ===== */
+.crumbs{background:var(--bg-alt);border-bottom:1px solid var(--line)}
+.crumbs .wrap{padding:10px 24px;font-size:12.5px;color:var(--slate)}
+.crumbs a:hover{color:var(--brand)}.crumbs b{color:var(--brand)}.crumbs span{margin:0 8px;color:#b3bed3}
+.tpl-note{background:#fff8e6;border-bottom:1px solid #e6c65a}
+.tpl-note .wrap{padding:9px 24px;font-size:11.5px;color:#7a5c10;line-height:1.5}
+.tpl-note b{background:#e6c65a;color:#4a3800;padding:2px 7px;border-radius:4px;margin-right:8px;font-size:10px;letter-spacing:.05em}
+.tpl-note code{background:rgba(0,0,0,.06);padding:1px 5px;border-radius:3px;font-size:11px}
+.sec-head--left{text-align:left;margin:0 0 22px;max-width:none}
+.btn-line{background:#fff;border:1.5px solid var(--line);color:var(--brand)}.btn-line:hover{border-color:var(--brand)}
+.final .btn-wl{background:transparent;border:1.5px solid rgba(255,255,255,.5);color:#fff}.final .btn-wl:hover{background:rgba(255,255,255,.1)}
+.loc-hero{background:#fff;padding:44px 0 42px}
+.loc-hero__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:start}
+.loc-hero h1{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:clamp(28px,3.6vw,42px);color:var(--brand);text-transform:uppercase;line-height:1.04}
+.loc-hero .lead{font-size:15.5px;color:var(--slate);margin:14px 0 18px;line-height:1.6}
+.loc-hero .lead em{color:#9aa3b2;font-size:13px}
+.nap{display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
+.nap a,.nap span{font-size:14px;color:var(--ink);display:flex;gap:10px;align-items:center}
+.nap a:hover{color:var(--brand)}
+.np-ic{color:var(--red);width:18px;text-align:center;flex:0 0 auto}
+.loc-cta{display:flex;gap:12px;flex-wrap:wrap}
+.store-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 18px 44px -28px rgba(0,0,0,.28)}
+.store-card__img{aspect-ratio:16/10}
+.store-card__body{padding:20px}
+.open-badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;padding:7px 13px;border-radius:30px;margin-bottom:14px}
+.open-badge.open{background:rgba(47,125,82,.14);color:#2f7d52}
+.open-badge.closed{background:rgba(197,31,40,.1);color:var(--red)}
+.open-badge .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+.hours{width:100%;border-collapse:collapse}
+.hours td{padding:8px 0;font-size:13.5px;border-bottom:1px solid var(--line);color:var(--ink)}
+.hours td:last-child{text-align:right;font-weight:600;color:var(--slate)}
+.hours tr.today td{color:var(--brand);font-weight:800}
+.store-card__dir{display:block;margin-top:14px;font-size:13px;font-weight:800;color:var(--red);font-family:'Akira Expanded','Archivo';text-transform:uppercase}
+.shopbook{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.sb-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column}
+.sb-card h3{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:19px;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
+.sb-card>p{font-size:13.5px;color:var(--slate);margin-bottom:14px;line-height:1.55}
+.sb-card .pl-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.sb-card .field label{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--slate);display:block;margin-bottom:5px}
+.sb-card select{width:100%;height:46px;border:1.5px solid var(--line);border-radius:8px;padding:0 10px;font-family:'Montserrat';font-size:14px;color:var(--ink);background:#fff}
+.sb-card select:disabled{background:var(--bg-alt);color:#a7adba}
+.sb-svc{font-size:13px;color:var(--slate);margin-bottom:14px;margin-top:auto}
+.loc-svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.loc-svc{border:1px solid var(--line);border-radius:12px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:8px;border-top:3px solid var(--brand);transition:transform .15s,box-shadow .15s}
+.loc-svc:hover{transform:translateY(-3px);box-shadow:0 16px 34px -22px rgba(0,0,0,.26)}
+.loc-svc .ic{width:52px;height:52px;border-radius:11px;background:var(--brand);display:grid;place-items:center;margin-bottom:2px}
+.loc-svc .ic img{width:30px;height:30px;object-fit:contain}
+.loc-svc h3{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:16px;text-transform:uppercase;color:var(--brand)}
+.loc-svc p{font-size:13px;color:var(--slate);flex:1}
+.loc-svc a{margin-top:auto;font-size:13px;font-weight:700;color:var(--blue)}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.feat{text-align:center}.feat .fi{font-size:30px;margin-bottom:8px}
+.feat h4{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:15px;text-transform:uppercase;color:var(--brand)}
+.block.dark .feat h4{color:#fff}
+.block.dark .feat p{color:#b7c4dc}.feat p{font-size:13px;color:var(--slate);margin-top:6px}
+.areas{display:flex;flex-wrap:wrap;gap:10px}
+.area-chip{background:#fff;border:1.5px solid var(--line);border-radius:30px;padding:9px 16px;font-size:13.5px;font-weight:600;color:var(--ink)}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rev{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px}
+.rev .stars{color:#ffc233;font-size:16px;letter-spacing:2px}.rev p{font-size:14px;color:var(--ink);font-style:italic;margin:10px 0}.rev .who{font-size:12px;color:var(--slate);text-transform:uppercase;letter-spacing:.05em}
+.hd-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:24px;align-items:start}
+.hd-map{min-height:340px;border-radius:14px}
+.other-locs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.other-loc{border:1px solid var(--line);border-radius:10px;padding:18px;background:#fff;transition:all .15s;display:block}
+.other-loc:hover{border-color:var(--brand);box-shadow:0 14px 30px -20px rgba(0,0,0,.3);transform:translateY(-2px)}
+.other-loc .city{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:16px;color:var(--brand)}
+.other-loc .addr{font-size:12.5px;color:var(--slate);margin-top:5px}
+.other-loc .go{margin-top:8px;font-size:12px;font-weight:800;color:var(--red);font-family:'Akira Expanded','Archivo';text-transform:uppercase}
+.cat-chips{display:flex;gap:8px;margin-bottom:12px}
+.cat-chip{flex:1;padding:9px 0;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-weight:700;font-size:13px;color:var(--slate);cursor:pointer;transition:all .14s}
+.cat-chip:hover{border-color:var(--brand)}
+.cat-chip.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+#shopcity:not([data-cat="tires"]) .tab-size{display:none}
+.loc-svc-foot{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:6px}
+.loc-book{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:12px;text-transform:uppercase;color:#fff;background:var(--red);padding:8px 15px;border-radius:6px;transition:background .15s}
+.loc-book:hover{background:var(--red-deep)}
+.loc-svc-foot a{font-size:13px;font-weight:700;color:var(--blue)}
+.sb-note{font-size:11.5px;color:var(--slate);margin-top:10px;line-height:1.45}
+#wheelNote{color:#7a5c10;background:#fff8e6;border:1px dashed #e6c65a;border-radius:6px;padding:8px 10px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+.fact{display:flex;flex-direction:column;gap:3px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.fact .fk{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--brand)}
+.fact .fv{font-size:13.5px;color:var(--ink)}
+.finding{background:var(--bg-alt);border-radius:12px;padding:20px 22px}
+.finding h3{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:16px;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
+.finding p{font-size:14px;color:var(--slate);line-height:1.6}
+.brand-line{display:flex;flex-wrap:wrap;gap:10px}
+.brand-chip{background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:9px 16px;font-family:'Akira Expanded','Archivo';font-weight:700;font-size:13px;color:var(--brand)}
+.brand-chip:hover{border-color:var(--brand)}
+@media(max-width:600px){.facts{grid-template-columns:1fr}}
+@media(max-width:980px){.loc-hero__grid,.hd-grid{grid-template-columns:1fr}.shopbook{grid-template-columns:1fr}.loc-svc-grid,.features,.reviews,.other-locs{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.loc-svc-grid,.features,.reviews,.other-locs{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* image + icon placeholders (designer fills) */
+.imgph{background:linear-gradient(135deg,#e8ecf3,#d7deea);border:1.5px dashed #b3bed3;display:flex;align-items:center;justify-content:center;text-align:center;color:#66748f;font-size:11px;font-weight:700;letter-spacing:0.03em;text-transform:uppercase}
+.imgph span{padding:8px 12px;background:rgba(255,255,255,.75);border-radius:6px;line-height:1.3}
+.imgph.dark{background:linear-gradient(135deg,#16305a,#0c1e3a);border-color:rgba(255,255,255,.22);color:#93a8ca}
+.imgph.dark span{background:rgba(255,255,255,.08)}
+.ico-slot{display:inline-grid;place-items:center}
+/* background/image size callouts for designer */
+.bg-tag{position:absolute;top:10px;left:10px;z-index:6;background:rgba(8,18,36,.62);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:0.04em;padding:5px 9px;border-radius:5px;border:1px dashed rgba(255,255,255,.4);text-transform:uppercase;pointer-events:none}
+.bg-tag.light{background:rgba(255,255,255,.82);color:#5b6880;border-color:#b3bed3}
+/* brands by logo */
+.brand-logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;max-width:960px;margin:0 auto}
+.blogo{aspect-ratio:170/70;background:#fff;border:1.5px solid var(--line);border-radius:8px;display:grid;place-items:center;text-align:center;cursor:pointer;transition:all .15s;padding:6px}
+.blogo:hover{border-color:var(--brand);box-shadow:0 12px 26px -18px rgba(0,0,0,.3);transform:translateY(-2px)}
+.blogo .bn{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:13px;color:var(--brand);text-transform:uppercase;line-height:1}
+.blogo .bt{display:block;font-size:8px;color:#aeb6c4;letter-spacing:0.08em;text-transform:uppercase;margin-top:4px}
+.brand-alt-note{text-align:center;font-size:12px;color:var(--slate);margin:-14px auto 22px;max-width:640px}
+
+/* hamburger + mobile menu */
+.nav-toggle{display:none;width:44px;height:44px;border:1.5px solid var(--line);border-radius:8px;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+.nav-toggle span{width:20px;height:2px;background:var(--brand);border-radius:2px}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:55;background:rgba(12,30,58,.5)}
+.mobile-menu.show{display:block}
+.mm-panel{position:absolute;top:0;right:0;width:min(320px,86vw);height:100%;background:#fff;padding:26px 24px;box-shadow:-20px 0 60px -20px rgba(0,0,0,.4);overflow-y:auto}
+.mm-panel a{display:block;padding:15px 0;font-family:'Akira Expanded','Archivo';font-weight:700;font-size:17px;color:var(--brand);border-bottom:1px solid var(--line);text-transform:uppercase}
+.mm-close{position:absolute;top:14px;right:16px;font-size:28px;color:var(--slate)}
+.mm-phone{margin-top:20px;font-family:'Akira Expanded','Archivo';font-weight:800;font-size:18px;color:var(--red)}
+
+/* mobile sticky cta */
+.mcta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;background:#fff;border-top:1px solid var(--line);padding:10px 12px;gap:10px;box-shadow:0 -6px 20px -8px rgba(0,0,0,.2)}
+.mcta .btn{flex:1;height:48px}
+
+/* long-form SEO content */
+.seo-content{max-width:900px;margin:0 auto}
+.seo-content h3{font-weight:800;font-size:19px;color:var(--brand);text-transform:uppercase;margin:20px 0 8px}
+.seo-content p{font-size:14.5px;color:var(--slate);margin-bottom:12px}
+.seo-content a{color:var(--blue);font-weight:600}
+.seo-note{background:#fff8e6;border:1px dashed #e6c65a;border-radius:8px;padding:10px 14px;font-size:12px;color:#7a5c10;margin-bottom:18px}
+@media (max-width:980px){
+  .hero .wrap{grid-template-columns:1fr;gap:28px;padding-bottom:64px}
+  .hero-visual{order:2}
+  .cats,.offers{grid-template-columns:1fr}
+  .stats,.guarantees{grid-template-columns:1fr 1fr;gap:24px}
+  .stat:nth-child(2)::after{display:none}
+  .locs{grid-template-columns:1fr 1fr}
+  .symptoms{grid-template-columns:1fr 1fr}
+  .fcols{grid-template-columns:1fr 1fr}
+  .hbar-nav{display:none}
+  .hgarage{display:none}
+  .nav-toggle{display:flex}
+}
+@media (max-width:768px){
+  .mcta{display:flex}
+.ats-netlify-port body{padding-bottom:72px}
+}
+@media (max-width:600px){
+  .appt-btn{display:none}
+  .garage-btn.empty span:nth-child(2){display:none}
+  .exits .wrap{grid-template-columns:1fr;margin-top:-32px}
+  .symptoms,.locs{grid-template-columns:1fr}
+  .pl-row,.pl-row.three{grid-template-columns:1fr 1fr}
+  .stat::after{display:none!important}
+}
+.bg-guide{position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:6;display:inline-flex;align-items:center;gap:6px;background:#fff8e6;border:1.5px dashed #e0b93a;color:#7a5c10;font:800 10.5px/1.3 'Archivo',sans-serif;letter-spacing:.03em;text-transform:uppercase;padding:7px 14px;border-radius:20px;max-width:92%;text-align:center;pointer-events:none}
+.feat .fi img{width:56px;height:56px;object-fit:contain;display:block;margin:0 auto}
+.svc-ic-ph{opacity:.6}
+/* old loc-logos */ .loc-logos-OLD{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;max-width:1000px;margin:0 auto 24px}
+.loc-blogo{flex:0 0 auto;width:130px;height:62px;background:#fff;border:1.5px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:8px 12px;box-sizing:border-box;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s}
+.loc-blogo:hover{border-color:var(--brand);box-shadow:0 10px 22px -14px rgba(0,0,0,.25);transform:translateY(-2px)}
+.loc-blogo img{max-width:88%;max-height:38px;width:auto;height:auto;object-fit:contain}
+@media(max-width:600px){.loc-blogo{width:30%;height:54px}
+.loc-blogo img{max-height:28px}}
+.loc-brand-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin:0 0 28px}
+.loc-brand{background:#fff;border:1.5px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:14px 18px;height:96px;transition:transform .15s,box-shadow .15s,border-color .15s}
+.loc-brand:hover{border-color:var(--brand);box-shadow:0 8px 20px -12px rgba(0,0,0,.2);transform:translateY(-2px)}
+.loc-brand img{max-width:90%;max-height:62px;width:auto;height:auto;object-fit:contain}
+@media(max-width:980px){.loc-brand-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.loc-brand-grid{grid-template-columns:repeat(3,1fr);gap:10px}
+.loc-brand{height:76px;padding:10px}.loc-brand img{max-height:44px}}
+.getting-grid{display:flex;flex-direction:column;gap:20px}
+.getting-info{display:flex;flex-direction:column;gap:14px}
+.getting-addr{display:flex;align-items:start;gap:12px;background:var(--bg-alt);border:1px solid var(--line);border-radius:10px;padding:16px}
+.getting-desc{font-size:14px;color:var(--slate);line-height:1.6}
+.getting-map{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);height:400px;width:100%}
+.map-note{position:absolute;top:12px;left:12px;right:12px;z-index:2;background:rgba(255,255,255,.92);color:#fff;font-family:'Montserrat';font-size:11.5px;font-weight:700;letter-spacing:.02em;padding:8px 14px;border-radius:8px;display:flex;align-items:center;gap:8px;box-shadow:0 6px 16px -6px rgba(0,0,0,.5)}
+.map-note b{color:#c51f28}
+.map-note{color:var(--brand)}
+.getting-map iframe{width:100%;height:100%}
+.amenities-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.amenity{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-size:13.5px;font-weight:600;color:var(--ink)}
+.am-ic{font-size:18px;flex:0 0 auto}
+.addl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.addl-svc{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:13px 16px;font-size:13.5px;font-weight:600;color:var(--ink);transition:border-color .15s}
+.addl-svc:hover{border-color:var(--brand)}
+.addl-check{color:#2f7d52;font-weight:800;font-size:14px;flex:0 0 auto}
+.free-badge{margin-left:auto;background:#e8f5e9;color:#2e7d32;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;flex:0 0 auto}
+@media(max-width:980px){.getting-map{height:300px}.amenities-grid{grid-template-columns:repeat(2,1fr)}.addl-grid{grid-template-columns:repeat(2,1fr)}}
+
+@media(max-width:600px){.rev-grid{grid-template-columns:1fr}.amenities-grid{grid-template-columns:1fr}.addl-grid{grid-template-columns:1fr}}
+.grev-bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 24px;margin-bottom:16px}
+.grev-left{display:flex;align-items:center;gap:12px}
+.grev-num{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:36px;color:var(--brand);line-height:1}
+.grev-stars{color:#f5a623;font-size:18px;letter-spacing:1px}
+.grev-count{font-size:13px;color:var(--slate);font-weight:600}
+.grev-link{font-family:'Akira Expanded','Archivo';font-weight:700;font-size:12px;color:var(--brand);text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.grev-link:hover{color:var(--red)}
+.grev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grev{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.grev-top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.grev-av{width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:'Akira Expanded','Archivo';font-weight:800;font-size:14px;flex:0 0 auto}
+.grev-top b{font-size:12.5px;color:var(--ink);display:block}
+.grev-meta{font-size:10.5px;color:#a0a8b8;display:block;margin-top:1px}
+.grev p{font-size:12.5px;line-height:1.5;color:var(--ink);margin:0}
+@media(max-width:980px){.grev-bar{flex-direction:column;gap:12px;text-align:center}.grev-left{justify-content:center}.grev-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grev-grid{grid-template-columns:1fr}}
+.appt-journey{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:aj}
+.aj-step{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 22px 24px;text-align:center}
+.aj-ic{width:60px;height:60px;border-radius:13px;background:var(--brand);display:grid;place-items:center;margin:0 auto 16px}
+.aj-ic img{width:34px;height:34px;object-fit:contain}
+.aj-n{position:absolute;top:-12px;left:50%;transform:translateX(-50%);width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-family:'Akira Expanded','Archivo';font-weight:800;font-size:13px;display:grid;place-items:center}
+.aj-step h3{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:16px;text-transform:uppercase;color:var(--brand);margin-bottom:7px;letter-spacing:-0.01em}
+.aj-step p{font-size:13px;color:var(--slate);line-height:1.5}
+@media(max-width:900px){.appt-journey{grid-template-columns:1fr 1fr}}
+/* embedded-widget pattern (mirrors services page) */
+.bn-context{margin-bottom:18px}
+.bn-context__row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--bg-alt);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.bn-chip{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 13px}
+.bn-chip__ic{font-size:17px;line-height:1}
+.bn-chip__t{display:flex;flex-direction:column;line-height:1.2}
+.bn-chip__t small{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--brand)}
+.bn-chip__t b{font-size:13px;font-weight:700;color:var(--ink)}
+.bn-context__hint{font-size:12px;color:var(--slate);margin-left:auto;max-width:42ch}
+.sb-ic{width:38px;height:38px;border-radius:9px;display:inline-grid;place-items:center;vertical-align:-11px;margin-right:10px}
+.sb-ic img{width:22px;height:22px;object-fit:contain}
+.dev-note{background:#fff8e6;border:1px dashed #e0b93a;border-radius:8px;padding:10px 14px;font-size:11.5px;line-height:1.5;color:#7a5c10;margin:2px 0 14px}
+.dev-note code{background:rgba(122,92,16,.12);padding:1px 5px;border-radius:4px;font-size:11px}
+.tc-mount{margin-top:auto;border-radius:14px;background:linear-gradient(135deg,#f4f6fa,#e7ecf4);border:1.5px dashed #b3bed3;display:flex;align-items:center;justify-content:center;text-align:center;padding:26px}
+.tc-mount--sm{min-height:250px}
+.tc-mount__ph{display:flex;flex-direction:column;align-items:center;gap:11px;max-width:400px}
+.tc-mount__ic{width:56px;height:56px;border-radius:12px;display:grid;place-items:center}
+.tc-mount__ic img{width:32px;height:32px;object-fit:contain}
+.tc-mount__label{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.03em;color:var(--brand)}
+.tc-mount__sub{font-size:12.5px;color:var(--slate);line-height:1.5}
+.tc-live{width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;text-align:left}
+.tc-live__bar{background:var(--brand);color:#fff;font-family:'Montserrat';font-size:11px;font-weight:700;letter-spacing:.03em;padding:9px 14px;display:flex;align-items:center;gap:8px}
+.tc-live__bar::before{content:"";width:8px;height:8px;border-radius:50%;background:#46d17f}
+.tc-live__body{padding:20px;font-size:13px;color:var(--slate);line-height:1.6}
+.tc-live__body code{background:var(--bg-alt);padding:1px 6px;border-radius:4px;font-size:12px;color:var(--brand)}
+@media(max-width:900px){.bn-context__hint{margin-left:0;width:100%}}
+/* full-width tabbed transaction surface */
+.tc-tabs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px;max-width:800px;margin-left:auto;margin-right:auto}
+.tc-tab{position:relative;display:flex;align-items:center;justify-content:center;gap:9px;padding:20px 24px;border-radius:12px;background:rgba(255,255,255,.10);border:2px solid rgba(255,255,255,.30);color:#fff;font-family:'Akira Expanded','Archivo';font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.02em;cursor:pointer;transition:all .16s;box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.tc-tab.active{background:#fff;color:var(--brand);border-color:#fff;transform:translateY(-2px);box-shadow:0 14px 30px -10px rgba(0,0,0,.6)}
+.tc-tab.active::after{content:"";position:absolute;left:24px;right:24px;bottom:-2px;height:3px;background:var(--red);border-radius:2px}
+.tc-tab:not(.active):hover{background:rgba(255,255,255,.20);transform:translateY(-1px)}
+.tc-panel{background:#fff;border-radius:16px;padding:26px 28px}
+.tc-panel__lead{font-size:14.5px;color:var(--slate);margin-bottom:14px;line-height:1.55}
+.tc-panel .cat-chips{margin-bottom:14px}
+.tc-panel .tc-mount{min-height:440px}
+
+
+  /* ===== service page — built on the shared brand system (.block/.sec-head/tokens) ===== */
+  .svc-hero{padding:60px 0 52px;background:var(--bg)}
+  .svc-hero .wrap{display:grid;grid-template-columns:1.06fr .94fr;gap:48px;align-items:center}
+  .svc-hero .sec-eye{margin-bottom:12px}
+  .svc-hero h1{font-size:36px;line-height:1.1;margin:0 0 18px;color:var(--ink)}
+  .svc-hero .lead{font-size:16px;line-height:1.62;color:var(--slate);max-width:560px}
+  .svc-hero__cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .svc-hero__badges{display:flex;gap:20px;flex-wrap:wrap;margin-top:24px;font-size:12.5px;color:var(--slate)}
+  .svc-hero__badges span{display:flex;align-items:center;gap:7px}
+  .svc-hero__badges b{color:var(--brand)}
+  .svc-hero__badges .ck{color:#1a7f45;font-weight:800}
+  .svc-hero__img{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:var(--brand);box-shadow:0 18px 40px rgba(12,30,58,.16)}
+  .svc-hero__img img{width:100%;height:100%;object-fit:cover;display:block}
+  .svc-hero__badge{position:absolute;top:14px;left:14px;width:50px;height:50px;border-radius:11px;background:var(--brand);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(12,30,58,.35)}
+  .svc-hero__badge img{width:28px;height:28px;display:block}
+  /* two-column cards — match the location-page card language */
+  .svc-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+  .svc-card{background:#fff;border:1px solid var(--line);border-radius:12px;border-top:3px solid var(--brand);padding:30px 30px 32px;box-shadow:0 1px 2px rgba(18,34,64,.04)}
+  .svc-card > .sec-eye{margin-bottom:8px}
+  .svc-card h2{font-size:21px;margin:0 0 6px;color:var(--ink)}
+  .svc-card .card-lead{color:var(--slate);font-size:14.5px;margin:0 0 18px}
+  .svc-card ul{list-style:none;padding:0;margin:0;display:grid;gap:2px}
+  .svc-card li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink);padding:11px 0;border-bottom:1px solid var(--line)}
+  .svc-card li:last-child{border-bottom:0}
+  .svc-card li .li-ic{flex:0 0 auto;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-size:12px;font-weight:800;margin-top:1px}
+  .svc-card.is-signs li .li-ic{background:#fdeaec;color:var(--red)}
+  .svc-card.is-incl li .li-ic{background:#e7f4ec;color:#1a7f45}
+  /* fact strip — intentional, on-brand */
+  .facts3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
+  .fact3{background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px 28px;position:relative;overflow:hidden;display:flex;gap:18px;align-items:flex-start}
+  .fact3::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)}
+  .fact3 .f3-ic{width:56px;height:56px;border-radius:14px;background:var(--brand);display:grid;place-items:center;flex:0 0 auto}
+  .fact3 .f3-ic svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2}
+  .fact3 .f3-k{font-family:'Akira Expanded','Archivo';font-size:13px;letter-spacing:.06em;color:var(--brand);text-transform:uppercase;margin-bottom:8px}
+  .fact3 .f3-v{font-size:15px;line-height:1.6;color:var(--slate)}
+  /* booking surface — brand navy */
+  #svc-book{background:var(--brand)}
+  #svc-book .sec-head h2,#svc-book h2{color:#fff}
+  #svc-book .sec-eye{color:#ff8b7a}
+  #svc-book .book-lead{max-width:600px;margin:0 auto 4px;color:#c7d2e6;font-size:15px;line-height:1.6;text-align:center}
+  .svc-mount{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:26px;margin:22px auto 0;max-width:760px;min-height:120px}
+  .svc-mount__cta{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:22px 20px}
+  .svc-mount__cta .mIc{width:54px;height:54px;border-radius:12px;background:var(--red);display:flex;align-items:center;justify-content:center}
+  .svc-mount__cta .mIc img{width:30px;height:30px;display:block}
+  .svc-mount__sub{font-size:12.5px;color:#9fb0cf;max-width:420px}
+  .svc-store-hint{font-size:12.5px;color:#c7d2e6;margin:14px auto 0;text-align:center;max-width:600px}
+  .svc-store-hint b{color:#fff}
+  .tc-live{border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.18);max-width:760px;margin:22px auto 0}
+  .tc-live__bar{background:#0a1a30;color:#7fe1a6;font-size:12px;padding:8px 12px;font-family:monospace}
+  .tc-live__body{background:rgba(255,255,255,.06);padding:18px;font-size:13.5px;line-height:1.6;color:#dce4f2}
+  /* trust — reuse the red feature-card language from location pages */
+  /* WHY ATS — line-art icon treatment (matches services index) */
+  .svc-trust{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:8px}
+  .svc-tcard{text-align:center}
+  .svc-tcard .fi{margin-bottom:12px}
+  .svc-tcard .fi img{width:73px;height:73px;object-fit:contain;display:inline-block}
+  .svc-tcard h4{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:14px;text-transform:uppercase;color:var(--brand);margin:0 0 8px}
+  .svc-tcard p{color:var(--slate);font-size:13px;line-height:1.55;margin:0}
+  /* related — match the .loc-svc card + navy icon chip */
+    .related{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:8px}
+  .related a{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+  .related a:hover{transform:translateY(-3px);box-shadow:0 20px 40px -24px rgba(0,0,0,.26)}
+  .related .r-img{aspect-ratio:16/9;width:100%;overflow:hidden;background:var(--brand)}
+  .related .r-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .related .r-body{padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+  .related .r-head{display:flex;align-items:center;gap:13px}
+  .related .r-ic{width:50px;height:50px;flex:0 0 auto;border-radius:12px;background:var(--brand);display:grid;place-items:center}
+  .related .r-ic img{width:30px;height:30px;object-fit:contain;display:block}
+  .related .r-name{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:15px;text-transform:uppercase;color:var(--brand)}
+  .related .r-go{margin-left:auto;color:var(--red);font-size:14px;font-family:'Akira Expanded','Archivo';text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+  .related .r-desc{font-size:13.5px;color:var(--slate);line-height:1.5;margin:0}
+  /* local hook */
+    /* NEAR YOU — matches services index STORES pattern */
+  .loc-banner{width:100%;height:200px;object-fit:cover;border-radius:12px;margin-bottom:20px;display:block}
+  .loc-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .loc-card{border:1px solid var(--line);border-radius:10px;padding:18px;background:#fff;transition:all .15s;display:block}
+  .loc-card:hover{border-color:var(--brand);box-shadow:0 14px 30px -20px rgba(0,0,0,.3);transform:translateY(-2px)}
+  .loc-card .lc-city{font-family:'Montserrat';font-weight:800;font-size:16px;color:var(--ink);margin-bottom:6px}
+  .loc-card .lc-addr{font-size:13px;color:var(--slate);margin-bottom:2px}
+  .loc-card .lc-ph{font-size:13px;color:var(--slate);margin-bottom:10px}
+  .loc-card .lc-link{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:12px;text-transform:uppercase;color:var(--red);letter-spacing:.03em}
+  .dev-note{background:#eef2ff;border:1px dashed #6366f1;font-size:12px;padding:11px 14px;border-radius:8px;color:#3730a3;margin-top:18px}
+  #svc-book .dev-note{background:rgba(255,255,255,.08);border-color:#8ea2ff;color:#e7ecff;max-width:760px;margin:18px auto 0}
+  /* FAQ — identical to location pages */
+  .faq{max-width:820px;margin:0 auto}
+  .faq .qa{border-bottom:1px solid var(--line)}
+  .faq .qa button{width:100%;text-align:left;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Akira Expanded','Archivo';font-weight:700;font-size:16px;color:var(--brand);background:none;border:0;cursor:pointer}
+  .faq .qa .ic{color:var(--red);font-size:22px;flex:0 0 auto;transition:transform .2s}
+  .faq .qa.open .ic{transform:rotate(45deg)}
+  .faq .qa .a{max-height:0;overflow:hidden;transition:max-height .28s ease;font-size:14.5px;color:var(--slate)}
+  .faq .qa.open .a{max-height:360px}
+  .faq .qa .a p{padding-bottom:20px;margin:0;line-height:1.6}
+  /* how it works step strip */
+  .steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:8px}
+  .step4{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .step4 .s4-img{aspect-ratio:16/10;overflow:hidden;background:var(--bg-alt);position:relative}
+  .step4 .s4-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .step4 .s4-n{position:absolute;top:10px;left:10px;width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-family:'Akira Expanded','Archivo';font-size:12px;display:grid;place-items:center}
+  .step4 .s4-body{padding:16px 18px 20px}
+  .step4 h3{font-size:14px;margin:0 0 6px;color:var(--ink);text-transform:uppercase}
+  .step4 p{margin:0;font-size:13px;color:var(--slate);line-height:1.5}
+  /* why + what to expect */
+  .expect2{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .expect2 .e2-img{border-radius:12px;overflow:hidden;aspect-ratio:5/4;background:var(--brand);position:relative}
+  .expect2 .e2-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .imgph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;text-align:center;padding:24px;background:repeating-linear-gradient(135deg,#13315f,#13315f 14px,#1a3d6f 14px,#1a3d6f 28px);color:#aebfd8}
+  .imgph .ph-ic{width:50px;height:50px;border-radius:12px;background:rgba(255,255,255,.12);display:grid;place-items:center}
+  .imgph .ph-ic img{width:28px;height:28px}
+  .imgph .ph-t{font-family:'Akira Expanded','Archivo';font-size:12px;letter-spacing:.06em;color:#fff;text-transform:uppercase}
+  .imgph .ph-f{font-size:10.5px;color:#ffd7b0;background:rgba(0,0,0,.22);padding:4px 9px;border-radius:5px;max-width:230px;line-height:1.4}
+  .e2-block h2{font-size:24px;margin:0 0 14px;color:var(--ink)}
+  .e2-block .e2-p{color:var(--slate);font-size:15px;line-height:1.65;margin:0 0 18px}
+  .e2-block .e2-sub{font-family:'Akira Expanded','Archivo';font-size:13px;color:var(--brand);text-transform:uppercase;letter-spacing:.04em;margin:0 0 8px}
+  /* comparison / good-to-know deeper */
+  .cmp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px}
+  .cmp{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px}
+  .cmp .cmp-head{display:flex;align-items:center;gap:12px}
+  .cmp .cmp-ic{width:46px;height:46px;border-radius:11px;background:var(--brand);display:grid;place-items:center;flex:0 0 auto}
+  .cmp .cmp-ic img{width:26px;height:26px;display:block}
+  .cmp h3{font-family:'Akira Expanded','Archivo';font-size:14px;color:var(--brand);text-transform:uppercase;margin:0 0 5px}
+  .cmp p{margin:0;font-size:14px;color:var(--slate);line-height:1.5}
+  /* quality — photo background band */
+  .qb-band{position:relative;background:var(--brand);color:#fff;overflow:hidden}
+  .qb-band .qb-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.28}
+  .qb-band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,49,95,.86),rgba(18,34,64,.92))}
+  .qb-band .wrap{position:relative;z-index:1}
+  .qb-band .sec-head h2,.qb-band h2{color:#fff}
+  .qb-band .sec-eye{color:#ff8b7a}
+  .qb-band .qb-lead{color:#d5deec}
+  .qbrands{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
+  .qbrand-card{background:rgba(255,255,255,.95);border:1px solid rgba(255,255,255,.3);border-radius:14px;padding:0;text-align:center;transition:transform .12s;overflow:hidden}
+  .qbrand-card:hover{transform:translateY(-2px)}
+  .qbrand-card .qbc-img{aspect-ratio:4/3;background:repeating-linear-gradient(135deg,rgba(19,49,95,.06),rgba(19,49,95,.06) 10px,rgba(19,49,95,.03) 10px,rgba(19,49,95,.03) 20px);display:flex;align-items:center;justify-content:center;font-size:11px;color:#8a9dbd;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.25)}
+  .qbrand-card .qbc-img img{width:100%;height:100%;object-fit:contain;display:block}
+  .qbrand-card .qbc-logo{padding:10px;font-size:9.5px;color:#8a9dbd;background:rgba(255,255,255,.5)}
+  .qbrand-card .qbc-name{padding:10px 12px 14px;font-family:'Akira Expanded','Archivo';font-weight:700;font-size:13px;color:var(--brand);text-transform:uppercase}
+  
+  .qbrands-flag{font-size:11.5px;color:#9a6a1a;background:#fff7e6;border:1px dashed #d9a441;border-radius:6px;padding:6px 12px;margin:14px auto 0;max-width:560px;text-align:center}
+  /* pricing reassurance */
+  .price2{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
+  .price2 .p2-img{border-radius:12px;overflow:hidden;aspect-ratio:5/4;box-shadow:0 14px 34px rgba(12,30,58,.14)}
+  .price2 .p2-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .price2 h2{font-size:24px;margin:0 0 14px;color:var(--ink)}
+  .price2 .p2-p{color:var(--slate);font-size:15px;line-height:1.65;margin:0 0 16px}
+  .price2 ul{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:10px}
+  .price2 li{display:flex;gap:11px;font-size:14.5px;color:var(--ink);align-items:flex-start}
+  .price2 li .pc{color:#1a7f45;font-weight:800;flex:0 0 auto}
+  /* reviews (match location page treatment) */
+  .grev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .grev{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .grev-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .grev-av{width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:'Akira Expanded','Archivo';font-size:14px;flex:0 0 auto}
+  .grev-name{font-weight:700;font-size:13px;color:var(--ink)}
+  .grev-stars{color:#f5a623;font-size:13px;letter-spacing:1px;display:block;margin-top:1px}
+  .grev h4{font-family:'Akira Expanded','Archivo';font-size:13px;color:var(--brand);margin:0 0 6px;text-transform:none}
+  .grev p{font-size:13px;line-height:1.55;color:var(--slate);margin:0}
+  .rev-flag{font-size:11.5px;color:#9a6a1a;background:#fff7e6;border:1px dashed #d9a441;border-radius:6px;padding:8px 14px;margin:16px auto 0;max-width:640px;text-align:center}
+  .final-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6);padding:0 22px;height:50px}
+  .btn-outline:hover{border-color:#fff}
+  
+  /* how it works journey */
+  .wh-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:8px}
+  .wh-step{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .wh-step .ws-img{aspect-ratio:16/10;overflow:hidden;position:relative}
+  .wh-step .ws-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .wh-step .ws-n{position:absolute;top:10px;left:10px;width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-family:'Akira Expanded','Archivo';font-size:13px;display:grid;place-items:center}
+  .wh-step .ws-body{padding:16px 18px 20px}
+  .wh-step h3{font-family:'Akira Expanded','Archivo';font-size:14px;color:var(--brand);text-transform:uppercase;margin:0 0 6px}
+  .wh-step p{margin:0;font-size:13px;color:var(--slate);line-height:1.5}
+  /* sizing guide */
+  .sz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+  .sz-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .sz-card .sz-img{aspect-ratio:16/9;background:var(--brand);position:relative;overflow:hidden}
+  .sz-card .sz-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#13315f,#13315f 12px,#1a3d6f 12px,#1a3d6f 24px);color:#aebfd8;font-family:'Akira Expanded','Archivo';font-size:11px;text-transform:uppercase;letter-spacing:.05em;text-align:center;padding:12px}
+  .sz-card .sz-body{padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
+  .sz-card .sz-ic{width:42px;height:42px;border-radius:10px;background:var(--brand);display:grid;place-items:center;flex:0 0 auto;color:#fff;font-size:18px}
+  .sz-card h3{font-family:'Akira Expanded','Archivo';font-size:14px;color:var(--brand);text-transform:uppercase;margin:0 0 5px}
+  .sz-card p{margin:0;font-size:14px;color:var(--slate);line-height:1.5}
+  /* pricing */
+  .wh-price{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
+  .wh-price .wp-img{border-radius:12px;overflow:hidden;aspect-ratio:5/4;box-shadow:0 14px 34px rgba(12,30,58,.14)}
+  .wh-price .wp-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .wh-price h2{font-size:24px;margin:0 0 14px;color:var(--ink)}
+  .wh-price .wp-p{color:var(--slate);font-size:15px;line-height:1.65;margin:0 0 16px}
+  .wh-price ul{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:10px}
+  .wh-price li{display:flex;gap:11px;font-size:14.5px;color:var(--ink);align-items:flex-start}
+  .wh-price li .pc{color:#1a7f45;font-weight:800;flex:0 0 auto}
+  /* reviews */
+  .wh-rev{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .wh-rev-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .wh-rev-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .wh-rev-av{width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:'Akira Expanded','Archivo';font-size:14px;flex:0 0 auto}
+  .wh-rev-name{font-weight:700;font-size:13px;color:var(--ink)}
+  .wh-rev-stars{color:#f5a623;font-size:13px;letter-spacing:1px;display:block;margin-top:1px}
+  .wh-rev-card h4{font-family:'Akira Expanded','Archivo';font-size:13px;color:var(--brand);margin:0 0 6px}
+  .wh-rev-card p{font-size:13px;line-height:1.55;color:var(--slate);margin:0}
+  /* popular fitments */
+  .fit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+  .fit-chip{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s}
+  .fit-chip:hover{transform:translateY(-3px);box-shadow:0 14px 30px -20px rgba(0,0,0,.2);border-color:var(--brand)}
+  .fit-chip .fc-img{aspect-ratio:16/9;background:var(--brand);position:relative;overflow:hidden}
+  .fit-chip .fc-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#13315f,#13315f 12px,#1a3d6f 12px,#1a3d6f 24px);color:#aebfd8;font-family:'Akira Expanded','Archivo';font-size:10px;text-transform:uppercase;letter-spacing:.04em;text-align:center;padding:8px}
+  .fit-chip .fc-body{padding:14px 16px}
+  .fit-chip .fc-sz{font-family:'Akira Expanded','Archivo';font-size:18px;color:var(--brand);margin-bottom:3px}
+  .fit-chip .fc-lbl{font-size:12px;color:var(--slate)}
+  /* related pages */
+  .wh-related{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+  .wh-rcard{border:1px solid var(--line);border-radius:14px;padding:22px;background:#fff;transition:.15s}
+  .wh-rcard:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 14px 30px -20px rgba(0,0,0,.2)}
+  .wh-rcard h3{font-family:'Akira Expanded','Archivo';font-size:15px;color:var(--brand);text-transform:uppercase;margin:0 0 8px}
+  .wh-rcard p{font-size:13.5px;color:var(--slate);line-height:1.5;margin:0 0 12px}
+  .wh-rcard .rlink{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:12px;text-transform:uppercase;color:var(--red);letter-spacing:.03em}
+@media(max-width:860px){.svc-hero .wrap,.svc-cols{grid-template-columns:1fr}.facts3,.svc-trust,.related{grid-template-columns:1fr}.svc-hero h1{font-size:29px}}
+
+
+/* ---- footer corrections, applied site-wide ----
+   .fnap-ic was never declared on several pages, so the phone icon rendered at its
+   intrinsic 120x120. Declared here at the end of the head so it wins everywhere. ---- */
+footer .flogo{margin-bottom:14px}
+footer .flogo img{height:34px;width:auto;display:block;max-width:100%}
+footer .fnap{font-size:12.5px;color:#c3d0e8;line-height:1.7;margin:0 0 10px}
+footer .fnap b{color:#fff;font-weight:700}
+footer .fnap-ic{width:14px;height:14px;object-fit:contain;display:inline-block;
+  vertical-align:-2px;margin-right:7px;opacity:.85}
+footer .fmail{font-size:12px}
+footer .fmail{color:#c3d0e8;text-decoration:underline;overflow-wrap:anywhere;word-break:break-word}
+footer .fmail:hover{color:#fff}
+footer a.fl.fl-inline{display:inline;padding:0}
+footer .fcols{grid-template-columns:1.4fr 1fr 1fr 1fr 1.5fr}
+footer .fnap-call{margin-bottom:12px}
+footer .fmeta{margin-bottom:0}
+footer .fcols>div{min-width:0}
+@media(max-width:900px){footer .fcols{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){footer .flogo img{height:30px}}
+
+
+  /* ===== wheel search page ===== */
+  .wh-hero{padding:60px 0 52px;background:var(--bg)}
+  .wh-hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .wh-hero .sec-eye{margin-bottom:12px}
+  .wh-hero h1{font-size:36px;line-height:1.1;margin:0 0 18px;color:var(--ink)}
+  .wh-hero .lead{font-size:16px;line-height:1.62;color:var(--slate);max-width:560px}
+  .wh-hero__cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .wh-hero__badges{display:flex;gap:20px;flex-wrap:wrap;margin-top:24px;font-size:12.5px;color:var(--slate)}
+  .wh-hero__badges span{display:flex;align-items:center;gap:7px}
+  .wh-hero__badges b{color:var(--brand)}
+  .wh-hero__img{border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:var(--brand);position:relative;box-shadow:0 18px 40px rgba(12,30,58,.16)}
+  .wh-hero__img img{width:100%;height:100%;object-fit:cover;display:block}
+  /* widget */
+  #wh-widget{background:var(--brand);color:#fff}
+  #wh-widget .sec-head h2{color:#fff}
+  #wh-widget .sec-eye{color:#ff8b7a}
+  .wh-mount{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:26px;margin:22px auto 0;max-width:760px;min-height:120px}
+  .wh-mount__cta{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:22px 20px}
+  .wh-mount__cta .mIc{width:54px;height:54px;border-radius:12px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff}
+  .wh-mount__sub{font-size:12.5px;color:#9fb0cf;max-width:420px}
+  .wh-hint{font-size:12.5px;color:#c7d2e6;margin:14px auto 0;text-align:center;max-width:600px}
+  .wh-hint b{color:#fff}
+  .tc-live{border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.18);max-width:760px;margin:22px auto 0}
+  .tc-live__bar{background:#0a1a30;color:#7fe1a6;font-size:12px;padding:8px 12px;font-family:monospace}
+  .tc-live__body{background:rgba(255,255,255,.06);padding:18px;font-size:13.5px;line-height:1.6;color:#dce4f2}
+  /* style cats */
+  .style-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+  .style-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .15s,box-shadow .15s;cursor:pointer}
+  .style-card:hover{transform:translateY(-3px);box-shadow:0 20px 40px -24px rgba(0,0,0,.26)}
+  .style-card .sc-img{aspect-ratio:16/9;background:var(--brand);position:relative;overflow:hidden}
+  .style-card .sc-img .sc-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#13315f,#13315f 12px,#1a3d6f 12px,#1a3d6f 24px);color:#aebfd8;font-family:'Akira Expanded','Archivo';font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+  .style-card .sc-body{padding:18px 20px}
+  .style-card h3{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:15px;color:var(--brand);text-transform:uppercase;margin:0 0 6px}
+  .style-card p{margin:0;font-size:13.5px;color:var(--slate);line-height:1.5}
+  /* brand directory */
+  .brand-search{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap;align-items:center}
+  .brand-search input{border:1px solid var(--line);border-radius:8px;padding:10px 16px;font-size:14px;font-family:'Montserrat';width:300px;outline:none}
+  .brand-search input:focus{border-color:var(--brand)}
+  .brand-count{font-size:13px;color:var(--slate)}
+  .brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+  .brand-chip{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600;color:var(--brand);text-align:center;transition:.12s;cursor:pointer}
+  .brand-chip:hover{border-color:var(--red);color:var(--red);transform:translateY(-1px)}
+  /* included */
+  .incl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px}
+  .incl-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;gap:16px;align-items:flex-start}
+  .incl-card .ic-ic{width:46px;height:46px;border-radius:11px;background:var(--brand);display:grid;place-items:center;flex:0 0 auto;color:#fff;font-size:20px}
+  .incl-card h3{font-family:'Akira Expanded','Archivo';font-size:14px;color:var(--brand);text-transform:uppercase;margin:0 0 5px}
+  .incl-card p{margin:0;font-size:14px;color:var(--slate);line-height:1.5}
+  /* trust */
+  .wh-trust{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:8px}
+  .wh-tcard{text-align:center}
+  .wh-tcard .fi{margin-bottom:12px}
+  .wh-tcard .fi img{width:73px;height:73px;object-fit:contain;display:inline-block}
+  .wh-tcard h4{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:14px;text-transform:uppercase;color:var(--brand);margin:0 0 8px}
+  .wh-tcard p{color:var(--slate);font-size:13px;line-height:1.55;margin:0}
+  /* stores (services-index pattern) */
+  .loc-banner{width:100%;height:200px;object-fit:cover;border-radius:12px;margin-bottom:20px;display:block}
+  .loc-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .loc-card{border:1px solid var(--line);border-radius:10px;padding:18px;background:#fff;transition:all .15s;display:block}
+  .loc-card:hover{border-color:var(--brand);box-shadow:0 14px 30px -20px rgba(0,0,0,.3);transform:translateY(-2px)}
+  .loc-card .lc-city{font-family:'Montserrat';font-weight:800;font-size:16px;color:var(--ink);margin-bottom:6px}
+  .loc-card .lc-addr{font-size:13px;color:var(--slate);margin-bottom:2px}
+  .loc-card .lc-ph{font-size:13px;color:var(--slate);margin-bottom:10px}
+  .loc-card .lc-link{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:12px;text-transform:uppercase;color:var(--red);letter-spacing:.03em}
+  /* faq */
+  .faq{max-width:820px;margin:0 auto}
+  .faq .qa{border-bottom:1px solid var(--line)}
+  .faq .qa button{width:100%;text-align:left;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Akira Expanded','Archivo';font-weight:700;font-size:16px;color:var(--brand);background:none;border:0;cursor:pointer}
+  .faq .qa .ic{color:var(--red);font-size:22px;flex:0 0 auto;transition:transform .2s}
+  .faq .qa.open .ic{transform:rotate(45deg)}
+  .faq .qa .a{max-height:0;overflow:hidden;transition:max-height .28s ease;font-size:14.5px;color:var(--slate)}
+  .faq .qa.open .a{max-height:360px}
+  .faq .qa .a p{padding-bottom:20px;margin:0;line-height:1.6}
+  .dev-note{background:#eef2ff;border:1px dashed #6366f1;font-size:12px;padding:11px 14px;border-radius:8px;color:#3730a3;margin-top:18px}
+  #wh-widget .dev-note{background:rgba(255,255,255,.08);border-color:#8ea2ff;color:#e7ecff;max-width:760px;margin:18px auto 0}
+  
+  /* how it works journey */
+  .wh-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:8px}
+  .wh-step{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .wh-step .ws-img{aspect-ratio:16/10;overflow:hidden;position:relative}
+  .wh-step .ws-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .wh-step .ws-n{position:absolute;top:10px;left:10px;width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-family:'Akira Expanded','Archivo';font-size:13px;display:grid;place-items:center}
+  .wh-step .ws-body{padding:16px 18px 20px}
+  .wh-step h3{font-family:'Akira Expanded','Archivo';font-size:14px;color:var(--brand);text-transform:uppercase;margin:0 0 6px}
+  .wh-step p{margin:0;font-size:13px;color:var(--slate);line-height:1.5}
+  /* sizing guide */
+  .sz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+  .sz-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .sz-card .sz-img{aspect-ratio:16/9;background:var(--brand);position:relative;overflow:hidden}
+  .sz-card .sz-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#13315f,#13315f 12px,#1a3d6f 12px,#1a3d6f 24px);color:#aebfd8;font-family:'Akira Expanded','Archivo';font-size:11px;text-transform:uppercase;letter-spacing:.05em;text-align:center;padding:12px}
+  .sz-card .sz-body{padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
+  .sz-card .sz-ic{width:42px;height:42px;border-radius:10px;background:var(--brand);display:grid;place-items:center;flex:0 0 auto;color:#fff;font-size:18px}
+  .sz-card h3{font-family:'Akira Expanded','Archivo';font-size:14px;color:var(--brand);text-transform:uppercase;margin:0 0 5px}
+  .sz-card p{margin:0;font-size:14px;color:var(--slate);line-height:1.5}
+  /* pricing */
+  .wh-price{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
+  .wh-price .wp-img{border-radius:12px;overflow:hidden;aspect-ratio:5/4;box-shadow:0 14px 34px rgba(12,30,58,.14)}
+  .wh-price .wp-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .wh-price h2{font-size:24px;margin:0 0 14px;color:var(--ink)}
+  .wh-price .wp-p{color:var(--slate);font-size:15px;line-height:1.65;margin:0 0 16px}
+  .wh-price ul{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:10px}
+  .wh-price li{display:flex;gap:11px;font-size:14.5px;color:var(--ink);align-items:flex-start}
+  .wh-price li .pc{color:#1a7f45;font-weight:800;flex:0 0 auto}
+  /* reviews */
+  .wh-rev{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .wh-rev-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .wh-rev-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .wh-rev-av{width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:'Akira Expanded','Archivo';font-size:14px;flex:0 0 auto}
+  .wh-rev-name{font-weight:700;font-size:13px;color:var(--ink)}
+  .wh-rev-stars{color:#f5a623;font-size:13px;letter-spacing:1px;display:block;margin-top:1px}
+  .wh-rev-card h4{font-family:'Akira Expanded','Archivo';font-size:13px;color:var(--brand);margin:0 0 6px}
+  .wh-rev-card p{font-size:13px;line-height:1.55;color:var(--slate);margin:0}
+  /* popular fitments */
+  .fit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+  .fit-chip{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s}
+  .fit-chip:hover{transform:translateY(-3px);box-shadow:0 14px 30px -20px rgba(0,0,0,.2);border-color:var(--brand)}
+  .fit-chip .fc-img{aspect-ratio:16/9;background:var(--brand);position:relative;overflow:hidden}
+  .fit-chip .fc-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#13315f,#13315f 12px,#1a3d6f 12px,#1a3d6f 24px);color:#aebfd8;font-family:'Akira Expanded','Archivo';font-size:10px;text-transform:uppercase;letter-spacing:.04em;text-align:center;padding:8px}
+  .fit-chip .fc-body{padding:14px 16px}
+  .fit-chip .fc-sz{font-family:'Akira Expanded','Archivo';font-size:18px;color:var(--brand);margin-bottom:3px}
+  .fit-chip .fc-lbl{font-size:12px;color:var(--slate)}
+  /* related pages */
+  .wh-related{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+  .wh-rcard{border:1px solid var(--line);border-radius:14px;padding:22px;background:#fff;transition:.15s}
+  .wh-rcard:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 14px 30px -20px rgba(0,0,0,.2)}
+  .wh-rcard h3{font-family:'Akira Expanded','Archivo';font-size:15px;color:var(--brand);text-transform:uppercase;margin:0 0 8px}
+  .wh-rcard p{font-size:13.5px;color:var(--slate);line-height:1.5;margin:0 0 12px}
+  .wh-rcard .rlink{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:12px;text-transform:uppercase;color:var(--red);letter-spacing:.03em}
+@media(max-width:860px){.wh-hero .wrap,.incl-grid,.wh-price{grid-template-columns:1fr}.sz-grid{grid-template-columns:1fr 1fr}.style-grid,.wh-trust,.wh-steps,.wh-rev{grid-template-columns:1fr 1fr}.loc-cards{grid-template-columns:1fr 1fr}.wh-hero h1{font-size:29px}.wh-related{grid-template-columns:1fr}}
+
+
+/* ---- FAQ rebuilt as <details> so the questions and answers exist in the
+   HTML and open without JavaScript. Same visual treatment as before. ---- */
+.faq .qa>summary{list-style:none;cursor:pointer;width:100%;text-align:left;padding:20px 0;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  font-family:'Akira Expanded','Archivo',sans-serif;font-weight:700;font-size:16px;color:var(--brand)}
+.faq .qa>summary::-webkit-details-marker{display:none}
+.faq .qa>summary::marker{content:""}
+.faq .qa>summary:focus-visible{outline:3px solid var(--blue-2);outline-offset:2px}
+.faq .qa .ic{color:var(--red);font-size:22px;flex:0 0 auto;transition:transform .2s}
+.faq .qa[open] .ic{transform:rotate(45deg)}
+.faq .qa .a{max-height:none;overflow:visible;font-size:14.5px;color:var(--slate)}
+.faq .qa .a p{padding-bottom:20px;margin:0;line-height:1.6}
+
+/* ---- Store cards now show the storefront photo that was already being
+   downloaded and discarded, and the phone number is tappable. ---- */
+.loc-card{padding:0;overflow:hidden}
+.loc-card .lc-photo{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.loc-card .lc-city{margin:14px 16px 6px}
+.loc-card .lc-addr{margin:0 16px 2px}
+.loc-card .lc-ph{margin:0 16px 4px}
+.loc-card .lc-hrs{font-size:12px;color:var(--dim,#8a96ad);margin:0 16px 10px}
+.loc-card .lc-link{margin:0 16px 16px;display:inline-block}
+.loc-card .lc-shot{display:block}
+.store-call{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-weight:700}
+
+
+/* ================= PACKAGES PAGE ================= */
+/* ================= HERO ================= */
+.pk-hero{padding:58px 0 56px;position:relative;overflow:hidden;background:var(--brand)}
+.pk-hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);
+  gap:48px;align-items:center}
+.pk-hero .sec-eye{color:#ff8b7a;margin-bottom:14px}
+.pk-hero h1{font-family:'Akira Expanded','Archivo',sans-serif;font-size:38px;line-height:1.08;color:#fff;
+  margin:0 0 18px;text-transform:uppercase;letter-spacing:-.005em}
+.pk-hero h1 span{display:block;margin-top:11px;font-family:'Montserrat',sans-serif;font-weight:600;
+  font-size:16px;line-height:1.45;color:#9fb2ce;text-transform:none;letter-spacing:0}
+.pk-hero .lead{font-size:15.5px;line-height:1.68;color:#c7d2e6;max-width:56ch;margin:0}
+.pk-hero .lead b{color:#fff;font-weight:600}
+.pk-hero__cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.pk-hero__media{display:flex;flex-direction:column;gap:14px;min-width:0}
+.pk-hero__img{border-radius:14px;overflow:hidden;background:#16294d;border:1px solid rgba(255,255,255,.13);
+  box-shadow:0 24px 54px -28px rgba(0,0,0,.8)}
+.pk-hero__img img{width:100%;height:auto;display:block}
+@media(max-width:980px){
+  .pk-hero .wrap{grid-template-columns:minmax(0,1fr);gap:32px}
+  .pk-hero h1{font-size:28px}
+}
+@media(max-width:560px){
+  .pk-hero{padding:42px 0 44px}
+  .pk-hero h1{font-size:23px}
+}
+
+.pk-use{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:8px}
+.pk-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column;min-width:0;transition:transform .15s,box-shadow .15s,border-color .15s}
+.pk-card:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 16px 34px -24px rgba(12,30,58,.5)}
+.pk-card__top{background:linear-gradient(160deg,#12305c 0%,#0c1e3a 100%);padding:22px 22px 18px;color:#fff;position:relative}
+.pk-card__top .n{position:absolute;right:16px;top:14px;font-family:'IBM Plex Mono','Montserrat',monospace;
+  font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.pk-card__ic{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.12);display:grid;
+  place-items:center;margin-bottom:12px}
+.pk-card__ic svg{width:21px;height:21px;display:block}
+.pk-card__top h3{font-family:'Akira Expanded','Archivo',sans-serif;font-size:14px;text-transform:uppercase;
+  margin:0 0 5px;line-height:1.25;color:#fff}
+.pk-card__sub{font-family:'IBM Plex Mono','Montserrat',monospace;font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:rgba(255,255,255,.6);display:block}
+.pk-card__body{padding:18px 22px 22px;display:flex;flex-direction:column;flex:1 1 auto}
+.pk-card__body p{margin:0 0 14px;font-size:14px;color:var(--slate);line-height:1.58;flex:1 1 auto}
+.pk-spec{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:6px}
+.pk-spec li{font-size:12.8px;color:var(--slate);display:flex;gap:8px;line-height:1.45}
+.pk-spec li::before{content:"";flex:none;width:5px;height:5px;border-radius:50%;background:var(--red);margin-top:7px}
+.pk-card__go{font-family:'Akira Expanded','Archivo',sans-serif;font-weight:800;font-size:11.5px;
+  letter-spacing:.03em;text-transform:uppercase;color:var(--red);text-decoration:none;margin-top:auto}
+.pk-card__go:hover{text-decoration:underline}
+/* why-together explainer */
+.pk-why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:8px}
+.pk-why > div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 22px 24px}
+.pk-why h3{font-family:'Akira Expanded','Archivo',sans-serif;font-size:13.5px;text-transform:uppercase;
+  color:var(--brand);margin:0 0 9px}
+.pk-why p{margin:0;font-size:14px;color:var(--slate);line-height:1.6}
+/* financing strip */
+.pk-fin{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center}
+.pk-fin__img{height:100%;min-height:200px}
+.pk-fin__img img{width:100%;height:100%;object-fit:cover;display:block}
+.pk-fin__body{padding:26px 30px 28px}
+.pk-fin__body h2{font-family:'Akira Expanded','Archivo',sans-serif;font-size:20px;text-transform:uppercase;
+  color:var(--brand);margin:8px 0 12px;line-height:1.25}
+.pk-fin__body p{margin:0 0 18px;font-size:14.5px;color:var(--slate);line-height:1.62}
+
+/* ---- use-case cards become image-led ---- */
+.pk-card__img{position:relative;aspect-ratio:3/2;overflow:hidden;background:#16294d;display:block}
+.pk-card__img img{width:100%;height:100%;object-fit:cover;display:block}
+.pk-card__img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(12,30,58,0) 42%,rgba(12,30,58,.82) 100%)}
+.pk-card__label{position:absolute;left:16px;right:16px;bottom:13px;z-index:2;display:flex;align-items:center;gap:10px}
+.pk-card__label .pk-card__ic{margin:0;width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.16);
+  backdrop-filter:blur(2px);flex:none}
+.pk-card__label .pk-card__ic svg{width:18px;height:18px}
+.pk-card__label h3{font-family:'Akira Expanded','Archivo',sans-serif;font-size:13px;text-transform:uppercase;
+  color:#fff;margin:0;line-height:1.2;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.pk-card__n{position:absolute;right:14px;top:12px;z-index:2;font-family:'IBM Plex Mono','Montserrat',monospace;
+  font-size:10px;letter-spacing:.11em;color:rgba(255,255,255,.75);text-shadow:0 1px 6px rgba(0,0,0,.6)}
+
+/* ---- use-case cards: media slot holds a placeholder (or the final image) ---- */
+.pk-card__media{position:relative}
+.pk-card__media .ph{border-radius:0;border-left:0;border-right:0;border-top:0}
+.pk-card__media .ph .ph__body{justify-content:flex-start;padding:13px 14px 62px;gap:3px}
+.pk-card__media .ph .ph__note{display:none}
+.pk-card__media .ph .ph__ic{width:24px;height:24px;margin-bottom:0}
+.pk-card__media .ph .ph__subject{font-size:12px;max-width:26ch}
+.pk-card__media .pk-card__label{position:absolute;left:14px;right:14px;bottom:12px;z-index:2;
+  display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,rgba(12,30,58,0),rgba(12,30,58,.9));
+  padding:22px 10px 8px;margin:0 -10px -8px;border-radius:0 0 10px 10px}
+.pk-card__media .pk-card__ic{margin:0;width:32px;height:32px;border-radius:9px;
+  background:rgba(255,255,255,.18);flex:none;display:grid;place-items:center}
+.pk-card__media .pk-card__ic svg{width:17px;height:17px}
+.pk-card__media h3{font-family:'Akira Expanded','Archivo',sans-serif;font-size:12.5px;text-transform:uppercase;
+  color:#fff;margin:0;line-height:1.2;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+.pk-card__media .pk-card__sub{font-family:'IBM Plex Mono','Montserrat',monospace;font-size:9.5px;
+  letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.72);display:block;margin-top:2px;
+  text-shadow:0 1px 8px rgba(0,0,0,.7)}
+/* ---- includes tiles now carry a placeholder above the copy ---- */
+.pk-inc__card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column;min-width:0;padding:0}
+.pk-inc__card .ph{border-radius:0;border-left:0;border-right:0;border-top:0}
+.pk-inc__body{padding:18px 20px 22px}
+.pk-inc__body .ic{width:38px;height:38px;border-radius:10px;background:rgba(197,31,40,.09);
+  display:grid;place-items:center;margin-bottom:12px}
+.pk-inc__body .ic svg{width:19px;height:19px;display:block}
+/* outline button on a light ground (btn-outline is white-on-dark) */
+.btn.btn-outline-dk{background:transparent;color:var(--brand);border:2px solid var(--line)}
+.btn.btn-outline-dk:hover{border-color:var(--brand);background:rgba(19,49,95,.04)}
+/* ---- related cards with imagery ---- */
+.pk-rel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:8px}
+.pk-relcard{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;
+  flex-direction:column;min-width:0;text-decoration:none;transition:transform .15s,box-shadow .15s,border-color .15s}
+.pk-relcard:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 16px 34px -24px rgba(12,30,58,.5)}
+.pk-relcard__img{margin:0;background:var(--bg-alt);aspect-ratio:3/2;overflow:hidden}
+.pk-relcard__img img{width:100%;height:100%;object-fit:cover;display:block}
+.pk-relcard__body{padding:18px 20px 22px;display:flex;flex-direction:column;flex:1 1 auto}
+.pk-relcard__body h3{font-family:'Akira Expanded','Archivo',sans-serif;font-size:14px;text-transform:uppercase;
+  color:var(--brand);margin:0 0 8px}
+.pk-relcard__body p{margin:0 0 14px;font-size:14px;color:var(--slate);line-height:1.58;flex:1 1 auto}
+.pk-relcard__go{font-family:'Akira Expanded','Archivo',sans-serif;font-weight:800;font-size:11.5px;
+  letter-spacing:.03em;text-transform:uppercase;color:var(--red);margin-top:auto}
+@media(max-width:900px){.pk-rel{grid-template-columns:minmax(0,1fr)}}
+
+/* ---- includes: SVG chips, not emoji ---- */
+.pk-inc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:8px}
+.pk-inc > div{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:0}
+.pk-inc .ic{width:44px;height:44px;border-radius:12px;background:rgba(197,31,40,.09);display:grid;
+  place-items:center;margin-bottom:14px}
+.pk-inc .ic svg{width:22px;height:22px;display:block}
+.pk-inc h3{font-family:'Akira Expanded','Archivo',sans-serif;font-size:13px;text-transform:uppercase;
+  color:var(--brand);margin:0 0 8px;line-height:1.25}
+.pk-inc p{margin:0;font-size:14px;color:var(--slate);line-height:1.58}
+/* ---- steps with imagery ---- */
+.pk-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:8px}
+.pk-step{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;
+  flex-direction:column;min-width:0}
+.pk-step__img{aspect-ratio:20/13;overflow:hidden;background:#e8edf5;position:relative}
+.pk-step__img img{width:100%;height:100%;object-fit:cover;display:block}
+.pk-step__n{position:absolute;left:12px;top:12px;width:28px;height:28px;border-radius:50%;background:var(--red);
+  color:#fff;display:grid;place-items:center;font-family:'Akira Expanded','Archivo',sans-serif;font-size:12px;
+  box-shadow:0 4px 14px -4px rgba(197,31,40,.9)}
+.pk-step__body{padding:18px 20px 22px}
+.pk-step__body h3{font-family:'Akira Expanded','Archivo',sans-serif;font-size:13px;text-transform:uppercase;
+  color:var(--brand);margin:0 0 8px;line-height:1.25}
+.pk-step__body p{margin:0;font-size:13.8px;color:var(--slate);line-height:1.58}
+/* ---- stores: declared fresh, NOT inheriting .loc-card ---- */
+.pk-locs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:8px}
+.pk-loc{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;
+  flex-direction:column;min-width:0;transition:transform .15s,box-shadow .15s,border-color .15s}
+.pk-loc:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 14px 30px -22px rgba(12,30,58,.55)}
+.pk-loc__shot{display:block;aspect-ratio:16/9;overflow:hidden;background:#e8edf5}
+.pk-loc__shot img{width:100%;height:100%;object-fit:cover;display:block}
+.pk-loc__body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1 1 auto;gap:3px}
+.pk-loc__city{font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:var(--ink)}
+.pk-loc__addr{font-size:12.5px;color:var(--slate);line-height:1.45}
+.pk-loc__ph{font-size:13px;font-weight:700;margin-top:3px}
+.pk-loc__ph a{color:var(--red);text-decoration:none}
+.pk-loc__ph a:hover{text-decoration:underline}
+.pk-loc__hrs{font-size:11.5px;color:var(--dim,#8a96ad);margin-bottom:9px}
+.pk-loc__go{margin-top:auto;font-family:'Akira Expanded','Archivo',sans-serif;font-weight:800;font-size:10.5px;
+  letter-spacing:.04em;text-transform:uppercase;color:var(--brand);text-decoration:none}
+.pk-loc__go:hover{color:var(--red)}
+@media(max-width:1100px){.pk-inc,.pk-steps,.pk-locs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.pk-inc,.pk-steps,.pk-locs{grid-template-columns:minmax(0,1fr)}}
+
+/* store-card grid — FAQ_CSS styles the card internals, this sets the columns */
+.loc-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media(max-width:1100px){.loc-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:820px){.loc-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.loc-cards{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:1080px){.pk-use{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pk-why{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:820px){.pk-fin{grid-template-columns:minmax(0,1fr)}.pk-fin__img{min-height:170px}}
+@media(max-width:640px){.pk-use,.pk-why{grid-template-columns:minmax(0,1fr)}
+  .pk-fin__body{padding:22px 20px 24px}}
+/* widget mount + dev note read on the dark band */
+section.block.pk-bgph .tc-mount{background:rgba(255,255,255,.07);border:2px dashed rgba(255,255,255,.34);
+  border-radius:14px;padding:30px 26px 32px;text-align:center;display:flex;flex-direction:column;
+  align-items:center;gap:6px;max-width:640px;margin:0 auto}
+section.block.pk-bgph .tc-mount__title{display:block;font-family:'Akira Expanded','Archivo',sans-serif;
+  font-size:15px;text-transform:uppercase;color:#fff}
+section.block.pk-bgph .tc-mount__sub{display:block;font-size:13.5px;color:#c7d2e6;line-height:1.55;max-width:44ch}
+section.block.pk-bgph .dev-note{background:rgba(255,255,255,.08);border:1px dashed #8ea2ff;color:#e7ecff;
+  max-width:820px;margin:20px auto 0}
+section.block.pk-bgph .dev-note code{background:rgba(255,255,255,.14);color:#fff}
+section.block.pk-bgph .dev-note b{color:#fff}
+
+/* ---- blue content band (Why buy together) ---- */
+section.block.pk-blue{background:var(--brand);color:#fff}
+section.block.pk-blue .sec-eye{color:#ff8b7a}
+section.block.pk-blue .sec-head h2{color:#fff}
+section.block.pk-blue .sec-head p{color:#c7d2e6!important}
+section.block.pk-blue .pk-why > div{background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:22px 24px}
+section.block.pk-blue .pk-why h3{color:#fff}
+section.block.pk-blue .pk-why p{color:#c7d2e6}
+section.block.pk-blue .pk-why em{color:#fff;font-style:italic}
+
+/* ---- build context strip: page-level only, never a TireConnect filter ---- */
+.pk-ctx{display:flex;align-items:center;gap:14px;flex-wrap:wrap;max-width:820px;margin:0 auto 18px;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.28);border-left:3px solid var(--red);
+  border-radius:10px;padding:13px 16px}
+.pk-ctx b{font-family:'Akira Expanded','Archivo',sans-serif;font-size:12px;letter-spacing:.04em;
+  text-transform:uppercase;color:#fff}
+.pk-ctx span{flex:1 1 240px;font-size:13px;color:#c7d2e6;line-height:1.5}
+.pk-ctx button{color:#c7d2e6;font-size:20px;line-height:1;padding:0 4px;background:none;border:0}
+.pk-ctx button:hover{color:#fff}
+@media(max-width:560px){.pk-ctx{gap:8px;padding:12px 14px}}
+
+/* ================= IMAGE PLACEHOLDERS (remove once creatives land) ================= */
+.ph{position:relative;display:block;width:100%;overflow:hidden;border-radius:10px;
+  background:
+    repeating-linear-gradient(135deg,rgba(19,49,95,.055) 0 10px,rgba(19,49,95,0) 10px 20px),
+    linear-gradient(160deg,#eef2f8 0%,#e4eaf4 100%);
+  border:2px dashed #b3c1d8}
+.ph__body{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:16px;gap:5px}
+.ph__ic{width:30px;height:30px;opacity:.5;margin-bottom:2px}
+.ph__ic svg{width:100%;height:100%;display:block}
+.ph__ref{font-family:'IBM Plex Mono','Montserrat',monospace;font-size:10px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;color:#fff;background:#13315f;
+  padding:2px 8px;border-radius:3px}
+.ph__subject{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#13315f;
+  line-height:1.35;max-width:30ch;margin-top:3px}
+.ph__spec{font-family:'IBM Plex Mono','Montserrat',monospace;font-size:10.5px;color:#5b6b86;letter-spacing:.03em}
+.ph__note{font-size:10.5px;color:#7c8aa3;line-height:1.4;max-width:32ch;font-style:italic}
+/* compact variant for the small "includes" tiles */
+.ph.is-sm .ph__subject{font-size:12px}
+.ph.is-sm .ph__ic{width:24px;height:24px}
+.ph.is-sm .ph__note{display:none}
+/* section-background placeholder */
+.pk-bgph{position:relative;overflow:hidden;background:#0b1b34 url({{ 'netlify-packages-source-01-f1ec64590351cdab.jpg' | asset_url }}) center/cover no-repeat}
+.pk-bgph::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(18,48,92,.90) 0%,rgba(11,27,52,.86) 60%,rgba(19,44,85,.90) 100%)}
+.pk-bgph > *{position:relative;z-index:1}
+.pk-bgph .sec-head h2,.pk-bgph .sec-head p{color:#fff}
+.pk-bgph .sec-head p{color:#c7d2e6!important}
+.pk-bgph .sec-eye{color:#ff8b7a}
+
+
+.verify-flag{display:inline-block;font-family:'IBM Plex Mono','Montserrat',monospace;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#7a5c00;background:#fdf0cf;border:1px solid #e6c975;border-radius:3px;padding:1px 5px;margin-right:5px}
+.pk-loc--soon{opacity:.92}.pk-loc--soon:hover{transform:none;box-shadow:none;border-color:var(--line)}.pk-loc__soon{margin-top:auto;display:block;padding-top:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--red,#c8102e)}
+/* ===== packages brand rail - appended at end of document on purpose:
+   this page keeps its own styles in the BODY, so a <head> block would lose ===== */
+#pkg-brands .brand-rail-wrap{position:relative;max-width:1120px;margin:0 auto}
+#pkg-brands .brand-rail{display:grid;grid-auto-flow:column;grid-template-rows:repeat(4,1fr);
+  grid-auto-columns:calc((100% - 4*14px)/5);gap:14px;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 6px}
+#pkg-brands .brand-rail::-webkit-scrollbar{display:none}
+#pkg-brands .brand-rail>*{scroll-snap-align:start}
+#pkg-brands .brand-rail:focus-visible{outline:2px solid var(--red);outline-offset:4px;border-radius:12px}
+/* the page already carries an unused .blogo rule (aspect-ratio:170/70; display:grid).
+   every property it sets is restated here so the rail is not at its mercy. */
+#pkg-brands .brand-rail .blogo{aspect-ratio:auto;width:auto;height:92px;position:relative;
+  background:#fff;border:1.5px solid var(--line);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:12px;gap:0;box-sizing:border-box;cursor:default;transition:none}
+#pkg-brands .brand-rail .blogo:hover{border-color:var(--line);box-shadow:none;transform:none;background:#fff}
+#pkg-brands .brand-rail .blogo-img{max-width:100%;max-height:54px;width:auto;height:auto;object-fit:contain}
+#pkg-brands .bword{font-family:'Akira Expanded','Archivo',sans-serif;font-weight:700;font-size:13px;
+  line-height:1.25;color:var(--brand);text-align:center;letter-spacing:-.01em;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#pkg-brands .brail-nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;z-index:2;
+  border-radius:50%;background:#fff;border:1.5px solid var(--line);display:flex;align-items:center;
+  justify-content:center;box-shadow:0 8px 20px -10px rgba(12,30,58,.45);transition:.14s;cursor:pointer}
+#pkg-brands .brail-nav svg{width:20px;height:20px;fill:none;stroke:var(--brand);stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round}
+#pkg-brands .brail-nav:hover:not(:disabled){background:var(--brand);border-color:var(--brand)}
+#pkg-brands .brail-nav:hover:not(:disabled) svg{stroke:#fff}
+#pkg-brands .brail-nav:disabled{opacity:0;pointer-events:none}
+#pkg-brands .brail-nav.prev{left:-19px}#pkg-brands .brail-nav.next{right:-19px}
+#pkg-brands .brand-dots{display:flex;gap:7px;justify-content:center;margin-top:18px}
+#pkg-brands .bdot{width:8px;height:8px;border-radius:50%;background:#cfd8e6;border:0;padding:0;
+  transition:.16s;cursor:pointer}
+#pkg-brands .bdot.on{background:var(--red);width:22px;border-radius:5px}
+#pkg-brands .brand-prog{position:relative;height:4px;border-radius:2px;background:#dbe2ed;max-width:190px;
+  margin:18px auto 0;display:block}
+#pkg-brands .bprog-thumb{position:absolute;top:0;bottom:0;background:var(--red);border-radius:2px;
+  transition:left .12s linear,width .12s linear}
+#pkg-brands .brand-all{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+#pkg-brands .brand-all .pill{text-decoration:none;display:inline-flex;align-items:center}
+#pkg-brands .dev-note{margin-top:26px}
+@media(max-width:1180px){#pkg-brands .brail-nav.prev{left:4px}#pkg-brands .brail-nav.next{right:4px}}
+@media(max-width:1000px){#pkg-brands .brand-rail{grid-auto-columns:calc((100% - 3*14px)/4)}}
+@media(max-width:820px){#pkg-brands .brand-rail{grid-auto-columns:calc((100% - 2*12px)/3);gap:12px}}
+@media(max-width:560px){#pkg-brands .brand-rail{grid-auto-columns:calc((100% - 10px)/2);gap:10px}
+  #pkg-brands .brand-rail .blogo{height:84px;padding:10px}
+  #pkg-brands .brand-rail .blogo-img{max-height:46px}}
+@media(prefers-reduced-motion:reduce){#pkg-brands .brand-rail{scroll-behavior:auto}}
+/* ===== packages hero art - appended at end of document on purpose:
+   this page keeps its own styles in the BODY, so a <head> block would lose.
+   The four build cards need no CSS here: they use the page's existing
+   .pk-card__img contract, scrim included. ===== */
+.pk-hero.pk-hero--photo{position:relative;overflow:hidden;background:var(--brand);
+  padding:clamp(56px,7vw,92px) 0}
+.pk-hero.pk-hero--photo::before{content:"";position:absolute;inset:0;z-index:0;
+  background-image:url("{{ 'netlify-packages-source-143-5325c5d1775874eb.jpg' | asset_url }}");background-size:cover;background-position:center right;
+  background-repeat:no-repeat}
+/* scrim: near-opaque navy where the copy sits, clearing toward the wheel and tire
+   on the right. keeps the h1 and lead legible without flattening the photograph. */
+.pk-hero.pk-hero--photo::after{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(100deg,
+    rgba(11,32,66,.96) 0%, rgba(11,32,66,.93) 34%,
+    rgba(11,32,66,.74) 52%, rgba(11,32,66,.30) 74%, rgba(11,32,66,.12) 100%)}
+.pk-hero.pk-hero--photo .wrap{position:relative;z-index:1;display:block}
+.pk-hero.pk-hero--photo .pk-hero__copy{max-width:600px}
+.pk-hero.pk-hero--photo h1{text-shadow:0 2px 18px rgba(4,14,32,.5)}
+.pk-hero.pk-hero--photo .lead{text-shadow:0 1px 12px rgba(4,14,32,.5)}
+@media(max-width:900px){
+  .pk-hero.pk-hero--photo::before{background-position:center}
+  .pk-hero.pk-hero--photo::after{background:linear-gradient(175deg,
+    rgba(11,32,66,.94) 0%, rgba(11,32,66,.90) 55%, rgba(11,32,66,.84) 100%)}
+  .pk-hero.pk-hero--photo .pk-hero__copy{max-width:none}
+}
+@media(prefers-reduced-motion:no-preference){
+  .pk-hero.pk-hero--photo::before{will-change:auto}
+}
+/* shared includes-grid icon sizing - present on tire/wheel search, was missing here. appended at end of document: this page styles from the BODY. */
+.incl-card .ic-ic img{width:34px;height:34px;object-fit:contain;display:block}
+</style>
+<div class="ats-netlify-port">
+<div class="crumbs"><div class="wrap"><a href="/">Home</a> <span>&rsaquo;</span> <b>Tire &amp; Wheel Packages</b></div></div>
+<section class="pk-hero pk-hero--photo" role="img" aria-label="Tire and wheel packages on the shop floor at American Tire Stores, with a pickup on the lift behind"><div class="wrap">
+  <div class="pk-hero__copy">
+    <div class="sec-eye">Packages &middot; tires + wheels together</div>
+    <h1>Tire and Wheel Packages<span>Sized to your vehicle, fitted in one visit</span></h1>
+    <p class="lead"><b>A tire and wheel package is a set of four wheels and four tires specified together
+      for one vehicle, then mounted, balanced and fitted as a single job.</b> Because the wheel and the
+      tire are chosen at the same time, the fitment is worked out once &mdash; by the people who will fit it.</p>
+    <div class="pk-hero__cta">
+      <a class="btn btn-red" href="#pkg-widget" onclick="jump('pkg-widget');return false;">Build a package &rarr;</a>
+      <a class="btn btn-outline" href="#pkg-use" onclick="jump('pkg-use');return false;">Shop by build</a>
+    </div>
+  </div>
+  </div></section>
+
+<section class="block" id="pkg-use"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Shop by build</div><h2>What Is the Vehicle For?</h2>
+    <p style="color:var(--slate);font-size:15px">Start with how the vehicle gets used &mdash; that decides
+      load rating, tread and sizing far more than which brand you pick.</p></div>
+  <div class="pk-use"><div class="pk-card"><div class="pk-card__media"><div class="pk-card__img"><img src="{{ 'netlify-packages-source-05-e56909c43bc7d02a.jpg' | asset_url }}" alt="Toyota Tacoma on a rocky mountain trail fitted with bronze off-road wheels and all-terrain tires" width="1200" height="800" loading="lazy" decoding="async"></div><span class="pk-card__label"><span class="pk-card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17h20M4 17l2-6h12l2 6"/><circle cx="7.5" cy="17.5" r="2.4"/><circle cx="16.5" cy="17.5" r="2.4"/><path d="M8 11V7l4-2 4 2v4"/></svg></span><span><h3>Off-Road Packages</h3><span class="pk-card__sub">Trail, overland and lifted trucks</span></span></span></div><div class="pk-card__body"><p>Load-rated wheels paired with all-terrain or mud-terrain tires, checked for clearance at full lock and full articulation.</p><ul class="pk-spec"><li>Load-rated for heavier wheels and tires</li><li>Clearance checked against lift and suspension</li><li>All-terrain, mud-terrain and rugged-terrain options</li></ul><a class="pk-card__go" href="#pkg-widget" data-build="offroad" onclick="pickBuild('offroad','off-road');return false;">Start with your vehicle &rarr;</a></div></div><div class="pk-card"><div class="pk-card__media"><div class="pk-card__img"><img src="{{ 'netlify-packages-source-06-51d2723f63261baa.jpg' | asset_url }}" alt="Yellow Chevrolet Corvette at sunset beside a black machined-face wheel and performance tire" width="1200" height="800" loading="lazy" decoding="async"></div><span class="pk-card__label"><span class="pk-card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12z"/></svg></span><span><h3>Performance Packages</h3><span class="pk-card__sub">Sport sedans and coupes</span></span></span></div><div class="pk-card__body"><p>Lighter wheels and summer or all-season performance tires, matched so unsprung weight and rolling diameter stay where the manufacturer intended.</p><ul class="pk-spec"><li>Rolling diameter matched to keep the speedometer honest</li><li>Lighter forged and flow-formed options</li><li>Summer and all-season performance compounds</li></ul><a class="pk-card__go" href="#pkg-widget" data-build="perf" onclick="pickBuild('perf','performance');return false;">Start with your vehicle &rarr;</a></div></div><div class="pk-card"><div class="pk-card__media"><div class="pk-card__img"><img src="{{ 'netlify-packages-source-07-a52d92f2249b86a0.jpg' | asset_url }}" alt="Ram heavy-duty pickup on a job site fitted with gray off-road wheels and highway-terrain tires" width="1200" height="800" loading="lazy" decoding="async"></div><span class="pk-card__label"><span class="pk-card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v10H2zM13 9h4.5l3 3.5V16H13z"/><circle cx="6.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></svg></span><span><h3>Truck Packages</h3><span class="pk-card__sub">Half-ton and heavy-duty pickups</span></span></span></div><div class="pk-card__body"><p>Wheels and tires rated for towing and payload, with the load index confirmed against what your truck is actually asked to carry.</p><ul class="pk-spec"><li>Load index matched to towing and payload</li><li>Correct offset for factory and aftermarket arches</li><li>Highway, all-terrain and commercial tread patterns</li></ul><a class="pk-card__go" href="#pkg-widget" data-build="truck" onclick="pickBuild('truck','truck');return false;">Start with your vehicle &rarr;</a></div></div><div class="pk-card"><div class="pk-card__media"><div class="pk-card__img"><img src="{{ 'netlify-packages-source-08-2487c77c92ce0a40.jpg' | asset_url }}" alt="Kia Telluride on a suburban street beside a silver alloy wheel and touring tire" width="1200" height="800" loading="lazy" decoding="async"></div><span class="pk-card__label"><span class="pk-card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13.5 5 8h14l2 5.5V18h-3.5M3 13.5V18h3.5M3 13.5h18"/><circle cx="7.5" cy="18" r="1.9"/><circle cx="16.5" cy="18" r="1.9"/></svg></span><span><h3>Daily Driver Packages</h3><span class="pk-card__sub">Sedans, crossovers and family SUVs</span></span></span></div><div class="pk-card__body"><p>A straightforward upgrade in looks or a like-for-like replacement, sized to factory spec so ride and handling stay familiar.</p><ul class="pk-spec"><li>Sized to factory spec unless you want otherwise</li><li>All-season and touring tires for year-round use</li><li>Plus-sizing available with fitment confirmed first</li></ul><a class="pk-card__go" href="#pkg-widget" data-build="daily" onclick="pickBuild('daily','daily driver');return false;">Start with your vehicle &rarr;</a></div></div></div>
+</div></section>
+
+<section class="block pk-bgph" id="pkg-widget"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Build a package</div><h2>Find Packages That Fit Your Vehicle</h2>
+    <p style="color:var(--slate);font-size:15px">Pick your store and vehicle. The builder shows the
+      combinations that fit it, priced as a set.</p></div>
+  <div class="pk-ctx" id="pkgCtx" hidden><b id="pkgCtxLabel"></b>
+    <span>Enter your vehicle below &mdash; fitment comes first, then you pick from what fits.</span>
+    <button type="button" onclick="clearBuild()" aria-label="Clear">&times;</button></div>
+  <div class="tc-mount" id="pkgMount">
+    <div class="tc-mount__title">Package builder</div>
+    <div class="tc-mount__sub">Select a store and a vehicle to see packages that fit.</div>
+    <button class="btn btn-red" type="button" onclick="loadPkgWidget()" style="margin-top:16px">Load the package builder &rarr;</button>
+  </div>
+  <div class="dev-note"><b>DEV &middot; package widget mount</b> &mdash; from <code>page.catalog.json</code>:
+    <code>widget_type: "catalog"</code>, <code>allowed_products: "package"</code>,
+    <code>fitment: "extended"</code>, <code>enable_locator: true</code>,
+    <code>services_url: "/pages/appointment"</code>.
+    <b>Note 1:</b> there is no <code>page.appointment.json</code> in the theme &mdash; that
+    <code>services_url</code> currently points at a page that does not exist. Confirm whether it should be
+    <code>/pages/services</code>.
+    <b>Note 2 &middot; build type cannot be passed to the widget.</b> These settings are the
+    <i>universal</i> widget shape, and the universal widget exposes only
+    <code>changeLocation()</code> &mdash; no <code>searchByVehicle()</code>, no <code>filters</code>
+    parameter, no documented URL deep-linking. The legacy v3 widget does document
+    <code>filters: {category, light_truck, season_id, &hellip;}</code>, but even there every search needs a
+    vehicle, size, VIN or part number first &mdash; a build type is never a starting point. So the
+    &ldquo;Shop by build&rdquo; cards set on-page context only; they do not pre-filter TireConnect.
+    <b>Open with TireConnect:</b> does the universal widget expose any post-init search or filter API, and
+    what values does <code>category</code> accept?
+    <b>Note 3 &middot; pricing claim unverified.</b> Copy on this page says the set is quoted as one figure.
+    Whether that figure includes fitting labor depends on this account's TireConnect pricing setup, not on
+    <code>fitment</code>. Confirm before launch &mdash; the step-3 and FAQ copy are written conditionally
+    until it is.</div>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Every package includes</div><h2>Fitted Properly, Start to Finish</h2>
+    <p style="color:var(--slate);font-size:15px">The same four things happen on every package we fit.
+      They are in the price, not added at the counter.</p></div>
+  <div class="incl-grid">
+    <div class="incl-card"><div class="ic-ic"><img src="{{ 'netlify-packages-source-09-ed5267d6b7cafa80.png' | asset_url }}" alt="" width="46" height="46" loading="lazy" decoding="async"></div><div><h3>Mount &amp; balance</h3><p>Each wheel is mounted and precision-balanced so the set spins true at speed &mdash; no vibration through the wheel.</p></div></div>
+    <div class="incl-card"><div class="ic-ic"><img src="{{ 'netlify-packages-source-10-66ef4aa61421efbf.png' | asset_url }}" alt="" width="46" height="46" loading="lazy" decoding="async"></div><div><h3>TPMS reset</h3><p>Tire pressure sensors are re-synced so the dashboard warning works correctly with the new setup.</p></div></div>
+    <div class="incl-card"><div class="ic-ic"><img src="{{ 'netlify-packages-source-11-db631b8db99ea872.png' | asset_url }}" alt="" width="46" height="46" loading="lazy" decoding="async"></div><div><h3>Torque to spec</h3><p>Lug nuts are tightened to the exact manufacturer value &mdash; even clamping, nothing over or under.</p></div></div>
+    <div class="incl-card"><div class="ic-ic"><img src="{{ 'netlify-packages-source-12-9bb4cb670f1b3cdf.png' | asset_url }}" alt="" width="46" height="46" loading="lazy" decoding="async"></div><div><h3>Fitment verified</h3><p>Bolt pattern, offset, center bore and clearance are confirmed for your vehicle before we order.</p></div></div>
+  </div>
+</div></section>
+
+<section class="block alt" id="pkg-brands"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Brands we package</div>
+    <h2>Any Wheel Brand, Any Tire Brand.<br>Specified As One Set.</h2>
+    <p>A package is a wheel and a tire chosen together, not one after the other. The
+      directory runs to <b>70 wheel brands</b> and <b>36 tire brands</b>, and a package can
+      pair across the two. The combination is worked out against your vehicle first &mdash;
+      offset, load rating and clearance settled before anything is ordered, by the people
+      who will fit it.</p></div>
+  <!-- Dev: each brand ships as an <img> with alt = brand + type (e.g. "Michelin tires",
+       "Fuel wheels") for image-search & entity SEO. Tiles are deliberately NOT links:
+       no per-brand landing page exists yet. Same source list as the homepage rail. -->
+  <div class="brand-rail-wrap">
+    <button class="brail-nav prev" id="pkgBrandPrev" type="button" aria-label="Previous brands">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="brand-rail" id="pkgBrandRail" role="list" tabindex="0"
+         aria-label="Tire and wheel brands we build packages from — scroll for more"></div>
+    <button class="brail-nav next" id="pkgBrandNext" type="button" aria-label="More brands">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="brand-dots" id="pkgBrandDots" role="tablist" aria-label="Brand pages"></div>
+  <div class="brand-all">
+    <a class="pill red" href="/pages/tire-search">All 36 tire brands</a>
+    <a class="pill outline" href="/pages/wheel-brands">All 70 wheel brands</a>
+  </div>
+  <div class="dev-note"><b>DEV &middot; brand rail</b> &mdash; 106 logos, 36 tire + 70 wheel,
+    from the same source list the homepage rail uses. Render as one array of
+    <code>[name, "tire"|"wheel"]</code> so the alt text stays correct per brand. Tiles are
+    plain <code>&lt;div&gt;</code>s, not anchors, until per-brand pages exist.
+    <b>[VERIFY] stock coverage</b> &mdash; this is the catalogue list, not a
+    store-level availability list. Confirm with ATS before any copy claims every brand is
+    stocked at every location.</div>
+</div></section>
+
+<section class="block pk-blue"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Good to know</div><h2>Why Buy Tires and Wheels Together?</h2>
+    <p style="color:var(--slate);font-size:15px">It is not only about the discount. Buying the set as one
+      job removes the three things that most often go wrong when they are bought separately.</p></div>
+  <div class="pk-why">
+    <div><h3>Fitment is solved once</h3><p>Offset, backspacing and center bore have to agree with each other
+      <em>and</em> with the vehicle. When the wheel and tire are specified together, that is one calculation
+      by one person &mdash; not a guess made twice.</p></div>
+    <div><h3>Rolling diameter stays right</h3><p>Go up a wheel size and the tire has to come down in
+      sidewall to keep the overall diameter close to stock. Get it wrong and the speedometer reads wrong and
+      ABS and traction control work from bad numbers.</p></div>
+    <div><h3>It arrives ready to fit</h3><p>Packages are mounted and balanced before you arrive, so the
+      appointment is a wheel swap rather than a build. Less time on the ramp, and nothing discovered halfway
+      through the job.</p></div>
+  </div>
+</div></section>
+
+<section class="block alt"><div class="wrap">
+  <div class="pk-fin">
+    <div class="pk-fin__img"><img src="{{ 'netlify-packages-source-13-5d14d7a6bf9ee159.jpg' | asset_url }}" alt="Financing available on tire and wheel packages"
+      width="1200" height="280" loading="lazy" decoding="async"></div>
+    <div class="pk-fin__body">
+      <div class="sec-eye" style="text-align:left">Financing</div>
+      <h2>A Package Is a Bigger Basket.<br>You Do Not Have to Pay It at Once.</h2>
+      <p>Four wheels and four tires together is the largest single purchase most customers make with us.
+        Financing is available with $0 down through our financing partner, applied for on their own secure
+        site &mdash; American Tire Stores never sees the application details.</p>
+      <a class="btn btn-red" href="/pages/financing">See financing options &rarr;</a>
+    </div>
+  </div>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">How it works</div><h2>From Vehicle to Fitted &mdash; in 4 Steps</h2>
+    <p style="color:var(--slate);font-size:15px">Most of it happens before you arrive, which is why the
+      appointment itself is short.</p></div>
+  <div class="pk-steps"><div class="pk-step"><div class="pk-step__img"><img src="{{ 'netlify-packages-source-14-567dc1f638dc31ef.jpg' | asset_url }}" alt="A customer checking options on a phone beside her vehicle" width="400" height="260" loading="lazy" decoding="async"><span class="pk-step__n">1</span></div><div class="pk-step__body"><h3>Pick your store and vehicle</h3><p>Fitment depends on the exact year, make, model and trim. Choosing a store at the same time means you are seeing what is available near you.</p></div></div><div class="pk-step"><div class="pk-step__img"><img src="{{ 'netlify-packages-source-15-6f6ba074c4cca512.jpg' | asset_url }}" alt="A customer and an advisor going through options on a tablet at the service counter" width="400" height="260" loading="lazy" decoding="async"><span class="pk-step__n">2</span></div><div class="pk-step__body"><h3>Choose the tire and the wheel</h3><p>The builder shows the combinations that fit the vehicle you entered, at the fitment levels the store has enabled &mdash; so you cannot build something that will not bolt on.</p></div></div><div class="pk-step"><div class="pk-step__img"><img src="{{ 'netlify-packages-source-16-d566ceb4562fc3f3.jpg' | asset_url }}" alt="An advisor showing a customer a quote while a technician works on the vehicle" width="400" height="260" loading="lazy" decoding="async"><span class="pk-step__n">3</span></div><div class="pk-step__body"><h3>Review the out-the-door price</h3><p>The builder quotes the set as a single figure, with financing available if you want it. Check what that figure covers at your store before comparing it against parts-only prices elsewhere.</p></div></div><div class="pk-step"><div class="pk-step__img"><img src="{{ 'netlify-packages-source-17-b343511ed4ae935a.jpg' | asset_url }}" alt="An advisor handing car keys back to a customer beside her vehicle" width="400" height="260" loading="lazy" decoding="async"><span class="pk-step__n">4</span></div><div class="pk-step__body"><h3>Book the fit</h3><p>Bring the vehicle in. The package is mounted, balanced and torqued to spec, and the TPMS is re-synced before you leave.</p></div></div></div>
+</div></section>
+
+<section class="block alt"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">What drivers say</div><h2>Package Customer Reviews</h2></div>
+  <div class="wh-rev"><div class="wh-rev-card"><div class="wh-rev-top"><span class="wh-rev-av">P</span><span><span class="wh-rev-name">Package fitted at Ventura</span><span class="wh-rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span></div><p>&ldquo;The advisor talked me out of the wheel I came in for because the offset was wrong for my truck, and showed me why. Ended up with a set that actually clears.&rdquo;</p></div><div class="wh-rev-card"><div class="wh-rev-top"><span class="wh-rev-av">P</span><span><span class="wh-rev-name">Package fitted at Bellflower</span><span class="wh-rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span></div><p>&ldquo;Priced the wheels and tires separately somewhere else and it came out higher once fitting was added. Here it was one number.&rdquo;</p></div><div class="wh-rev-card"><div class="wh-rev-top"><span class="wh-rev-av">P</span><span><span class="wh-rev-name">Package fitted at Glendale</span><span class="wh-rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span></div><p>&ldquo;Booked it in, dropped the truck off, and the whole set was on when I came back. No surprises on the bill.&rdquo;</p></div></div>
+  <p style="text-align:center;margin-top:18px;font-size:12.5px;color:var(--slate)">
+    <span class="verify-flag">Placeholder</span> Illustrative reviews showing the template.
+    Replace with attributed reviews before launch.</p>
+</div></section>
+
+<section class="block" id="pkg-stores"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Near you</div><h2>Packages Fitted at All 9 Stores</h2>
+    <p style="color:var(--slate);font-size:15px">Mon–Fri 8am–6pm · Sat 8am–5pm. Every number below rings the store itself &mdash;
+      call ahead to check stock in your size.</p></div>
+  <div class="pk-locs"><div class="pk-loc"><a class="pk-loc__shot" href="/pages/location-ventura-ca" tabindex="-1" aria-hidden="true"><img src="{{ 'netlify-packages-source-18-cdcc940270ee642e.jpg' | asset_url }}" alt="American Tire Stores Ventura storefront" width="760" height="428" loading="lazy" decoding="async"></a><div class="pk-loc__body"><div class="pk-loc__city">Ventura</div><div class="pk-loc__addr">3059 E Main St, Ventura, CA 93003</div><div class="pk-loc__ph"><a href="tel:+18058261788">(805) 826-1788</a></div><div class="pk-loc__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><a class="pk-loc__go" href="/pages/location-ventura-ca">Store details &rarr;</a></div></div><div class="pk-loc"><a class="pk-loc__shot" href="/pages/location-thousand-oaks-ca" tabindex="-1" aria-hidden="true"><img src="{{ 'netlify-packages-source-19-6e4031c59d65386a.jpg' | asset_url }}" alt="American Tire Stores Thousand Oaks storefront" width="760" height="428" loading="lazy" decoding="async"></a><div class="pk-loc__body"><div class="pk-loc__city">Thousand Oaks</div><div class="pk-loc__addr">621 E Thousand Oaks Blvd, Thousand Oaks, CA 91360</div><div class="pk-loc__ph"><a href="tel:+18053791910">(805) 379-1910</a></div><div class="pk-loc__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><a class="pk-loc__go" href="/pages/location-thousand-oaks-ca">Store details &rarr;</a></div></div><div class="pk-loc"><a class="pk-loc__shot" href="/pages/location-valencia-ca" tabindex="-1" aria-hidden="true"><img src="{{ 'netlify-packages-source-20-5746055301668a88.jpg' | asset_url }}" alt="American Tire Stores Valencia storefront" width="760" height="428" loading="lazy" decoding="async"></a><div class="pk-loc__body"><div class="pk-loc__city">Valencia</div><div class="pk-loc__addr">23510 Valencia Blvd, Unit A, Valencia, CA 91355</div><div class="pk-loc__ph"><a href="tel:+16615961444">(661) 596-1444</a></div><div class="pk-loc__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><a class="pk-loc__go" href="/pages/location-valencia-ca">Store details &rarr;</a></div></div><div class="pk-loc"><a class="pk-loc__shot" href="/pages/location-hollywood-ca" tabindex="-1" aria-hidden="true"><img src="{{ 'netlify-packages-source-21-30e3a4397545b2c0.jpg' | asset_url }}" alt="American Tire Stores Hollywood storefront" width="760" height="428" loading="lazy" decoding="async"></a><div class="pk-loc__body"><div class="pk-loc__city">Hollywood</div><div class="pk-loc__addr">1174 N. Western Ave., Los Angeles, CA 90029</div><div class="pk-loc__ph"><a href="tel:+13233729372">(323) 372-9372</a></div><div class="pk-loc__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><a class="pk-loc__go" href="/pages/location-hollywood-ca">Store details &rarr;</a></div></div><div class="pk-loc"><a class="pk-loc__shot" href="/pages/location-glendale-ca" tabindex="-1" aria-hidden="true"><img src="{{ 'netlify-packages-source-22-196b5cddf165f34f.jpg' | asset_url }}" alt="American Tire Stores Glendale storefront" width="760" height="428" loading="lazy" decoding="async"></a><div class="pk-loc__body"><div class="pk-loc__city">Glendale</div><div class="pk-loc__addr">737 S Glendale Ave, Glendale, CA 91205</div><div class="pk-loc__ph"><a href="tel:+18182433191">(818) 243-3191</a></div><div class="pk-loc__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><a class="pk-loc__go" href="/pages/location-glendale-ca">Store details &rarr;</a></div></div><div class="pk-loc"><a class="pk-loc__shot" href="/pages/location-glendale-ii-ca" tabindex="-1" aria-hidden="true"><img src="{{ 'netlify-packages-source-23-7379575e55b35679.jpg' | asset_url }}" alt="American Tire Stores Glendale 2 storefront" width="760" height="428" loading="lazy" decoding="async"></a><div class="pk-loc__body"><div class="pk-loc__city">Glendale 2</div><div class="pk-loc__addr">1130 S Central Ave, Glendale, CA 91204</div><div class="pk-loc__ph"><a href="tel:+18185472010">(818) 547-2010</a></div><div class="pk-loc__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><a class="pk-loc__go" href="/pages/location-glendale-ii-ca">Store details &rarr;</a></div></div><div class="pk-loc"><a class="pk-loc__shot" href="/pages/location-bellflower-ca" tabindex="-1" aria-hidden="true"><img src="{{ 'netlify-packages-source-24-60c7e57b01287bb2.jpg' | asset_url }}" alt="American Tire Stores Bellflower storefront" width="760" height="428" loading="lazy" decoding="async"></a><div class="pk-loc__body"><div class="pk-loc__city">Bellflower</div><div class="pk-loc__addr">9509 Alondra Blvd, Bellflower, CA 90706</div><div class="pk-loc__ph"><a href="tel:+15628044737">(562) 804-4737</a></div><div class="pk-loc__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><a class="pk-loc__go" href="/pages/location-bellflower-ca">Store details &rarr;</a></div></div><div class="pk-loc"><a class="pk-loc__shot" href="/pages/location-costa-mesa-ca" tabindex="-1" aria-hidden="true"><img src="{{ 'netlify-packages-source-25-eafa51160dc4abe4.jpg' | asset_url }}" alt="American Tire Stores Costa Mesa storefront" width="760" height="428" loading="lazy" decoding="async"></a><div class="pk-loc__body"><div class="pk-loc__city">Costa Mesa</div><div class="pk-loc__addr">2049 Harbor Blvd, Costa Mesa, CA 92627</div><div class="pk-loc__ph"><a href="tel:+19498026419">(949) 802-6419</a></div><div class="pk-loc__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><a class="pk-loc__go" href="/pages/location-costa-mesa-ca">Store details &rarr;</a></div></div><div class="pk-loc"><a class="pk-loc__shot" href="/pages/location-cathedral-city-ca" tabindex="-1" aria-hidden="true"><img src="{{ 'netlify-packages-source-26-cb2ff932283299c3.jpg' | asset_url }}" alt="American Tire Stores Cathedral City storefront" width="760" height="428" loading="lazy" decoding="async"></a><div class="pk-loc__body"><div class="pk-loc__city">Cathedral City</div><div class="pk-loc__addr">68406 E Palm Canyon Dr, Cathedral City, CA 92234</div><div class="pk-loc__ph"><a href="tel:+17604699510">(760) 469-9510</a></div><div class="pk-loc__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><a class="pk-loc__go" href="/pages/location-cathedral-city-ca">Store details &rarr;</a></div></div><div class="pk-loc pk-loc--soon"><span class="pk-loc__shot"><img src="{{ 'netlify-packages-source-27-7c8480f624f21c6a.jpg' | asset_url }}" alt="American Tire Stores Signal Hill - opening soon" width="760" height="428" loading="lazy" decoding="async"></span><div class="pk-loc__body"><div class="pk-loc__city">Signal Hill</div><div class="pk-loc__addr">Signal Hill, CA</div><span class="pk-loc__soon">Coming soon</span></div></div>
+</div></section>
+
+<section class="block alt" id="pkg-related"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Keep exploring</div><h2>Related Pages</h2></div>
+  <div class="pk-rel"><a class="pk-relcard" href="/pages/tire-search"><div class="pk-relcard__img"><img src="{{ 'netlify-packages-source-28-034bf4a424b69993.jpg' | asset_url }}" alt="A mud-terrain tire, tread and sidewall in detail" width="800" height="600" loading="lazy" decoding="async"></div><div class="pk-relcard__body"><h3>Tire search</h3><p>Shop tires on their own, by vehicle or by size.</p><span class="pk-relcard__go">View &rarr;</span></div></a><a class="pk-relcard" href="/pages/wheel-brands"><div class="pk-relcard__img"><img src="{{ 'netlify-packages-source-29-2409b729dc92b3da.jpg' | asset_url }}" alt="A Fuel Off-Road alloy wheel, face on" width="800" height="600" loading="lazy" decoding="async"></div><div class="pk-relcard__body"><h3>Wheel search</h3><p>Browse 70 wheel brands and see them on your vehicle.</p><span class="pk-relcard__go">View &rarr;</span></div></a><a class="pk-relcard" href="/pages/promotions"><div class="pk-relcard__img"><img src="{{ 'netlify-packages-source-30-5f58e1ea47d60ee2.jpg' | asset_url }}" alt="A stack of tires on the shop floor" width="800" height="600" loading="lazy" decoding="async"></div><div class="pk-relcard__body"><h3>Current offers</h3><p>Promotions, manufacturer rebates and printable service coupons.</p><span class="pk-relcard__go">View &rarr;</span></div></a></div>
+</div></section>
+
+<section class="block" id="pkg-faq"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Good to know</div><h2>Package FAQ</h2></div>
+  <div class="faq"><details class="qa" id="qa0" open><summary><span>What is a tire and wheel package?</span><span class="ic" aria-hidden="true">+</span></summary><div class="a"><p>A set of four wheels and four tires specified together for one vehicle, then mounted, balanced and fitted as a single job. Because the wheel and tire are chosen at the same time, the fitment only has to be worked out once.</p></div></details><details class="qa" id="qa1"><summary><span>Is a package cheaper than buying separately?</span><span class="ic" aria-hidden="true">+</span></summary><div class="a"><p>Not automatically. Package-level promotions apply to the set, and the builder quotes the whole set as one figure rather than parts alone &mdash; which is the number worth comparing. Ask your store what that figure includes before comparing it against a parts-only price elsewhere.</p></div></details><details class="qa" id="qa2"><summary><span>Will bigger wheels change how my car drives?</span><span class="ic" aria-hidden="true">+</span></summary><div class="a"><p>Yes. A larger wheel usually means a shorter sidewall, which firms up the ride and makes the steering feel sharper but transmits more road surface. Keeping overall rolling diameter close to stock keeps the speedometer and traction control accurate.</p></div></details><details class="qa" id="qa3"><summary><span>Do I need new TPMS sensors?</span><span class="ic" aria-hidden="true">+</span></summary><div class="a"><p>It depends on the vehicle and the wheels. Some wheels take your existing sensors, others need new ones. An advisor will tell you before the order is placed rather than after.</p></div></details><details class="qa" id="qa4"><summary><span>Can I use my existing tires with new wheels?</span><span class="ic" aria-hidden="true">+</span></summary><div class="a"><p>Sometimes &mdash; if the tire size suits the new wheel width and the tires have enough tread left to be worth remounting. We will measure and tell you honestly whether it is worth it.</p></div></details><details class="qa" id="qa5"><summary><span>How long does fitting take?</span><span class="ic" aria-hidden="true">+</span></summary><div class="a"><p>Packages arrive already mounted and balanced, so the appointment is a wheel swap rather than a build. Call your store for current timings on your vehicle.</p></div></details><details class="qa" id="qa6"><summary><span>Can I finance a package?</span><span class="ic" aria-hidden="true">+</span></summary><div class="a"><p>Yes. Financing with $0 down is available through our financing partner. See the financing page for how it works.</p></div></details><details class="qa" id="qa7"><summary><span>Do you fit packages bought elsewhere?</span><span class="ic" aria-hidden="true">+</span></summary><div class="a"><p>Call the store. It depends on the wheel, the tire and whether we can stand behind the fitment &mdash; an advisor will give you a straight answer.</p></div></details></div>
+</div></section>
+
+<section class="final"><div class="wrap">
+  <h2>Ready to Build a Package?</h2>
+  <p>Pick your store and vehicle, and we will show you what actually fits.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a class="btn btn-red" href="#pkg-widget" onclick="jump('pkg-widget');return false;">Build a package &rarr;</a>
+    <a class="btn btn-outline" href="#pkg-stores" onclick="jump('pkg-stores');return false;">Find a store</a>
+  </div>
+</div></section>
+
+<script>
+const STORES=[
+ {name:"American Tire Stores — Ventura",city:"Ventura",addr:"3059 E Main St",zip:93003,id:52820,ph:"(805) 826-1788",tel:"+18058261788",href:"/pages/location-ventura-ca"},
+ {name:"American Tire Stores — Thousand Oaks",city:"Thousand Oaks",addr:"621 E Thousand Oaks Blvd",zip:91360,id:52819,ph:"(805) 379-1910",tel:"+18053791910",href:"/pages/location-thousand-oaks-ca"},
+ {name:"American Tire Stores — Valencia",city:"Valencia",addr:"23510 Valencia Blvd, Unit A",zip:91355,id:null,ph:"(661) 596-1444",tel:"+16615961444",href:"/pages/location-valencia-ca"},
+ {name:"American Tire Stores — Hollywood",city:"Los Angeles",addr:"1174 N. Western Ave.",zip:90029,id:61758,ph:"(323) 372-9372",tel:"+13233729372",href:"/pages/location-hollywood-ca"},
+ {name:"American Tire Stores — Glendale",city:"Glendale",addr:"737 S Glendale Ave",zip:91205,id:52816,ph:"(818) 243-3191",tel:"+18182433191",href:"/pages/location-glendale-ca"},
+ {name:"American Tire Stores — Glendale 2",city:"Glendale",addr:"1130 S Central Ave",zip:91204,id:52818,ph:"(818) 547-2010",tel:"+18185472010",href:"/pages/location-glendale-ii-ca"},
+ {name:"American Tire Stores — Bellflower",city:"Bellflower",addr:"9509 Alondra Blvd",zip:90706,id:52814,ph:"(562) 804-4737",tel:"+15628044737",href:"/pages/location-bellflower-ca"},
+ {name:"American Tire Stores — Costa Mesa",city:"Costa Mesa",addr:"2049 Harbor Blvd",zip:92627,id:null,ph:"(949) 802-6419",tel:"+19498026419",href:"/pages/location-costa-mesa-ca"},
+ {name:"American Tire Stores — Cathedral City",city:"Cathedral City",addr:"68406 E Palm Canyon Dr",zip:92234,id:52815,ph:"(760) 469-9510",tel:"+17604699510",href:"/pages/location-cathedral-city-ca"}
+];
+const VEH={
+ "2024":{"Toyota":["Camry","RAV4","Corolla","Tacoma"],"Honda":["Civic","CR-V","Accord"],"Ford":["F-150","Explorer","Escape"],"Chevrolet":["Silverado","Equinox","Tahoe"]},
+ "2022":{"Toyota":["Camry","RAV4","Highlander"],"Honda":["Civic","CR-V","Pilot"],"Ford":["F-150","Bronco","Mustang"],"Tesla":["Model 3","Model Y"]},
+ "2020":{"Toyota":["Corolla","RAV4","4Runner"],"Honda":["Accord","CR-V"],"Jeep":["Wrangler","Grand Cherokee"],"Subaru":["Outback","Forester"]},
+ "2018":{"Toyota":["Camry","Tacoma"],"Honda":["Civic","Accord"],"Nissan":["Altima","Rogue"],"Ford":["F-150","Focus"]}
+};
+const $=id=>document.getElementById(id);
+let st={mode:"vehicle",year:"",make:"",model:"",w:"",r:"",d:"",store:null};
+function fillOpts(sel,arr,ph){if(!sel)return;sel.innerHTML='<option value="">'+ph+'</option>';arr.forEach(v=>sel.add(new Option(v,v)));}
+function storeLabel(s){return (s.name.split('— ')[1]||s.name);}
+function fillStores(sel){if(!sel)return;const ph=sel.id==='hstore'?'Choose…':'Select a store';sel.innerHTML='<option value="">'+ph+'</option>';STORES.forEach((s,i)=>sel.add(new Option(storeLabel(s),i)));}
+if($('year'))fillOpts($('year'),Object.keys(VEH),'Year');fillOpts($('hyear'),Object.keys(VEH),'Year');
+fillStores($('store'));fillStores($('hstore'));
+
+/* one source of truth: st -> reflected into hero form AND header fields */
+function syncSel(yId,mkId,mdId){const y=$(yId),mk=$(mkId),md=$(mdId);if(!y)return;
+ y.value=st.year||'';
+ fillOpts(mk,st.year?Object.keys(VEH[st.year]):[],'Make');mk.disabled=!st.year;mk.value=st.make||'';
+ fillOpts(md,(st.year&&st.make)?VEH[st.year][st.make]:[],'Model');md.disabled=!(st.year&&st.make);md.value=st.model||'';}
+function reflectState(){
+ const si=st.store?String(STORES.indexOf(st.store)):'';
+ if($('store'))$('store').value=si; if($('hstore'))$('hstore').value=si;
+ if($('storeStamp')){if(st.store){$('stName').textContent=st.store.name;$('stAddr').textContent=st.store.addr+' · '+st.store.city+', CA';$('storeStamp').classList.add('show');}else $('storeStamp').classList.remove('show');}
+ const sf=$('storeField');if(sf)sf.classList.toggle('set',!!st.store);
+ syncSel('year','make','model');syncSel('hyear','hmake','hmodel');
+ const vv=$('vehVal');if(vv)vv.textContent=(st.make&&st.model)?((st.year?st.year+' ':'')+st.make+' '+st.model):'Not selected…';
+ const vf=$('vehField');if(vf)vf.classList.toggle('set',!!(st.make&&st.model));
+ checkReadyOnly();}
+function checkReadyOnly(){const okV=st.year&&st.make&&st.model&&st.store;const okS=st.w&&st.r&&st.d&&st.store;const b=$('findBtn');if(b)b.disabled=!(st.mode==='vehicle'?okV:okS);}
+
+function switchTab(m){st.mode=m;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===m));$('pane-vehicle').classList.toggle('active',m==='vehicle');$('pane-size').classList.toggle('active',m==='size');checkReadyOnly();}
+/* hero vehicle */
+function onYear(){st.year=$('year').value;st.make='';st.model='';reflectState();}
+function onMake(){st.make=$('make').value;st.model='';reflectState();}
+function onModel(){st.model=$('model').value;reflectState();}
+function onSize(){st.w=$('w').value;st.r=$('r').value;st.d=$('d').value;checkReadyOnly();}
+/* store (hero + header selects share st) */
+function onStore(){st.store=$('store').value!==''?STORES[$('store').value]:null;reflectState();}
+function onHStore(){st.store=$('hstore').value!==''?STORES[$('hstore').value]:null;reflectState();}
+function focusStore(){$('store').focus();}
+/* header vehicle picker */
+function hOnYear(){st.year=$('hyear').value;st.make='';st.model='';reflectState();}
+function hOnMake(){st.make=$('hmake').value;st.model='';reflectState();}
+function hOnModel(){st.model=$('hmodel').value;reflectState();if(st.model)setVehPop(false);}
+function toggleVeh(){setVehPop();}
+function setVehPop(open){const p=$('vehPop');if(!p)return;p.classList.toggle('show',open===undefined?!p.classList.contains('show'):open);}
+
+function findTires(){checkReadyOnly();if($('findBtn').disabled){document.querySelector('.hero').scrollIntoView({behavior:'smooth'});toast("SHOP","Choose your fit + store","pick your vehicle and store above");return;}const loc='changeLocation('+st.store.id+')';if(st.mode==='vehicle')toast("SHOP → TIRECONNECT","searchByVehicle() · "+loc,`${st.year} ${st.make} ${st.model} · ${st.store.name}`);else toast("SHOP → TIRECONNECT","searchBySize() · "+loc,`${st.w}/${st.r}R${st.d} · ${st.store.name}`);}
+function bookService(){tcTab('book',true);loadBook();}
+function toast(b,m,s){$('toastBadge').textContent=b;$('toastMsg').innerHTML=m+(s?`<small>${s}</small>`:"");const t=$('toast');t.classList.add('show');clearTimeout(window._t);window._t=setTimeout(()=>t.classList.remove('show'),3600);}
+
+
+function jump(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'center'});}
+function toggleFaq(i){document.getElementById('qa'+i).classList.toggle('open');}
+function toggleMenu(o){const m=document.getElementById('mobileMenu');m.classList.toggle('show',o===undefined?!m.classList.contains('show'):o);}</script>
+
+<script>
+var PK_BUILD=null;
+/* On-page context only. The universal TireConnect widget exposes no filter API, so the
+   build type cannot be handed to it -- see the DEV note in that section. */
+function pickBuild(key,label){
+  PK_BUILD=key;
+  var art=/^[aeiou]/i.test(label)?'an ':'a ';
+  document.getElementById('pkgCtxLabel').textContent='Building '+art+label+' package';
+  document.getElementById('pkgCtx').hidden=false;
+  jump('pkg-widget');
+}
+function clearBuild(){PK_BUILD=null;document.getElementById('pkgCtx').hidden=true;}
+function loadPkgWidget(){
+  var m=document.getElementById('pkgMount');
+  m.innerHTML='<div class="tc-live"><div class="tc-live__bar">Package builder \u00b7 catalog \u00b7 '
+    +'allowed_products: package</div><div class="tc-live__body">Prototype mount. In production the package '
+    +'widget renders here, configured from <code>page.catalog.json</code>.</div></div>';
+}
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Tire and Wheel Packages","description":"Tire and wheel packages built for your exact vehicle and fitted at one of nine Southern California stores. Mounting, balancing, TPMS reset and torque to spec are included, with $0-down financing available.","url":"https://americantirestores.com/pages/catalog","inLanguage":"en-US","isPartOf":{"@type":"WebSite","name":"American Tire Stores","url":"https://americantirestores.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://americantirestores.com/"},{"@type":"ListItem","position":2,"name":"Tire & Wheel Packages","item":"https://americantirestores.com/pages/catalog"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Package types","itemListElement":[{"@type":"ListItem","position":1,"name":"Off-Road Packages","description":"Load-rated wheels paired with all-terrain or mud-terrain tires, checked for clearance at full lock and full articulation."},{"@type":"ListItem","position":2,"name":"Performance Packages","description":"Lighter wheels and summer or all-season performance tires, matched so unsprung weight and rolling diameter stay where the manufacturer intended."},{"@type":"ListItem","position":3,"name":"Truck Packages","description":"Wheels and tires rated for towing and payload, with the load index confirmed against what your truck is actually asked to carry."},{"@type":"ListItem","position":4,"name":"Daily Driver Packages","description":"A straightforward upgrade in looks or a like-for-like replacement, sized to factory spec so ride and handling stay familiar."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Tire and Wheel Package Fitting","serviceType":"Tire and wheel package supply and fitting","url":"https://americantirestores.com/pages/catalog","provider":{"@type":"AutoRepair","name":"American Tire Stores","url":"https://americantirestores.com"},"areaServed":{"@type":"State","name":"California"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to build a tire and wheel package at American Tire Stores","description":"Choose a store and vehicle, pick a fitting tire and wheel combination, review the out-the-door price, and book the fit.","totalTime":"PT20M","step":[{"@type":"HowToStep","position":1,"name":"Pick your store and vehicle","text":"Fitment depends on the exact year, make, model and trim. Choosing a store at the same time means you are seeing what is available near you."},{"@type":"HowToStep","position":2,"name":"Choose the tire and the wheel","text":"The builder shows the combinations that fit the vehicle you entered, at the fitment levels the store has enabled \u2014 so you cannot build something that will not bolt on."},{"@type":"HowToStep","position":3,"name":"Review the out-the-door price","text":"The builder quotes the set as a single figure, with financing available if you want it. Check what that figure covers at your store before comparing it against parts-only prices elsewhere."},{"@type":"HowToStep","position":4,"name":"Book the fit","text":"Bring the vehicle in. The package is mounted, balanced and torqued to spec, and the TPMS is re-synced before you leave."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a tire and wheel package?","acceptedAnswer":{"@type":"Answer","text":"A set of four wheels and four tires specified together for one vehicle, then mounted, balanced and fitted as a single job. Because the wheel and tire are chosen at the same time, the fitment only has to be worked out once."}},{"@type":"Question","name":"Is a package cheaper than buying separately?","acceptedAnswer":{"@type":"Answer","text":"Not automatically. Package-level promotions apply to the set, and the builder quotes the whole set as one figure rather than parts alone \u2014 which is the number worth comparing. Ask your store what that figure includes before comparing it against a parts-only price elsewhere."}},{"@type":"Question","name":"Will bigger wheels change how my car drives?","acceptedAnswer":{"@type":"Answer","text":"Yes. A larger wheel usually means a shorter sidewall, which firms up the ride and makes the steering feel sharper but transmits more road surface. Keeping overall rolling diameter close to stock keeps the speedometer and traction control accurate."}},{"@type":"Question","name":"Do I need new TPMS sensors?","acceptedAnswer":{"@type":"Answer","text":"It depends on the vehicle and the wheels. Some wheels take your existing sensors, others need new ones. An advisor will tell you before the order is placed rather than after."}},{"@type":"Question","name":"Can I use my existing tires with new wheels?","acceptedAnswer":{"@type":"Answer","text":"Sometimes \u2014 if the tire size suits the new wheel width and the tires have enough tread left to be worth remounting. We will measure and tell you honestly whether it is worth it."}},{"@type":"Question","name":"How long does fitting take?","acceptedAnswer":{"@type":"Answer","text":"Packages arrive already mounted and balanced, so the appointment is a wheel swap rather than a build. Call your store for current timings on your vehicle."}},{"@type":"Question","name":"Can I finance a package?","acceptedAnswer":{"@type":"Answer","text":"Yes. Financing with $0 down is available through our financing partner. See the financing page for how it works."}},{"@type":"Question","name":"Do you fit packages bought elsewhere?","acceptedAnswer":{"@type":"Answer","text":"Call the store. It depends on the wheel, the tire and whether we can stand behind the fitment \u2014 an advisor will give you a straight answer."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoRepair","@id":"https://americantirestores.com/pages/location-ventura-ca#store","name":"American Tire Stores \u2014 Ventura","url":"https://americantirestores.com/pages/location-ventura-ca","telephone":"+18058261788","address":{"@type":"PostalAddress","streetAddress":"3059 E Main St","addressLocality":"Ventura","addressRegion":"CA","postalCode":"93003","addressCountry":"US"},"openingHours":["Mo-Fr 08:00-18:00","Sa 08:00-17:00"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoRepair","@id":"https://americantirestores.com/pages/location-thousand-oaks-ca#store","name":"American Tire Stores \u2014 Thousand Oaks","url":"https://americantirestores.com/pages/location-thousand-oaks-ca","telephone":"+18053791910","address":{"@type":"PostalAddress","streetAddress":"621 E Thousand Oaks Blvd","addressLocality":"Thousand Oaks","addressRegion":"CA","postalCode":"91360","addressCountry":"US"},"openingHours":["Mo-Fr 08:00-18:00","Sa 08:00-17:00"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoRepair","@id":"https://americantirestores.com/pages/location-valencia-ca#store","name":"American Tire Stores \u2014 Valencia","url":"https://americantirestores.com/pages/location-valencia-ca","telephone":"+16615961444","address":{"@type":"PostalAddress","streetAddress":"23510 Valencia Blvd, Unit A","addressLocality":"Valencia","addressRegion":"CA","postalCode":"91355","addressCountry":"US"},"openingHours":["Mo-Fr 08:00-18:00","Sa 08:00-17:00"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoRepair","@id":"https://americantirestores.com/pages/location-hollywood-ca#store","name":"American Tire Stores \u2014 Hollywood","url":"https://americantirestores.com/pages/location-hollywood-ca","telephone":"+13233729372","address":{"@type":"PostalAddress","streetAddress":"1174 N. Western Ave.","addressLocality":"Los Angeles","addressRegion":"CA","postalCode":"90029","addressCountry":"US"},"openingHours":["Mo-Fr 08:00-18:00","Sa 08:00-17:00"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoRepair","@id":"https://americantirestores.com/pages/location-glendale-ca#store","name":"American Tire Stores \u2014 Glendale","url":"https://americantirestores.com/pages/location-glendale-ca","telephone":"+18182433191","address":{"@type":"PostalAddress","streetAddress":"737 S Glendale Ave","addressLocality":"Glendale","addressRegion":"CA","postalCode":"91205","addressCountry":"US"},"openingHours":["Mo-Fr 08:00-18:00","Sa 08:00-17:00"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoRepair","@id":"https://americantirestores.com/pages/location-glendale-ii-ca#store","name":"American Tire Stores \u2014 Glendale 2","url":"https://americantirestores.com/pages/location-glendale-ii-ca","telephone":"+18185472010","address":{"@type":"PostalAddress","streetAddress":"1130 S Central Ave","addressLocality":"Glendale","addressRegion":"CA","postalCode":"91204","addressCountry":"US"},"openingHours":["Mo-Fr 08:00-18:00","Sa 08:00-17:00"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoRepair","@id":"https://americantirestores.com/pages/location-bellflower-ca#store","name":"American Tire Stores \u2014 Bellflower","url":"https://americantirestores.com/pages/location-bellflower-ca","telephone":"+15628044737","address":{"@type":"PostalAddress","streetAddress":"9509 Alondra Blvd","addressLocality":"Bellflower","addressRegion":"CA","postalCode":"90706","addressCountry":"US"},"openingHours":["Mo-Fr 08:00-18:00","Sa 08:00-17:00"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoRepair","@id":"https://americantirestores.com/pages/location-costa-mesa-ca#store","name":"American Tire Stores \u2014 Costa Mesa","url":"https://americantirestores.com/pages/location-costa-mesa-ca","telephone":"+19498026419","address":{"@type":"PostalAddress","streetAddress":"2049 Harbor Blvd","addressLocality":"Costa Mesa","addressRegion":"CA","postalCode":"92627","addressCountry":"US"},"openingHours":["Mo-Fr 08:00-18:00","Sa 08:00-17:00"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoRepair","@id":"https://americantirestores.com/pages/location-cathedral-city-ca#store","name":"American Tire Stores \u2014 Cathedral City","url":"https://americantirestores.com/pages/location-cathedral-city-ca","telephone":"+17604699510","address":{"@type":"PostalAddress","streetAddress":"68406 E Palm Canyon Dr","addressLocality":"Cathedral City","addressRegion":"CA","postalCode":"92234","addressCountry":"US"},"openingHours":["Mo-Fr 08:00-18:00","Sa 08:00-17:00"]}</script>
+<style>/* ===== packages brand rail - appended at end of document on purpose:
+   this page keeps its own styles in the BODY, so a <head> block would lose ===== */
+#pkg-brands .brand-rail-wrap{position:relative;max-width:1120px;margin:0 auto}
+#pkg-brands .brand-rail{display:grid;grid-auto-flow:column;grid-template-rows:repeat(4,1fr);
+  grid-auto-columns:calc((100% - 4*14px)/5);gap:14px;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 6px}
+#pkg-brands .brand-rail::-webkit-scrollbar{display:none}
+#pkg-brands .brand-rail>*{scroll-snap-align:start}
+#pkg-brands .brand-rail:focus-visible{outline:2px solid var(--red);outline-offset:4px;border-radius:12px}
+/* the page already carries an unused .blogo rule (aspect-ratio:170/70; display:grid).
+   every property it sets is restated here so the rail is not at its mercy. */
+#pkg-brands .brand-rail .blogo{aspect-ratio:auto;width:auto;height:92px;position:relative;
+  background:#fff;border:1.5px solid var(--line);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:12px;gap:0;box-sizing:border-box;cursor:default;transition:none}
+#pkg-brands .brand-rail .blogo:hover{border-color:var(--line);box-shadow:none;transform:none;background:#fff}
+#pkg-brands .brand-rail .blogo-img{max-width:100%;max-height:54px;width:auto;height:auto;object-fit:contain}
+#pkg-brands .bword{font-family:'Akira Expanded','Archivo',sans-serif;font-weight:700;font-size:13px;
+  line-height:1.25;color:var(--brand);text-align:center;letter-spacing:-.01em;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#pkg-brands .brail-nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;z-index:2;
+  border-radius:50%;background:#fff;border:1.5px solid var(--line);display:flex;align-items:center;
+  justify-content:center;box-shadow:0 8px 20px -10px rgba(12,30,58,.45);transition:.14s;cursor:pointer}
+#pkg-brands .brail-nav svg{width:20px;height:20px;fill:none;stroke:var(--brand);stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round}
+#pkg-brands .brail-nav:hover:not(:disabled){background:var(--brand);border-color:var(--brand)}
+#pkg-brands .brail-nav:hover:not(:disabled) svg{stroke:#fff}
+#pkg-brands .brail-nav:disabled{opacity:0;pointer-events:none}
+#pkg-brands .brail-nav.prev{left:-19px}#pkg-brands .brail-nav.next{right:-19px}
+#pkg-brands .brand-dots{display:flex;gap:7px;justify-content:center;margin-top:18px}
+#pkg-brands .bdot{width:8px;height:8px;border-radius:50%;background:#cfd8e6;border:0;padding:0;
+  transition:.16s;cursor:pointer}
+#pkg-brands .bdot.on{background:var(--red);width:22px;border-radius:5px}
+#pkg-brands .brand-prog{position:relative;height:4px;border-radius:2px;background:#dbe2ed;max-width:190px;
+  margin:18px auto 0;display:block}
+#pkg-brands .bprog-thumb{position:absolute;top:0;bottom:0;background:var(--red);border-radius:2px;
+  transition:left .12s linear,width .12s linear}
+#pkg-brands .brand-all{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+#pkg-brands .brand-all .pill{text-decoration:none;display:inline-flex;align-items:center}
+#pkg-brands .dev-note{margin-top:26px}
+@media(max-width:1180px){#pkg-brands .brail-nav.prev{left:4px}#pkg-brands .brail-nav.next{right:4px}}
+@media(max-width:1000px){#pkg-brands .brand-rail{grid-auto-columns:calc((100% - 3*14px)/4)}}
+@media(max-width:820px){#pkg-brands .brand-rail{grid-auto-columns:calc((100% - 2*12px)/3);gap:12px}}
+@media(max-width:560px){#pkg-brands .brand-rail{grid-auto-columns:calc((100% - 10px)/2);gap:10px}
+  #pkg-brands .brand-rail .blogo{height:84px;padding:10px}
+  #pkg-brands .brand-rail .blogo-img{max-height:46px}}
+@media(prefers-reduced-motion:reduce){#pkg-brands .brand-rail{scroll-behavior:auto}}</style>
+<script>
+const TIRE_LOGOS={"Michelin": "{{ 'netlify-packages-source-32-70a10ec86be35434.png' | asset_url }}", "Goodyear": "{{ 'netlify-packages-source-33-281a744e9843f703.png' | asset_url }}", "Continental": "{{ 'netlify-packages-source-34-b122628c246f9a86.png' | asset_url }}", "Pirelli": "{{ 'netlify-packages-source-35-b574af5cb4881025.png' | asset_url }}", "Falken": "{{ 'netlify-packages-source-36-9dd6b15940b39aa9.png' | asset_url }}", "Hankook": "{{ 'netlify-packages-source-37-8565b322d8b82311.png' | asset_url }}", "Yokohama": "{{ 'netlify-packages-source-38-0dabda2247bac748.png' | asset_url }}", "Nitto": "{{ 'netlify-packages-source-39-1001c4893482617b.png' | asset_url }}", "Kumho": "{{ 'netlify-packages-source-40-13d3bd4c4f2de798.png' | asset_url }}", "General": "{{ 'netlify-packages-source-41-a1d495ccc2bc855d.png' | asset_url }}", "Nexen": "{{ 'netlify-packages-source-42-05576754ee0d988c.png' | asset_url }}", "Sumitomo": "{{ 'netlify-packages-source-43-1efb8c9d89ab673d.png' | asset_url }}", "Kelly": "{{ 'netlify-packages-source-44-6a968639c8f3160f.png' | asset_url }}", "Atturo": "{{ 'netlify-packages-source-45-c565cd157a868af5.png' | asset_url }}", "Arroyo": "{{ 'netlify-packages-source-46-93793c577e312168.png' | asset_url }}", "Lionhart": "{{ 'netlify-packages-source-47-96275c6030c19789.png' | asset_url }}", "Lexani": "{{ 'netlify-packages-source-48-2760a9c705cc70cd.png' | asset_url }}", "Hercules": "{{ 'netlify-packages-source-49-b35b8d59db907941.png' | asset_url }}", "Ironman": "{{ 'netlify-packages-source-50-d584ef6e64346e33.png' | asset_url }}", "Gladiator": "{{ 'netlify-packages-source-51-e1dde418889236d7.png' | asset_url }}", "AMP": "{{ 'netlify-packages-source-52-2b163bce15316b30.png' | asset_url }}", "Zestino": "{{ 'netlify-packages-source-53-cee8749750c2a73b.png' | asset_url }}"};
+/* brand rail: every brand ATS carries, logo where we have one, wordmark where we don't */
+const ALL_BRANDS=[["Advanti Racing", "wheel"], ["Allied", "wheel"], ["Allied - Pacer", "wheel"], ["American Racing", "wheel"], ["American Replica Wheel", "wheel"], ["American Truxx", "wheel"], ["Americus", "tire"], ["AMP", "tire"], ["Arroyo", "tire"], ["Asanti", "wheel"], ["Atturo", "tire"], ["BFGoodrich", "tire"], ["Black Rhino", "wheel"], ["Black Rock", "wheel"], ["Boyd Coddington", "wheel"], ["Cali Off-Road", "wheel"], ["Carlisle", "tire"], ["Castle Rock", "tire"], ["Centerline", "wheel"], ["Continental", "tire"], ["Cooper", "tire"], ["Cragar", "wheel"], ["Cray", "wheel"], ["Cruiser Alloy", "wheel"], ["Deegan 38", "wheel"], ["Dick Cepek", "tire"], ["Dolce Luxury", "wheel"], ["Dolce Performance", "wheel"], ["Drifz", "wheel"], ["Dropstars", "wheel"], ["Dropstars Trail Series", "wheel"], ["DUB", "wheel"], ["Dunlop", "tire"], ["Dynatrac", "tire"], ["Edge Off Road", "wheel"], ["Edge Street", "wheel"], ["Falken", "tire"], ["Focal", "wheel"], ["Foose", "wheel"], ["Forceland", "tire"], ["Fuel Off-Road", "wheel"], ["Gear Alloy", "wheel"], ["Gear Off Road", "wheel"], ["General", "tire"], ["Gladiator", "tire"], ["Goodyear", "tire"], ["Hankook", "tire"], ["Helo", "wheel"], ["Ion", "wheel"], ["Ironman", "tire"], ["Katana", "wheel"], ["Kelly", "tire"], ["KMC", "wheel"], ["Konig", "wheel"], ["Kraze", "wheel"], ["Kumho", "tire"], ["Level 8", "wheel"], ["Lexani", "tire"], ["Lionhart", "tire"], ["Lock Offroad", "wheel"], ["Mamba", "wheel"], ["Mastercraft", "tire"], ["Mastertrack", "tire"], ["Maxxim", "wheel"], ["Mayhem", "wheel"], ["Mazzi", "wheel"], ["Method Race Wheels", "wheel"], ["Michelin", "tire"], ["Mickey Thompson", "tire"], ["Motegi Racing", "wheel"], ["Motiv", "wheel"], ["Moto Metal", "wheel"], ["MSA Off-Road", "wheel"], ["Nexen", "tire"], ["Niche", "wheel"], ["Nitto", "tire"], ["OE Performance", "wheel"], ["OEP", "wheel"], ["Ohm", "wheel"], ["Pacer", "wheel"], ["Pacer Trailer", "wheel"], ["Performance Replicas", "wheel"], ["Petrol", "wheel"], ["Pirelli", "tire"], ["Platinum", "wheel"], ["Pro Comp", "wheel"], ["RBP", "tire"], ["Ridler", "wheel"], ["Roadmaster", "tire"], ["Rotiform", "wheel"], ["SOTA Offroad", "wheel"], ["Status", "wheel"], ["Sumitomo", "tire"], ["TIS", "wheel"], ["TIS Motorsports", "wheel"], ["Touren", "wheel"], ["TSW", "wheel"], ["Ultra", "wheel"], ["Uniroyal", "tire"], ["US Mags", "wheel"], ["Victor Equipment", "wheel"], ["Vision Wheel", "wheel"], ["Worx", "wheel"], ["XD", "wheel"], ["Yokohama", "tire"], ["Zestino", "tire"]];
+const BRAND_LOGOS=Object.assign({},TIRE_LOGOS,{"Vision Wheel": "{{ 'netlify-packages-source-54-a1964e06b3e348c6.png' | asset_url }}", "Uniroyal": "{{ 'netlify-packages-source-55-a67f79a4bc4fee0b.png' | asset_url }}", "Roadmaster": "{{ 'netlify-packages-source-56-0425ccdde7c6830d.png' | asset_url }}", "RBP": "{{ 'netlify-packages-source-57-29f32ed4b2a09c70.png' | asset_url }}", "Mickey Thompson": "{{ 'netlify-packages-source-58-76df71cedf3fae93.png' | asset_url }}", "Mastertrack": "{{ 'netlify-packages-source-59-43fe8115d002f386.png' | asset_url }}", "Mastercraft": "{{ 'netlify-packages-source-60-c42a6987df5c47bd.png' | asset_url }}", "Ironman": "{{ 'netlify-packages-source-61-36f845ffe41cccc2.png' | asset_url }}", "Gladiator": "{{ 'netlify-packages-source-62-8b51da07ad7d2805.png' | asset_url }}", "Forceland": "{{ 'netlify-packages-source-63-e5bc2a91aaf2e189.png' | asset_url }}", "Falken": "{{ 'netlify-packages-source-64-39be5b8d97382894.png' | asset_url }}", "Dynatrac": "{{ 'netlify-packages-source-65-18be938919b882d8.png' | asset_url }}", "Dunlop": "{{ 'netlify-packages-source-66-7aed353e5c846cac.png' | asset_url }}", "Dick Cepek": "{{ 'netlify-packages-source-67-f027fd96626a6ed4.png' | asset_url }}", "Cooper": "{{ 'netlify-packages-source-68-1a5bfa237676c1b0.png' | asset_url }}", "Continental": "{{ 'netlify-packages-source-69-09fed1f53cc2b30f.png' | asset_url }}", "Americus": "{{ 'netlify-packages-source-70-361a3ed604cccfb7.png' | asset_url }}", "BFGoodrich": "{{ 'netlify-packages-source-71-74d839a9eb065f0c.png' | asset_url }}", "Carlisle": "{{ 'netlify-packages-source-72-66cd6a9ce66fe531.png' | asset_url }}", "Castle Rock": "{{ 'netlify-packages-source-73-d8193b6b29fd7f10.png' | asset_url }}", "XD": "{{ 'netlify-packages-source-74-7c90d2042ae3bd7f.png' | asset_url }}", "Victor Equipment": "{{ 'netlify-packages-source-75-ed400a72771977f1.png' | asset_url }}", "US Mags": "{{ 'netlify-packages-source-76-ebc9113bbf94876d.png' | asset_url }}", "TSW": "{{ 'netlify-packages-source-77-015ff37253c6c6a8.png' | asset_url }}", "Touren": "{{ 'netlify-packages-source-78-a79b9a590a2c898e.png' | asset_url }}", "Status": "{{ 'netlify-packages-source-79-3727fe768478768f.png' | asset_url }}", "Rotiform": "{{ 'netlify-packages-source-80-43fcaa6d11ac46db.png' | asset_url }}", "Ridler": "{{ 'netlify-packages-source-81-692c19bb5f1416ac.png' | asset_url }}", "Pro Comp": "{{ 'netlify-packages-source-82-b3ffae09cf44df29.png' | asset_url }}", "Petrol": "{{ 'netlify-packages-source-83-bf535fe032e7dc34.png' | asset_url }}", "Performance Replicas": "{{ 'netlify-packages-source-84-8bb2d214dea34c80.png' | asset_url }}", "Ohm": "{{ 'netlify-packages-source-85-ddead8961a529bb0.png' | asset_url }}", "Niche": "{{ 'netlify-packages-source-86-5d100dbf1b44d796.png' | asset_url }}", "Mazzi": "{{ 'netlify-packages-source-87-e026c780262d0db1.png' | asset_url }}", "Mayhem": "{{ 'netlify-packages-source-88-35563a800c279e94.png' | asset_url }}", "Kraze": "{{ 'netlify-packages-source-89-2e89abc4c5e7c36f.png' | asset_url }}", "American Racing": "{{ 'netlify-packages-source-90-150c4d6e216813ce.png' | asset_url }}", "Asanti": "{{ 'netlify-packages-source-91-9bc0a01b33c11eed.png' | asset_url }}", "Black Rhino": "{{ 'netlify-packages-source-92-125588ca90fbbcc3.png' | asset_url }}", "Cray": "{{ 'netlify-packages-source-93-fad7ff9982c08cbf.png' | asset_url }}", "Dolce Luxury": "{{ 'netlify-packages-source-94-a9c00ed9344e01ba.png' | asset_url }}", "Dolce Performance": "{{ 'netlify-packages-source-95-96c2c60127cf11ed.png' | asset_url }}", "DUB": "{{ 'netlify-packages-source-96-bf43e1f5731462a5.png' | asset_url }}", "Foose": "{{ 'netlify-packages-source-97-bc8c496da4141d7a.png' | asset_url }}", "Fuel Off-Road": "{{ 'netlify-packages-source-98-3248d37a030d7246.png' | asset_url }}", "Helo": "{{ 'netlify-packages-source-99-fc27011d36a781a1.png' | asset_url }}", "Katana": "{{ 'netlify-packages-source-100-4cf819c75e907480.png' | asset_url }}", "KMC": "{{ 'netlify-packages-source-101-086f063a3e323792.png' | asset_url }}", "Level 8": "{{ 'netlify-packages-source-102-23b1423a41076db3.png' | asset_url }}", "Lock Offroad": "{{ 'netlify-packages-source-103-e1a10017e82d43ee.png' | asset_url }}", "Motegi Racing": "{{ 'netlify-packages-source-104-a853be1b64a925b1.png' | asset_url }}", "Moto Metal": "{{ 'netlify-packages-source-105-a9b551470a5817eb.png' | asset_url }}", "Cruiser Alloy": "{{ 'netlify-packages-source-106-78615cce5f162afe.png' | asset_url }}", "Cragar": "{{ 'netlify-packages-source-107-9bde7f1668f12b00.png' | asset_url }}", "Centerline": "{{ 'netlify-packages-source-108-0b18ad8cb0d00c51.png' | asset_url }}", "Boyd Coddington": "{{ 'netlify-packages-source-109-2c1443e46d6501bd.png' | asset_url }}", "Black Rock": "{{ 'netlify-packages-source-110-80d47e2f6bb8597d.png' | asset_url }}", "Allied": "{{ 'netlify-packages-source-111-1c1beb5b30b14488.png' | asset_url }}", "Advanti Racing": "{{ 'netlify-packages-source-112-de3bd72eac72f64a.png' | asset_url }}", "Deegan 38": "{{ 'netlify-packages-source-113-619a55328e73f2ed.png' | asset_url }}", "American Truxx": "{{ 'netlify-packages-source-114-b7252fd07c03ace4.png' | asset_url }}", "Cali Off-Road": "{{ 'netlify-packages-source-115-6cd9b3faa80c1e01.png' | asset_url }}", "Ion": "{{ 'netlify-packages-source-116-3e0156a8c13a58ec.png' | asset_url }}", "TIS": "{{ 'netlify-packages-source-117-ae3c925fcbfc9553.png' | asset_url }}", "Ultra": "{{ 'netlify-packages-source-118-29340abcd2d2643d.png' | asset_url }}", "Worx": "{{ 'netlify-packages-source-119-0eef7a802e819c8f.png' | asset_url }}", "Allied - Pacer": "{{ 'netlify-packages-source-120-02a07b07ba6ee0b0.png' | asset_url }}", "Pacer": "{{ 'netlify-packages-source-121-79d56d2d9ebd4ac8.png' | asset_url }}", "Drifz": "{{ 'netlify-packages-source-122-f4a30be28ad7ee2a.png' | asset_url }}", "Dropstars": "{{ 'netlify-packages-source-123-68fc5c362e4acf69.png' | asset_url }}", "Edge Off Road": "{{ 'netlify-packages-source-124-b193239f6692476c.png' | asset_url }}", "Edge Street": "{{ 'netlify-packages-source-125-734834e58c60679c.png' | asset_url }}", "Focal": "{{ 'netlify-packages-source-126-31a67b566a2e70a4.png' | asset_url }}", "Gear Alloy": "{{ 'netlify-packages-source-127-1f8f61e263cf248d.png' | asset_url }}", "Gear Off Road": "{{ 'netlify-packages-source-128-c3e05a8ffb2feb70.png' | asset_url }}", "Konig": "{{ 'netlify-packages-source-129-9d50ec11069ac4d0.png' | asset_url }}", "Mamba": "{{ 'netlify-packages-source-130-d17a5e0a00b4c853.png' | asset_url }}", "Maxxim": "{{ 'netlify-packages-source-131-6c4309160eeb4395.png' | asset_url }}", "Method Race Wheels": "{{ 'netlify-packages-source-132-80c20df664148f30.png' | asset_url }}", "Motiv": "{{ 'netlify-packages-source-133-af90081692b1041d.png' | asset_url }}", "OE Performance": "{{ 'netlify-packages-source-134-6c0a6607b62e48c9.png' | asset_url }}", "Platinum": "{{ 'netlify-packages-source-135-e1820b930e88949f.png' | asset_url }}", "SOTA Offroad": "{{ 'netlify-packages-source-136-b68f474c749d22ab.png' | asset_url }}", "TIS Motorsports": "{{ 'netlify-packages-source-137-b1236ad8ce2dda4f.png' | asset_url }}", "Dropstars Trail Series": "{{ 'netlify-packages-source-138-1190dc7e17f38f38.png' | asset_url }}", "OEP": "{{ 'netlify-packages-source-139-0cb0b7dfa034e53a.png' | asset_url }}", "American Replica Wheel": "{{ 'netlify-packages-source-140-949fb96816511caa.png' | asset_url }}", "MSA Off-Road": "{{ 'netlify-packages-source-141-aa81b924850f1aed.png' | asset_url }}", "Pacer Trailer": "{{ 'netlify-packages-source-142-969046324ae2790e.png' | asset_url }}"});
+
+(function(){
+  var rail=document.getElementById('pkgBrandRail'); if(!rail) return;
+  var prev=document.getElementById('pkgBrandPrev'), next=document.getElementById('pkgBrandNext');
+  var dots=document.getElementById('pkgBrandDots');
+  var esc=function(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');};
+  rail.innerHTML=ALL_BRANDS.map(function(b){
+    var name=b[0], kind=b[1], logo=BRAND_LOGOS[name];
+    var label=name+' '+(kind==='tire'?'tires':'wheels');
+    var inner=logo
+      ? '<img class="blogo-img" src="'+logo+'" alt="'+esc(label)+'" loading="lazy" decoding="async">'
+      : '<span class="bword">'+esc(name)+'</span>';
+    return '<div class="blogo" role="listitem" aria-label="'+esc(label)+'">'+inner+'</div>';
+  }).join('');
+  var page=0, mode='';
+  function pages(){return Math.max(1,Math.ceil(rail.scrollWidth/rail.clientWidth));}
+  function paint(){
+    if(rail.clientWidth===0) return;
+    var n=pages(); page=Math.round(rail.scrollLeft/rail.clientWidth);
+    var want=n>8?'bar':'dots';
+    if(mode!==want||(want==='dots'&&dots.children.length!==n)){
+      mode=want;
+      dots.className=want==='bar'?'brand-prog':'brand-dots';
+      if(want==='bar'){dots.innerHTML='<span class="bprog-thumb"></span>';}
+      else{
+        dots.innerHTML=Array.from({length:n},function(_,i){
+          return '<button class="bdot" type="button" aria-label="Brand page '+(i+1)+' of '+n+'"></button>';}).join('');
+        Array.prototype.forEach.call(dots.children,function(d,i){
+          d.onclick=function(){rail.scrollTo({left:i*rail.clientWidth,behavior:'smooth'});};});
+      }
+    }
+    if(mode==='bar'){
+      var th=dots.firstChild, frac=rail.clientWidth/rail.scrollWidth;
+      th.style.width=Math.max(12,frac*100)+'%';
+      th.style.left=(rail.scrollLeft/rail.scrollWidth)*100+'%';
+      dots.setAttribute('aria-label','Brand page '+(page+1)+' of '+n);
+    } else {
+      Array.prototype.forEach.call(dots.children,function(d,i){
+        d.classList.toggle('on',i===page); d.setAttribute('aria-current',i===page?'true':'false');});
+    }
+    prev.disabled=rail.scrollLeft<8;
+    next.disabled=rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-8;
+  }
+  function step(dir){rail.scrollBy({left:dir*rail.clientWidth,behavior:'smooth'});}
+  prev.onclick=function(){step(-1);};
+  next.onclick=function(){step(1);};
+  rail.addEventListener('scroll',paint,{passive:true});
+  window.addEventListener('resize',paint);
+  paint();
+})();
+</script>
+<style>/* ===== packages hero art - appended at end of document on purpose:
+   this page keeps its own styles in the BODY, so a <head> block would lose.
+   The four build cards need no CSS here: they use the page's existing
+   .pk-card__img contract, scrim included. ===== */
+.pk-hero.pk-hero--photo{position:relative;overflow:hidden;background:var(--brand);
+  padding:clamp(56px,7vw,92px) 0}
+.pk-hero.pk-hero--photo::before{content:"";position:absolute;inset:0;z-index:0;
+  background-image:url("{{ 'netlify-packages-source-143-5325c5d1775874eb.jpg' | asset_url }}");background-size:cover;background-position:center right;
+  background-repeat:no-repeat}
+/* scrim: near-opaque navy where the copy sits, clearing toward the wheel and tire
+   on the right. keeps the h1 and lead legible without flattening the photograph. */
+.pk-hero.pk-hero--photo::after{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(100deg,
+    rgba(11,32,66,.96) 0%, rgba(11,32,66,.93) 34%,
+    rgba(11,32,66,.74) 52%, rgba(11,32,66,.30) 74%, rgba(11,32,66,.12) 100%)}
+.pk-hero.pk-hero--photo .wrap{position:relative;z-index:1;display:block}
+.pk-hero.pk-hero--photo .pk-hero__copy{max-width:600px}
+.pk-hero.pk-hero--photo h1{text-shadow:0 2px 18px rgba(4,14,32,.5)}
+.pk-hero.pk-hero--photo .lead{text-shadow:0 1px 12px rgba(4,14,32,.5)}
+@media(max-width:900px){
+  .pk-hero.pk-hero--photo::before{background-position:center}
+  .pk-hero.pk-hero--photo::after{background:linear-gradient(175deg,
+    rgba(11,32,66,.94) 0%, rgba(11,32,66,.90) 55%, rgba(11,32,66,.84) 100%)}
+  .pk-hero.pk-hero--photo .pk-hero__copy{max-width:none}
+}
+@media(prefers-reduced-motion:no-preference){
+  .pk-hero.pk-hero--photo::before{will-change:auto}
+}</style>
+<style>/* shared includes-grid icon sizing - present on tire/wheel search, was missing here. appended at end of document: this page styles from the BODY. */
+.incl-card .ic-ic img{width:34px;height:34px;object-fit:contain;display:block}</style>
+</div>
+
+<style>
+.ats-netlify-port .tpl-note,.ats-netlify-port .dev-note{display:none!important}
+.ats-netlify-port #pkgMount{max-width:1120px!important;min-height:360px!important;padding:32px!important}
+</style>
+<script>
+/* Keep the supplied Packages page, but mount the live TireConnect package
+   catalog immediately in place of its reference-only placeholder. */
+(function(){
+  var mount=document.getElementById('pkgMount');
+  var widgetScript;
+  if(!mount)return;
+  function selectedStore(){
+    try{
+      if(typeof st!=='undefined'&&st.store)return st.store;
+      var id=localStorage.getItem('atsTireConnectLocationId');
+      return id?{id:id}:null;
+    }catch(e){return null;}
+  }
+  function renderWidget(){
+    var store=selectedStore();
+    var locationId=store&&(store.id||store.locationId||store.location_id);
+    var config={
+      apikey:'c097aed9ad8c441bfff05ae020ca53f0',apiKey:'c097aed9ad8c441bfff05ae020ca53f0',
+      container:'pkgMount',locale:'en_US',allowed_products:['package'],product_type:'package',
+      locationId:locationId||undefined,location_id:locationId||undefined,
+      location_lock:!!locationId,locationLock:!!locationId,
+      redirect_url:location.pathname,catalog_url:location.pathname
+    };
+    mount.innerHTML='';
+    try{window.TCWidget.init(config);}catch(error){
+      mount.innerHTML='<div class="tc-live"><div class="tc-live__body">The live package builder could not start. Please refresh and try again.</div></div>';
+    }
+  }
+  function ensureWidget(){
+    if(window.TCWidget&&typeof window.TCWidget.init==='function'){renderWidget();return;}
+    if(widgetScript)return;
+    widgetScript=document.createElement('script');
+    widgetScript.src='https://app.tireconnect.ca/js/widget.js';
+    widgetScript.async=true;
+    widgetScript.onload=renderWidget;
+    widgetScript.onerror=function(){mount.innerHTML='<div class="tc-live"><div class="tc-live__body">The live package builder is temporarily unavailable. Please refresh and try again.</div></div>';};
+    document.head.appendChild(widgetScript);
+  }
+  window.loadPkgWidget=ensureWidget;
+  window.setTimeout(ensureWidget,0);
+})();
+</script>
+
+{% schema %}
+{ "name": "Netlify page port", "settings": [] }
+{% endschema %}
