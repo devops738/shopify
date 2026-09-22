@@ -1,254 +1,819 @@
+{% comment %} Generated from the supplied Netlify export. Keep source assets in /assets. {% endcomment %}
 <style>
-.ats-locations{font-family:'Montserrat',system-ui,sans-serif;color:#122240;background:#fff;overflow-x:hidden}
-.ats-locations *{box-sizing:border-box}
-.ats-locations a{color:inherit}
-.ats-locations .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
-.ats-locations .promo{background:#c51f28;color:#fff;font-size:13px;font-weight:700}
-.ats-locations .promo .wrap{height:38px;display:flex;align-items:center;justify-content:center;gap:14px;max-width:none}
-.ats-locations .promo a{font-weight:900;text-decoration:underline;text-underline-offset:3px}
-.ats-locations header{position:sticky;top:0;z-index:40;background:#fff}
-.ats-locations .hbar-brand{border-bottom:1px solid #dde2ea;background:#fff}
-.ats-locations .hbar-brand .wrap{height:78px;display:flex;align-items:center;gap:20px}
-.ats-locations .logo{display:inline-flex;align-items:center;text-decoration:none}
-.ats-locations .logo img{height:42px;width:auto;display:block}
-.ats-locations .brand-right{margin-left:auto;display:flex;align-items:center;gap:12px;position:relative}
-.ats-locations .hbar-nav{border-bottom:1px solid #dde2ea;background:#fff}
-.ats-locations .mainnav{height:50px;display:flex;align-items:center;justify-content:center;gap:26px;overflow-x:auto}
-.ats-locations .mainnav a{font-size:14px;font-weight:800;white-space:nowrap;color:#081a33;text-decoration:none}
-.ats-locations .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:8px;font-family:'Montserrat',system-ui,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.02em;text-decoration:none;cursor:pointer;border:0}
-.ats-locations .btn-red{background:#c51f28;color:#fff;padding:0 22px;height:50px;box-shadow:0 4px 0 #86121a}
-.ats-locations .btn-ghost{border:2px solid #13315f;color:#13315f;padding:0 22px;height:50px;background:#fff}
-.ats-locations .appt-btn{height:auto;min-height:50px;padding:8px 18px;line-height:1.08;text-align:center;font-size:12px}
-.ats-locations .hgarage{display:flex;align-items:stretch;border:1.5px solid #dde2ea;border-radius:10px;background:#fff;position:relative}
-.ats-locations .hg-field{display:flex;align-items:center;gap:10px;padding:7px 14px;background:none;text-align:left;cursor:pointer;min-width:158px;border:0}
-.ats-locations .hg-ic img{width:34px;height:34px;object-fit:contain;display:block}
-.ats-locations .hg-txt{display:flex;flex-direction:column;line-height:1.2}
-.ats-locations .hg-txt small{font-size:9px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#13315f}
-.ats-locations .hg-txt b{font-size:12.5px;font-weight:700;color:#9aa3b2}
-.ats-locations .hg-field.set .hg-txt b{color:#122240}
-.ats-locations .hg-store select{border:0;background:none;font-family:'Montserrat';font-size:12.5px;font-weight:700;color:#9aa3b2;max-width:160px;appearance:none}
-.ats-locations .hg-store.set select{color:#122240}
-.ats-locations .hg-sep{width:1px;background:#dde2ea;margin:9px 0}
-.ats-locations .veh-pop{position:absolute;top:calc(100% + 12px);right:0;width:min(300px,calc(100vw - 32px));background:#fff;border:1px solid #dde2ea;border-radius:12px;box-shadow:0 26px 64px -20px rgba(0,0,0,.4);padding:16px;z-index:60;display:none}
-.ats-locations .veh-pop.show{display:block}
-.ats-locations .gp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
-.ats-locations .veh-pop select{width:100%;height:42px;border:1.5px solid #dde2ea;border-radius:6px;padding:0 10px;font-size:14px;background:#fff}
-.ats-locations .veh-pop select:disabled{background:#f4f6fa;color:#a7adba}
-.ats-locations .nav-toggle{display:none;width:44px;height:44px;border:1.5px solid #dde2ea;border-radius:8px;flex-direction:column;gap:4px;align-items:center;justify-content:center;background:#fff}
-.ats-locations .nav-toggle span{width:20px;height:2px;background:#13315f}
-.ats-locations .mobile-menu{display:none;position:fixed;inset:0;z-index:120;background:rgba(12,30,58,.5)}
-.ats-locations .mobile-menu.show{display:block}
-.ats-locations .mm-panel{position:absolute;top:0;right:0;width:min(320px,86vw);height:100%;background:#fff;padding:26px 24px;box-shadow:-20px 0 60px -20px rgba(0,0,0,.4)}
-.ats-locations .mm-panel a{display:block;padding:15px 0;font-weight:900;font-size:17px;color:#13315f;border-bottom:1px solid #dde2ea;text-transform:uppercase;text-decoration:none}
-.ats-locations .mm-close{position:absolute;top:14px;right:16px;font-size:28px;color:#54617a;background:none;border:0}
-.ats-locations .crumbs{background:#fff;border-bottom:1px solid #dde2ea}
-.ats-locations .crumbs .wrap{height:40px;display:flex;align-items:center;font-size:12px;color:#7a879d}
-.ats-locations .crumbs a{color:#13315f;font-weight:800;text-decoration:none}
-.ats-locations .crumbs span{margin:0 8px;color:#b3bed3}
-.ats-locations h1,.ats-locations h2,.ats-locations h3{font-family:'Akira Expanded','Archivo',sans-serif;text-transform:uppercase;line-height:1.08;margin:0;letter-spacing:.005em}
-.ats-locations .loc-hero-v2{position:relative;min-height:520px;display:flex;align-items:center;background:linear-gradient(rgba(8,22,47,.82),rgba(8,22,47,.88)),url({{ 'ats-locations-inline-04.jpg' | asset_url }}) center/cover;color:#fff;text-align:center;overflow:hidden}
-.ats-locations .loc-hero-v2 .wrap{position:relative;z-index:2;max-width:920px;padding-top:64px;padding-bottom:60px}
-.ats-locations .loc-hero-v2 .eyebrow{display:block;color:#f0303b;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.18em;margin:0 auto 13px}
-.ats-locations .loc-hero-v2 h1{color:#fff;font-size:clamp(30px,3.7vw,50px);font-weight:900;line-height:1.08;text-wrap:balance}
-.ats-locations .loc-hero-v2 p{max-width:760px;margin:18px auto 20px;color:#c3d0e8;font-size:15.5px;line-height:1.58}
-.ats-locations .hero-checks{display:flex;justify-content:center;align-items:center;gap:13px 24px;flex-wrap:wrap;margin:0 auto 10px;max-width:760px;color:#eaf0fb;font-size:13.5px;font-weight:800}
-.ats-locations .hero-checks span{display:inline-flex;align-items:center;gap:7px}
-.ats-locations .hero-checks b{color:#44d07b;font-size:15px}
-.ats-locations .hero-serving{font-size:13.5px;color:#8fa0bd;font-weight:600;margin:0 0 28px}
-.ats-locations .hero-finder{max-width:520px;margin:0 auto;display:grid;grid-template-columns:1fr 94px;gap:10px}
-.ats-locations .hero-finder select{height:52px;border-radius:8px;border:0;padding:0 18px;color:#122240;background:#fff;font-family:'Montserrat',system-ui,sans-serif;font-weight:800;font-size:14px;box-shadow:0 12px 34px -22px rgba(0,0,0,.65)}
-.ats-locations .hero-finder .btn{height:52px;box-shadow:none;font-size:13px}
-.ats-locations .stores-section{padding:58px 0 72px;background:#fff}
-.ats-locations .stores-intro{max-width:980px;margin:0 auto 30px;text-align:left}
-.ats-locations .sec-eye{color:#c51f28;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px}
-.ats-locations .stores-intro h2{font-size:clamp(24px,2.55vw,36px);line-height:1.1;color:#13315f}
-.ats-locations .stores-intro p{font-size:15px;line-height:1.65;color:#6d7890;margin:14px 0 0;max-width:980px}
-.ats-locations .county-group{max-width:980px;margin:34px auto 0}
-.ats-locations .county-title{display:flex;align-items:center;gap:12px;margin:0 0 10px}
-.ats-locations .county-title h3{font-size:clamp(18px,2vw,25px);color:#13315f}
-.ats-locations .county-pill{display:inline-flex;align-items:center;justify-content:center;background:#c51f28;color:#fff;border-radius:999px;padding:4px 10px;font-size:10px;font-weight:900;text-transform:uppercase;white-space:nowrap}
-.ats-locations .county-desc{color:#7a879d;font-size:14px;margin:0 0 18px}
-.ats-locations .county-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.ats-locations .loc-card{display:flex;flex-direction:column;background:#fff;border:0;border-radius:10px;overflow:hidden;text-decoration:none;box-shadow:0 16px 42px -30px rgba(0,0,0,.45);transition:.15s}
-.ats-locations .loc-card:hover{transform:translateY(-3px);box-shadow:0 20px 48px -28px rgba(0,0,0,.45)}
-.ats-locations .loc-card__img{height:230px;background:#eef1f7;overflow:hidden}
-.ats-locations .loc-card__img img{width:100%;height:100%;object-fit:cover;display:block}
-.ats-locations .loc-card__body{padding:17px 18px 19px;border:1px solid #dde2ea;border-top:0;border-radius:0 0 10px 10px}
-.ats-locations .loc-card__city{font-weight:900;font-size:17px;color:#13315f;text-transform:uppercase}
-.ats-locations .loc-card__addr,.ats-locations .loc-card__ph,.ats-locations .loc-card__hrs{font-size:13.5px;color:#54617a;line-height:1.55;margin-top:5px}
-.ats-locations .loc-card__link{display:inline-flex;margin-top:13px;color:#c51f28;font-weight:900;text-transform:uppercase;font-size:12px}
-.ats-locations .block{padding:46px 0}
-.ats-locations .block.alt{background:#f4f6fa}
-.ats-locations .sec-head{text-align:center;max-width:760px;margin:0 auto 24px}
-.ats-locations .sec-head h2{font-size:clamp(22px,2.6vw,34px);color:#13315f}
-.ats-locations .sec-head p{color:#54617a;line-height:1.6;margin-top:10px}
-.ats-locations .what-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.ats-locations .what-card{background:#fff;border:1px solid #dde2ea;border-radius:14px;padding:22px}
-.ats-locations .what-card h3{font-size:18px;color:#13315f;margin-bottom:8px}
-.ats-locations .what-card p{font-size:14px;color:#54617a;line-height:1.6;margin:0}
-.ats-locations .what-link{display:inline-block;margin-top:12px;color:#c51f28;font-weight:900;text-transform:uppercase;font-size:12px;text-decoration:none}
-.ats-locations .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:steps}
-.ats-locations .step{background:#fff;border:1px solid #dde2ea;border-radius:14px;padding:22px;position:relative}
-.ats-locations .step__num{width:34px;height:34px;border-radius:999px;background:#c51f28;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:900;margin-bottom:12px}
-.ats-locations .step h3,.ats-locations .stat h3,.ats-locations .area-card h3,.ats-locations .expect-card h3,.ats-locations .offer-card h3,.ats-locations .review-card h3{font-family:'Montserrat',system-ui,sans-serif;font-size:17px;font-weight:900;color:#13315f;margin:0 0 8px;text-transform:none}
-.ats-locations .step p,.ats-locations .area-card p,.ats-locations .expect-card p,.ats-locations .offer-card p,.ats-locations .review-card p{font-size:14px;color:#54617a;line-height:1.6;margin:0}
-.ats-locations .split-cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}
-.ats-locations .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
-.ats-locations .stat{background:#fff;border:1px solid #dde2ea;border-radius:14px;padding:22px;text-align:center}
-.ats-locations .stat b{display:block;font-family:'Akira Expanded','Archivo',sans-serif;font-size:28px;line-height:1;color:#c51f28;margin-bottom:8px}
-.ats-locations .stat span{display:block;font-size:13px;font-weight:800;color:#54617a}
-.ats-locations .loc-brand-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:0 0 24px}
-.ats-locations .loc-brand{background:#fff;border:1.5px solid #dde2ea;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:16px;height:86px;transition:all .15s;text-decoration:none}
-.ats-locations .loc-brand:hover{border-color:#13315f;box-shadow:0 8px 20px -12px rgba(0,0,0,.2);transform:translateY(-2px)}
-.ats-locations .loc-brand img{max-width:88%;max-height:50px;object-fit:contain;display:block}
-.ats-locations .area-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.ats-locations .area-card,.ats-locations .expect-card,.ats-locations .offer-card,.ats-locations .review-card{background:#fff;border:1px solid #dde2ea;border-radius:14px;padding:22px}
-.ats-locations .area-card h3{display:flex;align-items:center;gap:8px;text-transform:uppercase}
-.ats-locations .expect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.ats-locations .expect-card__icon{width:38px;height:38px;border-radius:10px;background:#c51f28;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;margin-bottom:12px}
-.ats-locations .amenities-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px}
-.ats-locations .amenity-item{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #dde2ea;border-radius:8px;padding:14px 16px;font-size:13.5px;font-weight:700;color:#122240}
-.ats-locations .amenity-item span:first-child{font-size:20px;flex:0 0 auto}
-.ats-locations .amenity-note{font-size:12px;color:#7a879d;text-align:center;margin:14px 0 0}
-.ats-locations .offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px}
-.ats-locations .offer-kicker{font-size:11px;color:#c51f28;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
-.ats-locations .finance-band{display:flex;align-items:center;justify-content:space-between;gap:18px;background:#13315f;color:#fff;border-radius:16px;padding:24px}
-.ats-locations .finance-band h3{color:#fff;margin:0 0 6px;font-family:'Akira Expanded','Archivo',sans-serif;text-transform:uppercase;font-size:22px}
-.ats-locations .finance-band p{color:#c3d0e8;margin:0;line-height:1.6}
-.ats-locations .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
-.ats-locations .review-card .stars{color:#f7b731;font-weight:900;letter-spacing:.05em;margin-bottom:8px}
-.ats-locations .rating-box{text-align:center;background:#13315f;color:#fff;border-radius:16px;padding:22px;max-width:420px;margin:0 auto}
-.ats-locations .rating-box b{display:block;font-family:'Akira Expanded','Archivo',sans-serif;font-size:34px;line-height:1;color:#fff}
-.ats-locations .rating-box span{display:block;color:#c3d0e8;font-weight:800;margin-top:6px}
-.ats-locations .faq{max-width:860px;margin:0 auto}
-.ats-locations .qa{border:1px solid #dde2ea;border-radius:10px;margin-bottom:10px;background:#fff;overflow:hidden}
-.ats-locations .qa button{width:100%;display:flex;justify-content:space-between;align-items:center;padding:17px 20px;background:#fff;border:0;text-align:left;color:#13315f;font-weight:900;cursor:pointer}
-.ats-locations .qa .a{display:none;padding:0 20px 18px;color:#54617a;line-height:1.65}
-.ats-locations .qa.open .a{display:block}
-.ats-locations .qa.open .ic{transform:rotate(45deg)}
-.ats-locations .final{background:linear-gradient(rgba(12,30,58,.84),rgba(12,30,58,.92)),url({{ 'ats-locations-inline-16.jpg' | asset_url }}) center/cover;color:#fff;text-align:center;padding:48px 24px}
-.ats-locations .final h2{color:#fff;font-size:clamp(26px,3vw,40px)}
-.ats-locations .final p{color:#c3d0e8;margin:12px auto 22px;max-width:560px}
-.ats-locations footer{background:#1b47a3;color:#fff}
-.ats-locations footer .wrap{padding:34px 24px 24px}
-.ats-locations .fcols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:24px}
-.ats-locations footer a{display:block;color:#c3d0e8;font-size:13px;padding:4px 0;text-decoration:none}
-.ats-locations footer h4{font-weight:900;font-size:12px;text-transform:uppercase;margin-bottom:8px;color:#fff}
-@media(max-width:980px){.ats-locations .county-grid,.ats-locations .what-grid,.ats-locations .steps,.ats-locations .expect-grid,.ats-locations .offers-grid,.ats-locations .reviews-grid{grid-template-columns:1fr 1fr}.ats-locations .stats,.ats-locations .area-grid{grid-template-columns:1fr 1fr}.ats-locations .loc-brand-grid{grid-template-columns:repeat(3,1fr)}.ats-locations .amenities-row{grid-template-columns:repeat(2,1fr)}.ats-locations .hgarage,.ats-locations .hbar-nav{display:none}.ats-locations .nav-toggle{display:flex}.ats-locations .fcols{grid-template-columns:1fr 1fr}}
-@media(max-width:760px){.ats-locations .loc-hero-v2{min-height:auto}.ats-locations .loc-hero-v2 .wrap{padding-top:48px;padding-bottom:48px}.ats-locations .hero-finder{grid-template-columns:1fr}.ats-locations .county-grid,.ats-locations .what-grid,.ats-locations .steps,.ats-locations .stats,.ats-locations .area-grid,.ats-locations .expect-grid,.ats-locations .offers-grid,.ats-locations .reviews-grid{grid-template-columns:1fr}.ats-locations .loc-brand-grid{grid-template-columns:repeat(2,1fr)}.ats-locations .amenities-row{grid-template-columns:1fr}.ats-locations .finance-band{display:block;text-align:center}.ats-locations .finance-band .btn{margin-top:16px}.ats-locations .stores-intro,.ats-locations .county-group{max-width:100%}.ats-locations .loc-card__img{height:210px}.ats-locations .appt-btn{display:none}.ats-locations .logo img{height:32px}.ats-locations .wrap{padding-left:18px;padding-right:18px}}
-.ats-locations .loc-hero-v2{display:none!important}
-.ats-locations .stores-section{padding:34px 0 64px;background:#fff}
-.ats-locations .stores-intro{display:none!important}
-.ats-locations .loc-widget-note{text-align:center;font-size:17px;line-height:1.65;color:#6d7890;margin:0 auto 42px;max-width:980px}
-.ats-locations .loc-widget-banner{height:286px;border-radius:14px;overflow:hidden;margin:0 auto 28px;box-shadow:0 18px 42px -34px rgba(0,0,0,.55);background:#eef1f7}
-.ats-locations .loc-widget-banner img{width:100%;height:100%;display:block;object-fit:cover}
-.ats-locations .loc-widget-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-.ats-locations .loc-widget-card{display:flex;flex-direction:column;background:#fff;border:1px solid #dde2ea;border-radius:12px;overflow:hidden;text-decoration:none;box-shadow:0 10px 28px -26px rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s,border-color .15s}
-.ats-locations .loc-widget-card:hover{transform:translateY(-3px);border-color:#cbd3e1;box-shadow:0 18px 38px -28px rgba(0,0,0,.45)}
-.ats-locations .loc-widget-card__img{height:220px;background:#eef1f7;overflow:hidden}
-.ats-locations .loc-widget-card__img img{width:100%;height:100%;display:block;object-fit:cover}
-.ats-locations .loc-widget-card__body{padding:24px 24px 22px}
-.ats-locations .loc-widget-card h3{font-family:'Montserrat',system-ui,sans-serif!important;text-transform:none!important;font-size:22px;font-weight:900;line-height:1.15;color:#122240;margin:0 0 12px}
-.ats-locations .loc-widget-card .addr{font-size:16px;line-height:1.52;color:#7a879d;margin:0}
-.ats-locations .loc-widget-card .phone{font-size:16px;line-height:1.35;color:#c51f28;font-weight:900;margin-top:8px}
-.ats-locations .loc-widget-card .hours{font-size:14px;line-height:1.45;color:#9aa3b2;margin-top:8px}
-.ats-locations .loc-widget-card .view{display:inline-block;margin-top:18px;color:#c51f28;font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.03em}
-@media(max-width:1100px){.ats-locations .loc-widget-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:760px){.ats-locations .stores-section{padding:28px 0 46px}.ats-locations .loc-widget-note{font-size:15px;margin-bottom:24px}.ats-locations .loc-widget-banner{height:210px;border-radius:12px}.ats-locations .loc-widget-grid{grid-template-columns:1fr}.ats-locations .loc-widget-card__img{height:210px}.ats-locations .loc-widget-card__body{padding:20px}}
+
+.ats-netlify-port *{margin:0;padding:0;box-sizing:border-box;border:none;outline:none;background:none;font:inherit;color:inherit;text-decoration:none;list-style:none}
+:root{--navy:#0c1e3a;--brand:#13315f;--blue:#1b47a3;--blue-2:#2358c4;--red:#c51f28;--red-deep:#a5171f;--red-press:#86121a;--ink:#122240;--slate:#54617a;--line:#dde2ea;--bg:#fff;--bg-alt:#f4f6fa;--radius:8px;--maxw:1200px}
+.ats-netlify-port body{font-family:'Montserrat',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.center{text-align:center}
+.block{padding:60px 0}
+.block.alt{background:var(--bg-alt)}
+.block.dark{background:var(--brand);color:#fff}
+.sec-head{text-align:center;max-width:760px;margin:0 auto 36px}
+.sec-head--left{text-align:left;max-width:none}
+.sec-eye{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--red);margin-bottom:10px}
+.sec-head h2{font-family:'Akira Expanded','Archivo',sans-serif;font-weight:800;font-size:clamp(20px,2.5vw,30px);text-transform:uppercase;color:var(--brand);line-height:1.12;letter-spacing:-0.01em}
+.sec-head p{font-size:15px;color:var(--slate);margin-top:12px;line-height:1.6}
+.block.dark .sec-head h2{color:#fff}
+.block.dark .sec-head p{color:#b7c4dc}
+.btn{display:inline-block;font-family:'Akira Expanded','Archivo';font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.03em;padding:14px 28px;border-radius:8px;cursor:pointer;transition:all .15s}
+.btn-red{background:var(--red);color:#fff}.btn-red:hover{background:var(--red-deep)}
+.btn-ghost{border:1.5px solid var(--brand);color:var(--brand)}.btn-ghost:hover{background:var(--brand);color:#fff}
+.btn-line{border:1.5px solid var(--line);color:var(--brand)}.btn-line:hover{border-color:var(--brand)}
+.pill{display:inline-block;font-family:'Akira Expanded','Archivo';font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.03em;padding:12px 24px;border-radius:30px;cursor:pointer;transition:all .15s}
+.pill.red{background:var(--red);color:#fff}.pill.red:hover{background:var(--red-deep)}
+.pill.outline{border:1.5px solid var(--brand);color:var(--brand)}.pill.outline:hover{background:var(--brand);color:#fff}
+
+/* HEADER */
+.promo{background:var(--red);color:#fff;font-size:13px;font-weight:500}
+.promo .wrap{display:flex;align-items:center;justify-content:center;gap:14px;height:38px;text-align:center;flex-wrap:wrap}
+.promo b{font-weight:800}.promo .sep{opacity:.5}.promo a{text-decoration:underline;font-weight:700}
+header{position:sticky;top:0;z-index:100;background:#fff}
+.hbar-brand{background:#fff;border-bottom:1px solid var(--line)}
+.hbar-brand .wrap{display:flex;align-items:center;gap:20px;height:76px}
+.logo{display:inline-flex;align-items:center}
+.logo img{height:38px;width:auto;display:block}
+.logo .a{color:var(--red)}
+.brand-right{margin-left:auto;display:flex;align-items:center;gap:12px;position:relative}
+.appt-btn{min-height:46px;padding:7px 18px;line-height:1.15;text-align:center;font-size:12.5px;display:inline-flex;align-items:center}
+.hbar-nav{background:#fff;border-bottom:1px solid var(--line)}
+.mainnav{display:flex;gap:26px;height:50px;align-items:center;justify-content:center;overflow-x:auto}
+.mainnav a{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;position:relative;height:100%;display:flex;align-items:center;text-transform:none;letter-spacing:0}
+.mainnav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:3px;background:var(--red);transition:right .18s}
+.mainnav a:hover::after{right:0}.mainnav a:hover{color:var(--ink)}
+.hgarage{display:flex;align-items:stretch;border:1.5px solid var(--line);border-radius:10px;background:#fff;position:relative}
+.hg-field{display:flex;align-items:center;gap:10px;padding:7px 14px;background:none;text-align:left;cursor:pointer;min-width:158px;border:none}
+.hg-ic img{width:34px;height:34px;object-fit:contain;display:block}
+.hg-txt{display:flex;flex-direction:column;line-height:1.2}
+.hg-txt small{font-size:9px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:var(--brand);display:flex;align-items:center;gap:5px}
+.hg-pen{color:var(--red);font-size:10px}
+.hg-txt b{font-size:12.5px;font-weight:600;color:#9aa3b2}
+.hg-field.set .hg-txt b{color:var(--ink);font-weight:700}
+.hg-sep{width:1px;background:var(--line);margin:9px 0}
+.hg-store select{border:none;background:none;font-family:'Montserrat';font-size:12.5px;font-weight:700;color:#9aa3b2;padding:0;margin-top:1px;cursor:pointer;max-width:150px;-webkit-appearance:none;appearance:none}
+.hg-store.set select{color:var(--ink)}
+.hg-store select:focus{outline:none}
+.veh-pop{position:absolute;top:calc(100% + 12px);right:0;width:min(300px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 26px 64px -20px rgba(0,0,0,.4);padding:16px;z-index:60;display:none}
+.veh-pop.show{display:block}
+.veh-pop .gp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.veh-pop select{width:100%;height:42px;border:1.5px solid var(--line);border-radius:6px;padding:0 10px;font-size:14px;font-family:'Montserrat';color:var(--ink);background:#fff}
+.veh-pop select:disabled{background:var(--bg-alt);color:#a7adba}
+.nav-toggle{display:none;width:44px;height:44px;border:1.5px solid var(--line);border-radius:8px;flex-direction:column;gap:4px;align-items:center;justify-content:center;background:none;cursor:pointer}
+.nav-toggle span{width:20px;height:2px;background:var(--brand);border-radius:2px}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:120;background:rgba(12,30,58,.5)}
+.mobile-menu.show{display:block}
+.mm-panel{position:absolute;top:0;right:0;width:min(320px,86vw);height:100%;background:#fff;padding:26px 24px;box-shadow:-20px 0 60px -20px rgba(0,0,0,.4);overflow-y:auto}
+.mm-panel a{display:block;padding:15px 0;font-family:'Akira Expanded','Archivo';font-weight:700;font-size:17px;color:var(--brand);border-bottom:1px solid var(--line);text-transform:uppercase}
+.mm-close{position:absolute;top:14px;right:16px;font-size:28px;color:var(--slate);background:none;border:none;cursor:pointer}
+.mm-phone{margin-top:20px;font-family:'Akira Expanded','Archivo';font-weight:800;font-size:18px;color:var(--red)}
+/* icon tiles for What / store card image / USP */
+.what-ic{width:54px;height:54px;border-radius:11px;display:grid;place-items:center;margin-bottom:16px}
+.what-ic.shop{background:var(--brand)}.what-ic.book{background:var(--red)}.what-ic.fin{background:var(--blue)}
+.what-ic img{width:32px;height:32px;object-fit:contain;filter:brightness(0) invert(1)}
+.what-ic svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2}
+.loc-card__img{height:200px;overflow:hidden;border-bottom:1px solid var(--line)}
+.loc-card__img img{width:100%;height:100%;object-fit:cover;display:block}
+.loc-card__body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:6px}
+.usp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px}
+.usp{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start}
+.usp .ico{width:46px;height:46px;flex:0 0 auto;border-radius:10px;background:var(--brand);display:grid;place-items:center}
+.usp .ico img{width:28px;height:28px;object-fit:contain}
+.usp h4{font-family:'Akira Expanded','Archivo',sans-serif;font-weight:800;font-size:14px;text-transform:uppercase;color:var(--brand);margin-bottom:4px;letter-spacing:-0.01em}
+.usp p{font-size:12.5px;color:var(--slate);line-height:1.5}
+@media(max-width:900px){.hgarage{display:none}.mainnav{display:none}.nav-toggle{display:flex}.usp-grid,.what-grid{grid-template-columns:1fr}}
+
+/* HERO */
+.loc-index-hero{padding:72px 0 56px;position:relative}
+.loc-index-hero .sec-head{margin-bottom:28px}
+.hero-finder{max-width:520px;margin:0 auto;display:flex;gap:10px}
+.hero-finder select{flex:1;padding:14px 16px;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;font-size:14px;font-weight:600;color:var(--ink);background:#fff;cursor:pointer}
+.hero-finder .btn{flex:0 0 auto}
+
+/* MAP */
+.map-section img{width:100%;height:320px;object-fit:cover;border-radius:16px;display:block}
+
+/* REGIONS */
+.region{margin-bottom:44px}
+.region:last-child{margin-bottom:0}
+.region-name{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:22px;text-transform:uppercase;color:var(--brand);margin-bottom:6px;display:flex;align-items:center;gap:12px}
+.region-count{font-size:12px;font-weight:700;color:#fff;background:var(--red);padding:3px 10px;border-radius:20px;text-transform:uppercase}
+.region-desc{font-size:14px;color:var(--slate);margin-bottom:18px}
+.region-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+
+/* STORE CARDS */
+.loc-card{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:0;overflow:hidden;display:block;transition:transform .15s,box-shadow .15s,border-color .15s}
+.loc-card:hover{border-color:var(--brand);box-shadow:0 14px 34px -18px rgba(0,0,0,.22);transform:translateY(-3px)}
+.loc-card__city{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:20px;text-transform:uppercase;color:var(--brand)}
+.loc-card__addr{font-size:14px;color:var(--ink);line-height:1.4}
+.loc-card__ph{font-size:13.5px;color:var(--slate)}
+.loc-card__hrs{font-size:12.5px;color:var(--slate)}
+.loc-card__actions{margin-top:8px;display:flex;gap:12px}
+.loc-card__link{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:12px;text-transform:uppercase;color:var(--red);letter-spacing:.03em}
+
+/* SERVICES OVERVIEW */
+.svc-overview{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.svc-ov{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;align-items:center;gap:12px}
+.svc-ov .svc-ov-ic{font-size:22px;flex:0 0 auto}
+.svc-ov span{font-size:14px;font-weight:700;color:var(--ink)}
+
+/* TRUST (compact) */
+.trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.trust-item img{width:52px;height:52px;object-fit:contain;margin:0 auto 10px;display:block}
+.trust-item h4{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:13px;text-transform:uppercase;color:#fff;margin-bottom:4px}
+.trust-item p{font-size:12.5px;color:#b7c4dc;line-height:1.45}
+
+/* FAQ */
+.faq{max-width:860px;margin:0 auto}
+.qa{border:1px solid var(--line);border-radius:10px;margin-bottom:10px;overflow:hidden;background:#fff}
+.qa button{display:flex;align-items:center;justify-content:space-between;width:100%;padding:18px 22px;font-weight:700;font-size:14.5px;color:var(--brand);cursor:pointer;text-align:left}
+.qa .ic{font-size:20px;color:var(--red);flex:0 0 auto;transition:transform .2s}
+.qa.open .ic{transform:rotate(45deg)}
+.qa .a{display:none;padding:0 22px 18px;font-size:14px;color:var(--slate);line-height:1.65}
+.qa.open .a{display:block}
+
+/* FINAL */
+.final{text-align:center;padding:72px 0;color:#fff}
+.final h2{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:clamp(22px,3vw,34px);text-transform:uppercase;margin-bottom:12px;line-height:1.1}
+.final p{font-size:16px;color:#b7c4dc;margin-bottom:28px;max-width:540px;margin-left:auto;margin-right:auto}
+.final .btn{margin:0 8px}
+
+/* FOOTER */
+footer{background:var(--blue);color:#fff;position:relative}
+footer::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+footer .wrap{padding:48px 24px 28px}
+.fcols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1.2fr;gap:28px;margin-bottom:30px}
+.flogo{font-family:'Akira Expanded','Archivo';font-weight:900;font-size:18px;text-transform:uppercase;margin-bottom:12px}.flogo .a{color:#ff5259}
+footer p.fp{font-size:13px;color:#c3d0e8;max-width:30ch;line-height:1.7}
+footer h4{font-family:'Akira Expanded','Archivo';font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;color:#fff}
+footer a.fl{display:block;padding:4px 0;color:#c3d0e8;font-size:13.5px}footer a.fl:hover{color:#fff}
+.fnap{font-size:12.5px;color:#c3d0e8;line-height:1.7}
+.fnap-ic{width:22px;height:22px;object-fit:contain;vertical-align:-4px;margin-right:8px}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:#a9b8d6}
+.copyright{border-top:1px solid rgba(255,255,255,.1);margin-top:32px;padding-top:20px;text-align:center;color:#6b82a8;font-size:11px}
+
+/* BG GUIDE */
+.bg-guide{position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:6;display:inline-flex;align-items:center;gap:6px;background:#fff8e6;border:1.5px dashed #e0b93a;color:#7a5c10;font:800 10.5px/1.3 'Archivo',sans-serif;letter-spacing:.03em;text-transform:uppercase;padding:7px 14px;border-radius:20px;max-width:92%;text-align:center;pointer-events:none}
+
+@media(max-width:768px){
+.mainnav{display:none}
+.hero-finder{flex-direction:column}
+.region-grid{grid-template-columns:1fr}
+.svc-overview{grid-template-columns:1fr}
+.trust-row{grid-template-columns:repeat(2,1fr);gap:16px}
+.fcols{grid-template-columns:1fr 1fr}
+}
+
+/* Subsection titles */
+.subsec-title{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--brand);margin-bottom:14px}
+/* Additional services grid */
+.addl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.addl-svc{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:13px;font-weight:600;color:var(--ink)}
+.addl-check{color:#2f7d52;font-weight:800;font-size:14px;flex:0 0 auto}
+.free-badge{margin-left:auto;background:#e8f5e9;color:#2e7d32;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;text-transform:uppercase;flex:0 0 auto}
+/* Expanded service cards */
+.svc-overview{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.svc-ov{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;align-items:start;gap:14px}
+.svc-ov .svc-ov-ic{font-size:26px;flex:0 0 auto;margin-top:2px}
+.svc-ov b{font-size:14px;color:var(--brand);display:block;margin-bottom:4px;font-family:'Akira Expanded','Archivo';font-weight:800;text-transform:uppercase}
+.svc-ov p{font-size:13px;color:var(--slate);line-height:1.45;margin:0}
+/* Steps */
+.steps-row{display:flex;align-items:start;gap:0;justify-content:center}
+.step{flex:1;max-width:300px;text-align:center;padding:0 20px}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;font-family:'Akira Expanded','Archivo';font-weight:800;font-size:20px;margin-bottom:14px}
+.step h3{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:16px;text-transform:uppercase;color:var(--brand);margin-bottom:8px}
+.step p{font-size:13.5px;color:var(--slate);line-height:1.55}
+.step-arrow{display:flex;align-items:center;padding-top:20px;font-size:24px;color:var(--line);font-weight:800}
+/* Areas */
+.areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.area-group{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px}
+.area-group h4{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:13px;text-transform:uppercase;color:var(--brand);margin-bottom:8px}
+.area-group p{font-size:13px;color:var(--slate);line-height:1.7}
+/* Amenities */
+.amenities-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.amenity-item{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-size:13.5px;font-weight:600}
+.amenity-item span:first-child{font-size:20px;flex:0 0 auto}
+/* Offers */
+.offers-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.offer-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 24px;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:transform .16s,box-shadow .16s}
+.offer-card:hover{transform:translateY(-4px);box-shadow:0 20px 44px -22px rgba(0,0,0,.3)}
+.offer-card.feat{background:linear-gradient(150deg,#c51f28,#8f1015);border-color:transparent;color:#fff}
+.offer-tag{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--red);margin-bottom:9px;display:inline-block}
+.offer-card.feat .offer-tag{color:#ffd7d9}
+.offer-card h3{font-family:'Akira Expanded','Archivo';font-weight:900;font-size:24px;text-transform:uppercase;color:var(--brand);margin-bottom:9px;line-height:1.05}
+.offer-card.feat h3{color:#fff}
+.offer-card p{font-size:13.5px;color:var(--slate);line-height:1.55;margin-bottom:18px;flex:1}
+.offer-card.feat p{color:#ffe1e2}
+.offer-cta{align-self:flex-start;font-family:'Akira Expanded','Archivo';font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.03em;padding:12px 20px;border-radius:8px;background:var(--red);color:#fff;transition:background .15s}
+.offer-cta:hover{background:var(--red-deep)}
+.offer-card.feat .offer-cta{background:#fff;color:var(--red)}.offer-card.feat .offer-cta:hover{background:#ffe9ea}
+.fin-banner{margin-top:20px;border-radius:16px;padding:34px 36px;color:#fff;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.fin-banner__l{flex:1;min-width:280px}
+.fin-banner .fe{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#ffd7d9;margin-bottom:9px;display:flex;align-items:center;gap:9px}
+.fin-banner h3{font-family:'Akira Expanded','Archivo';font-weight:900;font-size:clamp(22px,2.4vw,30px);text-transform:uppercase;color:#fff;margin-bottom:9px;line-height:1.05}
+.fin-banner p{font-size:14px;color:#cdd8ea;line-height:1.6;max-width:640px}
+.btn-white{background:#fff;color:var(--brand)}.btn-white:hover{background:#eef1f7}
+/* Google Reviews */
+.grev-bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 24px;margin-bottom:16px}
+.grev-left{display:flex;align-items:center;gap:12px}
+.grev-num{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:36px;color:var(--brand);line-height:1}
+.grev-stars{color:#f5a623;font-size:18px;letter-spacing:1px}
+.grev-count{font-size:13px;color:var(--slate);font-weight:600}
+.grev-link{font-family:'Akira Expanded','Archivo';font-weight:700;font-size:12px;color:var(--brand);text-transform:uppercase}
+.grev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grev{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.grev-top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.grev-av{width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:'Akira Expanded','Archivo';font-weight:800;font-size:14px;flex:0 0 auto}
+.grev-top b{font-size:12.5px;display:block}
+.grev-meta{font-size:10.5px;color:#a0a8b8;display:block;margin-top:1px}
+.grev p{font-size:12.5px;line-height:1.5;margin:0}
+/* Brand logos */
+.loc-brand-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:0 0 24px}
+.loc-brand{background:#fff;border:1.5px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;padding:16px;height:86px;transition:all .15s}
+.loc-brand:hover{border-color:var(--brand);box-shadow:0 8px 20px -12px rgba(0,0,0,.2);transform:translateY(-2px)}
+.loc-brand img{max-width:88%;max-height:50px;object-fit:contain}
+
+@media(max-width:768px){
+.steps-row{flex-direction:column;align-items:center;gap:20px}
+.step-arrow{transform:rotate(90deg);padding:0}
+.addl-grid{grid-template-columns:repeat(2,1fr)}
+.areas-grid{grid-template-columns:1fr}
+.amenities-row{grid-template-columns:repeat(2,1fr)}
+.offers-row{grid-template-columns:1fr}.fin-banner{flex-direction:column;align-items:flex-start}
+.grev-bar{flex-direction:column;gap:12px;text-align:center}
+.grev-left{justify-content:center}
+.grev-grid{grid-template-columns:1fr}
+.loc-brand-grid{grid-template-columns:repeat(3,1fr)}
+}
+
+/* What you can get cards */
+.what-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.what-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column}
+.what-card h3{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:18px;color:var(--brand);margin-bottom:10px}
+.what-card p{font-size:14px;color:var(--slate);line-height:1.6;flex:1;margin-bottom:14px}
+.what-link{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:12px;text-transform:uppercase;color:var(--red);letter-spacing:.03em}
+/* Trust strip */
+.trust-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.ts-item{font-size:14px;font-weight:600;color:#b7c4dc}
+.ts-num{display:block;font-family:'Akira Expanded','Archivo';font-weight:900;font-size:36px;color:#fff;margin-bottom:4px}
+/* Expect strip */
+.expect-strip{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.expect-strip span{background:#fff;border:1px solid var(--line);border-radius:30px;padding:10px 18px;font-size:13.5px;font-weight:600;color:var(--ink);white-space:nowrap}
+
+@media(max-width:768px){
+.what-grid{grid-template-columns:1fr}
+.trust-strip{grid-template-columns:repeat(2,1fr)}
+.expect-strip{gap:8px}
+.expect-strip span{font-size:12px;padding:8px 14px}
+}
+/* NOTE: Section titles request 'Akira Expanded'. It is a licensed display face (not on Google Fonts),
+   so it is declared in the stack and currently FALLS BACK to Archivo until the .woff2 is added via:
+   @font-face{font-family:'Akira Expanded';src:url('akira-expanded.woff2') format('woff2');font-weight:800;font-display:swap} */
+/* img-spec pills removed */
+
+/* sec-bgslot hatch removed – real photos embedded */
+.loc-card__img{position:relative}
+/* loc-card__spec removed – real photos embedded */
+
+.hero-checks{display:flex;flex-wrap:wrap;gap:8px 22px;margin:18px 0 10px;list-style:none;padding:0}
+.hero-checks li{color:#b7c4dc;font-size:14px;font-weight:600;display:flex;align-items:center;gap:7px}
+.hero-checks li::before{content:"\2713";color:#50d87d;font-weight:800;font-size:15px}
+.hero-serving{color:#8fa5c8;font-size:13px;margin-bottom:18px;font-weight:600}
+
+
+/* ---- footer corrections, applied site-wide ----
+   .fnap-ic was never declared on several pages, so the phone icon rendered at its
+   intrinsic 120x120. Declared here at the end of the head so it wins everywhere. ---- */
+footer .flogo{margin-bottom:14px}
+footer .flogo img{height:34px;width:auto;display:block;max-width:100%}
+footer .fnap{font-size:12.5px;color:#c3d0e8;line-height:1.7;margin:0 0 10px}
+footer .fnap b{color:#fff;font-weight:700}
+footer .fnap-ic{width:14px;height:14px;object-fit:contain;display:inline-block;
+  vertical-align:-2px;margin-right:7px;opacity:.85}
+footer .fmail{font-size:12px}
+footer .fmail{color:#c3d0e8;text-decoration:underline;overflow-wrap:anywhere;word-break:break-word}
+footer .fmail:hover{color:#fff}
+footer a.fl.fl-inline{display:inline;padding:0}
+footer .fcols{grid-template-columns:1.4fr 1fr 1fr 1fr 1.5fr}
+footer .fnap-call{margin-bottom:12px}
+footer .fmeta{margin-bottom:0}
+footer .fcols>div{min-width:0}
+@media(max-width:900px){footer .fcols{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){footer .flogo img{height:30px}}
+
+/* header CTA is hidden at mobile on every other page; this one was missing the rule */@media(max-width:600px){.hbar-brand .appt-btn{display:none}}
+.loc-card--soon{opacity:.92;pointer-events:none}.loc-card--soon .loc-card__link{color:var(--red,#c8102e)}
+/* brand rail (from homepage) */
+.brand-all{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+.blogo-img{max-width:90%;max-height:62px;width:auto;height:auto;object-fit:contain}
+.blogo{flex:0 0 auto;width:200px;height:96px;background:#fff;border:1.5px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:12px 20px;box-sizing:border-box;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s}
+.blogo:hover{border-color:var(--brand);box-shadow:0 12px 26px -18px rgba(0,0,0,.3);transform:translateY(-2px)}
+.blogo .bn{font-family:'Montserrat';font-weight:800;font-size:15px;color:var(--brand);text-transform:uppercase;line-height:1.05;letter-spacing:0.01em}
+.blogo .bt{display:block;font-size:8px;color:#aeb6c4;letter-spacing:0.08em;text-transform:uppercase;margin-top:4px}
+/* ---- brand rail: 4 x 5 sliding grid ---- */
+.brand-rail-wrap{position:relative;max-width:1120px;margin:0 auto}
+.brand-rail{display:grid;grid-auto-flow:column;grid-template-rows:repeat(4,1fr);
+  grid-auto-columns:calc((100% - 4*14px)/5);gap:14px;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 6px}
+.brand-rail::-webkit-scrollbar{display:none}
+.brand-rail>*{scroll-snap-align:start}
+.brand-rail:focus-visible{outline:2px solid var(--red);outline-offset:4px;border-radius:12px}
+.brand-rail .blogo{width:auto;height:92px;position:relative;padding:12px;gap:0;
+  cursor:default;transition:none}
+.brand-rail .blogo:hover{border-color:var(--line);box-shadow:none;transform:none;
+  background:#fff}
+.brand-rail .blogo-img{max-width:100%;max-height:54px}
+.bword{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;line-height:1.25;
+  color:var(--brand);text-align:center;letter-spacing:-.01em;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.brail-nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;z-index:2;
+  border-radius:50%;background:#fff;border:1.5px solid var(--line);display:flex;align-items:center;
+  justify-content:center;box-shadow:0 8px 20px -10px rgba(12,30,58,.45);transition:.14s;cursor:pointer}
+.brail-nav svg{width:20px;height:20px;fill:none;stroke:var(--brand);stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round}
+.brail-nav:hover:not(:disabled){background:var(--brand);border-color:var(--brand)}
+.brail-nav:hover:not(:disabled) svg{stroke:#fff}
+.brail-nav:disabled{opacity:0;pointer-events:none}
+.brail-nav.prev{left:-19px}
+.brail-nav.next{right:-19px}
+.brand-dots{display:flex;gap:7px;justify-content:center;margin-top:18px}
+.bdot{width:8px;height:8px;border-radius:50%;background:#cfd8e6;border:0;padding:0;
+  transition:.16s;cursor:pointer}
+.bdot.on{background:var(--red);width:22px;border-radius:5px}
+.brand-prog{position:relative;height:4px;border-radius:2px;background:#dbe2ed;max-width:190px;
+  margin:18px auto 0}
+.bprog-thumb{position:absolute;top:0;bottom:0;background:var(--red);border-radius:2px;
+  transition:left .12s linear,width .12s linear}
+/* ===== locations page: step art, guarantees, offer backgrounds.
+   Appended at end of document on purpose - this page keeps its styles in the BODY. ===== */
+
+/* --- 3 steps: image-led cards (the arrows are gone; the art carries the sequence) --- */
+.steps-row--art{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;
+  align-items:stretch;justify-content:initial;max-width:1080px;margin:0 auto}
+.steps-row--art .step{flex:initial;max-width:none;padding:0;text-align:left;
+  background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .15s,box-shadow .15s,border-color .15s}
+.steps-row--art .step:hover{border-color:var(--brand);transform:translateY(-2px);
+  box-shadow:0 16px 34px -24px rgba(12,30,58,.5)}
+.steps-row--art .step-img{position:relative;display:block;aspect-ratio:16/9;
+  overflow:hidden;background:#0d2144}
+.steps-row--art .step-img img{width:100%;height:100%;object-fit:cover;display:block}
+.steps-row--art .step-num{position:absolute;left:14px;bottom:14px;margin:0;
+  width:40px;height:40px;box-shadow:0 6px 18px -6px rgba(0,0,0,.6)}
+.steps-row--art .step h3{margin:16px 18px 6px}
+.steps-row--art .step p{margin:0 18px 20px}
+@media(max-width:860px){.steps-row--art{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.steps-row--art{grid-template-columns:1fr;gap:16px}}
+
+/* --- guarantees: same component as the homepage --- */
+.guarantees{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.guar{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;padding:20px;text-align:center}
+.guar .gi{font-size:26px;margin-bottom:8px}
+.guar .gi img{width:64px;height:64px;object-fit:contain;display:block;margin:0 auto}
+.guar h4{font-family:'Montserrat',sans-serif;font-weight:800;font-size:14.5px;
+  text-transform:uppercase;color:#fff}
+.guar p{font-size:12px;color:#b7c4dc;margin-top:5px;line-height:1.5}
+@media(max-width:980px){.guarantees{grid-template-columns:1fr 1fr;gap:24px}}
+@media(max-width:520px){.guarantees{grid-template-columns:1fr}}
+
+/* --- offer cards on photography: scrim first, then the existing text turns white --- */
+.offer-card--photo{background-size:cover;background-position:center;background-repeat:no-repeat;
+  border-color:rgba(255,255,255,.16);isolation:isolate}
+.offer-card--photo::before{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(200deg,rgba(9,22,48,.38) 0%,rgba(9,22,48,.74) 42%,rgba(9,22,48,.92) 100%)}
+.offer-card--photo.feat::before{
+  background:linear-gradient(200deg,rgba(160,20,28,.46) 0%,rgba(140,16,22,.82) 42%,rgba(110,10,16,.95) 100%)}
+.offer-card--photo>*{position:relative;z-index:1}
+.offer-card--photo h3{color:#fff}
+.offer-card--photo p{color:#d7e0f0}
+.offer-card--photo .offer-tag{color:#ff8b7a}
+.offer-card--photo.feat p{color:#ffe1e2}
+.offer-card--photo.feat .offer-tag{color:#ffd7d9}
+.offer-card--photo:hover{border-color:rgba(255,255,255,.28)}
 </style>
-<div class="ats-locations">
-  <div class="promo"><div class="wrap"><span><b>Buy 3, Get 1 FREE</b> on most tires</span><span>·</span><span>Financing from <b>$0 down</b></span><span>·</span><a href="/pages/promotions">See offers →</a></div></div>
-  <header>
-    <div class="hbar-brand"><div class="wrap">
-      <a href="/" class="logo" aria-label="American Tire Stores"><img src="{{ 'ats-locations-inline-01.png' | asset_url }}" alt="American Tire Stores"></a>
-      <div class="brand-right">
-        <div class="hgarage">
-          <label class="hg-field hg-store" id="storeField"><span class="hg-ic"><img src="{{ 'ats-locations-inline-02.png' | asset_url }}" alt=""></span><span class="hg-txt"><small>Selected Store</small><select id="hstore" onchange="onHStore()"><option value="">Choose…</option></select></span></label>
-          <div class="hg-sep"></div>
-          <button class="hg-field hg-veh" id="vehField" onclick="toggleVeh()" type="button"><span class="hg-ic"><img src="{{ 'ats-locations-inline-03.png' | asset_url }}" alt=""></span><span class="hg-txt"><small>My Vehicle</small><b id="vehVal">Not selected…</b></span></button>
-          <div class="veh-pop" id="vehPop"><div class="gp-row"><select id="hyear" onchange="hOnYear()"><option value="">Select</option></select><select id="hmake" onchange="hOnMake()" disabled><option value="">Select</option></select></div><div class="gp-row" style="grid-template-columns:1fr"><select id="hmodel" onchange="hOnModel()" disabled><option value="">Select</option></select></div></div>
-        </div>
-        <a class="btn btn-red appt-btn" href="/pages/services">Book a Quick<br>Appointment</a>
-        <button class="nav-toggle" aria-label="Menu" onclick="toggleMenu()" type="button"><span></span><span></span><span></span></button>
+<div class="ats-netlify-port">
+<!-- BREADCRUMB -->
+<nav style="padding:12px 0;font-size:12px;color:var(--slate);border-bottom:1px solid var(--line)"><div class="wrap">
+  <a href="/" style="color:var(--brand);font-weight:600">Home</a> <span style="margin:0 6px">/</span> <span>Locations</span>
+</div></nav>
+
+<!-- HERO -->
+<section class="loc-index-hero" style="position:relative;background:linear-gradient(rgba(12,30,58,.82),rgba(12,30,58,.88)),url({{ 'netlify-locations-04-6f7ddc7495ecbb15.jpg' | asset_url }}) center/cover;color:#fff">
+  <div class="wrap">
+  <div class="sec-head">
+    <div class="sec-eye">Southern California's Tire Shop Locator &middot; 9 Local Stores</div>
+    <h1 style="font-family:'Akira Expanded','Archivo',sans-serif;font-weight:800;font-size:clamp(24px,3vw,36px);text-transform:uppercase;color:#fff;line-height:1.1;margin-bottom:14px">Find a Tire Shop<br>Near You in Southern California</h1>
+    <p style="color:#b7c4dc">American Tire Stores operates 9 tire shops across Southern California &mdash; serving Ventura County, Greater Los Angeles, Orange County, and the Coachella Valley. Every location offers tire and wheel sales, certified auto service, $0-down financing, and easy online booking. Choose your nearest store below for local pricing and availability.</p>
+
+    <ul class="hero-checks">
+      <li>Same-day installation at most stores <!-- [VERIFY: confirm same-day claim with client] --></li>
+      <li>$0-down financing</li>
+      <li>Nationwide warranty</li>
+      <li>100+ tire &amp; wheel brands</li>
+    </ul>
+    <p class="hero-serving">Serving Ventura, Thousand Oaks, Valencia, Hollywood, Glendale, Bellflower, Costa Mesa &amp; Cathedral City.</p>
+  </div>
+  <div class="hero-finder">
+    <select id="storePicker" onchange="goStore()">
+      <option value="">Choose your nearest store...</option><option value="/pages/location-ventura-ca">Ventura &mdash; 3059 E Main St</option><option value="/pages/location-thousand-oaks-ca">Thousand Oaks &mdash; 621 E Thousand Oaks Blvd</option><option value="/pages/location-valencia-ca">Valencia &mdash; 23510 Valencia Blvd, Unit A</option><option value="/pages/location-hollywood-ca">Hollywood &mdash; 1174 N. Western Ave.</option><option value="/pages/location-glendale-ca">Glendale &mdash; 737 S Glendale Ave</option><option value="/pages/location-glendale-ii-ca">Glendale 2 &mdash; 1130 S Central Ave</option><option value="/pages/location-bellflower-ca">Bellflower &mdash; 9509 Alondra Blvd</option><option value="/pages/location-costa-mesa-ca">Costa Mesa &mdash; 2049 Harbor Blvd</option><option value="/pages/location-cathedral-city-ca">Cathedral City &mdash; 68406 E Palm Canyon Dr</option></select>
+    <button class="btn btn-red" onclick="goStore()">Go &#8594;</button>
+  </div>
+</div></section>
+
+
+
+<!-- STORE DIRECTORY -->
+<section class="block"><div class="wrap">
+  <div class="sec-head sec-head--left">
+    <div class="sec-eye">Our stores</div>
+    <h2>9 American Tire Stores Locations Across Southern California</h2>
+    <p>Find your nearest American Tire Stores location below. Each of our 9 Southern California tire shops is staffed by certified technicians and offers the full lineup of tires, wheels, packages, and auto services &mdash; with local pricing and online scheduling available at every store.</p>
+  </div>
+
+  <div class="region">
+    <h3 class="region-name">Greater Los Angeles <span class="region-count">5 stores &middot; 1 opening soon</span></h3>
+    <p class="region-desc">Five tire shops covering Hollywood, Glendale, Valencia, and Bellflower &mdash; plus the surrounding Santa Clarita Valley, San Fernando Valley, and Gateway Cities communities. A sixth store is opening soon in Signal Hill.</p>
+    <div class="region-grid">
+<a class="loc-card" href="/pages/location-valencia-ca"><div class="loc-card__img"><!-- Source: American Tire Stores - Valencia.jpg -->
+      <img src="{{ 'netlify-locations-05-5746055301668a88.jpg' | asset_url }}" alt="American Tire Stores Valencia, CA storefront" loading="lazy"></div><div class="loc-card__body">
+      <div class="loc-card__city">Valencia</div>
+      <div class="loc-card__addr">23510 Valencia Blvd, Unit A, Valencia, CA 91355</div>
+      <div class="loc-card__ph"><span>&#9742;</span> (661) 596-1444</div>
+      <div class="loc-card__hrs">&#128339; Mon–Fri 8am–6pm · Sat 8am–5pm</div>
+      <div class="loc-card__actions">
+        <span class="loc-card__link">Store details →</span>
+      </div>
+    </div></a><a class="loc-card" href="/pages/location-hollywood-ca"><div class="loc-card__img"><!-- Source: American_Tire_Stores_Hollywood.jpg -->
+      <img src="{{ 'netlify-locations-06-582faf17016f2ac3.jpg' | asset_url }}" alt="American Tire Stores Hollywood, CA storefront" loading="lazy"></div><div class="loc-card__body">
+      <div class="loc-card__city">Hollywood</div>
+      <div class="loc-card__addr">1174 N Western Ave, Los Angeles, CA 90029</div>
+      <div class="loc-card__ph"><span>&#9742;</span> (323) 372-9372</div>
+      <div class="loc-card__hrs">&#128339; Mon–Fri 8am–6pm · Sat 8am–5pm</div>
+      <div class="loc-card__actions">
+        <span class="loc-card__link">Store details →</span>
+      </div>
+    </div></a><a class="loc-card" href="/pages/location-glendale-ca"><div class="loc-card__img"><!-- Source: American_Tire_Stores_-_Glendale.jpg -->
+      <img src="{{ 'netlify-locations-07-196b5cddf165f34f.jpg' | asset_url }}" alt="American Tire Stores Glendale, CA storefront" loading="lazy"></div><div class="loc-card__body">
+      <div class="loc-card__city">Glendale</div>
+      <div class="loc-card__addr">737 S Glendale Ave, Glendale, CA 91205</div>
+      <div class="loc-card__ph"><span>&#9742;</span> (818) 243-3191</div>
+      <div class="loc-card__hrs">&#128339; Mon–Fri 8am–6pm · Sat 8am–5pm</div>
+      <div class="loc-card__actions">
+        <span class="loc-card__link">Store details →</span>
+      </div>
+    </div></a><a class="loc-card" href="/pages/location-glendale-ii-ca"><div class="loc-card__img"><!-- Source: American_Tire_Stores_-_Glendale_II_Central.jpg -->
+      <img src="{{ 'netlify-locations-08-3dd9a67fa7ded918.jpg' | asset_url }}" alt="American Tire Stores Glendale 2, CA storefront" loading="lazy"></div><div class="loc-card__body">
+      <div class="loc-card__city">Glendale 2</div>
+      <div class="loc-card__addr">1130 S Central Ave, Glendale, CA 91203</div>
+      <div class="loc-card__ph"><span>&#9742;</span> (818) 547-2010</div>
+      <div class="loc-card__hrs">&#128339; Mon–Fri 8am–6pm · Sat 8am–5pm</div>
+      <div class="loc-card__actions">
+        <span class="loc-card__link">Store details →</span>
+      </div>
+    </div></a><a class="loc-card" href="/pages/location-bellflower-ca"><div class="loc-card__img"><!-- Source: American_Tire_Stores_-_BellFlower.jpg -->
+      <img src="{{ 'netlify-locations-09-60c7e57b01287bb2.jpg' | asset_url }}" alt="American Tire Stores Bellflower, CA storefront" loading="lazy"></div><div class="loc-card__body">
+      <div class="loc-card__city">Bellflower</div>
+      <div class="loc-card__addr">9509 Alondra Blvd, Bellflower, CA 90706</div>
+      <div class="loc-card__ph"><span>&#9742;</span> (562) 804-4737</div>
+      <div class="loc-card__hrs">&#128339; Mon–Fri 8am–6pm · Sat 8am–5pm</div>
+      <div class="loc-card__actions">
+        <span class="loc-card__link">Store details →</span>
+      </div>
+    </div></a><div class="loc-card loc-card--soon"><div class="loc-card__img"><!-- Source: American Tire Stores - Costa Mesa.jpg (client-supplied 16 Sep 2026) -->
+      <img src="{{ 'netlify-locations-10-7c8480f624f21c6a.jpg' | asset_url }}" alt="American Tire Stores Signal Hill - opening soon" loading="lazy"></div><div class="loc-card__body">
+      <div class="loc-card__city">Signal Hill</div>
+      <div class="loc-card__addr">Signal Hill, CA</div>
+      <div class="loc-card__actions">
+        <span class="loc-card__link">Coming soon</span>
       </div>
     </div></div>
-    <div class="hbar-nav"><div class="wrap"><nav class="mainnav" aria-label="Main"><a href="/pages/tire-search">Tire Search</a><a href="/pages/wheel-brands">Wheel Search</a><a href="/pages/package-brands">Packages</a><a href="/pages/services">Services</a><a href="/pages/locations">Locations</a><a href="/pages/promotions">Promotions</a><a href="/pages/coupons">Coupons</a><a href="/pages/financing">Financing</a></nav></div></div>
-  </header>
-  <div class="mobile-menu" id="mobileMenu" onclick="if(event.target===this)toggleMenu(false)"><div class="mm-panel"><button class="mm-close" aria-label="Close" onclick="toggleMenu(false)">&times;</button><a href="/pages/tire-search">Tire Search</a><a href="/pages/wheel-brands">Wheel Search</a><a href="/pages/package-brands">Packages</a><a href="/pages/services">Services</a><a href="/pages/locations">Locations</a><a href="/pages/promotions">Promotions</a><a href="/pages/coupons">Coupons</a><a href="/pages/financing">Financing</a><a href="tel:+18056443330">☎ (805) 644-3330</a></div></div>
-  <div class="crumbs"><div class="wrap"><a href="/">Home</a><span>/</span><b>Locations</b></div></div>
-
-  <section class="loc-hero-v2">
-    <div class="wrap">
-      <span class="eyebrow">Southern California's tire shop locator · 9 local stores</span>
-      <h1>Find a tire shop<br>near you in Southern California</h1>
-      <p>American Tire Stores operates 9 tire shops across Southern California — serving Ventura County, Greater Los Angeles, the Santa Clarita Valley, Orange County, and the Coachella Valley. Every location offers tire and wheel sales, certified auto service, $0-down financing, and easy online booking. Choose your nearest store below for local pricing and availability.</p>
-      <div class="hero-checks"><span><b>✓</b> Same-day installation at most stores</span><span><b>✓</b> $0-down financing</span><span><b>✓</b> Nationwide warranty</span><span><b>✓</b> 40+ tire &amp; wheel brands</span></div>
-      <div class="hero-serving">Serving Ventura, Thousand Oaks, Glendale, Los Angeles, Bellflower &amp; Cathedral City.</div>
-      <div class="hero-finder"><select id="storePicker" onchange="goStore()"><option value="">Choose your nearest store...</option></select><button class="btn btn-red" onclick="goStore()" type="button">Go →</button></div>
     </div>
-  </section>
+  </div>
 
-  <section class="stores-section"><div class="wrap"><div class="stores-intro"><div class="sec-eye">Our stores</div><h2>7 American Tire Stores locations across Southern California</h2><p>Find your nearest American Tire Stores location below. Each of our 7 Southern California tire shops is staffed by certified technicians and offers the full lineup of tires, wheels, packages, and auto services — with local pricing and online scheduling available at every store.</p></div><div id="locGrid"><div class="county-group"><div class="county-title"><h3>Ventura County</h3><span class="county-pill">2 stores</span></div><p class="county-desc">Serving Ventura, Oxnard, Camarillo, Thousand Oaks, and the 101 corridor with 2 convenient tire and auto-service locations.</p><div class="county-grid"><a class="loc-card" href="/pages/location-ventura-ca" onclick="goStoreById(52820,event)"><div class="loc-card__img"><img src="{{ 'ats-locations-inline-05.jpg' | asset_url }}" alt="American Tire Stores Ventura storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Ventura</div><div class="loc-card__addr">5100 Telegraph Rd, Ventura, CA 93003</div><div class="loc-card__ph">☎ (805) 644-3330</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><span class="loc-card__link">Store details →</span></div></a><a class="loc-card" href="/pages/location-thousand-oaks-ca" onclick="goStoreById(52819,event)"><div class="loc-card__img"><img src="{{ 'ats-locations-inline-06.jpg' | asset_url }}" alt="American Tire Stores Thousand Oaks storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Thousand Oaks</div><div class="loc-card__addr">621 E Thousand Oaks Blvd, Thousand Oaks, CA 91360</div><div class="loc-card__ph">☎ (805) 495-7103</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><span class="loc-card__link">Store details →</span></div></a></div></div><div class="county-group"><div class="county-title"><h3>Greater Los Angeles</h3><span class="county-pill">4 stores</span></div><p class="county-desc">Four tire shops covering Los Angeles, Glendale, and Bellflower — plus the surrounding San Fernando Valley and Gateway Cities communities.</p><div class="county-grid"><a class="loc-card" href="/pages/location-los-angeles-ca" onclick="goStoreById(61758,event)"><div class="loc-card__img"><img src="{{ 'ats-locations-inline-07.jpg' | asset_url }}" alt="American Tire Stores Los Angeles storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Los Angeles</div><div class="loc-card__addr">1174 N Western Ave, Los Angeles, CA 90029</div><div class="loc-card__ph">☎ (323) 372-9372</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><span class="loc-card__link">Store details →</span></div></a><a class="loc-card" href="/pages/location-glendale-ca" onclick="goStoreById(52816,event)"><div class="loc-card__img"><img src="{{ 'ats-locations-inline-08.jpg' | asset_url }}" alt="American Tire Stores Glendale storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Glendale</div><div class="loc-card__addr">737 S Glendale Ave, Glendale, CA 91205</div><div class="loc-card__ph">☎ (818) 243-3191</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><span class="loc-card__link">Store details →</span></div></a><a class="loc-card" href="/pages/location-glendale-ii-ca" onclick="goStoreById(52818,event)"><div class="loc-card__img"><img src="{{ 'ats-locations-inline-09.jpg' | asset_url }}" alt="American Tire Stores Glendale II storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Glendale II</div><div class="loc-card__addr">601 S Brand Blvd, Glendale, CA 91203</div><div class="loc-card__ph">☎ (818) 244-7600</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><span class="loc-card__link">Store details →</span></div></a><a class="loc-card" href="/pages/location-bellflower-ca" onclick="goStoreById(52814,event)"><div class="loc-card__img"><img src="{{ 'ats-locations-inline-10.jpg' | asset_url }}" alt="American Tire Stores Bellflower storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Bellflower</div><div class="loc-card__addr">9509 Alondra Blvd, Bellflower, CA 90706</div><div class="loc-card__ph">☎ (562) 804-4737</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><span class="loc-card__link">Store details →</span></div></a></div></div><div class="county-group"><div class="county-title"><h3>Coachella Valley</h3><span class="county-pill">1 store</span></div><p class="county-desc">Desert-area tire and auto service for Cathedral City, Palm Springs, Palm Desert, and the greater Coachella Valley.</p><div class="county-grid"><a class="loc-card" href="/pages/location-cathedral-city-ca" onclick="goStoreById(52815,event)"><div class="loc-card__img"><img src="{{ 'ats-locations-inline-11.jpg' | asset_url }}" alt="American Tire Stores Cathedral City storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Cathedral City</div><div class="loc-card__addr">68406 E Palm Canyon Dr, Cathedral City, CA 92234</div><div class="loc-card__ph">☎ (760) 469-9510</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><span class="loc-card__link">Store details →</span></div></a></div></div></div></div></section>
-  <section class="block alt"><div class="wrap"><div class="sec-head"><div class="sec-eye">Tires, wheels &amp; service</div><h2>Everything under one roof</h2><p>Every American Tire Stores location is a full-service shop — not just tires. Here is what you can get done at any of our 7 stores.</p></div><div class="what-grid"><div class="what-card"><h3>Tires &amp; Wheels</h3><p>40+ tire and wheel brands, matched to your vehicle. Shop by year/make/model or tire size, see local pricing, and get back on the road fast.</p><a class="what-link" href="/pages/tire-search">Shop tires →</a></div><div class="what-card"><h3>Auto Service</h3><p>Oil changes, wheel alignment, brake repair, tire installation, TPMS, and battery service — plus 15+ free inspections at every location.</p><a class="what-link" href="/pages/services">See all services →</a></div><div class="what-card"><h3>Financing &amp; Deals</h3><p>$0-down financing with quick online approval, Buy 3 Get 1 Free on most tires, and rotating service specials. Never wait for payday.</p><a class="what-link" href="/pages/financing">Apply now →</a></div></div></div></section>
-  <section class="block"><div class="wrap"><div class="sec-head"><div class="sec-eye">How it works</div><h2>From search to service in 3 steps</h2></div><div class="steps"><div class="step"><div class="step__num">1</div><h3>Choose your store</h3><p>Pick the location nearest you. Pricing, availability, and appointments are set to your store.</p></div><div class="step"><div class="step__num">2</div><h3>Enter your vehicle</h3><p>Add your year, make, and model or tire size so we show only tires, wheels, and packages that fit.</p></div><div class="step"><div class="step__num">3</div><h3>Shop or book</h3><p>Compare options with local pricing, or request a service appointment — the shop confirms your appointment.</p></div></div><div class="split-cta"><a class="btn btn-red" href="/pages/tire-search">Shop tires →</a><a class="btn btn-ghost" href="/pages/services">Book a service →</a></div></div></section>
-  <section class="block alt"><div class="wrap"><div class="sec-head"><div class="sec-eye">Why drivers choose us</div><h2>25+ years serving Southern California</h2><p>Seven neighborhood stores, certified technicians, and a promise: honest pricing, quality work, and warranties that mean something.</p></div><div class="stats"><div class="stat"><b>7</b><span>Local stores</span></div><div class="stat"><b>25+</b><span>Years in business</span></div><div class="stat"><b>4.8★</b><span>Average rating</span></div><div class="stat"><b>40+</b><span>Brands carried</span></div></div></div></section>
-  <section class="block"><div class="wrap"><div class="sec-head"><div class="sec-eye">Brands we carry</div><h2>40+ tire &amp; wheel brands at every store</h2><p>From premium to budget-friendly — all with fitment checked for your vehicle before you buy.</p></div><div class="loc-brand-grid"><a class="loc-brand" href="/pages/brand-michelin-tires"><img src="{{ 'ats-locations-inline-17.png' | asset_url }}" alt="Michelin tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-goodyear-tires"><img src="{{ 'ats-locations-inline-18.png' | asset_url }}" alt="Goodyear tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-continental-tires"><img src="{{ 'ats-locations-inline-19.png' | asset_url }}" alt="Continental tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-pirelli-tires"><img src="{{ 'ats-locations-inline-20.png' | asset_url }}" alt="Pirelli tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-falken-tires"><img src="{{ 'ats-locations-inline-21.png' | asset_url }}" alt="Falken tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-hankook-tires"><img src="{{ 'ats-locations-inline-22.png' | asset_url }}" alt="Hankook tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-yokohama-tires"><img src="{{ 'ats-locations-inline-23.png' | asset_url }}" alt="Yokohama tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-nitto-tires"><img src="{{ 'ats-locations-inline-24.png' | asset_url }}" alt="Nitto tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-kumho-tires"><img src="{{ 'ats-locations-inline-25.png' | asset_url }}" alt="Kumho tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-general-tires"><img src="{{ 'ats-locations-inline-26.png' | asset_url }}" alt="General tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-nexen-tires"><img src="{{ 'ats-locations-inline-27.png' | asset_url }}" alt="Nexen tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-sumitomo-tires"><img src="{{ 'ats-locations-inline-28.png' | asset_url }}" alt="Sumitomo tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-kelly-tires"><img src="{{ 'ats-locations-inline-29.png' | asset_url }}" alt="Kelly tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-atturo-tires"><img src="{{ 'ats-locations-inline-30.png' | asset_url }}" alt="Atturo tires" loading="lazy"></a><a class="loc-brand" href="/pages/brand-arroyo-tires"><img src="{{ 'ats-locations-inline-31.png' | asset_url }}" alt="Arroyo tires" loading="lazy"></a></div><div class="split-cta"><a class="btn btn-red" href="/pages/tire-brands">View all tire brands</a><a class="btn btn-ghost" href="/pages/wheel-brands">View all wheel brands</a></div></div></section>
-  <section class="block alt"><div class="wrap"><div class="sec-head"><div class="sec-eye">Areas we serve</div><h2>Cities &amp; neighborhoods we serve</h2><p>Our 7 stores cover a wide range of cities and neighborhoods. If you're within driving distance of any location, you're in our service area.</p></div><div class="area-grid"><div class="area-card"><h3>📍 Ventura County</h3><p>Ventura · Oxnard · Camarillo · Thousand Oaks · Simi Valley · Moorpark · Ojai · Santa Paula · Port Hueneme · Newbury Park · Westlake Village</p></div><div class="area-card"><h3>📍 San Fernando Valley</h3><p>Glendale · Burbank · Pasadena · La Crescenta · Eagle Rock · Sun Valley · North Hollywood · Sherman Oaks · Studio City · Van Nuys</p></div><div class="area-card"><h3>📍 Greater Los Angeles</h3><p>Los Angeles · Hollywood · Silver Lake · Echo Park · Koreatown · Mid-City · Los Feliz · Atwater Village · Highland Park</p></div><div class="area-card"><h3>📍 Southeast LA / Gateway Cities</h3><p>Bellflower · Downey · Norwalk · Cerritos · Lakewood · Paramount · Artesia · La Mirada · Whittier · Compton · Long Beach</p></div><div class="area-card"><h3>📍 Coachella Valley</h3><p>Cathedral City · Palm Springs · Rancho Mirage · Palm Desert · Indio · La Quinta · Desert Hot Springs · Coachella · Thousand Palms</p></div></div></div></section>
-  <section class="block"><div class="wrap"><div class="sec-head"><div class="sec-eye">Every visit includes</div><h2>What to expect at any location</h2></div><div class="expect-grid"><div class="expect-card"><div class="expect-card__icon">✓</div><h3>Certified technicians</h3><p>ASE-certified pros at every location handle everything from oil changes to brakes and alignment.</p></div><div class="expect-card"><div class="expect-card__icon">$</div><h3>Upfront, no-surprise pricing</h3><p>You approve an upfront quote before any work begins — what's needed now vs. what can wait.</p></div><div class="expect-card"><div class="expect-card__icon">★</div><h3>Nationwide warranty</h3><p>Qualifying work is backed by a warranty that travels with you, honored at locations across the country.</p></div><div class="expect-card"><div class="expect-card__icon">🛞</div><h3>Road hazard protection</h3><p>Optional coverage repairs or replaces tires damaged by potholes, nails, and road debris — so a flat doesn't cost you a new tire.</p></div><div class="expect-card"><div class="expect-card__icon">↗</div><h3>Easy online booking</h3><p>Request a service and your preferred time online — the shop confirms your appointment. Walk-ins welcome, too.</p></div><div class="expect-card"><div class="expect-card__icon">+</div><h3>Tires bought elsewhere? No problem</h3><p>Bring your own tires and we'll mount, balance, torque to spec, and reset your TPMS.</p></div></div><div class="amenities-row"><div class="amenity-item"><span>☕</span>Coffee</div><div class="amenity-item"><span>📶</span>Free Wi-Fi</div><div class="amenity-item"><span>💺</span>Waiting area</div><div class="amenity-item"><span>🅿</span>Free parking</div><div class="amenity-item"><span>💳</span>All cards accepted</div><div class="amenity-item"><span>💰</span>$0-down financing</div><div class="amenity-item"><span>📱</span>Online booking</div><div class="amenity-item"><span>🚾</span>Restrooms</div><div class="amenity-item"><span>🛋️</span>Comfortable seating</div><div class="amenity-item"><span>🇪🇸</span>English &amp; Spanish</div></div><p class="amenity-note">Amenities may vary by location.</p></div></section>
-  <section class="block alt"><div class="wrap"><div class="sec-head"><div class="sec-eye">Offers</div><h2>Current deals at all locations</h2></div><div class="offers-grid"><div class="offer-card"><div class="offer-kicker">Limited time</div><h3>Buy 3, Get 1 Free</h3><p>On most tires, most brands. Installation and tire protection plan required.</p><a class="what-link" href="/pages/promotions">Shop eligible tires →</a></div><div class="offer-card"><div class="offer-kicker">Seasonal</div><h3>Service specials</h3><p>Rotating savings on oil changes, wheel alignments, and brake service — refreshed regularly.</p><a class="what-link" href="/pages/coupons">See coupons →</a></div><div class="offer-card"><div class="offer-kicker">Every day</div><h3>Manufacturer rebates</h3><p>Mail-in and instant rebates from the brands you know, updated as they change.</p><a class="what-link" href="/pages/promotions">See rebates →</a></div></div><div class="finance-band"><div><h3>Get rolling for $0 down</h3><p>Flexible, quick-approval financing means new tires, brakes, or service never have to wait for payday.</p></div><a class="btn btn-red" href="/pages/financing">Apply in minutes →</a></div></div></section>
-  <section class="block"><div class="wrap"><div class="sec-head"><div class="sec-eye">What drivers say</div><h2>Rated 4.8 across Southern California</h2></div><div class="rating-box"><b>4.8</b><span>★★★★★ Across all 7 locations</span></div><div class="reviews-grid"><div class="review-card"><h3>Sarah M. · Ventura</h3><div class="stars">★★★★★</div><p>Had what I needed in stock, installed same afternoon. Fair price, no upsell.</p></div><div class="review-card"><h3>James K. · Glendale</h3><div class="stars">★★★★★</div><p>Best tire shop in Glendale. Quick alignment and honest about what I actually needed.</p></div><div class="review-card"><h3>Rachel W. · Bellflower</h3><div class="stars">★★★★★</div><p>Financing made it easy. New tires for my minivan and didn't have to wait for payday.</p></div><div class="review-card"><h3>María G. · Ventura</h3><div class="stars">★★★★★</div><p>Atención en español. Profesionales y precio justo.</p></div><div class="review-card"><h3>Tony L. · Cathedral City</h3><div class="stars">★★★★☆</div><p>Only tire shop in the desert I trust. Straight talk, fair prices.</p></div><div class="review-card"><h3>Kevin D. · Thousand Oaks</h3><div class="stars">★★★★★</div><p>Third time back. TPMS sensor replaced fast, no appointment needed.</p></div></div></div></section>
-  <section class="block alt"><div class="wrap"><div class="sec-head"><div class="sec-eye">Good to know</div><h2>Frequently asked questions</h2></div><div class="faq" id="faq"></div></div></section>
-  <section class="final"><h2>Ready to find your nearest store?</h2><p>Choose your location for local pricing, in-stock availability, and certified service.</p><a class="btn btn-red" href="#storePicker">Find my store →</a> <a class="btn btn-ghost" href="/pages/services">Book a service →</a></section>
-  <footer><div class="wrap"><div class="fcols"><div><h4>American Tire Stores</h4><p style="color:#c3d0e8;line-height:1.7">Tires, wheels, packages, and auto service across seven Southern California stores. Shop by vehicle, book by store.</p></div><div><h4>Shop</h4><a href="/pages/tire-search">Tire Search</a><a href="/pages/wheel-brands">Wheel Search</a><a href="/pages/package-brands">Packages</a><a href="/pages/promotions">Offers</a></div><div><h4>Service</h4><a href="/pages/services">Book Appointment</a><a href="/pages/service-wheel-alignment">Alignment</a><a href="/pages/service-brake-repair">Brakes</a><a href="/pages/service-oil-change">Oil Change</a></div><div><h4>Stores</h4><a href="/pages/location-ventura-ca">Ventura</a><a href="/pages/location-thousand-oaks-ca">Thousand Oaks</a><a href="/pages/location-glendale-ca">Glendale</a><a href="/pages/location-los-angeles-ca">Los Angeles</a><a href="/pages/location-bellflower-ca">Bellflower</a></div></div><p style="color:#c3d0e8;font-size:12px;margin:24px 0 0">© 2026 American Tire Stores. All rights reserved.</p></div></footer>
+  <div class="region">
+    <h3 class="region-name">Ventura County <span class="region-count">2 stores</span></h3>
+    <p class="region-desc">Serving Ventura, Oxnard, Camarillo, Thousand Oaks, and the 101 corridor with 2 convenient tire and auto-service locations.</p>
+    <div class="region-grid">
+<a class="loc-card" href="/pages/location-ventura-ca"><div class="loc-card__img"><!-- Source: American_Tire_Stores_-_Venture.jpg -->
+      <img src="{{ 'netlify-locations-11-cdcc940270ee642e.jpg' | asset_url }}" alt="American Tire Stores Ventura, CA storefront" loading="lazy"></div><div class="loc-card__body">
+      <div class="loc-card__city">Ventura</div>
+      <div class="loc-card__addr">3059 E Main St, Ventura, CA 93003</div>
+      <div class="loc-card__ph"><span>&#9742;</span> (805) 826-1788</div>
+      <div class="loc-card__hrs">&#128339; Mon–Fri 8am–6pm · Sat 8am–5pm</div>
+      <div class="loc-card__actions">
+        <span class="loc-card__link">Store details →</span>
+      </div>
+    </div></a><a class="loc-card" href="/pages/location-thousand-oaks-ca"><div class="loc-card__img"><!-- Source: American_Tire_Stores_-_Thousand_Oaks.jpg -->
+      <img src="{{ 'netlify-locations-12-6e4031c59d65386a.jpg' | asset_url }}" alt="American Tire Stores Thousand Oaks, CA storefront" loading="lazy"></div><div class="loc-card__body">
+      <div class="loc-card__city">Thousand Oaks</div>
+      <div class="loc-card__addr">621 E Thousand Oaks Blvd, Thousand Oaks, CA 91360</div>
+      <div class="loc-card__ph"><span>&#9742;</span> (805) 379-1910</div>
+      <div class="loc-card__hrs">&#128339; Mon–Fri 8am–6pm · Sat 8am–5pm</div>
+      <div class="loc-card__actions">
+        <span class="loc-card__link">Store details →</span>
+      </div>
+    </div></a>
+    </div>
+  </div>
+
+  <div class="region">
+    <h3 class="region-name">Orange County <span class="region-count">1 store</span></h3>
+    <p class="region-desc">Tire and auto service on Harbor Blvd in Costa Mesa, serving Newport Beach, Huntington Beach, Fountain Valley, Santa Ana, Irvine, and Orange.</p>
+    <div class="region-grid">
+<a class="loc-card" href="/pages/location-costa-mesa-ca"><div class="loc-card__img"><!-- Source: American Tire Stores - Costa Mesa.jpg (client-supplied 16 Sep 2026) -->
+      <img src="{{ 'netlify-locations-13-eafa51160dc4abe4.jpg' | asset_url }}" alt="American Tire Stores Costa Mesa, CA storefront" loading="lazy"></div><div class="loc-card__body">
+      <div class="loc-card__city">Costa Mesa</div>
+      <div class="loc-card__addr">2049 Harbor Blvd, Costa Mesa, CA 92627</div>
+      <div class="loc-card__ph"><span>&#9742;</span> (949) 802-6419</div>
+      <div class="loc-card__hrs">&#128339; Mon–Fri 8am–6pm · Sat 8am–5pm</div>
+      <div class="loc-card__actions">
+        <span class="loc-card__link">Store details →</span>
+      </div>
+    </div></a>
+    </div>
+  </div>
+
+  <div class="region">
+    <h3 class="region-name">Coachella Valley <span class="region-count">1 store</span></h3>
+    <p class="region-desc">Desert-area tire and auto service for Cathedral City, Palm Springs, Palm Desert, and the greater Coachella Valley.</p>
+    <div class="region-grid">
+<a class="loc-card" href="/pages/location-cathedral-city-ca"><div class="loc-card__img"><!-- Source: American_Tire_Stores_-_Cathedral_City.jpg -->
+      <img src="{{ 'netlify-locations-14-cb2ff932283299c3.jpg' | asset_url }}" alt="American Tire Stores Cathedral City, CA storefront" loading="lazy"></div><div class="loc-card__body">
+      <div class="loc-card__city">Cathedral City</div>
+      <div class="loc-card__addr">68406 E Palm Canyon Dr, Cathedral City, CA 92234</div>
+      <div class="loc-card__ph"><span>&#9742;</span> (760) 469-9510</div>
+      <div class="loc-card__hrs">&#128339; Mon–Fri 8am–6pm · Sat 8am–5pm</div>
+      <div class="loc-card__actions">
+        <span class="loc-card__link">Store details →</span>
+      </div>
+    </div></a>
+    </div>
+  </div>
+
+</div></section>
+
+<!-- WHAT YOU CAN GET -->
+<!-- Source: ATS_Store_Front-_Background_Image.jpg | Alt: American Tire Stores service bay, Southern California -->
+<section class="block alt" style="position:relative;background:linear-gradient(rgba(244,246,250,.91),rgba(244,246,250,.93)),url({{ 'netlify-locations-15-58ebe62bc8049032.jpg' | asset_url }}) center/cover"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-eye">Tires, wheels &amp; service</div>
+    <h2>Everything Under One Roof</h2>
+    <p>Every American Tire Stores location is a full-service shop — not just tires. Here is what you can get done at any of our 9 stores.</p>
+  </div>
+  <div class="what-grid">
+    <div class="what-card">
+      <div class="what-ic shop"><img src="{{ 'netlify-locations-16-6f2575a363c7bb8b.png' | asset_url }}" alt=""></div><h3>Tires &amp; Wheels</h3>
+      <p>100+ tire and wheel brands, matched to your vehicle. Shop by year/make/model or tire size, see local pricing, and get back on the road fast.</p>
+      <a href="/pages/tire-search" class="what-link">Shop tires →</a>
+    </div>
+    <div class="what-card">
+      <div class="what-ic book"><img src="{{ 'netlify-locations-17-6da66481a09929db.png' | asset_url }}" alt=""></div><h3>Auto Service</h3>
+      <p>Oil changes, wheel alignment, brake repair, tire installation, TPMS, and battery service — plus 15+ free inspections at every location.</p>
+      <a href="/pages/services" class="what-link">See all services →</a>
+    </div>
+    <div class="what-card">
+      <div class="what-ic fin"><img src="{{ 'netlify-locations-18-2671a72d07ab17a8.png' | asset_url }}" alt=""></div><h3>Financing &amp; Deals</h3>
+      <p>$0-down financing with quick online approval, Buy 3 Get 1 Free on most tires, and rotating service specials. Never wait for payday.</p>
+      <a href="/pages/financing" class="what-link">Apply now →</a>
+    </div>
+  </div>
+</div></section>
+
+
+<!-- HOW IT WORKS -->
+<section class="block"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-eye">How it works</div>
+    <h2>From Search to Service in 3 Steps</h2>
+  </div>
+  <div class="steps-row steps-row--art">
+    <div class="step"><div class="step-img"><img src="{{ 'netlify-locations-19-ab316ab63bedf8b1.jpg' | asset_url }}" alt="An American Tire Stores storefront in Southern California" width="800" height="450" loading="lazy" decoding="async"><span class="step-num">1</span></div><h3>Choose your store</h3><p>Pick the location nearest you. Pricing, availability, and appointments are set to your store.</p></div>
+    <div class="step"><div class="step-img"><img src="{{ 'netlify-locations-20-4fb98e91a9112129.jpg' | asset_url }}" alt="A driver looking up tires for her vehicle on a phone" width="800" height="450" loading="lazy" decoding="async"><span class="step-num">2</span></div><h3>Enter your vehicle</h3><p>Add your year, make, and model (or tire size) so we show only tires, wheels, and packages that fit.</p></div>
+    <div class="step"><div class="step-img"><img src="{{ 'netlify-locations-21-76e7722b46f0868f.jpg' | asset_url }}" alt="A customer checking in with a service advisor at the counter" width="800" height="450" loading="lazy" decoding="async"><span class="step-num">3</span></div><h3>Shop or book</h3><p>Compare options with local pricing, or request a service appointment &mdash; the shop confirms your appointment, often quickly.</p></div>
+  </div>
+  <div class="center" style="margin-top:28px">
+    <a class="btn btn-red" href="/pages/tire-search">Shop tires →</a>
+    <a class="btn btn-ghost" href="/pages/services" style="margin-left:12px">Book a service →</a>
+  </div>
+</div></section>
+
+<!-- WHY DRIVERS CHOOSE US -->
+<section class="block dark" style="background:linear-gradient(rgba(19,49,95,.90),rgba(12,30,58,.94)),url({{ 'netlify-locations-22-72c6973359decc41.jpg' | asset_url }}) center/cover">
+  <div class="wrap">
+  <div class="sec-head">
+    <div class="sec-eye">Why drivers choose us</div>
+    <h2>25+ Years Serving Southern California</h2>
+    <p style="color:#b7c4dc">Nine neighborhood stores, certified technicians, and a promise: honest pricing, quality work, and warranties that mean something.</p>
+  </div>
+  <div class="trust-strip">
+    <div class="ts-item"><span class="ts-num">9</span>Local stores</div>
+    <div class="ts-item"><span class="ts-num">25+</span>Years in business</div>
+    <div class="ts-item"><span class="ts-num">4.8★</span>Average rating</div>
+    <div class="ts-item"><span class="ts-num">100+</span>Brands carried</div>
+  </div>
+  <div class="guarantees">
+    <div class="guar"><div class="gi"><img src="{{ 'netlify-locations-23-153ad892e701d483.png' | asset_url }}" alt="" width="46" height="46"></div><h4>Nationwide warranty</h4><p>Coverage that travels with you, wherever you drive.</p></div>
+    <div class="guar"><div class="gi"><img src="{{ 'netlify-locations-24-318cc0fdc2bcc836.png' | asset_url }}" alt="" width="46" height="46"></div><h4>Certified technicians</h4><p>Trained pros handling every install and service.</p></div>
+    <div class="guar"><div class="gi"><img src="{{ 'netlify-locations-25-0b25095e7ac99fc6.png' | asset_url }}" alt="" width="46" height="46"></div><h4>Road hazard protection</h4><p>Optional coverage against the pothole you didn't see.</p></div>
+    <div class="guar"><div class="gi"><img src="{{ 'netlify-locations-26-e3e6b4447580733f.png' | asset_url }}" alt="" width="46" height="46"></div><h4>Fair, upfront pricing</h4><p>Out-the-door pricing before you commit. No surprises.</p></div>
+  </div>
+</div></section>
+
+
+<!-- BRANDS -->
+<section class="block alt"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-eye">Brands we carry</div>
+    <h2>100+ Tire &amp; Wheel Brands at Every Store</h2>
+    <p>From premium to budget-friendly — all with fitment checked for your vehicle before you buy.</p>
+  </div>
+  <!-- [VERIFY] The rail lists all 106 brands American Tire Stores carries company-wide. Per-store brand availability has not been confirmed, so this section no longer claims a count "at our <city> store". -->
+  <div class="brand-rail-wrap">
+    <button class="brail-nav prev" id="brandPrev" type="button" aria-label="Previous brands">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="brand-rail" id="brandRail" role="list" tabindex="0"
+         aria-label="Tire and wheel brands — scroll for more"></div>
+    <button class="brail-nav next" id="brandNext" type="button" aria-label="More brands">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="brand-dots" id="brandDots" role="tablist" aria-label="Brand pages"></div>
+
+  <div class="brand-dots" id="brandDots" role="tablist" aria-label="Brand pages"></div>
+
+  <div class="center" style="margin-top:24px"><a class="pill red" href="/pages/tire-search">View all tire brands</a> <a class="pill outline" href="/pages/wheel-brands" style="margin-left:10px">View all wheel brands</a></div>
+</div></section>
+
+
+<!-- AREAS WE SERVE -->
+<section class="block"><div class="wrap">
+  <div class="sec-head sec-head--left">
+    <div class="sec-eye">Areas we serve</div>
+    <h2>Cities &amp; Neighborhoods We Serve</h2>
+    <p>Our 9 stores cover a wide range of cities and neighborhoods. If you're within driving distance of any location, you're in our service area.</p>
+  </div>
+  <div class="areas-grid">
+    <div class="area-group"><h4>&#128205; Ventura County</h4><p>Ventura · Oxnard · Camarillo · Thousand Oaks · Simi Valley · Moorpark · Ojai · Santa Paula · Port Hueneme · Newbury Park · Westlake Village</p></div>
+    <div class="area-group"><h4>&#128205; San Fernando Valley</h4><p>Glendale · Burbank · Pasadena · La Crescenta · Eagle Rock · Sun Valley · North Hollywood · Sherman Oaks · Studio City · Van Nuys</p></div>
+    <div class="area-group"><h4>&#128205; Greater Los Angeles</h4><p>Los Angeles · Hollywood · Silver Lake · Echo Park · Koreatown · Mid-City · Los Feliz · Atwater Village · Highland Park</p></div>
+    <div class="area-group"><h4>&#128205; Southeast LA / Gateway Cities</h4><p>Bellflower · Downey · Norwalk · Cerritos · Lakewood · Signal Hill · Paramount · Artesia · La Mirada · Whittier · Compton · Long Beach</p></div>
+    <div class="area-group"><h4>&#128205; Santa Clarita Valley</h4><p>Valencia &middot; Santa Clarita &middot; Newhall &middot; Stevenson Ranch &middot; Castaic &middot; Saugus &middot; Canyon Country</p></div>
+      <div class="area-group"><h4>&#128205; Orange County</h4><p>Costa Mesa &middot; Newport Beach &middot; Huntington Beach &middot; Fountain Valley &middot; Santa Ana &middot; Irvine &middot; Orange</p></div>
+      <div class="area-group"><h4>&#128205; Coachella Valley</h4><p>Cathedral City · Palm Springs · Rancho Mirage · Palm Desert · Indio · La Quinta · Desert Hot Springs · Coachella · Thousand Palms</p></div>
+  </div>
+  <p style="font-size:12px;color:var(--slate);margin-top:16px"><em>[VERIFY: confirm these service areas with the client. Add or remove cities as needed.]</em></p>
+</div></section>
+
+
+<!-- EVERY VISIT INCLUDES -->
+<!-- Source: Waiting_Area_-_Photos.jpg | Alt: American Tire Stores waiting area -->
+<section class="block alt" style="position:relative;background:linear-gradient(rgba(244,246,250,.91),rgba(244,246,250,.93)),url({{ 'netlify-locations-27-3f48a012b62adfa2.jpg' | asset_url }}) center/cover"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-eye">Every visit includes</div>
+    <h2>What to Expect at Any Location</h2>
+  </div>
+  <div class="usp-grid">
+    <div class="usp"><span class="ico"><img src="{{ 'netlify-locations-28-97bd9c1ef759b114.png' | asset_url }}" alt=""></span><div><h4>Certified technicians</h4><p>ASE-certified pros at every location handle everything from oil changes to brakes and alignment.</p></div></div>
+    <div class="usp"><span class="ico"><img src="{{ 'netlify-locations-29-e3ab8971f32b1b08.png' | asset_url }}" alt=""></span><div><h4>Upfront, no-surprise pricing</h4><p>You approve an upfront quote before any work begins &mdash; what's needed now vs. what can wait.</p></div></div>
+    <div class="usp"><span class="ico"><img src="{{ 'netlify-locations-30-8be407e4bd1143e3.png' | asset_url }}" alt=""></span><div><h4>Nationwide warranty</h4><p>Qualifying work is backed by a warranty that travels with you, honored at locations across the country.</p></div></div>
+    <div class="usp"><span class="ico"><img src="{{ 'netlify-locations-31-d8aca53d5347ac98.png' | asset_url }}" alt=""></span><div><h4>Road hazard protection</h4><p>Optional coverage repairs or replaces tires damaged by potholes, nails, and road debris &mdash; so a flat doesn't cost you a new tire.</p></div></div>
+    <div class="usp"><span class="ico"><img src="{{ 'netlify-locations-32-aa2eac0712dc90be.png' | asset_url }}" alt=""></span><div><h4>Easy online booking</h4><p>Request a service and your preferred time online &mdash; the shop confirms your appointment. Walk-ins welcome, too.</p></div></div>
+    <div class="usp"><span class="ico"><img src="{{ 'netlify-locations-33-ae5b2ecec272adf0.png' | asset_url }}" alt=""></span><div><h4>Tires bought elsewhere? No problem</h4><p>Bring your own tires and we'll mount, balance, torque to spec, and reset your TPMS.</p></div></div>
+  </div>
+  <div class="expect-strip">
+    <span>&#9749; Coffee</span>
+    <span>&#128246; Free Wi-Fi</span>
+    <span>&#128186; Waiting area</span>
+    <span>&#127359; Free parking</span>
+    <span>&#128179; All cards accepted</span>
+    <span>&#128176; $0-down financing</span>
+    <span>&#128241; Online booking</span>
+    <span>&#128702; Restrooms</span>
+    <span>&#128715;&#65039; Comfortable seating</span>
+    <span>&#127466;&#127480; English &amp; Spanish</span>
+  </div>
+  <p style="text-align:center;font-size:12px;color:var(--slate);margin-top:14px">Amenities may vary by location. <em>[VERIFY per store]</em></p>
+</div></section>
+
+
+<!-- CURRENT OFFERS -->
+<section class="block"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-eye">Offers</div>
+    <h2>Current Deals at All Locations</h2>
+  </div>
+  <div class="offers-row">
+    <div class="offer-card offer-card--photo feat" style="background-image:url({{ 'netlify-locations-34-c39c699f3b7289b7.jpg' | asset_url }})"><span class="offer-tag">Limited time</span><h3>Buy 3,<br>Get 1 Free</h3><p>On most tires, most brands. Installation &amp; tire protection plan required.</p><a class="offer-cta" href="/pages/promotions">Shop eligible tires &rarr;</a></div>
+    <div class="offer-card offer-card--photo" style="background-image:url({{ 'netlify-locations-35-96a0e9a323bddd0c.jpg' | asset_url }})"><span class="offer-tag">Seasonal</span><h3>Service Specials</h3><p>Rotating savings on oil changes, wheel alignments, and brake service &mdash; refreshed regularly.</p><a class="offer-cta" href="/pages/coupons">See coupons &rarr;</a></div>
+    <div class="offer-card offer-card--photo" style="background-image:url({{ 'netlify-locations-36-a63e11ad839c45c2.jpg' | asset_url }})"><span class="offer-tag">Every day</span><h3>Manufacturer Rebates</h3><p>Mail-in and instant rebates from the brands you know, updated as they change.</p><a class="offer-cta" href="/pages/promotions">See rebates &rarr;</a></div>
+  </div>
+  <div class="fin-banner" style="background:linear-gradient(rgba(19,49,95,.90),rgba(12,30,58,.94)),url({{ 'netlify-locations-22-72c6973359decc41.jpg' | asset_url }}) center/cover">
+    <div class="fin-banner__l">
+      <div class="fe">&#128179; Financing</div>
+      <h3>Get Rolling for $0 Down</h3>
+      <p>Flexible, quick-approval financing means new tires, brakes, or service never have to wait for payday. Apply online in minutes and use it at any of our 9 Southern California stores.</p>
+    </div>
+    <a class="btn btn-white" href="/pages/financing">Apply in minutes &rarr;</a>
+  </div>
+</div></section>
+
+
+<!-- REVIEWS -->
+<!-- Source: CUSTOMER_-_STORE-INTERIOR.jpg | Alt: American Tire Stores showroom interior -->
+<section class="block alt" style="position:relative;background:linear-gradient(rgba(244,246,250,.91),rgba(244,246,250,.93)),url({{ 'netlify-locations-38-4f849650ebd22b6f.jpg' | asset_url }}) center/cover"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-eye">What drivers say</div>
+    <h2>Rated 4.8 Across Southern California</h2>
+  </div>
+  <div class="grev-bar">
+    <div class="grev-left">
+      <span class="grev-num">4.8</span>
+      <span class="grev-stars">★★★★★</span>
+      <span class="grev-count">Across all 9 locations</span>
+    </div>
+    <a class="grev-link" href="https://www.google.com/maps/search/American+Tire+Stores" target="_blank" rel="noopener">Read reviews on Google</a>
+  </div>
+  <div class="grev-grid">
+    <div class="grev"><div class="grev-top"><span class="grev-av">S</span><div><b>Sarah M.</b><span class="grev-meta">★★★★★ · Ventura</span></div></div><p>Had what I needed in stock, installed same afternoon. Fair price, no upsell.</p></div>
+    <div class="grev"><div class="grev-top"><span class="grev-av">J</span><div><b>James K.</b><span class="grev-meta">★★★★★ · Glendale</span></div></div><p>Best tire shop in Glendale. Quick alignment and honest about what I actually needed.</p></div>
+    <div class="grev"><div class="grev-top"><span class="grev-av">R</span><div><b>Rachel W.</b><span class="grev-meta">★★★★★ · Bellflower</span></div></div><p>Financing made it easy. New tires for my minivan and didn't have to wait for payday.</p></div>
+    <div class="grev"><div class="grev-top"><span class="grev-av">M</span><div><b>María G.</b><span class="grev-meta">★★★★★ · Ventura</span></div></div><p>Atención en español. Profesionales y precio justo.</p></div>
+    <div class="grev"><div class="grev-top"><span class="grev-av">T</span><div><b>Tony L.</b><span class="grev-meta">★★★★ · Cathedral City</span></div></div><p>Only tire shop in the desert I trust. Straight talk, fair prices.</p></div>
+    <div class="grev"><div class="grev-top"><span class="grev-av">K</span><div><b>Kevin D.</b><span class="grev-meta">★★★★★ · Thousand Oaks</span></div></div><p>Third time back. TPMS sensor replaced fast, no appointment needed.</p></div>
+  </div>
+  <p style="text-align:center;font-size:11px;color:var(--slate);margin-top:12px"><em>[VERIFY: Replace with real Google Reviews or verified reviews before launch.]</em></p>
+</div></section>
+
+<!-- FAQ -->
+<section class="block"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-eye">Good to know</div>
+    <h2>Frequently Asked Questions</h2>
+  </div>
+  <div class="faq" id="faq"></div>
+</div></section>
+
+<!-- FINAL CTA -->
+<section class="final" style="background:linear-gradient(rgba(12,30,58,.82),rgba(12,30,58,.90)),url({{ 'netlify-locations-22-72c6973359decc41.jpg' | asset_url }}) center/cover">
+  <div class="wrap">
+    <h2>Ready to Find Your Nearest Store?</h2>
+    <p>Choose your location for local pricing, in-stock availability, and certified service.</p>
+    <a class="btn btn-red" href="#storePicker">Find my store &#8594;</a>
+    <a class="btn btn-ghost" style="border-color:#fff;color:#fff" href="/pages/services">Book a service &#8594;</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<style>/* ===== locations page: step art, guarantees, offer backgrounds.
+   Appended at end of document on purpose - this page keeps its styles in the BODY. ===== */
+
+/* --- 3 steps: image-led cards (the arrows are gone; the art carries the sequence) --- */
+.steps-row--art{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;
+  align-items:stretch;justify-content:initial;max-width:1080px;margin:0 auto}
+.steps-row--art .step{flex:initial;max-width:none;padding:0;text-align:left;
+  background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .15s,box-shadow .15s,border-color .15s}
+.steps-row--art .step:hover{border-color:var(--brand);transform:translateY(-2px);
+  box-shadow:0 16px 34px -24px rgba(12,30,58,.5)}
+.steps-row--art .step-img{position:relative;display:block;aspect-ratio:16/9;
+  overflow:hidden;background:#0d2144}
+.steps-row--art .step-img img{width:100%;height:100%;object-fit:cover;display:block}
+.steps-row--art .step-num{position:absolute;left:14px;bottom:14px;margin:0;
+  width:40px;height:40px;box-shadow:0 6px 18px -6px rgba(0,0,0,.6)}
+.steps-row--art .step h3{margin:16px 18px 6px}
+.steps-row--art .step p{margin:0 18px 20px}
+@media(max-width:860px){.steps-row--art{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.steps-row--art{grid-template-columns:1fr;gap:16px}}
+
+/* --- guarantees: same component as the homepage --- */
+.guarantees{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.guar{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;padding:20px;text-align:center}
+.guar .gi{font-size:26px;margin-bottom:8px}
+.guar .gi img{width:64px;height:64px;object-fit:contain;display:block;margin:0 auto}
+.guar h4{font-family:'Montserrat',sans-serif;font-weight:800;font-size:14.5px;
+  text-transform:uppercase;color:#fff}
+.guar p{font-size:12px;color:#b7c4dc;margin-top:5px;line-height:1.5}
+@media(max-width:980px){.guarantees{grid-template-columns:1fr 1fr;gap:24px}}
+@media(max-width:520px){.guarantees{grid-template-columns:1fr}}
+
+/* --- offer cards on photography: scrim first, then the existing text turns white --- */
+.offer-card--photo{background-size:cover;background-position:center;background-repeat:no-repeat;
+  border-color:rgba(255,255,255,.16);isolation:isolate}
+.offer-card--photo::before{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(200deg,rgba(9,22,48,.38) 0%,rgba(9,22,48,.74) 42%,rgba(9,22,48,.92) 100%)}
+.offer-card--photo.feat::before{
+  background:linear-gradient(200deg,rgba(160,20,28,.46) 0%,rgba(140,16,22,.82) 42%,rgba(110,10,16,.95) 100%)}
+.offer-card--photo>*{position:relative;z-index:1}
+.offer-card--photo h3{color:#fff}
+.offer-card--photo p{color:#d7e0f0}
+.offer-card--photo .offer-tag{color:#ff8b7a}
+.offer-card--photo.feat p{color:#ffe1e2}
+.offer-card--photo.feat .offer-tag{color:#ffd7d9}
+.offer-card--photo:hover{border-color:rgba(255,255,255,.28)}</style>
 </div>
-<script>
-const ATS_NINE_STORES=[
- {name:"American Tire Stores — Ventura",city:"Ventura",slug:"ventura-ca",addr:"3059 E Main St, Ventura",zip:93003,id:52820,ph:"(805) 826-1788",url:"/pages/location-ventura-ca",img:"{{ 'ats-locations-inline-05.jpg' | asset_url }}"},
- {name:"American Tire Stores — Thousand Oaks",city:"Thousand Oaks",slug:"thousand-oaks-ca",addr:"621 E Thousand Oaks Blvd, Thousand Oaks",zip:91360,id:52819,ph:"(805) 379-1910",url:"/pages/location-thousand-oaks-ca",img:"{{ 'ats-locations-inline-06.jpg' | asset_url }}"},
- {name:"American Tire Stores — Valencia",city:"Valencia",slug:"valencia-ca",addr:"23510 Valencia Blvd, Unit A, Valencia",zip:91355,id:null,ph:"(661) 596-1444",url:"/pages/location-valencia-ca",img:"{{ 'ats-locations-inline-06.jpg' | asset_url }}"},
- {name:"American Tire Stores — Hollywood",city:"Hollywood",slug:"hollywood-ca",addr:"1174 N Western Ave, Los Angeles",zip:90029,id:61758,ph:"(323) 372-9372",url:"/pages/location-hollywood-ca",img:"{{ 'ats-locations-inline-07.jpg' | asset_url }}"},
- {name:"American Tire Stores — Glendale",city:"Glendale",slug:"glendale-ca",addr:"737 S Glendale Ave, Glendale",zip:91205,id:52816,ph:"(818) 243-3191",url:"/pages/location-glendale-ca",img:"{{ 'ats-locations-inline-08.jpg' | asset_url }}"},
- {name:"American Tire Stores — Glendale II",city:"Glendale II",slug:"glendale-ii-ca",addr:"1130 S Central Ave, Glendale",zip:91204,id:52818,ph:"(818) 547-2010",url:"/pages/location-glendale-ii-ca",img:"{{ 'ats-locations-inline-09.jpg' | asset_url }}"},
- {name:"American Tire Stores — Bellflower",city:"Bellflower",slug:"bellflower-ca",addr:"9509 Alondra Blvd, Bellflower",zip:90706,id:52814,ph:"(562) 804-4737",url:"/pages/location-bellflower-ca",img:"{{ 'ats-locations-inline-10.jpg' | asset_url }}"},
- {name:"American Tire Stores — Costa Mesa",city:"Costa Mesa",slug:"costa-mesa-ca",addr:"2049 Harbor Blvd, Costa Mesa",zip:92627,id:null,ph:"(949) 802-6419",url:"/pages/location-costa-mesa-ca",img:"{{ 'ats-locations-inline-10.jpg' | asset_url }}"},
- {name:"American Tire Stores — Cathedral City",city:"Cathedral City",slug:"cathedral-city-ca",addr:"68406 E Palm Canyon Dr, Cathedral City",zip:92234,id:52815,ph:"(760) 469-9510",url:"/pages/location-cathedral-city-ca",img:"{{ 'ats-locations-inline-11.jpg' | asset_url }}"}
-];
-const TC_API_KEY='c097aed9ad8c441bfff05ae020ca53f0';
-const STORES=[{name:"American Tire Stores — Ventura",city:"Ventura",slug:"ventura-ca",addr:"5100 Telegraph Rd, Ventura",zip:93003,id:52820,ph:"(805) 644-3330",url:"/pages/location-ventura-ca",img:"{{ 'ats-locations-inline-05.jpg' | asset_url }}"},{name:"American Tire Stores — Thousand Oaks",city:"Thousand Oaks",slug:"thousand-oaks-ca",addr:"621 E Thousand Oaks Blvd, Thousand Oaks",zip:91360,id:52819,ph:"(805) 495-7103",url:"/pages/location-thousand-oaks-ca",img:"{{ 'ats-locations-inline-06.jpg' | asset_url }}"},{name:"American Tire & Service — Los Angeles",city:"Los Angeles",slug:"los-angeles-ca",addr:"1174 N. Western Ave., Los Angeles",zip:90029,id:61758,ph:"(323) 372-9372",url:"/pages/location-los-angeles-ca",img:"{{ 'ats-locations-inline-07.jpg' | asset_url }}"},{name:"American Tire Stores — Glendale",city:"Glendale",slug:"glendale-ca",addr:"737 S Glendale Ave, Glendale",zip:91205,id:52816,ph:"(818) 243-3191",url:"/pages/location-glendale-ca",img:"{{ 'ats-locations-inline-08.jpg' | asset_url }}"},{name:"American Tire Stores — Glendale II",city:"Glendale II",slug:"glendale-ii-ca",addr:"601 S Brand Blvd, Glendale",zip:91204,id:52818,ph:"(818) 244-7600",url:"/pages/location-glendale-ii-ca",img:"{{ 'ats-locations-inline-09.jpg' | asset_url }}"},{name:"American Tire Stores — Bellflower",city:"Bellflower",slug:"bellflower-ca",addr:"9509 Alondra Blvd, Bellflower",zip:90706,id:52814,ph:"(562) 804-4737",url:"/pages/location-bellflower-ca",img:"{{ 'ats-locations-inline-10.jpg' | asset_url }}"},{name:"American Tire Stores — Cathedral City",city:"Cathedral City",slug:"cathedral-city-ca",addr:"68406 E Palm Canyon Dr, Cathedral City",zip:92234,id:52815,ph:"(760) 469-9510",url:"/pages/location-cathedral-city-ca",img:"{{ 'ats-locations-inline-11.jpg' | asset_url }}"}];
-let VEH={};const FALLBACK_VEH={"2024":{"Toyota":["Camry","RAV4","Corolla","Tacoma"],"Honda":["Civic","CR-V","Accord"],"Ford":["F-150","Explorer","Escape"],"Chevrolet":["Silverado","Equinox","Tahoe"]},"2022":{"Toyota":["Camry","RAV4","Highlander"],"Honda":["Civic","CR-V","Pilot"],"Ford":["F-150","Bronco","Mustang"],"Tesla":["Model 3","Model Y"]},"2020":{"Toyota":["Corolla","RAV4","4Runner"],"Honda":["Accord","CR-V"],"Jeep":["Wrangler","Grand Cherokee"],"Subaru":["Outback","Forester"]},"2018":{"Toyota":["Camry","Tacoma"],"Honda":["Civic","Accord"],"Nissan":["Altima","Rogue"],"Ford":["F-150","Focus"]}};const $=id=>document.getElementById(id);let st={year:"",make:"",model:"",store:null};
-function fillOpts(sel,arr,ph){if(!sel)return;sel.innerHTML='<option value="" disabled selected hidden>'+ph+'</option>';arr.forEach(v=>sel.add(new Option(v,v)));sel.disabled=!arr.length}
-function fillStores(){const hs=$('hstore'),sp=$('storePicker');if(hs){hs.innerHTML='<option value="">Choose…</option>';STORES.forEach(s=>hs.add(new Option(s.city,s.slug)))}if(sp){sp.innerHTML='<option value="">Choose your nearest store...</option>';STORES.forEach(s=>sp.add(new Option(s.city+' — '+s.addr,s.url)))}}
-function valuesFromPayload(p){if(Array.isArray(p))return p;if(p&&Array.isArray(p.values))return p.values;if(p&&p.data&&Array.isArray(p.data.values))return p.data.values;if(p&&Array.isArray(p.data))return p.data;if(p&&Array.isArray(p.years))return p.years;if(p&&Array.isArray(p.makes))return p.makes;if(p&&Array.isArray(p.models))return p.models;return []}
-function normalizeVehicleValues(v){return v.map(x=>typeof x==='string'||typeof x==='number'?String(x):String(x.name||x.value||x.label||x.year||x.make||x.model||x.trim||'')).filter(Boolean)}
-function vehicleApi(endpoint,params={}){const url=new URL(`https://wl.tireconnect.ca/api/v2/vehicle/${endpoint}`);url.searchParams.set('key',TC_API_KEY);Object.entries(params).forEach(([k,v])=>{if(v)url.searchParams.set(k,v)});return fetch(url).then(r=>r.ok?r.json():Promise.reject()).then(valuesFromPayload).then(normalizeVehicleValues)}
-function setLoading(sel,label){if(sel){sel.disabled=true;sel.innerHTML=`<option value="" disabled selected hidden>${label}</option>`}}
-async function initVehicleDropdowns(){setLoading($('hyear'),'Select');try{const years=await vehicleApi('years');if(years.length){VEH={};years.forEach(y=>VEH[y]={});fillOpts($('hyear'),years,'Select');return}}catch(e){}VEH=JSON.parse(JSON.stringify(FALLBACK_VEH));fillOpts($('hyear'),Object.keys(VEH),'Select')}
-async function loadMakesForYear(year){if(!year)return [];if(VEH[year]&&Object.keys(VEH[year]).length)return Object.keys(VEH[year]);setLoading($('hmake'),'Select');try{const makes=await vehicleApi('makes',{year});VEH[year]=VEH[year]||{};makes.forEach(m=>VEH[year][m]=VEH[year][m]||[]);return makes}catch(e){VEH[year]=VEH[year]||{};return Object.keys(VEH[year])}}
-async function loadModelsForMake(year,make){if(!year||!make)return [];if(VEH[year]&&Array.isArray(VEH[year][make])&&VEH[year][make].length)return VEH[year][make];setLoading($('hmodel'),'Select');try{const models=await vehicleApi('models',{year,make});VEH[year]=VEH[year]||{};VEH[year][make]=models;return models}catch(e){VEH[year]=VEH[year]||{};VEH[year][make]=VEH[year][make]||[];return VEH[year][make]}}
-function storageJson(keys){try{for(const k of keys){const raw=localStorage.getItem(k)||sessionStorage.getItem(k);if(raw){try{return JSON.parse(raw)}catch(e){return raw}}}}catch(e){}return null}
-function persistTireConnectState(){try{if(st.store){const p={name:st.store.name,city:st.store.city,address:st.store.addr,addr:st.store.addr,zip:st.store.zip,phone:st.store.ph,id:st.store.id,location_id:st.store.id,locationId:st.store.id,slug:st.store.slug,url:st.store.url};localStorage.setItem('atsTireConnectStore',JSON.stringify(p));sessionStorage.setItem('atsTireConnectStore',JSON.stringify(p));['atsTireConnectLocationId','tcLocationId','tc_location_id','location_id','locationId'].forEach(k=>{localStorage.setItem(k,String(st.store.id));sessionStorage.setItem(k,String(st.store.id))})}if(st.year&&st.make&&st.model){const v={year:st.year,make:st.make,model:st.model};['atsTireConnectVehicle','tcVehicle','tc_vehicle','tcwlwVehicle','tcwlw_vehicle','TCWidgetVehicle'].forEach(k=>{localStorage.setItem(k,JSON.stringify(v));sessionStorage.setItem(k,JSON.stringify(v))})}}catch(e){}}
-function restoreTireConnectState(){try{const q=new URLSearchParams(location.search);const savedStore=storageJson(['atsTireConnectStore']);const loc=q.get('location_id')||q.get('locationId')||localStorage.getItem('atsTireConnectLocationId')||sessionStorage.getItem('atsTireConnectLocationId')||(savedStore&&(savedStore.location_id||savedStore.locationId||savedStore.id))||'';if(loc){const m=STORES.find(s=>String(s.id)===String(loc));if(m)st.store=m}const sv=storageJson(['atsTireConnectVehicle','tcVehicle','tc_vehicle','tcwlwVehicle','tcwlw_vehicle','TCWidgetVehicle'])||{};st.year=q.get('year')||sv.year||sv.vehicleYear||sv.vehicle_year||'';st.make=q.get('make')||sv.make||sv.vehicleMake||sv.vehicle_make||'';st.model=q.get('model')||sv.model||sv.vehicleModel||sv.vehicle_model||''}catch(e){}}
-function syncSel(){const y=$('hyear'),mk=$('hmake'),md=$('hmodel');if(!y)return;y.value=st.year||'';const makes=st.year&&VEH[st.year]?Object.keys(VEH[st.year]):[];fillOpts(mk,makes,'Select');if(mk)mk.value=st.make||'';const models=st.year&&st.make&&VEH[st.year]&&VEH[st.year][st.make]?VEH[st.year][st.make]:[];fillOpts(md,models,'Select');if(md)md.value=st.model||''}
-function reflectState(){persistTireConnectState();if($('hstore'))$('hstore').value='';if($('storePicker'))$('storePicker').value='';if($('storeField'))$('storeField').classList.remove('set');if($('vehField'))$('vehField').classList.toggle('set',!!(st.make&&st.model));if($('vehVal'))$('vehVal').textContent=st.make&&st.model?((st.year?st.year+' ':'')+st.make+' '+st.model):'Not selected…';syncSel()}
-async function hOnYear(){st.year=$('hyear').value;st.make='';st.model='';reflectState();await loadMakesForYear(st.year);reflectState();if($('hmake'))$('hmake').focus()}
-async function hOnMake(){st.make=$('hmake').value;st.model='';reflectState();await loadModelsForMake(st.year,st.make);reflectState();if($('hmodel'))$('hmodel').focus()}
-function hOnModel(){st.model=$('hmodel').value;reflectState();if(st.model)toggleVeh(false)}
-function onHStore(){const slug=$('hstore').value;const s=STORES.find(x=>x.slug===slug);if(s)goStoreRecord(s)}
-function goStore(){const s=STORES.find(x=>x.url===($('storePicker')&&$('storePicker').value));if(s)goStoreRecord(s)}
-function goStoreBySlug(slug,event){const s=STORES.find(x=>x.slug===slug);if(!s)return;if(event)event.preventDefault();goStoreRecord(s)}
-function goStoreRecord(s){st.store=s;persistTireConnectState();location.href=s.url}
-function toggleVeh(open){const p=$('vehPop');if(p)p.classList.toggle('show',open===undefined?!p.classList.contains('show'):open)}
-function toggleMenu(o){const m=$('mobileMenu');if(m)m.classList.toggle('show',o===undefined?!m.classList.contains('show'):o)}
-function toggleFaq(i){const q=$('qa'+i);if(q)q.classList.toggle('open')}
-const FAQ=[["Where is the nearest American Tire Stores location?","American Tire Stores has 7 locations across Southern California: Ventura, Thousand Oaks, Los Angeles, two Glendale stores, Bellflower, and Cathedral City."],["What are American Tire Stores' hours?","All locations are open Monday through Friday from 8am to 6pm and Saturday from 8am to 5pm. Stores are closed on Sundays."],["Do I need an appointment?","Walk-ins are welcome, but booking online helps guarantee your spot and shortest wait."],["Do all locations offer the same services?","Every location supports tire sales, wheels, packages, oil changes, alignment, brakes, tire installation, TPMS, and battery service."],["Can I buy tires online and pick them up at a store?","Yes. Select your vehicle and local store to see local tire availability and pricing."],["Does American Tire Stores offer financing?","Yes. Financing is available at every location."],["Can I install tires bought elsewhere?","Yes. Book tire installation and bring your tires to your selected store."]];
-function storeCard(s){return `<a class="loc-widget-card" href="${s.url}" onclick="goStoreBySlug('${s.slug}',event)"><div class="loc-widget-card__img"><img src="${s.img}" alt="${s.name} storefront" loading="lazy"></div><div class="loc-widget-card__body"><h3>${s.city}</h3><p class="addr">${s.addr}, CA ${s.zip}</p><div class="phone">${s.ph}</div><div class="hours">Mon–Fri 8am–6pm · Sat 8am–5pm</div><span class="view">View Store →</span></div></a>`}
-function countyGroup(title,desc,items){return `<div class="county-group"><div class="county-title"><h3>${title}</h3><span class="county-pill">${items.length} ${items.length===1?'store':'stores'}</span></div><p class="county-desc">${desc}</p><div class="county-grid">${items.map(storeCard).join('')}</div></div>`}
-function renderLocations(){const grid=$('locGrid');if(grid)grid.innerHTML=`<p class="loc-widget-note">All offers are valid at every American Tire Stores location across Southern California.</p><div class="loc-widget-banner"><img src="{{ 'ats-locations-inline-12.jpg' | asset_url }}" alt="American Tire Stores storefront" loading="lazy"></div><div class="loc-widget-grid">${STORES.map(storeCard).join('')}</div>`;const faq=$('faq');if(faq)faq.innerHTML=FAQ.map((q,i)=>`<div class="qa" id="qa${i}"><button onclick="toggleFaq(${i})"><span>${q[0]}</span><span class="ic">+</span></button><div class="a"><p>${q[1]}</p></div></div>`).join('')}
-document.addEventListener('click',e=>{const p=$('vehPop');if(p&&p.classList.contains('show')&&!e.target.closest('#vehPop')&&!e.target.closest('#vehField'))toggleVeh(false)});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleVeh(false)});
-fillStores();renderLocations();restoreTireConnectState();initVehicleDropdowns().then(async()=>{if(st.year)await loadMakesForYear(st.year);if(st.year&&st.make)await loadModelsForMake(st.year,st.make);reflectState()});
-STORES.splice(0,STORES.length,...ATS_NINE_STORES);fillStores();renderLocations();
-</script>
+
 {% schema %}
-{"name":"Locations Page","settings":[],"presets":[{"name":"Locations Page"}]}
+{ "name": "Netlify page port", "settings": [] }
 {% endschema %}

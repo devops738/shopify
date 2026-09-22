@@ -45,5 +45,18 @@
     document.addEventListener('click',e=>{if(pop.classList.contains('show')&&!e.target.closest('#vehPop')&&!e.target.closest('#vehField'))pop.classList.remove('show');});
   };
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+
+  // Several legacy page sections include their original, hidden header and
+  // initialise its old seven-store select by id.  Run after those scripts so
+  // the visible shared header always exposes the current nine-store list.
+  const restoreStoreList=()=>{
+    const store=byId('hstore');
+    if(!store) return;
+    const selected=store.value;
+    store.innerHTML='<option value="">Choose…</option>'+stores.map((item,index)=>'<option value="'+index+'">'+item.city+'</option>').join('');
+    if(selected!=='' && stores[Number(selected)]) store.value=selected;
+  };
+  setTimeout(restoreStoreList,0);
+  window.addEventListener('load',restoreStoreList,{once:true});
 })();
 </script>
