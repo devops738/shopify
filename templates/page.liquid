@@ -1,4 +1,6 @@
-{% if page.handle == 'service-wheel-alignment' or page.handle == 'wheel-alignment' %}
+{% if page.handle == 'service-tpms' or page.handle == 'tpms-service' %}
+  {% section 'main-page-service-tpms' %}
+{% elsif page.handle == 'service-wheel-alignment' or page.handle == 'wheel-alignment' %}
   {% section 'main-page-service-wheel-alignment' %}
 {% elsif page.handle == 'services' %}
   {% section 'main-page-services' %}
