@@ -1,0 +1,25 @@
+<script>
+  (function () {
+    var locations = {
+      'Ventura': { address: '3059 E Main St, Ventura, CA 93003', phone: '(805) 826-1788', image: {{ 'netlify-financing-16-cdcc940270ee642e.jpg' | asset_url | json }}, url: '/pages/location-ventura-ca' },
+      'Thousand Oaks': { address: '621 E Thousand Oaks Blvd, Thousand Oaks, CA 91360', phone: '(805) 379-1910', image: {{ 'netlify-financing-17-6e4031c59d65386a.jpg' | asset_url | json }}, url: '/pages/location-thousand-oaks-ca' },
+      'Valencia': { address: '23510 Valencia Blvd, Unit A, Valencia, CA 91355', phone: '(661) 596-1444', image: {{ 'netlify-financing-18-5746055301668a88.jpg' | asset_url | json }}, url: '/pages/location-valencia-ca' },
+      'Hollywood': { address: '1174 N Western Ave, Los Angeles, CA 90029', phone: '(323) 372-9372', image: {{ 'netlify-financing-19-582faf17016f2ac3.jpg' | asset_url | json }}, url: '/pages/location-hollywood-ca' },
+      'Glendale': { address: '737 S Glendale Ave, Glendale, CA 91205', phone: '(818) 243-3191', image: {{ 'netlify-financing-20-196b5cddf165f34f.jpg' | asset_url | json }}, url: '/pages/location-glendale-ca' },
+      'Glendale 2': { address: '1130 S Central Ave, Glendale, CA 91204', phone: '(818) 547-2010', image: {{ 'netlify-financing-21-3dd9a67fa7ded918.jpg' | asset_url | json }}, url: '/pages/location-glendale-ii-ca' },
+      'Glendale II': { address: '1130 S Central Ave, Glendale, CA 91204', phone: '(818) 547-2010', image: {{ 'netlify-financing-21-3dd9a67fa7ded918.jpg' | asset_url | json }}, url: '/pages/location-glendale-ii-ca' },
+      'Bellflower': { address: '9509 Alondra Blvd, Bellflower, CA 90706', phone: '(562) 804-4737', image: {{ 'netlify-financing-22-60c7e57b01287bb2.jpg' | asset_url | json }}, url: '/pages/location-bellflower-ca' },
+      'Costa Mesa': { address: '2049 Harbor Blvd, Costa Mesa, CA 92627', phone: '(949) 802-6419', image: {{ 'netlify-financing-23-eafa51160dc4abe4.jpg' | asset_url | json }}, url: '/pages/location-costa-mesa-ca' },
+      'Cathedral City': { address: '68406 E Palm Canyon Dr, Cathedral City, CA 92234', phone: '(760) 469-9510', image: {{ 'netlify-financing-24-cb2ff932283299c3.jpg' | asset_url | json }}, url: '/pages/location-cathedral-city-ca' }
+    };
+    document.querySelectorAll('.locs .loc, .tp-locs .tp-loc, .wa-locations .wa-location').forEach(function (card) {
+      var title = card.querySelector('h3');
+      if (!title || !locations[title.textContent.trim()]) return;
+      var location = locations[title.textContent.trim()];
+      var wa = card.classList.contains('wa-location');
+      var imageStyle = wa ? 'width:100%;height:130px;object-fit:cover;display:block' : 'width:calc(100% + 32px);height:130px;object-fit:cover;display:block;margin:-16px -16px 14px';
+      card.style.overflow = 'hidden';
+      card.innerHTML = '<img src="' + location.image + '" alt="American Tire Stores ' + title.textContent.trim() + ' storefront" style="' + imageStyle + '"><div' + (wa ? '' : ' style="padding:0"') + '><h3>' + title.textContent.trim() + '</h3><p>' + location.address + '<br><strong style="color:#d9212b">' + location.phone + '</strong></p><a href="' + location.url + '">Store details →</a></div>';
+    });
+  })();
+</script>
