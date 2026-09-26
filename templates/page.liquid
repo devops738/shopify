@@ -1,4 +1,6 @@
-{% if page.handle == 'service-battery-service' or page.handle == 'battery-service' %}
+{% if page.handle == 'service-brake-service' or page.handle == 'service-brake-repair' or page.handle == 'brake-service' %}
+  {% section 'main-page-service-brake-service' %}
+{% elsif page.handle == 'service-battery-service' or page.handle == 'battery-service' %}
   {% section 'main-page-service-battery-service' %}
 {% elsif page.handle == 'service-tire-installation' or page.handle == 'tire-installation' %}
   {% section 'main-page-service-tire-installation' %}
