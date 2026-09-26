@@ -13,12 +13,21 @@
         <div class="veh-pop" id="vehPop"><div class="gp-row"><select id="hyear" onchange="if(window.hOnYear)hOnYear()"><option value="" disabled selected hidden>Select</option><option value="2024">2024</option><option value="2022">2022</option><option value="2020">2020</option><option value="2018">2018</option></select><select id="hmake" onchange="if(window.hOnMake)hOnMake()" disabled><option value="" disabled selected hidden>Select</option></select></div><div class="gp-row" style="grid-template-columns:1fr"><select id="hmodel" onchange="if(window.hOnModel)hOnModel()" disabled><option value="" disabled selected hidden>Select</option></select></div></div>
       </div>
       <a class="btn btn-red appt-btn" href="/pages/services">Book a Quick<br>Appointment</a>
+      <button class="nav-toggle" id="ats-mobile-nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="ats-mobile-nav"><span></span><span></span><span></span></button>
     </div>
   </div></div>
   <div class="hbar-nav"><div class="wrap"><nav class="mainnav" aria-label="Main">
     <a href="/pages/tire-search">Tire Search</a><a href="/pages/wheel-brands">Wheel Search</a><a href="/pages/catalog">Packages</a><a href="/pages/services">Services</a><a href="/pages/locations">Locations</a><a href="/pages/promotions">Promotions</a><a href="/pages/coupons">Coupons</a><a href="/pages/financing">Financing</a>
   </nav></div></div>
 </header>
+<nav class="ats-mobile-nav" id="ats-mobile-nav" aria-label="Mobile navigation" hidden>
+  <a href="/pages/tire-search">Tire Search</a><a href="/pages/wheel-brands">Wheel Search</a><a href="/pages/catalog">Packages</a><a href="/pages/services">Services</a><a href="/pages/locations">Locations</a><a href="/pages/promotions">Promotions</a><a href="/pages/coupons">Coupons</a><a href="/pages/financing">Financing</a>
+</nav>
+<style>
+  .ats-mobile-nav{display:none}
+  @media(max-width:980px){.ats-mobile-nav.show{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#dde2ea;border-bottom:1px solid #dde2ea;position:relative;z-index:39}.ats-mobile-nav a{background:#fff;color:#122240;padding:14px 20px;font:700 13px Montserrat,Arial,sans-serif;text-decoration:none}.ats-mobile-nav a:hover{background:#f4f6fa;color:#c51f28}}
+  @media(max-width:480px){.ats-mobile-nav.show{grid-template-columns:1fr}.ats-mobile-nav a{padding:12px 24px}}
+</style>
 <script>
 (() => {
   const stores=[
@@ -58,5 +67,7 @@
   };
   setTimeout(restoreStoreList,0);
   window.addEventListener('load',restoreStoreList,{once:true});
+  const mobileToggle=byId('ats-mobile-nav-toggle'), mobileNav=byId('ats-mobile-nav');
+  if(mobileToggle&&mobileNav) mobileToggle.addEventListener('click',()=>{const open=!mobileNav.classList.contains('show');mobileNav.classList.toggle('show',open);mobileNav.hidden=!open;mobileToggle.setAttribute('aria-expanded',String(open));});
 })();
 </script>
