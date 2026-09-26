@@ -54,6 +54,19 @@
   })();
 </script>
 
+<script>
+  (function () {
+    var grid = document.querySelector('.wa-locations');
+    if (!grid) return;
+    grid.insertAdjacentHTML('beforeend', `
+      <article class="wa-location"><img src="{{ 'netlify-locations-05-5746055301668a88.jpg' | asset_url }}" alt="Valencia store"><div><h3>Valencia</h3><p>23510 Valencia Blvd, Unit A<br>(661) 596-1444</p><a href="/pages/location-valencia-ca">Store details →</a></div></article>
+      <article class="wa-location"><img src="{{ 'netlify-locations-06-582faf17016f2ac3.jpg' | asset_url }}" alt="Hollywood store"><div><h3>Hollywood</h3><p>1174 N. Western Ave<br>(323) 372-9372</p><a href="/pages/location-hollywood-ca">Store details →</a></div></article>
+      <article class="wa-location"><img src="{{ 'netlify-locations-13-eafa51160dc4abe4.jpg' | asset_url }}" alt="Costa Mesa store"><div><h3>Costa Mesa</h3><p>2049 Harbor Blvd<br>(949) 802-6419</p><a href="/pages/location-costa-mesa-ca">Store details →</a></div></article>
+      <article class="wa-location"><div style="min-height:112px;background:#eef2f8;display:grid;place-items:center;color:#d9212b;font-size:13px;font-weight:900;text-transform:uppercase">Coming soon</div><div><h3>Signal Hill</h3><p>Signal Hill, CA<br>Opening soon</p><span style="display:inline-block;margin-top:9px;color:#d9212b;font-size:11px;font-weight:900;text-transform:uppercase">Coming soon</span></div></article>
+    `);
+  })();
+</script>
+
 {% render 'ats-site-footer' %}
 
 {% schema %}
