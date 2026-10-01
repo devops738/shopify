@@ -110,6 +110,24 @@ header{position:sticky;top:0;z-index:100;background:#fff}
 .loc-card__actions{margin-top:8px;display:flex;gap:12px}
 .loc-card__link{font-family:'Akira Expanded','Archivo';font-weight:800;font-size:12px;text-transform:uppercase;color:var(--red);letter-spacing:.03em}
 
+/* Compact store directory */
+.compact-store-directory{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.compact-store-directory .loc-card{border-radius:8px;border-width:1px;min-width:0}
+.compact-store-directory .loc-card__img{height:auto;aspect-ratio:16/9}
+.compact-store-directory .loc-card__body{padding:11px 12px 13px;gap:5px}
+.compact-store-directory .loc-card__city{font-family:'Montserrat',sans-serif;font-size:14px;line-height:1.15;text-transform:none}
+.compact-store-directory .loc-card__addr{font-size:10.5px;line-height:1.35;color:var(--slate)}
+.compact-store-directory .loc-card__ph{font-size:11px;font-weight:800;color:var(--red)}
+.compact-store-directory .loc-card__hrs{font-size:10px;line-height:1.3;color:#8b96aa}
+.compact-store-directory .loc-card__actions{margin-top:6px}
+.compact-store-directory .loc-card__link{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.02em}
+.compact-store-directory .loc-card--soon .loc-card__img{background:repeating-linear-gradient(-45deg,#f5f7fb 0 4px,#edf1f7 4px 8px);display:grid;place-items:center;min-height:0}
+.compact-store-directory .loc-card--soon .loc-card__img img{display:none}
+.compact-store-directory .loc-card--soon .loc-card__img::after{content:'COMING SOON';font-weight:900;font-size:13px;color:var(--red)}
+.compact-store-directory ~ .region{display:none}
+@media(max-width:860px){.compact-store-directory{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.compact-store-directory{grid-template-columns:1fr}}
+
 /* SERVICES OVERVIEW */
 .svc-overview{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .svc-ov{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;align-items:center;gap:12px}
@@ -429,6 +447,19 @@ footer .fcols>div{min-width:0}
     <div class="sec-eye">Our stores</div>
     <h2>9 American Tire Stores Locations Across Southern California</h2>
     <p>Find your nearest American Tire Stores location below. Each of our 9 Southern California tire shops is staffed by certified technicians and offers the full lineup of tires, wheels, packages, and auto services &mdash; with local pricing and online scheduling available at every store.</p>
+  </div>
+
+  <div class="compact-store-directory">
+    <a class="loc-card" href="/pages/location-ventura-ca"><div class="loc-card__img"><img src="{{ 'netlify-locations-11-cdcc940270ee642e.jpg' | asset_url }}" alt="American Tire Stores Ventura storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Ventura</div><div class="loc-card__addr">3059 E Main St, Ventura, CA 93003</div><div class="loc-card__ph">(805) 826-1788</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><div class="loc-card__actions"><span class="loc-card__link">Store details →</span></div></div></a>
+    <a class="loc-card" href="/pages/location-thousand-oaks-ca"><div class="loc-card__img"><img src="{{ 'netlify-locations-12-6e4031c59d65386a.jpg' | asset_url }}" alt="American Tire Stores Thousand Oaks storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Thousand Oaks</div><div class="loc-card__addr">621 E Thousand Oaks Blvd, Thousand Oaks, CA 91360</div><div class="loc-card__ph">(805) 379-1910</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><div class="loc-card__actions"><span class="loc-card__link">Store details →</span></div></div></a>
+    <a class="loc-card" href="/pages/location-valencia-ca"><div class="loc-card__img"><img src="{{ 'netlify-locations-05-5746055301668a88.jpg' | asset_url }}" alt="American Tire Stores Valencia storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Valencia</div><div class="loc-card__addr">23510 Valencia Blvd, Unit A, Valencia, CA 91355</div><div class="loc-card__ph">(661) 596-1444</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><div class="loc-card__actions"><span class="loc-card__link">Store details →</span></div></div></a>
+    <a class="loc-card" href="/pages/location-hollywood-ca"><div class="loc-card__img"><img src="{{ 'netlify-locations-06-582faf17016f2ac3.jpg' | asset_url }}" alt="American Tire Stores Hollywood storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Hollywood</div><div class="loc-card__addr">1174 N. Western Ave, Hollywood, CA 90029</div><div class="loc-card__ph">(323) 372-9372</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><div class="loc-card__actions"><span class="loc-card__link">Store details →</span></div></div></a>
+    <a class="loc-card" href="/pages/location-glendale-ca"><div class="loc-card__img"><img src="{{ 'netlify-locations-07-196b5cddf165f34f.jpg' | asset_url }}" alt="American Tire Stores Glendale storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Glendale</div><div class="loc-card__addr">737 S Glendale Ave, Glendale, CA 91205</div><div class="loc-card__ph">(818) 243-3191</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><div class="loc-card__actions"><span class="loc-card__link">Store details →</span></div></div></a>
+    <a class="loc-card" href="/pages/location-glendale-ii-ca"><div class="loc-card__img"><img src="{{ 'netlify-locations-08-3dd9a67fa7ded918.jpg' | asset_url }}" alt="American Tire Stores Glendale II storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Glendale II</div><div class="loc-card__addr">1130 S Central Ave, Glendale II, CA 91204</div><div class="loc-card__ph">(818) 547-2010</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><div class="loc-card__actions"><span class="loc-card__link">Store details →</span></div></div></a>
+    <a class="loc-card" href="/pages/location-bellflower-ca"><div class="loc-card__img"><img src="{{ 'netlify-locations-09-60c7e57b01287bb2.jpg' | asset_url }}" alt="American Tire Stores Bellflower storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Bellflower</div><div class="loc-card__addr">9509 Alondra Blvd, Bellflower, CA 90706</div><div class="loc-card__ph">(562) 804-4737</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><div class="loc-card__actions"><span class="loc-card__link">Store details →</span></div></div></a>
+    <a class="loc-card" href="/pages/location-costa-mesa-ca"><div class="loc-card__img"><img src="{{ 'netlify-locations-13-eafa51160dc4abe4.jpg' | asset_url }}" alt="American Tire Stores Costa Mesa storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Costa Mesa</div><div class="loc-card__addr">2049 Harbor Blvd, Costa Mesa, CA 92627</div><div class="loc-card__ph">(949) 802-6419</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><div class="loc-card__actions"><span class="loc-card__link">Store details →</span></div></div></a>
+    <a class="loc-card" href="/pages/location-cathedral-city-ca"><div class="loc-card__img"><img src="{{ 'netlify-locations-14-cb2ff932283299c3.jpg' | asset_url }}" alt="American Tire Stores Cathedral City storefront" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Cathedral City</div><div class="loc-card__addr">68406 E Palm Canyon Dr, Cathedral City, CA 92234</div><div class="loc-card__ph">(760) 469-9510</div><div class="loc-card__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm</div><div class="loc-card__actions"><span class="loc-card__link">Store details →</span></div></div></a>
+    <div class="loc-card loc-card--soon"><div class="loc-card__img"><img src="{{ 'netlify-locations-10-7c8480f624f21c6a.jpg' | asset_url }}" alt="Signal Hill opening soon" loading="lazy"></div><div class="loc-card__body"><div class="loc-card__city">Signal Hill</div><div class="loc-card__addr">Signal Hill, CA</div><div class="loc-card__actions"><span class="loc-card__link">Coming soon</span></div></div></div>
   </div>
 
   <div class="region">
