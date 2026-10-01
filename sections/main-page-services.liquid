@@ -602,34 +602,6 @@ h1,h2,h3,.arch,.hero h1,.loc-hero h1,.sec-head h2,.svc-intro h1,.pricing h2,.qui
 section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',sans-serif!important;letter-spacing:.005em!important}
 
 </style>
-<script>
-(function(){
-  function removeAtsTopGap(){
-    var section=document.getElementById('shopify-section-main-page-services');
-    if(!section)return;
-    [document.documentElement,document.body,section,section.parentElement,section.closest('main'),document.getElementById('MainContent')].forEach(function(el){
-      if(!el)return;
-      el.style.marginTop='0px';
-      el.style.paddingTop='0px';
-    });
-    var promo=section.querySelector('.promo');
-    if(promo){
-      promo.style.marginTop='0px';
-      promo.style.paddingTop='0px';
-      promo.style.top='0px';
-    }
-    var top=section.getBoundingClientRect().top;
-    if(top>1 && top<180){
-      section.style.transform='translateY(-'+Math.ceil(top)+'px)';
-      section.style.marginBottom='-'+Math.ceil(top)+'px';
-    }
-  }
-  removeAtsTopGap();
-  window.addEventListener('load',removeAtsTopGap,{once:true});
-  requestAnimationFrame(removeAtsTopGap);
-  setTimeout(removeAtsTopGap,300);
-})();
-</script>
 <div class="promo"><div class="wrap">
   <span><b>Buy 3, Get 1 FREE</b> on most tires</span><span class="sep">·</span>
   <span>Financing from <b>$0 down</b></span><span class="sep">·</span><a href="#offers">See offers →</a>
