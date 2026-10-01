@@ -545,9 +545,6 @@ body:has(#shopify-section-main-page-services) main,
 body:has(#shopify-section-main-page-services) #MainContent,
 body:has(#shopify-section-main-page-services) .content-for-layout,
 #shopify-section-main-page-services{margin-top:0!important;padding-top:0!important}
-/* The shared promo + desktop header are sticky. Reserve their space before the
-   page content so the breadcrumb begins directly below the visible navigation. */
-body:has(#shopify-section-main-page-services) #ats-page-content{padding-top:166px!important}
 #shopify-section-main-page-services>.promo:first-of-type,
 #shopify-section-main-page-services>style:first-child+.promo{margin-top:0!important;top:0!important}
 body>.shopify-section:first-child,
@@ -585,7 +582,6 @@ section.block{padding:44px 0}
 .final{padding:48px 24px}
 footer .wrap{padding-top:34px}
 @media(max-width:900px){.svc-intro__grid,.pricing{gap:22px}}
-@media(max-width:980px){body:has(#shopify-section-main-page-services) #ats-page-content{padding-top:114px!important}}
 @media(max-width:600px){.svc-intro{margin-top:0;padding:46px 0 40px}section.block{padding:34px 0}.sec-head{margin-bottom:18px}.quiz{padding:22px}.tc-mount{min-height:360px;padding:18px}#tireconnect{min-height:520px}#tireconnect iframe,#tireconnect>iframe{min-height:520px!important}.final{padding:38px 18px}}
 
 /* The Services export includes a legacy header inside this section.  Shopify
