@@ -1,0 +1,40 @@
+<style>
+  .nap-soc{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:17px 0 20px}
+  .nap-soc__lbl{font-family:'Akira Expanded','Archivo',sans-serif;font-weight:800;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#55627d}
+  .nap-soc__link{width:48px;height:48px;border:2px solid #dfe5ef;border-radius:50%;display:grid;place-items:center;background:#fff;transition:border-color .15s,transform .15s}
+  .nap-soc__link:hover{border-color:#13315f;transform:translateY(-2px)}
+  .nap-soc__link svg{display:block;width:25px;height:25px}
+  .nap-soc__link--facebook svg{width:26px;height:26px}
+  .nap-soc__link--yelp svg{width:25px;height:25px}
+  @media(max-width:560px){.nap-soc{gap:10px;margin:14px 0 18px}.nap-soc__lbl{width:100%;font-size:12px}.nap-soc__link{width:44px;height:44px}}
+</style>
+<div class="nap-soc" aria-label="Find American Tire Stores {{ city }} online">
+  <span class="nap-soc__lbl">Find us on</span>
+  <a class="nap-soc__link" href="{{ google }}" target="_blank" rel="noopener noreferrer" aria-label="Find American Tire Stores {{ city }} on Google">
+    <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-2.8-.4-4.1H24v7.4h12.1c-.2 1.9-1.6 4.9-4.5 6.9l-.1.3 6.5 5 .4.1c4.1-3.8 6.7-9.4 6.7-15.6"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-6.9-5.4c-1.8 1.3-4.3 2.2-7.6 2.2-5.8 0-10.7-3.8-12.5-9.1l-.3.1-6.7 5.2-.1.3C8 41.6 15.4 46 24 46"/><path fill="#FBBC05" d="M11.5 28.4c-.5-1.4-.7-2.9-.7-4.4s.3-3 .7-4.4v-.3l-6.8-5.3-.2.1A22 22 0 0 0 2 24c0 3.5.9 6.9 2.5 9.9z"/><path fill="#EA4335" d="M24 10.6c4.1 0 6.9 1.8 8.5 3.3l6.2-6C34.9 4.4 29.9 2 24 2 15.4 2 8 6.4 4.5 14.1l7 5.4c1.8-5.3 6.7-8.9 12.5-8.9"/></svg>
+  </a>
+  <a class="nap-soc__link nap-soc__link--facebook" href="{{ facebook }}" target="_blank" rel="noopener noreferrer" aria-label="Follow American Tire Stores {{ city }} on Facebook">
+    <svg viewBox="0 0 24 24" fill="#0866FF" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+  </a>
+  <a class="nap-soc__link nap-soc__link--yelp" href="{{ yelp }}" target="_blank" rel="noopener noreferrer" aria-label="Read American Tire Stores {{ city }} reviews on Yelp">
+    <svg viewBox="0 0 24 24" fill="#FF1A1A" aria-hidden="true"><path d="M12.1 1.4c1.2 0 2.1.6 2.3 1.8l.6 4.1c.1.6-.2 1.1-.8 1.3l-3.7 1.3c-.5.2-1.1-.1-1.2-.7L8.6 3.5c-.2-1.2.4-2 1.6-2.1l1.9 0zm5.7 9.2c.8-.1 1.5.4 1.7 1.1.2.8-.2 1.5-.9 1.8l-4.1 1.5c-.6.2-1.2-.1-1.4-.7-.2-.6.1-1.2.6-1.5l4.1-2.2zm-5.1 5.6c.5.5.5 1.2.1 1.7l-2.6 3.5c-.5.6-1.3.7-1.9.2-.6-.5-.7-1.3-.2-1.9l2.6-3.5c.5-.6 1.3-.6 1.9 0zm7.6.6c.5.4.6 1.1.3 1.6-.3.6-1 .8-1.6.5l-3.5-1.8c-.5-.3-.7-.9-.5-1.4.3-.5.9-.8 1.4-.6l3.9 1.7zM7.2 12.1c.3.6 0 1.3-.6 1.5l-3.9 1.1c-.7.2-1.4-.2-1.6-.9-.2-.7.2-1.4.9-1.6l3.9-1.1c.6-.2 1.3.1 1.4.9z"/></svg>
+  </a>
+</div>
+<script>
+  (function(){
+    var social=document.currentScript.previousElementSibling;
+    if(!social)return;
+    var details={
+      '/pages/location-valencia-ca':{city:'Valencia',google:'https://maps.app.goo.gl/34SwGfFsWHcZPirf7',facebook:'https://www.facebook.com/americantirestores/',yelp:'https://www.yelp.com/biz/american-tire-stores-valencia-santa-clarita'},
+      '/pages/location-costa-mesa-ca':{city:'Costa Mesa',google:'https://maps.app.goo.gl/8me83RfT63v5x3hX8',facebook:'https://www.facebook.com/americantirestores/',yelp:'https://www.yelp.com/search?find_desc=American+Tire+Stores&find_loc=Costa+Mesa%2C+CA'},
+      '/pages/location-hollywood-ca':{city:'Hollywood',google:'https://maps.app.goo.gl/aftro5ZZiL33Q1at8',facebook:'https://www.facebook.com/americantirestores/',yelp:'https://www.yelp.com/search?find_desc=American+Tire+Stores&find_loc=Hollywood%2C+CA'}
+    };
+    var d=details[location.pathname];
+    if(!d)return;
+    social.setAttribute('aria-label','Find American Tire Stores '+d.city+' online');
+    social.querySelector('.nap-soc__link').href=d.google;
+    social.querySelector('.nap-soc__link--facebook').href=d.facebook;
+    social.querySelector('.nap-soc__link--yelp').href=d.yelp;
+    social.querySelectorAll('.nap-soc__link').forEach(function(a){a.setAttribute('aria-label',a.getAttribute('aria-label').replace('Glendale',d.city));});
+  })();
+</script>
