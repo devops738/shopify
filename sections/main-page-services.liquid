@@ -584,6 +584,17 @@ footer .wrap{padding-top:34px}
 @media(max-width:900px){.svc-intro__grid,.pricing{gap:22px}}
 @media(max-width:600px){.svc-intro{margin-top:0;padding:46px 0 40px}section.block{padding:34px 0}.sec-head{margin-bottom:18px}.quiz{padding:22px}.tc-mount{min-height:360px;padding:18px}#tireconnect{min-height:520px}#tireconnect iframe,#tireconnect>iframe{min-height:520px!important}.final{padding:38px 18px}}
 
+/* The Services export includes a legacy header inside this section.  Shopify
+   renders the shared header before #ats-page-content, so keep that visible
+   header on the exact same measurements used by every other page. */
+body > .promo .wrap{width:100%;max-width:none!important;padding-left:24px!important;padding-right:24px!important}
+body > header .hbar-brand .wrap,
+body > header .hbar-nav .wrap{width:100%;max-width:1200px!important;margin-left:auto!important;margin-right:auto!important;padding-left:24px!important;padding-right:24px!important}
+body > header .logo img{height:40px!important;width:auto!important}
+body > header .hg-field .hg-ic{font-size:18px;line-height:1;display:inline-flex}
+body > header .hg-field .hg-ic img{width:36px!important;height:36px!important;object-fit:contain;display:block}
+body > header .nav-phone-ic{font-size:16px}
+
 /* Mockup typography pass: Montserrat UI + Akira display headings */
 body,.promo,.mainnav a,.hg-field,.hg-store select,.veh-pop select,.garage-btn,.garage-pop select,.garage-pop input,.btn,.tc-tab,.tc-panel__lead,.loc-cta .btn,.store-card,.nap,.open-badge,.hours,.loc-svc,.feat,.other-loc,.brand-chip,.qa button,.footer,.tc-mount__sub{font-family:'Montserrat',system-ui,sans-serif!important}
 h1,h2,h3,.arch,.hero h1,.loc-hero h1,.sec-head h2,.svc-intro h1,.pricing h2,.quiz__h{font-family:'Akira Expanded','Archivo',sans-serif!important;letter-spacing:.005em!important}
