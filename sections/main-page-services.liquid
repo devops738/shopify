@@ -1059,8 +1059,8 @@ document.querySelectorAll('.js-svc').forEach(sel=>SERVICES.forEach(s=>sel.add(ne
 document.querySelectorAll('.js-store').forEach(fillStores);
 /* service cards: full content visible, image, no accordion */
 /* DESIGNER RELAY: .svc-ic shows a temporary emoji — replace with a custom per-service icon (oil change, alignment, brakes, tire install, TPMS, battery) */
-$('svcList').innerHTML=SERVICES.map((s,i)=>`<div class="svc-card2">
-  <div class="svc-card2__img"><img src="${SVC_IMG[s.n]}" alt="${s.n} service at American Tire Stores" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    $('svcList').innerHTML=SERVICES.map((s,i)=>`<div class="svc-card2">
+  <a class="svc-card2__img" href="${s.u}" aria-label="Learn more about ${s.n}"><img src="${SVC_IMG[s.n]}" alt="${s.n} service at American Tire Stores" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></a>
   <div class="svc-card2__body">
     <div class="svc-card2__head"><span class="svc-hd-l"><span class="svc-ic"><img src="${SVC_ICON[s.n]}" alt="" style="width:34px;height:34px;object-fit:contain;display:block"></span><span class="nm">${s.n}</span></span><span class="tm">${s.t}</span></div>
     <p class="svc-card2__desc">${s.b}</p>

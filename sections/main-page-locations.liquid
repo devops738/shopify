@@ -411,10 +411,13 @@ footer .fcols>div{min-width:0}
 .offer-card--photo:hover{border-color:rgba(255,255,255,.28)}
 </style>
 <div class="ats-netlify-port">
-<!-- BREADCRUMB -->
-<nav style="padding:12px 0;font-size:12px;color:var(--slate);border-bottom:1px solid var(--line)"><div class="wrap">
-  <a href="/" style="color:var(--brand);font-weight:600">Home</a> <span style="margin:0 6px">/</span> <span>Locations</span>
-</div></nav>
+<style>
+  .ats-netlify-port .crumbs{background:var(--bg-alt);border-bottom:1px solid var(--line)}
+  .ats-netlify-port .crumbs .wrap{padding:10px 24px;font-size:12.5px;color:var(--slate)}
+  .ats-netlify-port .crumbs a,.ats-netlify-port .crumbs b{color:var(--brand);font-weight:700}
+  .ats-netlify-port .crumbs span{margin:0 8px;color:#b3bed3}
+</style>
+<nav class="crumbs" aria-label="Breadcrumb"><div class="wrap"><a href="/">Home</a><span>&rsaquo;</span><b>Locations</b></div></nav>
 
 <!-- HERO -->
 <section class="loc-index-hero" style="position:relative;background:linear-gradient(rgba(12,30,58,.82),rgba(12,30,58,.88)),url({{ 'netlify-locations-04-6f7ddc7495ecbb15.jpg' | asset_url }}) center/cover;color:#fff">
