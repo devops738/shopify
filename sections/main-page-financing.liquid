@@ -2846,6 +2846,14 @@ footer a.fl{display:block;padding:4px 0;color:#c3d0e8;font-size:13.5px}footer a.
   </div>
 </section>
 
+<script>
+  (function () {
+    var legacyHero = document.querySelector('.fin-hero2');
+    var applyHero = document.querySelector('.apply2');
+    if (legacyHero && applyHero) legacyHero.replaceWith(applyHero);
+  })();
+</script>
+
 <section class="hiw"><div class="wrap">
   <div class="sec-head"><div class="sec-eye" style="color:#ff8b7a">How it works</div>
     <h2>Four Steps, About Two Minutes</h2>
