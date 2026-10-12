@@ -1,4 +1,5 @@
 {% comment %} Generated from the supplied Netlify export. Keep source assets in /assets. {% endcomment %}
+{% assign snap_apply_url = 'https://us-east-2.protection.sophos.com/?d=snapfinance.com&u=aHR0cHM6Ly9iay5zbmFwZmluYW5jZS5jb20vb3JpZ2luYXRpb24_cGFyYW1JZD0zdyUyRkVXVkZ6VkdjUWlvU2RLbjF2dXFkcjJoTnIzQTF4dEprZEhhYjhaN0VQbXN1RVBxZENjdnI2RyUyQjFXRThQR3lXTkxVRENtSmI4bXElMkJDUW5yMzYydEZWMTdzbDlJQVZNaE1YVTI2TG1nMExmeEdWVmg5YjdkeU1uSTdqTkg2amZxNXoybDVvQmtkJTJGdThrdk9VR1ViN1VVRlVkWVFtUjRRM3llbTdYQU1MOCUzRCUyMg==&i=NWE0NmFjY2E4MDhmNDExMzNhNjdmMTJl&t=T0pqRVZZZ29lczdOVFVlQW5aTjBEYS93em5hTXhDQnVBc1FCWStkMlIvND0=&h=698568bdd51b4b00b75c95a1182b3cd3&s=AVNPUEhUT0NFTkNSWVBUSVbVEvQPTOCIdsuEKLzlyR8JR6Kr4W-W2v6dpM_83qF33g' %}
 <style>
 
 :root{
@@ -2827,7 +2828,7 @@ footer a.fl{display:block;padding:4px 0;color:#c3d0e8;font-size:13.5px}footer a.
         <li><b>$7,500</b><span>maximum credit line</span></li>
       </ul>
     </div>
-    <div class="snap-card"><div class="snap-card__eye">Financing by</div><img class="snap-card__logo" src="{{ 'netlify-financing-06-51b3faa50561f57f.png' | asset_url }}" alt="Snap Finance" width="300" height="134" decoding="async"><a class="btn btn-red snap-card__cta" href="#apply">Apply now &rarr;</a><div class="snap-card__note">Checking your options takes about two minutes.</div></div>
+    <div class="snap-card"><div class="snap-card__eye">Financing by</div><img class="snap-card__logo" src="{{ 'netlify-financing-06-51b3faa50561f57f.png' | asset_url }}" alt="Snap Finance" width="300" height="134" decoding="async"><a class="btn btn-red snap-card__cta" href="{{ snap_apply_url }}">Apply now &rarr;</a><div class="snap-card__note">Checking your options takes about two minutes.</div></div>
   </div>
 </section>
 
@@ -2859,7 +2860,7 @@ footer a.fl{display:block;padding:4px 0;color:#c3d0e8;font-size:13.5px}footer a.
         <li><b>$7,500</b><span>maximum credit line</span></li>
       </ul>
     </div>
-    <div class="apply2__card"><div class="snap-card snap-card--onDark"><div class="snap-card__eye">Financing by</div><img class="snap-card__logo" src="{{ 'netlify-financing-06-51b3faa50561f57f.png' | asset_url }}" alt="Snap Finance" width="300" height="134" decoding="async"><a class="btn btn-red snap-card__cta" href="https://bk.snapfinance.com/origination">Apply now &rarr;</a><div class="snap-card__note">Takes about two minutes &middot; No credit check</div></div></div>
+    <div class="apply2__card"><div class="snap-card snap-card--onDark"><div class="snap-card__eye">Financing by</div><img class="snap-card__logo" src="{{ 'netlify-financing-06-51b3faa50561f57f.png' | asset_url }}" alt="Snap Finance" width="300" height="134" decoding="async"><a class="btn btn-red snap-card__cta" href="{{ snap_apply_url }}">Apply now &rarr;</a><div class="snap-card__note">Takes about two minutes &middot; No credit check</div></div></div>
   </div>
 </section>
 
@@ -2960,12 +2961,12 @@ footer a.fl{display:block;padding:4px 0;color:#c3d0e8;font-size:13.5px}footer a.
   <h2>Get What Your Car Needs Today</h2>
   <p>Apply with Snap Finance. $0 down, no credit check, 0% for 100 days.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <a class="btn btn-red" href="#apply">Apply now &rarr;</a>
+    <a class="btn btn-red" href="{{ snap_apply_url }}">Apply now &rarr;</a>
     <a class="btn btn-outline" href="/pages/tire-search">Shop tires</a>
   </div>
 </div></section>
 <div class="mcta" role="region" aria-label="Apply for financing">
-  <a class="btn btn-red" href="#apply">Apply now &rarr;</a>
+  <a class="btn btn-red" href="{{ snap_apply_url }}">Apply now &rarr;</a>
   <a class="btn btn-line" href="tel:+13233729372">Call us</a>
 </div>
 </div>
