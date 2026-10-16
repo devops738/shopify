@@ -47,6 +47,13 @@
         }
       }
     },
-    "content_for_index": []
+    "content_for_index": [],
+    "blocks": {
+      "10837457020649725524": {
+        "type": "shopify://apps/noibupixel/blocks/noibu-core/01a0abe7-a6bf-7b1c-ac89-69dee68e16b6",
+        "disabled": false,
+        "settings": {}
+      }
+    }
   }
 }
