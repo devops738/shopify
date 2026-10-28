@@ -12,7 +12,7 @@
         <button class="hg-field hg-veh" id="vehField" type="button" onclick="if(window.toggleVeh)toggleVeh()"><span class="hg-ic"><img src="{{ 'ats-inline-02.png' | asset_url }}" alt=""></span><span class="hg-txt"><small>My Vehicle <span class="hg-pen">✎</span></small><b id="vehVal">Not selected…</b></span></button>
         <div class="veh-pop" id="vehPop"><div class="gp-row"><select id="hyear" onchange="if(window.hOnYear)hOnYear()"><option value="" disabled selected hidden>Select</option><option value="2024">2024</option><option value="2022">2022</option><option value="2020">2020</option><option value="2018">2018</option></select><select id="hmake" onchange="if(window.hOnMake)hOnMake()" disabled><option value="" disabled selected hidden>Select</option></select></div><div class="gp-row" style="grid-template-columns:1fr"><select id="hmodel" onchange="if(window.hOnModel)hOnModel()" disabled><option value="" disabled selected hidden>Select</option></select></div></div>
       </div>
-      <a class="btn btn-red appt-btn" href="/pages/services">Book a Quick<br>Appointment</a>
+      <a class="btn btn-red appt-btn" href="/pages/services#booknow">Book a Quick<br>Appointment</a>
       <button class="nav-toggle" id="ats-mobile-nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="ats-mobile-nav"><span></span><span></span><span></span></button>
     </div>
   </div></div>
@@ -43,15 +43,18 @@
   ];
   const makes={2024:{Toyota:['Camry','RAV4','Corolla','Tacoma'],Honda:['Civic','CR-V','Accord'],Ford:['F-150','Explorer','Escape']},2022:{Toyota:['Camry','RAV4','Highlander'],Honda:['Civic','CR-V','Pilot'],Ford:['F-150','Bronco','Mustang']},2020:{Toyota:['Corolla','RAV4','4Runner'],Honda:['Accord','CR-V'],Jeep:['Wrangler','Grand Cherokee']},2018:{Toyota:['Camry','Tacoma'],Honda:['Civic','Accord'],Nissan:['Altima','Rogue']}};
   const byId=id=>document.getElementById(id), option=(el,values)=>{el.innerHTML='<option value="" disabled selected hidden>Select</option>'+values.map(v=>'<option value="'+v+'">'+v+'</option>').join('');el.disabled=!values.length;};
-  const persist=store=>{try{const data={name:'American Tire Stores — '+store.city,city:store.city,address:store.addr,addr:store.addr,phone:store.phone,id:store.id,location_id:store.id,locationId:store.id};localStorage.setItem('atsTireConnectStore',JSON.stringify(data));sessionStorage.setItem('atsTireConnectStore',JSON.stringify(data));if(store.id)['atsTireConnectLocationId','tcLocationId','tc_location_id','location_id','locationId'].forEach(k=>{localStorage.setItem(k,String(store.id));sessionStorage.setItem(k,String(store.id));});}catch(e){}};
+  const persist=store=>{try{const data={name:'American Tire Stores — '+store.city,city:store.city,address:store.addr,addr:store.addr,phone:store.phone,id:store.id,location_id:store.id,locationId:store.id};localStorage.setItem('atsTireConnectStore',JSON.stringify(data));sessionStorage.setItem('atsTireConnectStore',JSON.stringify(data));if(store.id)['atsTireConnectLocationId','tcLocationId','tc_location_id','location_id','locationId'].forEach(k=>{localStorage.setItem(k,String(store.id));sessionStorage.setItem(k,String(store.id));});window.dispatchEvent(new CustomEvent('ats:tireconnect-updated'));}catch(e){}};
+  const storedJson=keys=>{try{for(const key of keys){const raw=localStorage.getItem(key)||sessionStorage.getItem(key);if(raw){try{return JSON.parse(raw)}catch(e){}}}}catch(e){}return null;};
+  const syncVehicle=()=>{const value=byId('vehVal'),vehicle=byId('vehField');if(!value||!vehicle)return;const saved=storedJson(['atsTireConnectVehicle','tcVehicle','tc_vehicle','tcwlwVehicle','tcwlw_vehicle','TCWidgetVehicle'])||{};const year=saved.year||saved.vehicleYear||saved.vehicle_year||'',make=saved.make||saved.vehicleMake||saved.vehicle_make||'',model=saved.model||saved.vehicleModel||saved.vehicle_model||'';if(year&&make&&model){value.textContent=[year,make,model].join(' ');vehicle.classList.add('set');}};
   const init=()=>{const store=byId('hstore'),field=byId('storeField'),vehicle=byId('vehField'),pop=byId('vehPop'),year=byId('hyear'),make=byId('hmake'),model=byId('hmodel'),value=byId('vehVal');if(!store||!vehicle)return;
     try{const saved=JSON.parse(localStorage.getItem('atsTireConnectStore')||sessionStorage.getItem('atsTireConnectStore')||'null');const index=stores.findIndex(s=>saved&&(s.id&&String(s.id)===String(saved.id)||s.city===saved.city));if(index>=0){store.value=String(index);field.classList.add('set');}}catch(e){}
     store.addEventListener('change',()=>{const picked=stores[Number(store.value)];field.classList.toggle('set',!!picked);if(picked)persist(picked);});
     vehicle.addEventListener('click',()=>pop.classList.toggle('show'));
     year.addEventListener('change',()=>option(make,Object.keys(makes[year.value]||{})));
     make.addEventListener('change',()=>option(model,(makes[year.value]||{})[make.value]||[]));
-    model.addEventListener('change',()=>{value.textContent=[year.value,make.value,model.value].filter(Boolean).join(' ')||'Not selected…';vehicle.classList.toggle('set',!!model.value);pop.classList.remove('show');});
+    model.addEventListener('change',()=>{const selected={year:year.value,make:make.value,model:model.value};try{['atsTireConnectVehicle','tcVehicle','tc_vehicle','tcwlwVehicle','tcwlw_vehicle','TCWidgetVehicle'].forEach(key=>{localStorage.setItem(key,JSON.stringify(selected));sessionStorage.setItem(key,JSON.stringify(selected));});window.dispatchEvent(new CustomEvent('ats:tireconnect-updated'));}catch(e){}value.textContent=[year.value,make.value,model.value].filter(Boolean).join(' ')||'Not selected…';vehicle.classList.toggle('set',!!model.value);pop.classList.remove('show');});
     document.addEventListener('click',e=>{if(pop.classList.contains('show')&&!e.target.closest('#vehPop')&&!e.target.closest('#vehField'))pop.classList.remove('show');});
+    syncVehicle();
   };
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 
@@ -67,6 +70,8 @@
   };
   setTimeout(restoreStoreList,0);
   window.addEventListener('load',restoreStoreList,{once:true});
+  window.addEventListener('ats:tireconnect-updated',syncVehicle);
+  window.setInterval(syncVehicle,1200);
   const mobileToggle=byId('ats-mobile-nav-toggle'), mobileNav=byId('ats-mobile-nav');
   if(mobileToggle&&mobileNav) mobileToggle.addEventListener('click',()=>{const open=!mobileNav.classList.contains('show');mobileNav.classList.toggle('show',open);mobileNav.hidden=!open;mobileToggle.setAttribute('aria-expanded',String(open));});
 })();
