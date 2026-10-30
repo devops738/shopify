@@ -431,6 +431,9 @@ footer .wrap{padding-top:34px}
     .hbar-brand .appt-btn{display:inline-flex!important;order:5;flex:1;width:auto!important;min-width:0;flex-basis:calc(50% - 5px);height:46px!important;min-height:46px!important;margin:0;font-size:10.5px;padding:6px 8px!important}
     .veh-pop{position:fixed;top:146px;right:16px;left:16px;width:auto}
   }
+  /* QA cleanup: internal build notes and the legacy mobile action rail are never storefront content. */
+  #ats-page-content .tpl-note,#ats-page-content #whDev,#ats-page-content .seo-note,#ats-page-content .bg-tag,.mcta{display:none!important}
+  @media(max-width:700px){.ats-store-actions{grid-template-columns:1fr 1fr!important}.ats-store-actions .ats-btn{min-height:54px;font-size:11px}.ats-store-social{margin-bottom:16px}}
   </style>
   <script>
   (function(){
@@ -546,6 +549,26 @@ footer .wrap{padding-top:34px}
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
   })();
   </script>
+  <script>
+  (function(){
+    const downey={city:'Downey',address:'8041 Firestone Blvd, Downey, CA 90241',phone:'(562) 862-9925',href:'/pages/location-downey-ca'};
+    function cardMarkup(className){
+      if(className.indexOf('svc-loc-card')>-1)return '<div class="svc-loc-card" data-ats-city="Downey"><a href="'+downey.href+'" style="display:block;color:inherit;text-decoration:none"><div class="svc-loc-card__body"><h3>Downey</h3><p class="addr">'+downey.address+'</p><div class="phone">'+downey.phone+'</div><div class="hours">Mon–Fri 8–6 · Sat 8–5 · Sun 9–4</div><span class="book">View store details →</span></div></a></div>';
+      if(className.indexOf('pk-loc')>-1)return '<div class="pk-loc" data-ats-city="Downey"><div class="pk-loc__body"><div class="pk-loc__city">Downey</div><div class="pk-loc__addr">'+downey.address+'</div><div class="pk-loc__ph"><a href="tel:+15628629925">'+downey.phone+'</a></div><div class="pk-loc__hrs">Mon–Fri 8am–6pm · Sat 8am–5pm · Sun 9am–4pm</div><a class="pk-loc__go" href="'+downey.href+'">View store details →</a></div></div>';
+      const c=className||'loc'; return '<article class="'+c+'" data-ats-city="Downey"><h3>Downey</h3><p>'+downey.address+'<br>'+downey.phone+'</p><a href="'+downey.href+'">View store details →</a></article>';
+    }
+    function appendDowney(){
+      document.querySelectorAll('.locs,.svc-locs,.pk-locs,.tp-locs').forEach(grid=>{
+        if(/Downey/i.test(grid.textContent))return;
+        const first=grid.firstElementChild;
+        if(!first)return;
+        grid.insertAdjacentHTML('beforeend',cardMarkup(first.className||''));
+      });
+    }
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(appendDowney,200));else setTimeout(appendDowney,200);
+    window.addEventListener('load',appendDowney);
+  })();
+  </script>
   <style>
   #shopbook-section .tc-panel.ats-single-widget-panel,
   #shopbook-section #ats-location-widget,
@@ -614,6 +637,26 @@ footer .wrap{padding-top:34px}
     document.addEventListener('click',function(e){
       if(e.target&&e.target.closest&&e.target.closest('#shopbook-section'))setTimeout(tcExpansionGuard,120);
     },true);
+  })();
+  </script>
+  <style>
+  .ats-generated-breadcrumb{max-width:1180px;margin:0 auto;padding:16px 24px 10px;color:#576682;font-size:14px}
+  .ats-generated-breadcrumb a{color:inherit;text-decoration:none}.ats-generated-breadcrumb span{margin:0 8px;color:#a2acbd}.ats-generated-breadcrumb strong{color:#102f60}
+  @media(max-width:700px){.ats-generated-breadcrumb{padding:12px 18px 8px;font-size:13px}}
+  </style>
+  <script>
+  (function(){
+    function addServiceBreadcrumb(){
+      if(!/^\/pages\/service-/.test(location.pathname)||document.querySelector('.ats-generated-breadcrumb'))return;
+      var target=document.getElementById('ats-page-content');
+      if(!target)return;
+      var crumb=document.createElement('nav');
+      crumb.className='ats-generated-breadcrumb';
+      crumb.setAttribute('aria-label','Breadcrumb');
+      crumb.innerHTML='<a href="/">Home</a><span>›</span><a href="/pages/services">Services</a><span>›</span><strong>Service details</strong>';
+      target.insertBefore(crumb,target.firstChild);
+    }
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addServiceBreadcrumb);else addServiceBreadcrumb();
   })();
   </script>
 </body>

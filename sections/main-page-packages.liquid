@@ -1272,26 +1272,6 @@ section.block.pk-blue .pk-why em{color:#fff;font-style:italic}
     <div class="tc-mount__sub">Select a store and a vehicle to see packages that fit.</div>
     <button class="btn btn-red" type="button" onclick="loadPkgWidget()" style="margin-top:16px">Load the package builder &rarr;</button>
   </div>
-  <div class="dev-note"><b>DEV &middot; package widget mount</b> &mdash; from <code>page.catalog.json</code>:
-    <code>widget_type: "catalog"</code>, <code>allowed_products: "package"</code>,
-    <code>fitment: "extended"</code>, <code>enable_locator: true</code>,
-    <code>services_url: "/pages/appointment"</code>.
-    <b>Note 1:</b> there is no <code>page.appointment.json</code> in the theme &mdash; that
-    <code>services_url</code> currently points at a page that does not exist. Confirm whether it should be
-    <code>/pages/services</code>.
-    <b>Note 2 &middot; build type cannot be passed to the widget.</b> These settings are the
-    <i>universal</i> widget shape, and the universal widget exposes only
-    <code>changeLocation()</code> &mdash; no <code>searchByVehicle()</code>, no <code>filters</code>
-    parameter, no documented URL deep-linking. The legacy v3 widget does document
-    <code>filters: {category, light_truck, season_id, &hellip;}</code>, but even there every search needs a
-    vehicle, size, VIN or part number first &mdash; a build type is never a starting point. So the
-    &ldquo;Shop by build&rdquo; cards set on-page context only; they do not pre-filter TireConnect.
-    <b>Open with TireConnect:</b> does the universal widget expose any post-init search or filter API, and
-    what values does <code>category</code> accept?
-    <b>Note 3 &middot; pricing claim unverified.</b> Copy on this page says the set is quoted as one figure.
-    Whether that figure includes fitting labor depends on this account's TireConnect pricing setup, not on
-    <code>fitment</code>. Confirm before launch &mdash; the step-3 and FAQ copy are written conditionally
-    until it is.</div>
 </div></section>
 
 <section class="block"><div class="wrap">
@@ -1330,13 +1310,6 @@ section.block.pk-blue .pk-why em{color:#fff;font-style:italic}
     <a class="pill red" href="/pages/tire-search">All 36 tire brands</a>
     <a class="pill outline" href="/pages/wheel-brands">All 70 wheel brands</a>
   </div>
-  <div class="dev-note"><b>DEV &middot; brand rail</b> &mdash; 106 logos, 36 tire + 70 wheel,
-    from the same source list the homepage rail uses. Render as one array of
-    <code>[name, "tire"|"wheel"]</code> so the alt text stays correct per brand. Tiles are
-    plain <code>&lt;div&gt;</code>s, not anchors, until per-brand pages exist.
-    <b>[VERIFY] stock coverage</b> &mdash; this is the catalogue list, not a
-    store-level availability list. Confirm with ATS before any copy claims every brand is
-    stocked at every location.</div>
 </div></section>
 
 <section class="block pk-blue"><div class="wrap">
@@ -1491,9 +1464,7 @@ function pickBuild(key,label){
 function clearBuild(){PK_BUILD=null;document.getElementById('pkgCtx').hidden=true;}
 function loadPkgWidget(){
   var m=document.getElementById('pkgMount');
-  m.innerHTML='<div class="tc-live"><div class="tc-live__bar">Package builder \u00b7 catalog \u00b7 '
-    +'allowed_products: package</div><div class="tc-live__body">Prototype mount. In production the package '
-    +'widget renders here, configured from <code>page.catalog.json</code>.</div></div>';
+  m.innerHTML='<div class="tc-live"><div class="tc-live__bar">Package builder</div><div class="tc-live__body">The package search is temporarily unavailable. Please refresh or choose a store in the header and try again.</div></div>';
 }
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Tire and Wheel Packages","description":"Tire and wheel packages built for your exact vehicle and fitted at one of nine Southern California stores. Mounting, balancing, TPMS reset and torque to spec are included, with $0-down financing available.","url":"https://americantirestores.com/pages/catalog","inLanguage":"en-US","isPartOf":{"@type":"WebSite","name":"American Tire Stores","url":"https://americantirestores.com"}}</script>

@@ -1115,7 +1115,6 @@ footer .fcols>div{min-width:0}
 </style>
 <div class="crumbs"><div class="wrap"><a href="/">Home</a> <span>&rsaquo;</span> <b>Wheel Search</b></div></div>
 
-<div class="tpl-note" style="background:#fff7e6;border-bottom:1px dashed #d9a441;font-size:12px;padding:10px 0;color:#7a5b12"><div class="wrap"><b>WHEEL SEARCH PAGE</b> &mdash; TireConnect <code>initWheels()</code> is the wheel search widget. Garage store pre-selects <code>location_id</code>. 70 wheel brands in the directory below.</div></div>
 
 <!-- HERO -->
 <section class="wh-hero">
@@ -1159,7 +1158,6 @@ footer .fcols>div{min-width:0}
     </div>
   </div>
   <div class="wh-hint" id="whHint"></div>
-  <div class="dev-note" id="whDev"></div>
 </div></section>
 
 <!-- WHAT'S INCLUDED -->
@@ -1403,8 +1401,7 @@ function loadWheelWidget(){
 function updateWhHint(){
   var h=document.getElementById('whHint');
   if(st.store)h.innerHTML='Your selected store: <b>'+storeLabel(st.store)+'</b>. Wheel search shows pricing for this location.';
-  else h.innerHTML='No store selected yet \u2014 pick your store in the wheel search (or the garage up top) to see local pricing.';
-  document.getElementById('whDev').innerHTML='<b>DEV \u00b7 wheel widget mount</b> \u2014 <code>initWheels({ apikey, container:\'wh-mount\''+(st.store?', location_id:'+st.store.id:'')+' })</code>. The widget owns vehicle entry, wheel browsing, and visualizer.';
+  else h.innerHTML='Choose your store above to see local pricing.';
 }
 updateWhHint();
 var _origR=reflectState;reflectState=function(){_origR();updateWhHint();};

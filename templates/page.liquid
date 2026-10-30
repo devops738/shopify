@@ -32,26 +32,8 @@
   {% section 'main-page-coupon-detail' %}
 {% elsif page.handle == 'locations' %}
   {% section 'main-page-locations' %}
-{% elsif page.handle == 'location-ventura-ca' %}
-  {% section 'main-page-location-ventura-ca' %}
-{% elsif page.handle == 'location-thousand-oaks-ca' %}
-  {% section 'main-page-location-thousand-oaks-ca' %}
-{% elsif page.handle == 'location-los-angeles-ca' %}
-  {% section 'main-page-location-los-angeles-ca' %}
-{% elsif page.handle == 'location-glendale-ca' %}
-  {% section 'main-page-location-glendale-ca' %}
-{% elsif page.handle == 'location-glendale-ii-ca' %}
-  {% section 'main-page-location-glendale-ii-ca' %}
-{% elsif page.handle == 'location-bellflower-ca' %}
-  {% section 'main-page-location-bellflower-ca' %}
-{% elsif page.handle == 'location-downey-ca' %}
-  {% section 'main-page-location-downey-ca' %}
-{% elsif page.handle == 'location-cathedral-city-ca' %}
-  {% section 'main-page-location-cathedral-city-ca' %}
-{% elsif page.handle == 'location-valencia-ca' or page.handle == 'location-costa-mesa-ca' %}
-  {% section 'main-page-location-glendale-ca' %}
-{% elsif page.handle == 'location-hollywood-ca' %}
-  {% section 'main-page-location-glendale-ca' %}
+{% elsif page.handle contains 'location-' %}
+  {% section 'main-page-location-store' %}
 {% else %}
   {{ page.content }}
 {% endif %}
