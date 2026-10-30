@@ -972,6 +972,7 @@ footer .fcols>div{min-width:0}
 .bprog-thumb{position:absolute;top:0;bottom:0;background:var(--red);border-radius:2px;
   transition:left .12s linear,width .12s linear}
 .brand-rail-wrap[hidden],.brand-dots[hidden],.brand-grid[hidden]{display:none}.brand-none{color:var(--slate);font-size:14px;padding:18px 2px}.brand-rail .blogo{background:#fff}
+@media(max-width:760px){.brand-rail{grid-template-rows:repeat(2,1fr);grid-auto-columns:calc((100% - 14px)/2);gap:14px}.brand-rail .blogo{height:84px;padding:10px}.brand-rail .blogo-img{max-height:46px}.brail-nav{display:none}}
 /* locations: restore the site-standard card.
    A legacy .loc-card rule earlier in this document sets padding:18px, which the
    photo-card rule never resets - so the storefront photo rendered inset instead
@@ -1180,8 +1181,8 @@ footer .fcols>div{min-width:0}
     <div class="sz-card"><div class="sz-img"><img src="{{ 'netlify-wheel-brands-source-08-a3d1491554d40e77.jpg' | asset_url }}" alt="Wheel bolt pattern explained" loading="lazy" decoding="async"></div><div class="sz-body"><div><h3>Bolt pattern</h3><p>The number and spacing of the lug holes (e.g., 5&times;114.3). It must match your vehicle exactly or the wheel won&rsquo;t mount. This is the first filter the search applies.</p></div></div></div>
     <div class="sz-card"><div class="sz-img"><img src="{{ 'netlify-wheel-brands-source-09-5ae8bdb2ffda8071.jpg' | asset_url }}" alt="Wheel offset explained" loading="lazy" decoding="async"></div><div class="sz-body"><div><h3>Offset &amp; backspacing</h3><p>Offset is how far the mounting surface sits from the wheel&rsquo;s centerline. The wrong offset means the wheel sits too far in (rubbing) or out (sticking past the fender).</p></div></div></div>
     <div class="sz-card"><div class="sz-img"><img src="{{ 'netlify-wheel-brands-source-10-2014f8764e9af53e.jpg' | asset_url }}" alt="Wheel center bore explained" loading="lazy" decoding="async"></div><div class="sz-body"><div><h3>Center bore</h3><p>The center hole diameter that fits over the hub. Hub-centric wheels fit precisely; the wrong bore needs adapter rings or won&rsquo;t mount safely.</p></div></div></div>
-    <div class="sz-card"><div class="sz-img"><img src="{{ 'netlify-wheel-brands-source-11-b147c4ca0d954f16.jpg' | asset_url }}" alt="Wheel wheel sizing explained" loading="lazy" decoding="async"></div><div class="sz-body"><div><h3>Diameter &amp; width</h3><p>Upsizing looks great but affects ride, tire selection, and speedometer accuracy. The search shows what sizes are confirmed safe for your vehicle.</p></div></div></div>
-    <div class="sz-card"><div class="sz-img"><img src="{{ 'netlify-wheel-brands-source-12-9ad0fd495855ac63.jpg' | asset_url }}" alt="Wheel wheel finishes explained" loading="lazy" decoding="async"></div><div class="sz-body"><div><h3>Finish types</h3><p>Chrome, gloss black, matte, machined, bronze, brushed &mdash; finishes affect appearance and maintenance. Some need special care to avoid peeling or oxidation.</p></div></div></div>
+    <div class="sz-card"><div class="sz-img"><img src="{{ 'netlify-wheel-brands-source-11-b147c4ca0d954f16.jpg' | asset_url }}" alt="Wheel sizing explained" loading="lazy" decoding="async"></div><div class="sz-body"><div><h3>Diameter &amp; width</h3><p>Upsizing looks great but affects ride, tire selection, and speedometer accuracy. The search shows what sizes are confirmed safe for your vehicle.</p></div></div></div>
+    <div class="sz-card"><div class="sz-img"><img src="{{ 'netlify-wheel-brands-source-12-9ad0fd495855ac63.jpg' | asset_url }}" alt="Wheel finishes explained" loading="lazy" decoding="async"></div><div class="sz-body"><div><h3>Finish types</h3><p>Chrome, gloss black, matte, machined, bronze, brushed &mdash; finishes affect appearance and maintenance. Some need special care to avoid peeling or oxidation.</p></div></div></div>
     <div class="sz-card"><div class="sz-img"><img src="{{ 'netlify-wheel-brands-source-13-8dc770f9094e4769.jpg' | asset_url }}" alt="Wheel load rating explained" loading="lazy" decoding="async"></div><div class="sz-body"><div><h3>Load rating</h3><p>Every wheel has a weight capacity. Trucks and SUVs need wheels rated for their load &mdash; aftermarket wheels must match or exceed the OE spec.</p></div></div></div>
   </div>
 </div></section>
@@ -1640,7 +1641,8 @@ document.getElementById('faqList').innerHTML=FAQS.map((f,i)=>
     var locationId=store&&(store.id||store.locationId||store.location_id);
     var config={
       apikey:'c097aed9ad8c441bfff05ae020ca53f0',apiKey:'c097aed9ad8c441bfff05ae020ca53f0',
-      container:'wh-mount',locale:'en_US',allowed_products:['wheel'],product_type:'wheel',
+      container:'wh-mount',locale:'en_US',allowed_products:['wheel'],products:['wheel'],product_type:'wheel',product:'wheel',
+      catalog_type:'wheel',catalogType:'wheel',search_type:'wheel',searchType:'wheel',
       locationId:locationId||undefined,location_id:locationId||undefined,
       location_lock:!!locationId,locationLock:!!locationId,
       redirect_url:location.pathname,catalog_url:location.pathname
