@@ -49,13 +49,16 @@
   const init=()=>{const store=byId('hstore'),field=byId('storeField'),vehicle=byId('vehField'),pop=byId('vehPop'),year=byId('hyear'),make=byId('hmake'),model=byId('hmodel'),value=byId('vehVal');if(!store||!vehicle)return;
     try{const saved=JSON.parse(localStorage.getItem('atsTireConnectStore')||sessionStorage.getItem('atsTireConnectStore')||'null');const index=stores.findIndex(s=>saved&&(s.id&&String(s.id)===String(saved.id)||s.city===saved.city));if(index>=0){store.value=String(index);field.classList.add('set');}}catch(e){}
     store.addEventListener('change',()=>{const picked=stores[Number(store.value)];field.classList.toggle('set',!!picked);if(picked)persist(picked);});
-    vehicle.addEventListener('click',()=>pop.classList.toggle('show'));
+    vehicle.removeAttribute('onclick');
+    vehicle.addEventListener('click',()=>{const open=!pop.classList.contains('show');pop.classList.toggle('show',open);vehicle.setAttribute('aria-expanded',String(open));});
     year.addEventListener('change',()=>option(make,Object.keys(makes[year.value]||{})));
     make.addEventListener('change',()=>option(model,(makes[year.value]||{})[make.value]||[]));
     model.addEventListener('change',()=>{const selected={year:year.value,make:make.value,model:model.value};try{['atsTireConnectVehicle','tcVehicle','tc_vehicle','tcwlwVehicle','tcwlw_vehicle','TCWidgetVehicle'].forEach(key=>{localStorage.setItem(key,JSON.stringify(selected));sessionStorage.setItem(key,JSON.stringify(selected));});window.dispatchEvent(new CustomEvent('ats:tireconnect-updated'));}catch(e){}value.textContent=[year.value,make.value,model.value].filter(Boolean).join(' ')||'Not selected…';vehicle.classList.toggle('set',!!model.value);pop.classList.remove('show');});
     document.addEventListener('click',e=>{if(pop.classList.contains('show')&&!e.target.closest('#vehPop')&&!e.target.closest('#vehField'))pop.classList.remove('show');});
     syncVehicle();
   };
+  window.atsSharedStores=stores;
+  window.atsPersistStore=persist;
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 
   // Several legacy page sections include their original, hidden header and

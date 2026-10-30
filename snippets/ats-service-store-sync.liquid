@@ -1,0 +1,28 @@
+<script>
+(()=>{
+ const ids=['alignment-store','tp-store','brake-store','ti-store','oil-store','battery-store'];
+ function init(){
+  const stores=window.atsSharedStores;
+  if(!stores)return;
+  const selects=ids.map(id=>document.getElementById(id)).filter(Boolean);
+  selects.forEach(select=>{
+   select.innerHTML='<option value="">Choose your store</option>';
+   stores.forEach(store=>{const option=new Option(store.city+(store.id?'':' — call to book'),store.id?String(store.id):'');option.disabled=!store.id;option.dataset.city=store.city;select.add(option)});
+   select.addEventListener('change',()=>{
+    const store=stores.find(s=>s.id&&String(s.id)===select.value);
+    if(store&&window.atsPersistStore)window.atsPersistStore(store);
+    sync();
+   });
+  });
+  function sync(){
+   let saved=null;try{saved=JSON.parse(localStorage.getItem('atsTireConnectStore')||'null')}catch(e){}
+   const store=stores.find(s=>saved&&(s.city===saved.city||s.id&&String(s.id)===String(saved.id)));
+   selects.forEach(select=>{select.value=store&&store.id?String(store.id):''});
+   const header=document.getElementById('hstore');
+   if(header&&store)header.value=String(stores.indexOf(store));
+  }
+  sync();window.addEventListener('ats:tireconnect-updated',sync);window.addEventListener('storage',sync);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
