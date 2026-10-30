@@ -1647,8 +1647,15 @@ document.getElementById('faqList').innerHTML=FAQS.map((f,i)=>
       location_lock:!!locationId,locationLock:!!locationId,
       redirect_url:location.pathname,catalog_url:location.pathname
     };
-    mount.innerHTML='';
-    try{window.TCWidget.init(config);}catch(error){
+    mount.innerHTML='<div class="tc-live"><div class="tc-live__body">Loading wheel search…</div></div>';
+    try{
+      window.TCWidget.init(config);
+      window.setTimeout(function(){
+        if(!mount.querySelector('iframe,select,input,button,[data-tireconnect-widget]')){
+          mount.innerHTML='<div class="tc-live"><div class="tc-live__body">Wheel search is taking longer than expected. <button type="button" class="btn btn-red" onclick="loadWheelWidget()">Retry wheel search</button></div></div>';
+        }
+      },12000);
+    }catch(error){
       mount.innerHTML='<div class="tc-live"><div class="tc-live__body">The live wheel search could not start. Please refresh and try again.</div></div>';
     }
   }

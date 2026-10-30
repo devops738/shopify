@@ -9,10 +9,14 @@ const out = path.join(root, 'output', 'qa-screenshots');
 fs.mkdirSync(out, { recursive: true });
 const base = 'https://usj86p-qn.myshopify.com';
 const allPages = [
-  ['home', '/'], ['tire-search', '/pages/tire-search'], ['wheel-search', '/pages/wheel-search'],
+  ['home', '/'], ['tire-search', '/pages/tire-search'], ['wheel-search', '/pages/wheel-brands'],
   ['packages', '/pages/packages'], ['services', '/pages/services'], ['oil-change', '/pages/service-oil-change'],
   ['alignment', '/pages/service-wheel-alignment'], ['promotions', '/pages/promotions'], ['coupons', '/pages/coupons'],
   ['financing', '/pages/financing'], ['locations', '/pages/locations'], ['ventura', '/pages/location-ventura-ca'],
+  ['thousand-oaks', '/pages/location-thousand-oaks-ca'], ['valencia', '/pages/location-valencia-ca'],
+  ['hollywood', '/pages/location-hollywood-ca'], ['glendale', '/pages/location-glendale-ca'],
+  ['glendale-ii', '/pages/location-glendale-ii-ca'], ['bellflower', '/pages/location-bellflower-ca'],
+  ['costa-mesa', '/pages/location-costa-mesa-ca'], ['cathedral-city', '/pages/location-cathedral-city-ca'],
   ['downey', '/pages/location-downey-ca']
 ];
 const start = Number(process.argv[2] || 0);
@@ -34,6 +38,7 @@ for (const [name, href] of pages) {
   await page.setViewportSize({ width: 1440, height: 1600 });
   await page.goto(base + href, { waitUntil: 'domcontentloaded', timeout: 60000 });
   await page.waitForTimeout(1200);
+  console.log(name, await page.locator('.ats-store-actions .ats-btn').count());
   await page.screenshot({ path: path.join(out, `${name}-desktop.png`), fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.reload({ waitUntil: 'domcontentloaded', timeout: 60000 });
