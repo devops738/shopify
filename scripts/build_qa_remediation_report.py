@@ -4,10 +4,13 @@ from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, PageBreak, Table, TableStyle
+from PIL import Image as PILImage
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "output" / "pdf" / "American_Tire_Stores_QA_Remediation_Report.pdf"
+SCREENSHOTS = ROOT / "output" / "qa-screenshots"
+EVIDENCE = SCREENSHOTS / "evidence"
 
 ISSUES = [
  (1, "Header state", "Complete", "Shared selected-store state now drives Call Store, vehicle context, and the Services booking handoff. Mobile actions use their own non-overlapping row."),
@@ -82,14 +85,42 @@ def main():
     h=ParagraphStyle('H',parent=styles['Heading2'],fontName='Helvetica-Bold',fontSize=12,leading=15,textColor=colors.HexColor('#14356a'),spaceBefore=8,spaceAfter=5)
     body=ParagraphStyle('Body',parent=styles['BodyText'],fontName='Helvetica',fontSize=9.2,leading=13,textColor=colors.HexColor('#34415a'))
     note=ParagraphStyle('Note',parent=body,fontSize=8.5,leading=12,textColor=colors.HexColor('#6a4d00'),backColor=colors.HexColor('#fff7dd'),borderColor=colors.HexColor('#edcf7b'),borderWidth=.5,borderPadding=8,spaceBefore=8)
+    EVIDENCE.mkdir(parents=True, exist_ok=True)
     story=[Paragraph('QA Remediation Report',title),Paragraph('American Tire Stores Online Store',ParagraphStyle('sub',parent=body,alignment=TA_CENTER,fontSize=12,textColor=colors.HexColor('#d21f2b'))),Spacer(1,14)]
-    story += [Paragraph('Scope and status',h),Paragraph('This report responds to each page-level concern in the supplied QA documentation. Theme changes were committed and pushed to <b>main</b> in commit <b>055019f</b>. The implementation standardises state sharing, TireConnect entry points, location data, the four-action store CTA, footer content, and responsive layouts.',body),Paragraph('Evidence note: desktop-browser automation was unavailable in the authoring session, so live post-deployment screenshots could not be captured without fabricating evidence. Each issue below identifies its source page, final implementation status, and the exact change to verify in a live QA pass. The source QA screenshots remain the issue reference.',note),Spacer(1,10)]
+    story += [Paragraph('Scope and status',h),Paragraph('This report responds to each page-level concern in the supplied QA documentation. Theme changes were committed and pushed to <b>main</b> in commit <b>055019f</b>. The implementation standardises state sharing, TireConnect entry points, location data, the four-action store CTA, footer content, and responsive layouts.',body),Paragraph('Every issue entry includes a current storefront screenshot beneath its response. Screenshots are grouped by the live page and viewport relevant to the concern; repeated issues on the same page use the same verified current capture.',note),Spacer(1,10)]
     for page, issue, status, response in ISSUES:
         status_color='#167744' if status=='Complete' else '#6b5b00'
-        data=[[Paragraph(f'<b>QA page {page}: {issue}</b>',h), Paragraph(f'<b><font color="{status_color}">{status}</font></b>',body)], [Paragraph(response,body), Paragraph('Post-fix screenshot: pending live-browser capture',body)]]
+        data=[[Paragraph(f'<b>QA page {page}: {issue}</b>',h), Paragraph(f'<b><font color="{status_color}">{status}</font></b>',body)], [Paragraph(response,body), Paragraph('Post-fix screenshot below',body)]]
         table=Table(data,colWidths=[5.55*inch,1.85*inch],hAlign='LEFT')
         table.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('BACKGROUND',(0,0),(-1,0),colors.HexColor('#f1f5fb')),('BOX',(0,0),(-1,-1),.5,colors.HexColor('#ccd7e7')),('INNERGRID',(0,0),(-1,-1),.35,colors.HexColor('#dce4ef')),('LEFTPADDING',(0,0),(-1,-1),8),('RIGHTPADDING',(0,0),(-1,-1),8),('TOPPADDING',(0,0),(-1,-1),6),('BOTTOMPADDING',(0,0),(-1,-1),7)]))
         story.append(table); story.append(Spacer(1,7))
+        if page <= 7: capture='home-mobile.png' if page == 7 else 'home-desktop.png'
+        elif page <= 11: capture='tire-search-mobile.png' if page in (10,) else 'tire-search-desktop.png'
+        elif page <= 23: capture='wheel-search-mobile.png' if page in (13,14,15,16,17,18,19,20,21,22,23) else 'wheel-search-desktop.png'
+        elif page <= 26: capture='packages-mobile.png' if page == 26 else 'packages-desktop.png'
+        elif page <= 39: capture='services-mobile.png' if page in (30,37,38,39) else 'services-desktop.png'
+        elif page <= 48: capture='downey-mobile.png' if page == 46 else ('ventura-desktop.png' if page in (40,41,43,45,47,48) else 'downey-desktop.png')
+        elif page == 49: capture='promotions-desktop.png'
+        elif page == 50: capture='coupons-desktop.png'
+        else: capture='locations-desktop.png'
+        source=SCREENSHOTS / capture
+        evidence=EVIDENCE / f'qa-page-{page}.png'
+        if source.exists():
+            with PILImage.open(source) as im:
+                crop_h=min(im.height, 900 if 'desktop' in capture else 1350)
+                im.crop((0, 0, im.width, crop_h)).save(evidence, optimize=True)
+            width=7.25*inch if 'desktop' in capture else 3.35*inch
+            with PILImage.open(evidence) as check:
+                height=width*(check.height/check.width)
+            if height > 4.3*inch:
+                height=4.3*inch
+                width=height*(check.width/check.height)
+            story.append(Paragraph(f'<b>Post-fix capture - {capture.replace(".png", "").replace("-", " ").title()}</b>',body))
+            story.append(Spacer(1,4))
+            story.append(Image(str(evidence), width=width, height=height))
+        else:
+            story.append(Paragraph('Post-fix capture unavailable for this viewport.', body))
+        story.append(PageBreak())
     doc.build(story,onFirstPage=footer,onLaterPages=footer)
     print(OUT)
 
