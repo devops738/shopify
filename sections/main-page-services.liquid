@@ -789,7 +789,7 @@ section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',s
 <!-- STORES -->
 <section class="block alt"><div class="wrap">
   <div class="sec-head"><div class="sec-eye">Locations</div><h2>Book at a store near you</h2>
-    <p>Nine stores across Southern California &mdash; Ventura, Thousand Oaks, Valencia, Hollywood, Glendale, Bellflower, Costa Mesa, and Cathedral City &mdash; each with certified technicians and same-day appointments.</p></div>
+    <p>Ten stores across Southern California &mdash; Ventura, Thousand Oaks, Valencia, Hollywood, Glendale, Bellflower, Costa Mesa, and Cathedral City &mdash; each with certified technicians and same-day appointments.</p></div>
   <img src="{{ 'ats-locations-inline-12.jpg' | asset_url }}" alt="American Tire Stores locations across Southern California" loading="lazy" style="width:100%;height:286px;object-fit:cover;border-radius:14px;margin-bottom:28px;display:block">
   <div class="svc-locs" id="svcLocs"></div>
 </div></section>
@@ -1076,6 +1076,7 @@ const FAQ=[["Do I need an appointment?","Walk-ins are welcome, but booking onlin
 $('faq').innerHTML=FAQ.map(([q,a],i)=>`<div class="qa" id="qa${i}"><button onclick="toggleFaq(${i})"><span>${q}</span><span class="ic">+</span></button><div class="a"><p>${a}</p></div></div>`).join('');
 
 $('svcLocs').innerHTML=STORES.map((s,i)=>`<div class="svc-loc-card" onclick="pickStoreByIndex(${i})"><div class="svc-loc-card__img"><img src="${s.img}" alt="${s.name} storefront" loading="lazy"></div><div class="svc-loc-card__body"><h3>${s.city}</h3><p class="addr">${s.addr}, CA ${s.zip}</p><div class="phone">${s.ph}</div><div class="hours">Mon–Fri 8–6 · Sat 8–5</div><span class="book">Book Here →</span></div></div>`).join('');
+document.getElementById('svcLocs').insertAdjacentHTML('beforeend','<div class="svc-loc-card"><a href="/pages/location-downey-ca" style="display:block;color:inherit;text-decoration:none"><div class="svc-loc-card__img"><img src="{{ 'ats-downey-storefront.jpg' | asset_url }}" alt="American Tire Stores Downey storefront on Firestone Boulevard" loading="lazy"></div><div class="svc-loc-card__body"><h3>Downey</h3><p class="addr">8041 Firestone Blvd, Downey, CA 90241</p><div class="phone">(562) 862-9925</div><div class="hours">Mon–Fri 8–6 · Sat 8–5 · Sun 9–4</div><span class="book">View store details →</span></div></a></div>');
 function pickStoreByIndex(i){st.store=STORES[i];reflectState();scrollToBook();}
 
 /* ---- booking: the embedded widget is the single transaction surface.

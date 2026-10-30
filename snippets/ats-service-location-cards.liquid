@@ -10,6 +10,7 @@
       'Glendale II': { address: '1130 S Central Ave, Glendale, CA 91204', phone: '(818) 547-2010', image: {{ 'netlify-financing-21-3dd9a67fa7ded918.jpg' | asset_url | json }}, url: '/pages/location-glendale-ii-ca' },
       'Bellflower': { address: '9509 Alondra Blvd, Bellflower, CA 90706', phone: '(562) 804-4737', image: {{ 'netlify-financing-22-60c7e57b01287bb2.jpg' | asset_url | json }}, url: '/pages/location-bellflower-ca' },
       'Costa Mesa': { address: '2049 Harbor Blvd, Costa Mesa, CA 92627', phone: '(949) 802-6419', image: {{ 'netlify-financing-23-eafa51160dc4abe4.jpg' | asset_url | json }}, url: '/pages/location-costa-mesa-ca' },
+      'Downey': { address: '8041 Firestone Blvd, Downey, CA 90241', phone: '(562) 862-9925', image: {{ 'ats-downey-storefront.jpg' | asset_url | json }}, url: '/pages/location-downey-ca' },
       'Cathedral City': { address: '68406 E Palm Canyon Dr, Cathedral City, CA 92234', phone: '(760) 469-9510', image: {{ 'netlify-financing-24-cb2ff932283299c3.jpg' | asset_url | json }}, url: '/pages/location-cathedral-city-ca' }
     };
     document.querySelectorAll('.locs .loc, .tp-locs .tp-loc, .wa-locations .wa-location').forEach(function (card) {
@@ -20,6 +21,12 @@
       var imageStyle = wa ? 'width:100%;height:130px;object-fit:cover;display:block' : 'width:calc(100% + 32px);height:130px;object-fit:cover;display:block;margin:-16px -16px 14px';
       card.style.overflow = 'hidden';
       card.innerHTML = '<img src="' + location.image + '" alt="American Tire Stores ' + title.textContent.trim() + ' storefront" style="' + imageStyle + '"><div' + (wa ? '' : ' style="padding:0"') + '><h3>' + title.textContent.trim() + '</h3><p>' + location.address + '<br><strong style="color:#d9212b">' + location.phone + '</strong></p><a href="' + location.url + '">Store details →</a></div>';
+    });
+    document.querySelectorAll('.locs, .tp-locs, .wa-locations').forEach(function (grid) {
+      if (grid.querySelector('h3') && Array.from(grid.querySelectorAll('h3')).some(function (title) { return title.textContent.trim() === 'Downey'; })) return;
+      var isWheelAlignment = grid.classList.contains('wa-locations');
+      var cardClass = isWheelAlignment ? 'wa-location' : (grid.classList.contains('tp-locs') ? 'tp-loc' : 'loc');
+      grid.insertAdjacentHTML('beforeend', '<article class="' + cardClass + '"><img src="{{ 'ats-downey-storefront.jpg' | asset_url }}" alt="American Tire Stores Downey storefront on Firestone Boulevard"><div><h3>Downey</h3><p>8041 Firestone Blvd, Downey, CA 90241<br>(562) 862-9925<br>Mon–Fri 8am–6pm · Sat 8am–5pm · Sun 9am–4pm</p><a href="/pages/location-downey-ca">View store details →</a></div></article>');
     });
   })();
 </script>
