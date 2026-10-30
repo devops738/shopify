@@ -1,0 +1,54 @@
+<style>
+@media(max-width:760px){
+ #brands .brand-rail,#brandDir .brand-rail{grid-template-rows:repeat(2,84px);grid-auto-columns:calc((100% - 14px)/2);gap:14px;min-width:0;max-width:100%}
+ #brands .brand-rail .blogo,#brandDir .brand-rail .blogo{width:auto;min-width:0;height:84px;padding:10px}
+ #brands .blogo-img,#brandDir .blogo-img{max-width:100%;max-height:46px;object-fit:contain}
+ .wh-rev{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+ .wh-rev-card{min-width:0;padding:14px!important;overflow-wrap:anywhere}
+ .wh-rev-card:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - 6px);box-sizing:border-box}
+ .loc-cards,.svc-locs,.pk-locs,.tp-locs{grid-template-columns:1fr!important;gap:16px!important}
+ .loc-cards .loc-card{min-width:0;width:100%;padding:0;overflow:hidden}
+}
+{% if page.handle contains 'location-' %}
+ .loc-hero .loc-cta{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px;width:100%}
+ .loc-hero .loc-cta .btn{width:100%;min-width:0;min-height:64px;white-space:normal;text-align:center;padding:12px;font-size:14px;line-height:1.35;box-sizing:border-box}
+ .loc-hero .loc-cta .ats-local-call{border:2px solid #c91b28;color:#c91b28;background:#fff}
+ .mcta{display:none!important}
+ .hd-grid a,.hd-grid b{color:#122240}
+ @media(max-width:600px){.loc-hero .loc-cta .btn{font-size:12px;min-height:58px}.cta-row{display:flex;flex-wrap:wrap;gap:14px}.cta-row .btn{white-space:normal;max-width:100%}}
+{% endif %}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+ const path=location.pathname;
+ if(path.includes('/location-')){
+   const hero=document.querySelector('.loc-hero');
+   const actions=hero&&hero.querySelector('.loc-cta');
+   const phone=hero&&hero.querySelector('.nap a[href^="tel:"]');
+   if(actions&&phone&&!actions.querySelector('.ats-local-call')){
+     const call=document.createElement('a');call.className='btn ats-local-call';
+     function sync(){call.href=phone.href;call.textContent='☎ Call '+phone.textContent.replace(/[^0-9()+\-\s]/g,'').trim();}
+     sync();actions.insertBefore(call,actions.children[1]);
+     new MutationObserver(sync).observe(phone,{childList:true,subtree:true,attributes:true,attributeFilter:['href']});
+   }
+   document.querySelectorAll('section').forEach(section=>{
+     const title=section.querySelector('h2');
+     if(title&&/what to expect|serving .+nearby communities/i.test(title.textContent))section.remove();
+   });
+   const walker=document.createTreeWalker(document.getElementById('ats-page-content')||document.body,NodeFilter.SHOW_TEXT);
+   const texts=[];while(walker.nextNode())texts.push(walker.currentNode);
+   texts.forEach(node=>{if(!node.parentElement.closest('script,style')&&/Available at this location/i.test(node.nodeValue))node.nodeValue=node.nodeValue.replace(/Available at this location/gi,'');});
+ }
+ if(path.includes('/service-')){
+   const heading=document.querySelector('main h1');
+   const section=heading&&heading.closest('section');
+   const photo=section&&section.querySelector('img');
+   if(photo&&heading){
+     const parent=photo.parentNode,next=photo.nextSibling;
+     const media=matchMedia('(max-width:800px)');
+     function arrange(){if(media.matches)heading.after(photo);else parent.insertBefore(photo,next);}
+     arrange();media.addEventListener('change',arrange);
+   }
+ }
+});
+</script>
