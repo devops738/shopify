@@ -1,0 +1,26 @@
+<style>
+.ats-service-journey{background:#f4f6fa;padding:56px 24px;color:#12315d;font-family:Montserrat,Arial,sans-serif}
+.ats-service-journey__wrap{max-width:1100px;margin:auto}
+.ats-service-journey__head{text-align:center;margin-bottom:28px}
+.ats-service-journey__eye{color:#d21f2b;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.ats-service-journey h2{font-family:'Akira Expanded',Arial,sans-serif;font-size:clamp(20px,2.2vw,28px);line-height:1.3;margin:0 auto;max-width:850px;text-transform:uppercase;color:#12315d}
+.ats-service-journey__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.ats-service-journey__photo{position:relative;aspect-ratio:3/2}
+.ats-service-journey__photo img{display:block;width:100%;height:100%;object-fit:cover;border-radius:12px}
+.ats-service-journey__photo span{position:absolute;top:9px;left:9px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid white;background:#ce192a;color:white;font-size:18px;font-weight:800}
+.ats-service-journey h3{font-family:Montserrat,Arial,sans-serif;font-size:14px;line-height:1.4;font-weight:800;text-transform:uppercase;color:#12315d;margin:12px 0 6px}
+.ats-service-journey p{font-size:13px;line-height:1.65;color:#647593;margin:0}
+@media(max-width:760px){.ats-service-journey__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}.ats-service-journey{padding:40px 20px}}
+@media(max-width:380px){.ats-service-journey__grid{grid-template-columns:1fr}}
+</style>
+<section class="ats-service-journey" aria-label="How booking works">
+  <div class="ats-service-journey__wrap">
+    <div class="ats-service-journey__head"><div class="ats-service-journey__eye">How it works</div><h2>From booking to back on the road</h2></div>
+    <div class="ats-service-journey__grid">
+      <article><div class="ats-service-journey__photo"><img src="{{ 'ats-inline-52.jpg' | asset_url }}" alt="Customer booking a service online" width="600" height="400" loading="lazy"><span>1</span></div><h3>Request online</h3><p>Pick your service, store, and a preferred time in minutes.</p></article>
+      <article><div class="ats-service-journey__photo"><img src="{{ 'ats-inline-53.jpg' | asset_url }}" alt="Customer checking in at the service counter" width="600" height="400" loading="lazy"><span>2</span></div><h3>Check in</h3><p>Drop off or wait — we confirm what you're here for.</p></article>
+      <article><div class="ats-service-journey__photo"><img src="{{ 'ats-inline-54.jpg' | asset_url }}" alt="Technician explaining an inspection and quote" width="600" height="400" loading="lazy"><span>3</span></div><h3>Inspect &amp; quote</h3><p>We inspect and share an upfront quote before any work.</p></article>
+      <article><div class="ats-service-journey__photo"><img src="{{ 'ats-inline-55.jpg' | asset_url }}" alt="Customer receiving keys after service" width="600" height="400" loading="lazy"><span>4</span></div><h3>Back on the road</h3><p>Certified techs finish the job — often the same day.</p></article>
+    </div>
+  </div>
+</section>
