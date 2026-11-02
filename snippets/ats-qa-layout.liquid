@@ -25,6 +25,28 @@
 }
 {% if page.handle contains 'location-' %}
  .loc-hero .loc-cta{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px;width:100%}
+ .ats-netlify-port .wrap{box-sizing:border-box;width:100%;max-width:1180px}
+ .loc-hero__grid>* ,.hd-grid>* ,.other-locs>*{min-width:0}
+ .ats-store-kicker{line-height:1.5!important;margin-bottom:16px!important;white-space:normal}
+ .ats-store-hero__grid>*{min-width:0}
+ .loc-hero .eyebrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;line-height:1.5;margin-bottom:16px;white-space:normal}
+ .loc-hero .eyebrow::before{flex-shrink:0}
+ .cta-row{display:flex;justify-content:center;align-items:stretch;flex-wrap:wrap;gap:16px;margin-top:24px}
+ .cta-row .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 24px;box-sizing:border-box;margin:0;line-height:1.4}
+ .cta-row .btn-wl{border:2px solid white;border-radius:8px;background:transparent;color:white}
+ @media(max-width:760px){
+ .loc-hero__grid,.hd-grid{grid-template-columns:minmax(0,1fr)!important}
+ .other-locs,.ats-store-other{grid-template-columns:minmax(0,1fr)!important;width:100%;overflow:visible}
+ .ats-store-hero__grid{grid-template-columns:minmax(0,1fr)!important;gap:24px}
+ .ats-netlify-port .wrap{padding-left:20px!important;padding-right:20px!important}
+ .ats-netlify-port .other-loc{box-sizing:border-box;max-width:100%;overflow-wrap:anywhere}
+ .ats-netlify-port .tc-panel,.ats-netlify-port .tc-mount{min-width:0;max-width:100%;box-sizing:border-box}
+ .loc-hero{padding-top:32px!important}
+ .loc-hero h1{font-size:clamp(24px,6vw,32px);overflow-wrap:anywhere}
+ .loc-hero img,.hd-grid iframe{max-width:100%}
+ .cta-row{flex-direction:column;gap:16px}.cta-row .btn{width:100%}
+ .hbar-brand{height:auto!important}.hbar-brand .wrap{height:auto!important}
+ }
  .loc-hero .loc-cta .btn{width:100%;min-width:0;min-height:64px;white-space:normal;text-align:center;padding:12px;font-size:14px;line-height:1.35;box-sizing:border-box}
  .loc-hero .loc-cta .ats-local-call{border:2px solid #c91b28;color:#c91b28;background:#fff}
  .mcta{display:none!important}
