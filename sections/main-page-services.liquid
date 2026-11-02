@@ -984,6 +984,7 @@ function syncTireConnectServicesContext(){
  window.atsServiceVehicleSync=token;
  const vehicle=[st.year,st.make,st.model];
  let stage=0;
+ let settled=0;
  let tries=0;
  const tick=()=>{
   if(window.atsServiceVehicleSync!==token)return;
@@ -995,10 +996,16 @@ function syncTireConnectServicesContext(){
    if(storeSel)storeVals.some(v=>selectWidgetValue(storeSel,v));
   }
   if(!vehicle.every(Boolean))return;
+  if(stage===vehicle.length){
+   const matches=vehicle.every(value=>selects.some(s=>!s.disabled&&[...s.options].some(o=>o.value===s.value&&(normTxt(o.textContent)===normTxt(value)||normTxt(o.value)===normTxt(value)))));
+   if(matches){if(++settled>=10)return;}else{stage=0;settled=0;}
+   if(tries<100)setTimeout(tick,300);
+   return;
+  }
   const value=vehicle[stage];
   const field=selects.find(s=>!s.disabled&&[...s.options].some(o=>!o.disabled&&(normTxt(o.textContent)===normTxt(value)||normTxt(o.value)===normTxt(value))));
   if(field&&selectWidgetValue(field,value))stage++;
-  if(stage<vehicle.length&&tries<100)setTimeout(tick,300);
+  if(tries<100)setTimeout(tick,300);
  };
  setTimeout(tick,300);
 }

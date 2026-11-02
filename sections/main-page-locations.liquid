@@ -437,7 +437,7 @@ footer .fcols>div{min-width:0}
     <p class="hero-serving">Serving Ventura, Thousand Oaks, Valencia, Hollywood, Glendale, Bellflower, Costa Mesa &amp; Cathedral City.</p>
   </div>
   <div class="hero-finder">
-    <select id="storePicker" onchange="goStore()">
+    <select id="storePicker" >
       <option value="">Choose your nearest store...</option><option value="/pages/location-ventura-ca">Ventura &mdash; 3059 E Main St</option><option value="/pages/location-thousand-oaks-ca">Thousand Oaks &mdash; 621 E Thousand Oaks Blvd</option><option value="/pages/location-valencia-ca">Valencia &mdash; 23510 Valencia Blvd, Unit A</option><option value="/pages/location-hollywood-ca">Hollywood &mdash; 1174 N. Western Ave.</option><option value="/pages/location-glendale-ca">Glendale &mdash; 737 S Glendale Ave</option><option value="/pages/location-glendale-ii-ca">Glendale 2 &mdash; 1130 S Central Ave</option><option value="/pages/location-bellflower-ca">Bellflower &mdash; 9509 Alondra Blvd</option><option value="/pages/location-costa-mesa-ca">Costa Mesa &mdash; 2049 Harbor Blvd</option><option value="/pages/location-cathedral-city-ca">Cathedral City &mdash; 68406 E Palm Canyon Dr</option></select>
     <button class="btn btn-red" onclick="goStore()">Go &#8594;</button>
   </div>
@@ -660,25 +660,6 @@ footer .fcols>div{min-width:0}
 {% render 'ats-location-brand-directory' %}
 
 
-<!-- AREAS WE SERVE -->
-<section class="block"><div class="wrap">
-  <div class="sec-head sec-head--left">
-    <div class="sec-eye">Areas we serve</div>
-    <h2>Cities &amp; Neighborhoods We Serve</h2>
-    <p>Our 9 stores cover a wide range of cities and neighborhoods. If you're within driving distance of any location, you're in our service area.</p>
-  </div>
-  <div class="areas-grid">
-    <div class="area-group"><h4>&#128205; Ventura County</h4><p>Ventura · Oxnard · Camarillo · Thousand Oaks · Simi Valley · Moorpark · Ojai · Santa Paula · Port Hueneme · Newbury Park · Westlake Village</p></div>
-    <div class="area-group"><h4>&#128205; San Fernando Valley</h4><p>Glendale · Burbank · Pasadena · La Crescenta · Eagle Rock · Sun Valley · North Hollywood · Sherman Oaks · Studio City · Van Nuys</p></div>
-    <div class="area-group"><h4>&#128205; Greater Los Angeles</h4><p>Los Angeles · Hollywood · Silver Lake · Echo Park · Koreatown · Mid-City · Los Feliz · Atwater Village · Highland Park</p></div>
-    <div class="area-group"><h4>&#128205; Southeast LA / Gateway Cities</h4><p>Bellflower · Downey · Norwalk · Cerritos · Lakewood · Signal Hill · Paramount · Artesia · La Mirada · Whittier · Compton · Long Beach</p></div>
-    <div class="area-group"><h4>&#128205; Santa Clarita Valley</h4><p>Valencia &middot; Santa Clarita &middot; Newhall &middot; Stevenson Ranch &middot; Castaic &middot; Saugus &middot; Canyon Country</p></div>
-      <div class="area-group"><h4>&#128205; Orange County</h4><p>Costa Mesa &middot; Newport Beach &middot; Huntington Beach &middot; Fountain Valley &middot; Santa Ana &middot; Irvine &middot; Orange</p></div>
-      <div class="area-group"><h4>&#128205; Coachella Valley</h4><p>Cathedral City · Palm Springs · Rancho Mirage · Palm Desert · Indio · La Quinta · Desert Hot Springs · Coachella · Thousand Palms</p></div>
-  </div>
-</div></section>
-
-
 <!-- EVERY VISIT INCLUDES -->
 <!-- Source: Waiting_Area_-_Photos.jpg | Alt: American Tire Stores waiting area -->
 <section class="block alt" style="position:relative;background:linear-gradient(rgba(244,246,250,.91),rgba(244,246,250,.93)),url({{ 'netlify-locations-27-3f48a012b62adfa2.jpg' | asset_url }}) center/cover"><div class="wrap">
@@ -717,7 +698,7 @@ footer .fcols>div{min-width:0}
     <h2>Current Deals at All Locations</h2>
   </div>
   <div class="offers-row">
-    <div class="offer-card offer-card--photo feat" style="background-image:url({{ 'netlify-locations-34-c39c699f3b7289b7.jpg' | asset_url }})"><span class="offer-tag">Limited time</span><h3>Buy 3,<br>Get 1 Free</h3><p>On most tires, most brands. Installation &amp; tire protection plan required.</p><a class="offer-cta" href="/pages/promotions">Shop eligible tires &rarr;</a></div>
+    <div class="offer-card offer-card--photo feat" style="background-image:url({{ 'netlify-locations-34-c39c699f3b7289b7.jpg' | asset_url }})"><span class="offer-tag">Limited time</span><h3>Buy 3,<br>Get 1 Free</h3><p>On most tires, most brands. Installation &amp; tire protection plan required.</p><a class="offer-cta" href="/pages/tire-search#wh-widget">Shop eligible tires &rarr;</a></div>
     <div class="offer-card offer-card--photo" style="background-image:url({{ 'netlify-locations-35-96a0e9a323bddd0c.jpg' | asset_url }})"><span class="offer-tag">Seasonal</span><h3>Service Specials</h3><p>Rotating savings on oil changes, wheel alignments, and brake service &mdash; refreshed regularly.</p><a class="offer-cta" href="/pages/coupons">See coupons &rarr;</a></div>
     <div class="offer-card offer-card--photo" style="background-image:url({{ 'netlify-locations-36-a63e11ad839c45c2.jpg' | asset_url }})"><span class="offer-tag">Every day</span><h3>Manufacturer Rebates</h3><p>Mail-in and instant rebates from the brands you know, updated as they change.</p><a class="offer-cta" href="/pages/promotions">See rebates &rarr;</a></div>
   </div>
@@ -763,7 +744,7 @@ footer .fcols>div{min-width:0}
     <div class="sec-eye">Good to know</div>
     <h2>Frequently Asked Questions</h2>
   </div>
-  <div class="faq" id="faq"><details><summary>Which American Tire Stores location is closest to me?</summary><p>Use the location selector above or browse the nine store cards to find the nearest store and its contact details.</p></details><details><summary>Can I shop tires or book service at any location?</summary><p>Yes. Every listed location can help with tires, wheels, packages, and auto service. Choose a store for local availability and appointment options.</p></details><details><summary>Do all locations offer the same services?</summary><p>Core tire and auto services are available across the network. Contact your selected store if you need to confirm a specific service or product.</p></details><details><summary>Can I bring tires purchased elsewhere?</summary><p>Yes. Contact your preferred location to arrange mounting, balancing, and installation for tires you bring in.</p></details><details><summary>Do I need an appointment?</summary><p>Appointments are recommended for service, but stores may also accommodate walk-ins based on availability.</p></details></div>
+  <div class="faq" id="faq"><details><summary>Which American Tire Stores location is closest to me?</summary><p>Use the location selector above or browse the ten store cards to find the nearest store and its contact details.</p></details><details><summary>Can I shop tires or book service at any location?</summary><p>Yes. Every listed location can help with tires, wheels, packages, and auto service. Choose a store for local availability and appointment options.</p></details><details><summary>Do all locations offer the same services?</summary><p>Core tire and auto services are available across the network. Contact your selected store if you need to confirm a specific service or product.</p></details><details><summary>Can I bring tires purchased elsewhere?</summary><p>Yes. Contact your preferred location to arrange mounting, balancing, and installation for tires you bring in.</p></details><details><summary>Do I need an appointment?</summary><p>Appointments are recommended for service, but stores may also accommodate walk-ins based on availability.</p></details></div>
 </div></section>
 
 <!-- FINAL CTA -->
@@ -827,6 +808,19 @@ footer .fcols>div{min-width:0}
 .offer-card--photo:hover{border-color:rgba(255,255,255,.28)}</style>
 </div>
 
+<style>
+.hero-checks{justify-content:center}
+@media(min-width:1100px){.hero-checks{flex-wrap:nowrap}}
+#faq details{border-bottom:1px solid #dbe2ec;padding:18px 0}
+#faq summary{cursor:pointer;font-weight:700;list-style:none}
+#faq summary::after{content:'+';float:right;color:#ce192a}
+#faq details[open] summary::after{content:'−'}
+#faq p{padding-top:14px;line-height:1.6}
+@media(max-width:760px){.cta-row{display:flex;flex-direction:column;align-items:center;gap:16px}.cta-row .btn{margin:0;min-height:48px;max-width:100%;white-space:normal}}
+</style>
+<script>
+window.goStore=function(){const picker=document.getElementById('storePicker');if(picker&&/^\/pages\/location-[a-z-]+$/.test(picker.value))window.location.assign(picker.value);else if(picker)picker.focus();};
+</script>
 {% schema %}
 { "name": "Netlify page port", "settings": [] }
 {% endschema %}
