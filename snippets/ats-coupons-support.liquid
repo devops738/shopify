@@ -1,0 +1,39 @@
+{% render 'ats-service-locations', location_heading: 'Available at all 10 locations' %}
+<style>
+.ats-coupon-support{font-family:Montserrat,Arial,sans-serif;color:#12315d}
+.ats-coupon-support section{padding:56px 24px}.ats-coupon-support .cs-wrap{max-width:1100px;margin:auto}
+.ats-coupon-support h2{text-align:center;font-family:'Akira Expanded',Arial,sans-serif;font-size:26px;margin:10px 0 28px}
+.ats-coupon-support .cs-eye{text-align:center;color:#d21f2b;font-size:11px;text-transform:uppercase;font-weight:800;letter-spacing:.12em}
+.ats-coupon-support .cs-related{background:#f4f6fa}
+.ats-coupon-support .cs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.ats-coupon-support .cs-card{border:1px solid #dbe2ec;border-radius:12px;overflow:hidden;background:#fff;text-decoration:none;color:#12315d}
+.ats-coupon-support .cs-card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.ats-coupon-support .cs-card div{padding:20px}.ats-coupon-support h3{font-size:15px;margin:0 0 10px}.ats-coupon-support p{font-size:14px;line-height:1.6}
+.ats-coupon-support .cs-card span{color:#d21f2b;font-weight:800;font-size:12px}
+.ats-coupon-support .cs-faq{max-width:820px;margin:auto}
+.ats-coupon-support details{border-bottom:1px solid #dbe2ec;padding:20px 0}
+.ats-coupon-support summary{cursor:pointer;font-weight:800;list-style:none;padding-right:24px;position:relative}
+.ats-coupon-support summary:after{content:'+';position:absolute;right:0;color:#d21f2b}
+.ats-coupon-support details[open] summary:after{content:'−'}
+.ats-coupon-support .cs-final{background:#13315f;color:white;text-align:center}
+.ats-coupon-support .cs-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:24px}
+.ats-coupon-support .cs-actions a{padding:14px 20px;border:2px solid white;border-radius:7px;color:white;text-decoration:none;font-weight:800}
+.ats-coupon-support .cs-actions a:first-child{background:#c51f28;border-color:#c51f28}
+@media(max-width:700px){.ats-coupon-support .cs-grid{grid-template-columns:1fr}.ats-coupon-support h2{font-size:21px}.ats-coupon-support section{padding:40px 20px}}
+</style>
+<div class="ats-coupon-support">
+<section class="cs-related"><div class="cs-wrap"><div class="cs-eye">More ways to save</div><h2>Related Pages</h2><div class="cs-grid">
+<a class="cs-card" href="/pages/promotions"><img src="{{ 'netlify-contact-07-962434721edbdacd.jpg' | asset_url }}" alt="American Tire Stores storefront" loading="lazy"><div><h3>All Promotions</h3><p>Browse current tire offers and manufacturer rebates.</p><span>View promotions →</span></div></a>
+<a class="cs-card" href="/pages/financing"><img src="{{ 'netlify-contact-05-0fd8f1413e8cdac8.jpg' | asset_url }}" alt="Advisor discussing options with a customer" loading="lazy"><div><h3>Financing</h3><p>Explore financing options for your next purchase.</p><span>Explore financing →</span></div></a>
+<a class="cs-card" href="/pages/services#booknow"><img src="{{ 'netlify-contact-06-ba733e16a7fb5f5f.jpg' | asset_url }}" alt="Auto service at American Tire Stores" loading="lazy"><div><h3>Book a Service</h3><p>Choose your service, store, and preferred appointment time.</p><span>Book now →</span></div></a>
+</div></div></section>
+<section><div class="cs-wrap"><div class="cs-eye">Good to know</div><h2>Coupons FAQ</h2><div class="cs-faq">
+<details open><summary>Can I show the coupon on my phone?</summary><p>Bring your coupon when you check in—printed, or shown on your phone where your store accepts it. Mention it before work begins.</p></details>
+<details><summary>Can I combine coupons with tire promotions?</summary><p>Check the terms on your selected coupon. Offers marked “cannot be combined” cannot be used with other promotions or coupons.</p></details>
+<details><summary>When do these coupons expire?</summary><p>Each coupon lists its own expiration date and terms. Open the coupon details for the current offer.</p></details>
+<details><summary>Are coupons valid at all locations?</summary><p>Bring your coupon to any of our 10 active stores and confirm its terms before service. Signal Hill is coming soon and is not yet open.</p></details>
+<details><summary>Do you offer a military discount?</summary><p>Check the current military-discount coupon above for eligibility, qualifying purchases, and identification requirements.</p></details>
+<details><summary>What does the oil change coupon include?</summary><p>Open the oil change coupon for its included oil type, quantity, filter, inspections, and any additional fees or exclusions.</p></details>
+</div></div></section>
+<section class="cs-final"><div class="cs-wrap"><h2>Save on Your Next Service</h2><p>Bring your selected coupon to your next appointment.</p><div class="cs-actions"><a href="/pages/services#booknow">Book a service →</a><a href="/pages/promotions">All promotions</a></div></div></section>
+</div>
