@@ -16,6 +16,8 @@ function field(name,values){
 }
 const year=field('year',['2025']),make=field('make',[]),model=field('model',[]);
 const context={window:{},st:{year:'2025',make:'Chevrolet',model:'Bolt',store:null},setTimeout:timer,Event:class{constructor(type){this.type=type}},$:()=>({querySelectorAll:()=>[year,make,model]})};
+context.document={addEventListener:()=>{}};
+context.window.addEventListener=()=>{};
 vm.createContext(context);vm.runInContext(functions,context);
 function drain(){let guard=0;while(queue.length){assert.ok(++guard<500);queue.sort((a,b)=>a.time-b.time);const task=queue.shift();now=task.time;task.fn();}}
 context.syncTireConnectServicesContext();drain();

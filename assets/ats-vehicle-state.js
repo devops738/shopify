@@ -1,17 +1,21 @@
 (function () {
   'use strict';
   var keys = ['atsTireConnectVehicle', 'tcVehicle', 'tc_vehicle', 'tcwlwVehicle', 'tcwlw_vehicle', 'TCWidgetVehicle'];
+  var lastHash = null;
   function read() {
     try { return JSON.parse(localStorage.getItem(keys[0]) || sessionStorage.getItem(keys[0]) || 'null'); }
     catch (_) { return null; }
   }
   function capture() {
     var hash = location.hash;
+    if (hash === lastHash) return;
+    lastHash = hash;
     if (!/#!(?:tires\/search|services)\?/.test(hash)) return;
     var params = new URLSearchParams(hash.slice(hash.indexOf('?') + 1));
     var year = params.get('year'), make = params.get('make'), model = params.get('model');
-    // An incomplete widget route must not erase a previously selected vehicle.
-    if (!year || !make || !model) return;
+    if (!year) return;
+    make = make || '';
+    model = make ? (model || '') : '';
     var previous = read();
     var same = previous && String(previous.year) === year && previous.make === make && previous.model === model;
     var vehicle = Object.assign({}, same ? previous : {}, {year: year, make: make, model: model});
@@ -22,14 +26,15 @@
     try {
       if (json === JSON.stringify(previous)) return;
       keys.forEach(function (key) { localStorage.setItem(key, json); sessionStorage.setItem(key, json); });
+      window.dispatchEvent(new CustomEvent('ats:vehicle-changed', {detail: vehicle}));
       window.dispatchEvent(new CustomEvent('ats:tireconnect-updated'));
     } catch (_) {}
   }
   function render() {
     var vehicle = read();
-    if (!vehicle || !vehicle.year || !vehicle.make || !vehicle.model) return;
+    if (!vehicle || !vehicle.year) return;
     document.querySelectorAll('#vehVal').forEach(function (label) {
-      label.textContent = [vehicle.year, vehicle.make, vehicle.model].join(' ');
+      label.textContent = [vehicle.year, vehicle.make, vehicle.model || (vehicle.make ? '— Select model' : '— Select make')].filter(Boolean).join(' ');
     });
     document.querySelectorAll('#vehField').forEach(function (field) { field.classList.add('set'); });
   }

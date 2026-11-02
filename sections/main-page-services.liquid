@@ -1009,6 +1009,17 @@ function syncTireConnectServicesContext(){
  };
  setTimeout(tick,300);
 }
+document.addEventListener('change',function(event){
+ if(event.isTrusted&&event.target.closest&&event.target.closest('#tireconnect')){
+  window.atsServiceVehicleSync=null;
+ }
+},true);
+window.addEventListener('ats:vehicle-changed',function(event){
+ const vehicle=event.detail;
+ if(!vehicle)return;
+ st.year=vehicle.year||'';st.make=vehicle.make||'';st.model=vehicle.model||'';
+ renderContext();
+});
 
 function storageJson(keys){
  try{
