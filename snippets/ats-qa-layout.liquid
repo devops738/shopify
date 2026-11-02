@@ -1,4 +1,19 @@
 <style>
+{% if page.handle == 'locations' or page.handle contains 'location-' %}
+.getting-addr,.getting-addr b,.getting-addr a,.getting-addr span{color:#111!important}
+.getting-grid>*{min-width:0}
+@media(max-width:760px){
+ .ats-netlify-port .locs{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;gap:16px!important}
+ .ats-netlify-port .locs .loc{min-width:0!important;width:100%!important;max-width:100%!important;box-sizing:border-box;overflow-wrap:anywhere}
+ .getting-grid{grid-template-columns:minmax(0,1fr)!important}
+ .getting-map{min-width:0;max-width:100%}
+ .getting-addr{display:flex;gap:12px}.getting-addr>div{min-width:0}
+ .final>.wrap{display:flex!important;flex-direction:column;align-items:center;gap:16px}
+ .final>.wrap>h2,.final>.wrap>p{margin:0!important}
+ .final>.wrap>.btn{margin:0!important;min-height:48px;max-width:100%;white-space:normal}
+ .final>.wrap>p{margin-bottom:8px!important}
+}
+{% endif %}
 {% if page.handle == 'promotions' %}
 #ats-page-content .final{box-sizing:border-box;width:100vw;max-width:none;margin-left:calc(50% - 50vw);padding:48px 24px;background:#14356a;color:white;text-align:center}
 {% endif %}
