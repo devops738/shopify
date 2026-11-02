@@ -628,17 +628,25 @@ function openTireConnect(type,initial){
   const section=$('home-tireconnect'),target=$('tcInlineWidget');
   if(!section||!target){toast("TIRECONNECT","Widget section unavailable.");return;}
   if(!initial)section.scrollIntoView({behavior:'smooth',block:'start'});
-  target.innerHTML='<div class="tc-loading">Loading TireConnect...</div>';
+  const request=window.atsHomeSearchRequest=(window.atsHomeSearchRequest||0)+1;
+  if(!window.atsHomeWidgetInitialized)target.innerHTML='<div class="tc-loading">Loading TireConnect...</div>';
   const apiKey='c097aed9ad8c441bfff05ae020ca53f0';
   loadTireConnectScript().then(()=>new Promise(resolve=>requestAnimationFrame(()=>setTimeout(resolve,60)))).then(()=>{
-    target.innerHTML='';
+    if(request!==window.atsHomeSearchRequest)return;
+    if(!window.atsHomeWidgetInitialized)target.innerHTML='';
     const locId=st.store&&st.store.id?String(st.store.id):'';
     const base={apikey:apiKey,apiKey:apiKey,api_key:apiKey,key:apiKey,container:'tcInlineWidget',locationId:locId,location_id:locId,location:locId,locationID:locId,location_lock:!!locId,locationLock:!!locId,locationSelector:'lock',locationList:true,locator:true,locale:'en_US',allowed_products:['tire','wheel','package'],product_type:'tire,wheel,package',productType:'tire,wheel,package',layout:'full',view:'full',display:'full',redirect_url:'/pages/tire-search',redirectUrl:'/pages/tire-search',catalog_url:'/pages/tire-search',catalogUrl:'/pages/tire-search',services_widget_url:'/pages/services',servicesUrl:'/pages/services',searchParams:{location_id:locId,locationId:locId}};
     if(st.mode==='vehicle'&&st.year&&st.make&&st.model){base.fitment='vehicle';base.searchBy='vehicle';base.search_by='vehicle';base.searchType='vehicle';base.type='vehicle';base.year=st.year;base.make=st.make;base.model=st.model;base.vehicleYear=st.year;base.vehicleMake=st.make;base.vehicleModel=st.model;base.vehicle_year=st.year;base.vehicle_make=st.make;base.vehicle_model=st.model;base.selectedYear=st.year;base.selectedMake=st.make;base.selectedModel=st.model;base.vehicle={year:st.year,make:st.make,model:st.model};base.vehicleParams={year:st.year,make:st.make,model:st.model};base.searchParams.search_by='vehicle';base.searchParams.searchBy='vehicle';base.searchParams.year=st.year;base.searchParams.make=st.make;base.searchParams.model=st.model;base.searchParams.vehicle={year:st.year,make:st.make,model:st.model};}
     if(st.mode==='size'&&st.w&&st.r&&st.d){base.fitment='size';base.searchBy='size';base.search_by='size';base.searchType='size';base.type='size';base.tire_size=`${st.w}/${st.r}R${st.d}`;base.tireSize=`${st.w}/${st.r}R${st.d}`;base.width=st.w;base.width_0=st.w;base.profile=st.r;base.height=st.r;base.height_0=st.r;base.ratio=st.r;base.wheel_size=st.d;base.wheelSize=st.d;base.rim=st.d;base.rim_0=st.d;base.diameter=st.d;base.searchParams.search_by='size';base.searchParams.searchBy='size';base.searchParams.width=st.w;base.searchParams.width_0=st.w;base.searchParams.profile=st.r;base.searchParams.height=st.r;base.searchParams.height_0=st.r;base.searchParams.ratio=st.r;base.searchParams.wheel_size=st.d;base.searchParams.rim=st.d;base.searchParams.rim_0=st.d;}
-    if(typeof window.TCWidget.init==="function"){window.TCWidget.init(base);syncTireConnectRenderedSearchMode();syncTireConnectRenderedTireSize();syncTireConnectRenderedVehicle();return;}
+    if(typeof window.TCWidget.init==="function"){window.TCWidget.init(base);window.atsHomeWidgetInitialized=true;syncTireConnectRenderedSearchMode();syncTireConnectRenderedTireSize();syncTireConnectRenderedVehicle();return;}
     target.innerHTML='<div class="tc-loading">TireConnect loaded, but the Tire & Wheel widget initializer was not found.</div>';
-  }).catch(()=>{target.innerHTML='<div class="tc-loading">TireConnect failed to load. Check API key or network settings.</div>';});
+  }).catch((error)=>{
+    console.error('Tire search initialization failed:',error);
+    if(request!==window.atsHomeSearchRequest)return;
+    let message=document.getElementById('atsTireSearchError');
+    if(!message){message=document.createElement('div');message.id='atsTireSearchError';message.setAttribute('role','alert');target.before(message);}
+    message.textContent='The tire search could not refresh. Please reload this page and try again.';
+  });
 }
 function pathWithState(path){return tireConnectUrl(path);}
 function goPath(path){persistTireConnectState();window.location.href=pathWithState(path);}
