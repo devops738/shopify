@@ -957,10 +957,11 @@ function serviceContextChanged(){
 }
 function normTxt(v){return String(v||'').trim().toLowerCase();}
 function selectWidgetValue(select,value){
- if(!select||!value)return false;
+ if(!select||!value||select.disabled)return false;
  const want=normTxt(value);
- const opt=[...select.options].find(o=>normTxt(o.value)===want||normTxt(o.textContent)===want||normTxt(o.textContent).includes(want));
+ const opt=[...select.options].find(o=>!o.disabled&&(normTxt(o.value)===want||normTxt(o.textContent)===want));
  if(!opt)return false;
+ if(select.value===opt.value)return true;
  select.value=opt.value;
  select.dispatchEvent(new Event('input',{bubbles:true}));
  select.dispatchEvent(new Event('change',{bubbles:true}));
@@ -979,8 +980,13 @@ function serviceWidgetSelects(){
  return selects;
 }
 function syncTireConnectServicesContext(){
+ const token={};
+ window.atsServiceVehicleSync=token;
+ const vehicle=[st.year,st.make,st.model];
+ let stage=0;
  let tries=0;
  const tick=()=>{
+  if(window.atsServiceVehicleSync!==token)return;
   tries++;
   const selects=serviceWidgetSelects();
   if(st.store){
@@ -988,19 +994,11 @@ function syncTireConnectServicesContext(){
    const storeSel=selects.find(s=>storeVals.some(v=>[...s.options].some(o=>normTxt(o.value)===normTxt(v)||normTxt(o.textContent).includes(normTxt(v)))));
    if(storeSel)storeVals.some(v=>selectWidgetValue(storeSel,v));
   }
-  if(st.year&&st.make&&st.model){
-   const yearSel=selects.find(s=>[...s.options].some(o=>normTxt(o.textContent)===normTxt(st.year)||normTxt(o.value)===normTxt(st.year)));
-   if(yearSel)selectWidgetValue(yearSel,st.year);
-   setTimeout(()=>{
-    const makeSel=serviceWidgetSelects().find(s=>[...s.options].some(o=>normTxt(o.textContent)===normTxt(st.make)||normTxt(o.value)===normTxt(st.make)));
-    if(makeSel)selectWidgetValue(makeSel,st.make);
-   },220);
-   setTimeout(()=>{
-    const modelSel=serviceWidgetSelects().find(s=>[...s.options].some(o=>normTxt(o.textContent)===normTxt(st.model)||normTxt(o.value)===normTxt(st.model)));
-    if(modelSel)selectWidgetValue(modelSel,st.model);
-   },520);
-  }
-  if(tries<30)setTimeout(tick,420);
+  if(!vehicle.every(Boolean))return;
+  const value=vehicle[stage];
+  const field=selects.find(s=>!s.disabled&&[...s.options].some(o=>!o.disabled&&(normTxt(o.textContent)===normTxt(value)||normTxt(o.value)===normTxt(value))));
+  if(field&&selectWidgetValue(field,value))stage++;
+  if(stage<vehicle.length&&tries<100)setTimeout(tick,300);
  };
  setTimeout(tick,300);
 }

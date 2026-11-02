@@ -516,6 +516,9 @@ footer .wrap{padding-top:34px}
         if(store.id!=null){url.searchParams.set('location_id',String(store.id));url.searchParams.set('locationId',String(store.id));}
         url.searchParams.set('store','American Tire Stores — '+store.city);
       }
+      const vehicle=readJson('atsTireConnectVehicle')||{};
+      const vehicleParams={year:vehicle.year||vehicle.vehicleYear||vehicle.vehicle_year,make:vehicle.make||vehicle.vehicleMake||vehicle.vehicle_make,model:vehicle.model||vehicle.vehicleModel||vehicle.vehicle_model};
+      Object.entries(vehicleParams).forEach(([key,value])=>{if(value)url.searchParams.set(key,String(value));});
       url.hash='booknow';
       window.location.href=url.pathname+url.search+url.hash;
     }
