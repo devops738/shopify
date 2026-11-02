@@ -1088,7 +1088,7 @@ function applyFullLocationCopy(){
  };
  const d=data[ATS_LOCATION_HANDLE];if(!d)return;
  document.querySelector('.crumbs b').textContent=d.city;
- document.querySelector('.loc-hero .eyebrow').textContent='Locations · '+d.region;
+ document.querySelector('.loc-hero .eyebrow').textContent='Locations · '+d.city+', CA';
  document.querySelector('.loc-hero h1').textContent='Tires & Auto Service in '+d.city+', CA';
  document.querySelector('.loc-hero .lead').textContent=d.intro;
  const nap=document.querySelector('.loc-hero .nap');nap.querySelector('a').href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(d.address);nap.querySelector('a').lastChild.textContent=' '+d.address;nap.querySelectorAll('a')[1].href='tel:'+d.phone.replace(/[^0-9]/g,'');nap.querySelectorAll('a')[1].lastChild.textContent=' '+d.phone;

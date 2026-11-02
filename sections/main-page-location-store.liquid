@@ -62,7 +62,7 @@ const ATS_STORES=[
  const store=ATS_STORES.find(s=>s.slug===handle)||ATS_STORES.find(s=>location.pathname.includes(s.slug))||(handle==='location-los-angeles-ca'?ATS_STORES.find(s=>s.slug==='location-hollywood-ca'):null);
  if(!store)return;
  document.getElementById('atsStoreTitle').textContent='Tires & Auto Service in '+store.city+', CA';
- document.getElementById('atsStoreKicker').textContent='Locations · '+(store.region||'Southern California');
+ document.getElementById('atsStoreKicker').textContent='Locations · '+store.city+', CA';
  document.getElementById('atsStoreIntro').textContent=store.intro||('Shop tires, wheels, packages, and auto service at our '+store.city+' location.');
  document.getElementById('atsStoreAddr').textContent=store.addr;
  document.getElementById('atsStoreHours').textContent=store.hours||'Mon–Fri 8am–6pm · Sat 8am–5pm · Sun closed';
