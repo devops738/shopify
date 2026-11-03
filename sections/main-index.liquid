@@ -448,11 +448,24 @@ function sizeWidgetSelect(id){
 }
 function onSize(id){
  const source=sizeWidgetSelect(id);if(!source)return;
+ preserveHeroFocus($(id));
  const value=$(id).value;
  if(id==='w'){st.r='';st.d='';$('r').disabled=true;$('d').disabled=true;}
  if(id==='r'){st.d='';$('d').disabled=true;}
  st[id]=value;source.value=value;source.dispatchEvent(new Event('change',{bubbles:true}));checkReadyOnly();
 }
+let heroFocusGuard=0;
+function preserveHeroFocus(control){
+ const token=++heroFocusGuard,x=window.scrollX,y=window.scrollY,end=performance.now()+1200;
+ const restore=()=>{
+  if(token!==heroFocusGuard||performance.now()>end)return;
+  if($('tcInlineWidget')?.contains(document.activeElement))control?.focus({preventScroll:true});
+  if(window.scrollX!==x||window.scrollY!==y)window.scrollTo({left:x,top:y,behavior:'instant'});
+  requestAnimationFrame(restore);
+ };
+ requestAnimationFrame(restore);
+}
+['wheel','touchstart','pointerdown','keydown'].forEach(type=>document.addEventListener(type,event=>{if(event.isTrusted)heroFocusGuard++;},{capture:true,passive:true}));
 setInterval(function(){
  if(st.mode!=='size')return;
  for(const id of ['w','r','d']){
@@ -652,6 +665,7 @@ function syncTireConnectRenderedTireSize(){
   setTimeout(tick,360);
 }
 function openTireConnect(type,initial){
+ if(!initial)heroFocusGuard++;
   persistTireConnectState();
   writeTireConnectQueryState();
   const section=$('home-tireconnect'),target=$('tcInlineWidget');
@@ -684,6 +698,7 @@ async function syncHomeTireSearch(request){
  const root=$('tcInlineWidget');
  const tire=await wait(()=>root.querySelector('button img[alt="tire icon"]')?.closest('button'));
  if(!tire)return;
+ if(document.activeElement?.closest('#pane-size')||document.activeElement?.closest('.tab'))preserveHeroFocus(document.activeElement);
  tire.click();
  const mode=await wait(()=>widgetSelects().find(s=>s.matches('[data-tctid="search_by"],[data-tcwlw="search_by"]')&&[...s.options].some(o=>o.value===desired.mode)));
  if(!mode)return;
