@@ -343,6 +343,7 @@ const FALLBACK_VEH={
  "2018":{"Toyota":["Camry","Tacoma"],"Honda":["Civic","Accord"],"Nissan":["Altima","Rogue"],"Ford":["F-150","Focus"]}
 };
 function valuesFromPayload(payload){
+  if(payload&&payload.data&&Array.isArray(payload.data.values))return payload.data.values;
   if(Array.isArray(payload))return payload;
   if(payload&&Array.isArray(payload.values))return payload.values;
   if(payload&&payload.data&&Array.isArray(payload.data.values))return payload.data.values;
