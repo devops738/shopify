@@ -657,7 +657,9 @@ footer .wrap{padding-top:34px}
       var crumb=document.createElement('nav');
       crumb.className='ats-generated-breadcrumb';
       crumb.setAttribute('aria-label','Breadcrumb');
-      crumb.innerHTML='<a href="/">Home</a><span>›</span><a href="/pages/services">Services</a><span>›</span><strong>Service details</strong>';
+      const serviceNames={'service-oil-change':'Oil Change','service-wheel-alignment':'Wheel Alignment','service-brake-service':'Brake Service','service-tire-installation':'Tire Installation','service-battery-service':'Battery Service','service-tpms':'TPMS Service'};
+      const serviceName=serviceNames[location.pathname.split('/').pop()]||'Auto Service';
+      crumb.innerHTML='<a href="/">Home</a><span>›</span><a href="/pages/services">Services</a><span>›</span><strong>'+serviceName+'</strong>';
       target.insertBefore(crumb,target.firstChild);
     }
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addServiceBreadcrumb);else addServiceBreadcrumb();

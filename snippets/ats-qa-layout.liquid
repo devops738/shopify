@@ -1,4 +1,7 @@
 <style>
+{% if page.handle == 'services' %}
+@media(max-width:760px){.svc-intro .microbar{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px 16px!important}.svc-intro .microbar>span{min-width:0;line-height:1.5;font-size:12px}}
+{% endif %}
 {% if page.handle == 'locations' or page.handle contains 'location-' %}
 .getting-addr,.getting-addr b,.getting-addr a,.getting-addr span{color:#111!important}
 .getting-grid>*{min-width:0}

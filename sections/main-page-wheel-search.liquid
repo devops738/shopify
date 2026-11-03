@@ -1401,8 +1401,7 @@ function loadWheelWidget(){
 }
 function updateWhHint(){
   var h=document.getElementById('whHint');
-  if(st.store)h.innerHTML='Your selected store: <b>'+storeLabel(st.store)+'</b>. Wheel search shows pricing for this location.';
-  else h.innerHTML='Choose your store above to see local pricing.';
+  if(h){h.textContent='';h.hidden=true;}
 }
 updateWhHint();
 var _origR=reflectState;reflectState=function(){_origR();updateWhHint();};
