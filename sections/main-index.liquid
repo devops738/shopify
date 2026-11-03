@@ -175,9 +175,9 @@ section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',s
         </div>
         <div class="pane" id="pane-size">
           <div class="pl-row three">
-            <div class="field"><label>Width</label><input id="w" maxlength="3" inputmode="numeric" placeholder="215" oninput="onSize()"></div>
-            <div class="field"><label>Ratio</label><input id="r" maxlength="2" inputmode="numeric" placeholder="45" oninput="onSize()"></div>
-            <div class="field"><label>Rim</label><input id="d" maxlength="2" inputmode="numeric" placeholder="17" oninput="onSize()"></div>
+            <div class="field"><label for="w">Width</label><select id="w" disabled onchange="onSize('w')"><option value="">Loading sizes…</option></select></div>
+            <div class="field"><label for="r">Ratio</label><select id="r" disabled onchange="onSize('r')"><option value="">Select width first</option></select></div>
+            <div class="field"><label for="d">Rim</label><select id="d" disabled onchange="onSize('d')"><option value="">Select ratio first</option></select></div>
           </div>
         </div>
         <div class="field" style="margin-bottom:11px"><label>Choose your store</label><select id="store" onchange="onStore()"><option value="">Select a store</option></select></div>
@@ -430,7 +430,7 @@ function reflectState(){
  checkReadyOnly();}
 function checkReadyOnly(){const okV=st.year&&st.make&&st.model&&st.store;const okS=st.w&&st.r&&st.d&&st.store;const b=$('findBtn');if(b)b.disabled=!(st.mode==='vehicle'?okV:okS);}
 
-function switchTab(m){st.mode=m;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===m));$('pane-vehicle').classList.toggle('active',m==='vehicle');$('pane-size').classList.toggle('active',m==='size');checkReadyOnly();}
+function switchTab(m){st.mode=m;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===m));$('pane-vehicle').classList.toggle('active',m==='vehicle');$('pane-size').classList.toggle('active',m==='size');checkReadyOnly();if(m==='size')syncHomeTireSearch(window.atsHomeSearchRequest);}
 /* hero vehicle */
 async function onYear(){st.year=$('year').value;st.make='';st.model='';reflectState();await loadMakesForYear(st.year);reflectState();if(st.year&&$('make'))$('make').focus();}
 async function onMake(){st.make=$('make').value;st.model='';reflectState();await loadModelsForMake(st.year,st.make);reflectState();if(st.make&&$('model'))$('model').focus();}
@@ -442,7 +442,29 @@ window.addEventListener('ats:vehicle-changed',async function(event){
  await loadMakesForYear(st.year);if(st.make)await loadModelsForMake(st.year,st.make);
  if(expected===[st.year,st.make,st.model].join('|'))reflectState();
 });
-function onSize(){st.w=$('w').value;st.r=$('r').value;st.d=$('d').value;checkReadyOnly();}
+function sizeWidgetSelect(id){
+ const names={w:['width_0','width','tire_width'],r:['height_0','height','profile','ratio'],d:['rim_0','rim','wheel_size','wheel','diameter']}[id];
+ return widgetSelects().find(s=>names.some(n=>[s.name,s.getAttribute('data-tctid'),s.getAttribute('data-tcwlw')].includes(n)));
+}
+function onSize(id){
+ const source=sizeWidgetSelect(id);if(!source)return;
+ const value=$(id).value;
+ if(id==='w'){st.r='';st.d='';$('r').disabled=true;$('d').disabled=true;}
+ if(id==='r'){st.d='';$('d').disabled=true;}
+ st[id]=value;source.value=value;source.dispatchEvent(new Event('change',{bubbles:true}));checkReadyOnly();
+}
+setInterval(function(){
+ if(st.mode!=='size')return;
+ for(const id of ['w','r','d']){
+  const source=sizeWidgetSelect(id),target=$(id);if(!source||!target)continue;
+  const options=[...source.options].filter(o=>o.value&&o.value!=='0');
+  const signature=JSON.stringify(options.map(o=>[o.value,o.textContent]));
+  if(target.dataset.options!==signature){target.replaceChildren(new Option('Select',''),...options.map(o=>new Option(o.textContent,o.value)));target.dataset.options=signature;}
+  target.disabled=source.disabled||!options.length||(id==='r'&&!st.w)||(id==='d'&&!st.r);
+  target.value=source.value;st[id]=target.disabled?'':target.value;
+ }
+ checkReadyOnly();
+},300);
 /* store (hero + header selects share st) */
 function onStore(){st.store=$('store').value!==''?STORES[$('store').value]:null;reflectState();}
 function onHStore(){st.store=$('hstore').value!==''?STORES[$('hstore').value]:null;reflectState();}
