@@ -691,6 +691,7 @@ async function syncHomeTireSearch(request){
  if(desired.mode==='vehicle'){syncTireConnectRenderedVehicle();return;}
  const fields=[['width',['width_0','width','tire_width']],['ratio',['height_0','height','profile','ratio']],['rim',['rim_0','rim','wheel_size','wheel','diameter']]];
  for(const [key,names] of fields){
+   if(!desired[key])return;
    const select=await wait(()=>widgetSelects().find(s=>!s.disabled&&names.some(n=>[s.name,s.getAttribute('data-tctid'),s.getAttribute('data-tcwlw')].includes(n))));
    if(!select)return;
    const option=[...select.options].find(o=>String(o.value)===desired[key]||o.textContent.trim()===desired[key]||o.textContent.trim()===desired[key]+'"');
