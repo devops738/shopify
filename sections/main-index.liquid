@@ -196,13 +196,6 @@ section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',s
   </div>
 </div></section>
 
-<!-- Fixed homepage TireConnect section: avoids modal and viewport glitches. -->
-<section class="block alt tc-home-section" id="home-tireconnect"><div class="wrap">
-  <div class="sec-head"><div class="sec-eye">Live local inventory</div><h2>Search Tires, Wheels &amp; Packages</h2>
-    <p>Choose your fit and store above, then compare available products and local pricing here.</p></div>
-  <div id="tcInlineWidget" class="tc-home-widget" aria-live="polite"><div class="tc-loading">Choose your vehicle or tire size above to start your search.</div></div>
-</div></section>
-
 <!-- EXITS -->
 <section class="exits"><div class="wrap">
   <div class="exit shop" onclick="goPath('/pages/tire-search')"><span class="ic"><img src="{{ 'ats-inline-04.png' | asset_url }}" alt=""></span>
@@ -212,6 +205,11 @@ section.block:has(#shopbook-section) h2{font-family:'Akira Expanded','Archivo',s
 </div></section>
 
 <!-- SHOP BY CATEGORY -->
+<section class="block alt tc-home-section" id="home-tireconnect"><div class="wrap">
+  <div class="sec-head"><div class="sec-eye">Live local inventory</div><h2>Search Tires, Wheels &amp; Packages</h2>
+    <p>Choose your fit and store above, then compare available products and local pricing here.</p></div>
+  <div id="tcInlineWidget" class="tc-home-widget" aria-live="polite"></div>
+</div></section>
 <section class="block" id="categories"><div class="wrap">
   <div class="sec-head"><div class="sec-eye">Shop</div><h2>What Tires, Wheels, or Packages Are You Looking For?</h2>
     <p>From all-season and performance tires to truck, SUV, and off-road fitments — plus alloy and aftermarket wheels and mounted tire & wheel packages — American Tire Stores stocks 40+ trusted brands and confirms fitment for your exact vehicle before you buy. Enter your vehicle or store above to see what’s in stock near you.</p></div>
@@ -410,7 +408,7 @@ function storeLabel(s){return (s.name.split('— ')[1]||s.name);}
 function fillStores(sel){if(!sel)return;const ph=sel.id==='hstore'?'Choose…':'Select a store';sel.innerHTML='<option value="">'+ph+'</option>';STORES.forEach((s,i)=>sel.add(new Option(storeLabel(s),i)));}
 fillStores($('store'));fillStores($('hstore'));
 restoreTireConnectState();
-initVehicleDropdowns().catch(()=>{}).then(()=>{reflectState();preloadTireConnect();openTireConnect('catalog',true);});
+initVehicleDropdowns().catch(()=>{}).then(async()=>{if(st.year)await loadMakesForYear(st.year);if(st.make)await loadModelsForMake(st.year,st.make);reflectState();preloadTireConnect();openTireConnect('catalog',true);});
 
 /* one source of truth: st -> reflected into hero form AND header fields */
 function syncSel(yId,mkId,mdId){const y=$(yId),mk=$(mkId),md=$(mdId);if(!y)return;
@@ -436,6 +434,13 @@ function switchTab(m){st.mode=m;document.querySelectorAll('.tab').forEach(t=>t.c
 async function onYear(){st.year=$('year').value;st.make='';st.model='';reflectState();await loadMakesForYear(st.year);reflectState();if(st.year&&$('make'))$('make').focus();}
 async function onMake(){st.make=$('make').value;st.model='';reflectState();await loadModelsForMake(st.year,st.make);reflectState();if(st.make&&$('model'))$('model').focus();}
 function onModel(){st.model=$('model').value;reflectState();}
+window.addEventListener('ats:vehicle-changed',async function(event){
+ const v=event.detail;if(!v||!v.year)return;
+ st.year=String(v.year);st.make=v.make||'';st.model=v.model||'';
+ const expected=[st.year,st.make,st.model].join('|');
+ await loadMakesForYear(st.year);if(st.make)await loadModelsForMake(st.year,st.make);
+ if(expected===[st.year,st.make,st.model].join('|'))reflectState();
+});
 function onSize(){st.w=$('w').value;st.r=$('r').value;st.d=$('d').value;checkReadyOnly();}
 /* store (hero + header selects share st) */
 function onStore(){st.store=$('store').value!==''?STORES[$('store').value]:null;reflectState();}
@@ -499,9 +504,10 @@ function restoreTireConnectState(){
     const params=new URLSearchParams(window.location.search);
     const locationId=params.get('location_id')||params.get('locationId')||localStorage.getItem('atsTireConnectLocationId')||sessionStorage.getItem('atsTireConnectLocationId')||'';
     if(locationId){const match=STORES.find(s=>String(s.id)===String(locationId));if(match)st.store=match;}
-    st.year=params.get('year')||'';
-    st.make=params.get('make')||'';
-    st.model=params.get('model')||'';
+    const saved=JSON.parse(localStorage.getItem('atsTireConnectVehicle')||'{}');
+    st.year=saved.year||params.get('year')||'';
+    st.make=saved.make||params.get('make')||'';
+    st.model=saved.model||params.get('model')||'';
   }catch(e){}
 }
 function isShopifyThemePreview(){

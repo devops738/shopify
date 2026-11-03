@@ -31,6 +31,11 @@
     } catch (_) {}
   }
   function render() {
+    try {
+      var store=JSON.parse(localStorage.getItem('atsTireConnectStore')||'null');
+      if(store&&window.atsSharedStores){var index=window.atsSharedStores.findIndex(function(s){return (s.id&&String(s.id)===String(store.id))||s.city===store.city;});
+        if(index>=0)document.querySelectorAll('#hstore').forEach(function(s){s.value=String(index);});}
+    }catch(_){}
     var vehicle = read();
     if (!vehicle || !vehicle.year) return;
     document.querySelectorAll('#vehVal').forEach(function (label) {
@@ -49,4 +54,14 @@
   window.addEventListener('pagehide', capture);
   window.setInterval(refresh, 500);
   capture();
+  var product=location.pathname==='/pages/tire-search'?'tire':location.pathname==='/pages/packages'?'package':null;
+  if(product){
+    var attempts=0;
+    var tabTimer=setInterval(function(){
+      var root=document.querySelector(product==='tire'?'#wh-mount':'#pkgMount');
+      var button=root&&Array.from(root.querySelectorAll('button')).find(function(b){return b.textContent.trim().toLowerCase()===product&&b.querySelector('img');});
+      if(button){button.click();clearInterval(tabTimer);}
+      else if(++attempts>120)clearInterval(tabTimer);
+    },250);
+  }
 })();

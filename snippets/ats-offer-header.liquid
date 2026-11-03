@@ -51,8 +51,12 @@
     store.addEventListener('change',()=>{const picked=stores[Number(store.value)];field.classList.toggle('set',!!picked);if(picked)persist(picked);});
     vehicle.removeAttribute('onclick');
     vehicle.addEventListener('click',()=>{const open=!pop.classList.contains('show');pop.classList.toggle('show',open);vehicle.setAttribute('aria-expanded',String(open));});
-    year.addEventListener('change',()=>option(make,Object.keys(makes[year.value]||{})));
-    make.addEventListener('change',()=>option(model,(makes[year.value]||{})[make.value]||[]));
+    let request=0;
+    const load=async(endpoint,params={})=>{const url=new URL('https://wl.tireconnect.ca/api/v2/vehicle/'+endpoint);url.searchParams.set('key','c097aed9ad8c441bfff05ae020ca53f0');Object.entries(params).forEach(([k,v])=>url.searchParams.set(k,v));const response=await fetch(url);if(!response.ok)throw new Error('Vehicle lookup unavailable');const data=await response.json();return (Array.isArray(data)?data:data.data||data[endpoint]||[]).map(v=>typeof v==='object'?v.name||v.value||v.label||v.year||v.make||v.model:String(v)).filter(Boolean);};
+    const populate=async(el,endpoint,params)=>{const token=++request;option(el,[]);try{const values=await load(endpoint,params);if(token===request)option(el,values);}catch(e){if(token===request)el.innerHTML='<option value="">Unable to load — retry selection</option>';}};
+    populate(year,'years');
+    year.addEventListener('change',()=>{option(model,[]);populate(make,'makes',{year:year.value});});
+    make.addEventListener('change',()=>populate(model,'models',{year:year.value,make:make.value}));
     model.addEventListener('change',()=>{const selected={year:year.value,make:make.value,model:model.value};try{['atsTireConnectVehicle','tcVehicle','tc_vehicle','tcwlwVehicle','tcwlw_vehicle','TCWidgetVehicle'].forEach(key=>{localStorage.setItem(key,JSON.stringify(selected));sessionStorage.setItem(key,JSON.stringify(selected));});window.dispatchEvent(new CustomEvent('ats:tireconnect-updated'));}catch(e){}value.textContent=[year.value,make.value,model.value].filter(Boolean).join(' ')||'Not selected…';vehicle.classList.toggle('set',!!model.value);pop.classList.remove('show');});
     document.addEventListener('click',e=>{if(pop.classList.contains('show')&&!e.target.closest('#vehPop')&&!e.target.closest('#vehField'))pop.classList.remove('show');});
     syncVehicle();
