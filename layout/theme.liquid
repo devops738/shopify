@@ -2,6 +2,10 @@
 <html lang="{{ request.locale.iso_code | default: 'en' }}">
 <head>
 <meta charset="UTF-8">
+{% if request.page_type == 'index' %}
+<link rel="preload" as="image" href="{{ 'ats-inline-03.jpg' | asset_url }}" fetchpriority="high">
+{% endif %}
+<link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
 <script src="{{ 'ats-vehicle-state.js' | asset_url }}"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>American Tire Stores | Tire Shop Near Me | Tires, Wheels &amp; Auto Services</title>
