@@ -2,6 +2,17 @@
   'use strict';
   var keys = ['atsTireConnectVehicle', 'tcVehicle', 'tc_vehicle', 'tcwlwVehicle', 'tcwlw_vehicle', 'TCWidgetVehicle'];
   var lastHash = null;
+  var requests = new Map();
+  window.atsVehicleRequest = function (url) {
+    var key = String(url);
+    if (requests.has(key)) return requests.get(key);
+    var request = fetch(key).then(function (response) {
+      if (!response.ok) throw new Error('Vehicle lookup unavailable');
+      return response.json();
+    }).catch(function (error) { requests.delete(key); throw error; });
+    requests.set(key, request);
+    return request;
+  };
   function read() {
     try { return JSON.parse(localStorage.getItem(keys[0]) || sessionStorage.getItem(keys[0]) || 'null'); }
     catch (_) { return null; }
@@ -34,12 +45,13 @@
     try {
       var store=JSON.parse(localStorage.getItem('atsTireConnectStore')||'null');
       if(store&&window.atsSharedStores){var index=window.atsSharedStores.findIndex(function(s){return (s.id&&String(s.id)===String(store.id))||s.city===store.city;});
-        if(index>=0)document.querySelectorAll('#hstore').forEach(function(s){s.value=String(index);});}
+        if(index>=0)document.querySelectorAll('#hstore').forEach(function(s){if(s.value!==String(index))s.value=String(index);});}
     }catch(_){}
     var vehicle = read();
     if (!vehicle || !vehicle.year) return;
     document.querySelectorAll('#vehVal').forEach(function (label) {
-      label.textContent = [vehicle.year, vehicle.make, vehicle.model || (vehicle.make ? '— Select model' : '— Select make')].filter(Boolean).join(' ');
+      var text = [vehicle.year, vehicle.make, vehicle.model || (vehicle.make ? '— Select model' : '— Select make')].filter(Boolean).join(' ');
+      if(label.textContent!==text)label.textContent=text;
     });
     document.querySelectorAll('#vehField').forEach(function (field) { field.classList.add('set'); });
   }
@@ -52,7 +64,8 @@
   // Capture before internal navigation, including widget routes updated via replaceState.
   document.addEventListener('click', capture, true);
   window.addEventListener('pagehide', capture);
-  window.setInterval(refresh, 500);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) refresh(); });
+  window.setInterval(function () { if (!document.hidden) refresh(); }, 500);
   capture();
   var product=location.pathname==='/pages/tire-search'?'tire':location.pathname==='/pages/packages'?'package':null;
   if(product){

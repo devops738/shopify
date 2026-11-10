@@ -506,8 +506,10 @@ footer .wrap{padding-top:34px}
       const btn=document.querySelector('.ats-call-btn');
       if(!btn)return;
       const store=selectedStore();
-      btn.textContent=store&&hasPhone(store.phone)?'Call '+store.phone:'Call Store';
-      btn.setAttribute('aria-label',store&&hasPhone(store.phone)?'Call '+store.city+' at '+store.phone:'Choose a store to call');
+      const text=store&&hasPhone(store.phone)?'Call '+store.phone:'Call Store';
+      const label=store&&hasPhone(store.phone)?'Call '+store.city+' at '+store.phone:'Choose a store to call';
+      if(btn.textContent!==text)btn.textContent=text;
+      if(btn.getAttribute('aria-label')!==label)btn.setAttribute('aria-label',label);
     }
     function bookServices(e){
       if(e)e.preventDefault();
@@ -543,7 +545,8 @@ footer .wrap{padding-top:34px}
       });
       appt.addEventListener('click',bookServices);
       window.addEventListener('ats:tireconnect-updated',updateCallButton);
-      window.setInterval(updateCallButton,1200);
+      document.addEventListener('visibilitychange',function(){if(!document.hidden)updateCallButton();});
+      window.setInterval(function(){if(!document.hidden)updateCallButton();},1200);
       document.addEventListener('click',function(e){
         const pop=document.getElementById('atsCallPop');
         if(pop&&pop.classList.contains('show')&&!e.target.closest('#atsCallPop')&&!e.target.closest('.ats-call-btn'))pop.classList.remove('show');

@@ -52,7 +52,7 @@
     vehicle.removeAttribute('onclick');
     vehicle.addEventListener('click',()=>{const open=!pop.classList.contains('show');pop.classList.toggle('show',open);vehicle.setAttribute('aria-expanded',String(open));});
     let request=0;
-const load=async(endpoint,params={})=>{const url=new URL('https://wl.tireconnect.ca/api/v2/vehicle/'+endpoint);url.searchParams.set('key','c097aed9ad8c441bfff05ae020ca53f0');Object.entries(params).forEach(([k,v])=>url.searchParams.set(k,v));const response=await fetch(url);if(!response.ok)throw new Error('Vehicle lookup unavailable');const data=await response.json();return (Array.isArray(data)?data:data.data?.values||data.data||data[endpoint]||[]).map(v=>typeof v==='object'?v.name||v.value||v.label||v.year||v.make||v.model:String(v)).filter(Boolean);};
+const load=async(endpoint,params={})=>{const url=new URL('https://wl.tireconnect.ca/api/v2/vehicle/'+endpoint);url.searchParams.set('key','c097aed9ad8c441bfff05ae020ca53f0');Object.entries(params).forEach(([k,v])=>url.searchParams.set(k,v));const data=await window.atsVehicleRequest(url.toString());return (Array.isArray(data)?data:data.data?.values||data.data||data[endpoint]||[]).map(v=>typeof v==='object'?v.name||v.value||v.label||v.year||v.make||v.model:String(v)).filter(Boolean);};
     const populate=async(el,endpoint,params)=>{const token=++request;option(el,[]);try{const values=await load(endpoint,params);if(token===request)option(el,values);}catch(e){if(token===request)el.innerHTML='<option value="">Unable to load — retry selection</option>';}};
     populate(year,'years');
     year.addEventListener('change',()=>{option(model,[]);populate(make,'makes',{year:year.value});});

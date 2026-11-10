@@ -363,7 +363,7 @@ function vehicleApi(endpoint,params={}){
   const url=new URL(`https://wl.tireconnect.ca/api/v2/vehicle/${endpoint}`);
   url.searchParams.set('key',TC_API_KEY);
   Object.entries(params).forEach(([k,v])=>{if(v)url.searchParams.set(k,v);});
-  return fetch(url.toString()).then(r=>r.ok?r.json():Promise.reject(new Error('Vehicle API failed'))).then(valuesFromPayload).then(normalizeVehicleValues);
+  return window.atsVehicleRequest(url.toString()).then(valuesFromPayload).then(normalizeVehicleValues);
 }
 function setLoading(sel,label){if(!sel)return;sel.disabled=true;sel.innerHTML=`<option value="" disabled selected hidden>${label}</option>`;}
 async function initVehicleDropdowns(){
@@ -467,14 +467,14 @@ function preserveHeroFocus(control){
 }
 ['wheel','touchstart','pointerdown','keydown'].forEach(type=>document.addEventListener(type,event=>{if(event.isTrusted)heroFocusGuard++;},{capture:true,passive:true}));
 setInterval(function(){
- if(st.mode!=='size')return;
+ if(document.hidden||st.mode!=='size')return;
  for(const id of ['w','r','d']){
   const source=sizeWidgetSelect(id),target=$(id);if(!source||!target)continue;
   const options=[...source.options].filter(o=>o.value&&o.value!=='0');
   const signature=JSON.stringify(options.map(o=>[o.value,o.textContent]));
   if(target.dataset.options!==signature){target.replaceChildren(new Option('Select',''),...options.map(o=>new Option(o.textContent,o.value)));target.dataset.options=signature;}
   target.disabled=source.disabled||!options.length||(id==='r'&&!st.w)||(id==='d'&&!st.r);
-  target.value=source.value;st[id]=target.disabled?'':target.value;
+  if(target.value!==source.value)target.value=source.value;st[id]=target.disabled?'':target.value;
  }
  checkReadyOnly();
 },300);
